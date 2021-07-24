@@ -86,7 +86,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mArrayList.size();
+        return (mArrayList != null) ? mArrayList.size() : 0;
     }
 
     private void setLayoutBackgroundColor(@NonNull MyViewHolder holder) {

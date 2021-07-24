@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,8 +52,8 @@ public class HomeFragment extends Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //-----------------------------------------------| Category
-        RecyclerView mRecyclerView0 = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        initRecyclerView(mRecyclerView0, ConstantKey.getUsers());
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+        initRecyclerView(mRecyclerView, ConstantKey.getUsers());
         /*mProductViewModel.getAllProductCategory().observe(getActivity(), new Observer<ArrayList<Category>>() {
             @Override
             public void onChanged(ArrayList<Category> arrayList) {
@@ -82,10 +83,12 @@ public class HomeFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    private void initRecyclerView(RecyclerView mRecyclerView, ArrayList<User> arrayList) {
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<User> arrayList) {
         UserAdapter mAdapter = new UserAdapter(getActivity(), arrayList);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
         mAdapter.notifyDataSetChanged();
     }
 

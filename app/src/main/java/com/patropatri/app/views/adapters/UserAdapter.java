@@ -3,9 +3,11 @@ package com.patropatri.app.views.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     private FragmentActivity mActivity;
     private ArrayList<User> mArrayList;
     private ArrayList<User> mArrayList1;
+
+    private String [] iconsNames = {"Categories", "Gift Cards", "Express", "Orders", "Newsfeed"};
+    private int[] icons = { R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24 };
 
     public UserAdapter(FragmentActivity activity, ArrayList<User> arrayList) {
         if (mArrayList != null) {
@@ -44,6 +50,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         User model = mArrayList.get(position);
 
+        if (model.getImageName() != null) {
+            //Picasso.get().load(ConstantKey.SERVER_URL + "Uploads/" + model.getImageName()).placeholder(R.drawable.ic_baseline_shopping_cart_24).error(R.drawable.ic_baseline_shopping_cart_24).into(((ImageView) view.findViewById(R.id.item_image)));
+        }
+
+        //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        //holder.title.setText(iconsNames[position]);
+
         //holder.textView.setText(model.getProductName());
         /*holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +68,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
                 Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
             }
         });*/
+
+        try {
+            //String[] currentDate = model.getAttendanceDate().split("-");
+            //holder.date.setText(currentDate[2] + "/" + currentDate[1] + "/" + currentDate[0]);
+            //String day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(Utility.getInstance().getDateFromStringDate("yyyy-MM-dd", model.getAttendanceDate()));
+
+            //String day = Utility.getInstance().getFormatDateFromDate("EEEE", Utility.getInstance().getParseDateFromStringDate("yyyy-MM-dd", model.getAttendanceDate()));
+            //holder.day.setText(day); //yyyy-MM-dd HH:mm:ss | 2020-07-21 01:57:33.435
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -62,12 +86,27 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         return mArrayList.size();
     }
 
+    private void setLayoutBackgroundColor(@NonNull MyViewHolder holder) {
+        //holder.content.setBackgroundColor(mActivity.getResources().getColor(R.color.colorBlack));
+        //holder.itemName.setTextColor(mActivity.getResources().getColor(R.color.colorWhite));
+        //(holder.imageButton.getBackground()).setColorFilter(mActivity.getResources().getColor(R.color.colorWhite), PorterDuff.Mode.SRC_IN); //For Vector Drawable
+    }
+
+    private void setEnabledEditText(EditText editText, boolean isCursorDisabled, boolean isPressed, boolean isFocusable, boolean isTouchDisabled, boolean isClicked, boolean isEnabled) {
+        editText.setCursorVisible(isCursorDisabled);
+        editText.setPressed(isPressed);
+        editText.setFocusable(isFocusable);
+        editText.setFocusableInTouchMode(isTouchDisabled);
+        editText.setClickable(isClicked);
+        editText.setEnabled(isEnabled);
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
-        LinearLayout layout;
+        RelativeLayout layout;
         TextView textView;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            layout = (LinearLayout) itemView.findViewById(R.id.item_layout);
+            layout = (RelativeLayout) itemView.findViewById(R.id.item_layout);
             textView = (TextView) itemView.findViewById(R.id.item_name);
         }
     }

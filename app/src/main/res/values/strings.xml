@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PatroPatri</string>
+
+    <!-- ProgressDialog -->
+    <string name="progress">Please wait…</string>
+    <string name="alert_title">Alert</string>
+    <string name="alert_ok">OK</string>
+
+    <!-- Alert messages -->
+    <string name="error_msg_network">Network connection is not available.</string>
+    <string name="error_msg_location">Location service is not enabled.</string>
+
+    <string-array name="company_array">
+        <item>Subra Systems Ltd</item>
+        <item>Other</item>
+    </string-array>
+</resources>

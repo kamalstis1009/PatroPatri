@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:checked="true"
+        android:iconTint="@color/colorWhite"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_question"
+        android:enabled="true"
+        android:iconTint="@color/colorWhite"
+        android:icon="@drawable/ic_baseline_lock_24"
+        android:title="Checklist"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_review"
+        android:enabled="true"
+        android:iconTint="@color/colorWhite"
+        android:icon="@drawable/ic_baseline_date_range_24"
+        android:title="Review"
+        app:showAsAction="ifRoom" />
+</menu>

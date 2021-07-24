@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.adapters.UserAdapter;
 
@@ -50,8 +51,9 @@ public class HomeFragment extends Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //-----------------------------------------------| Category
-        /*RecyclerView mRecyclerView0 = (RecyclerView) view.findViewById(R.id.product_icon_recycler_view);
-        mProductViewModel.getAllProductCategory().observe(getActivity(), new Observer<ArrayList<Category>>() {
+        RecyclerView mRecyclerView0 = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+        initRecyclerView(mRecyclerView0, ConstantKey.getUsers());
+        /*mProductViewModel.getAllProductCategory().observe(getActivity(), new Observer<ArrayList<Category>>() {
             @Override
             public void onChanged(ArrayList<Category> arrayList) {
                 initRecyclerView(mRecyclerView0, arrayList);

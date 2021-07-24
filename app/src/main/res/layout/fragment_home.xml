@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
             <LinearLayout
                 android:padding="15dp"
                 android:orientation="vertical"
@@ -40,78 +39,11 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <!-- Main banner -->
-            <RelativeLayout
-                android:background="@color/colorWhite"
-                android:layout_marginBottom="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="150dp">
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/home_view_pager_slider"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/slider_indicator"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentBottom="true"
-                    app:tabBackground="@drawable/indicator_selector"
-                    app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp"
-                    android:background="@android:color/transparent"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
-
-            <!-- Category -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/product_icon_recycler_view"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_home_product_icon"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:background="@color/colorWhite"
-                android:layout_marginBottom="15dp"
+                android:id="@+id/items_recycler_view"
+                tools:listitem="@layout/item_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <!-- Products -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/campaign_product_recycler_view"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_home_campaign_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <!-- Brands -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/campaign_brand_recycler_view"
-                android:orientation="horizontal"
-                tools:listitem="@layout/item_home_campaign_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:padding="15dp"
-                android:orientation="vertical"
-                android:background="@color/colorBackgroundGrey"
-                android:layout_marginBottom="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!-- Products -->
-                <TextView
-                    android:text="Products"
-                    android:textSize="20sp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/product_recycler_view"
-                    tools:listitem="@layout/item_product"
-                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                    app:spanCount="2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

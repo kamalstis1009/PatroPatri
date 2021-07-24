@@ -69,6 +69,12 @@ public class User {
     @Expose
     private String oCode;
 
+    public User(String firstName, String lastName, String district) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.district = district;
+    }
+
     public String getId() {
         return id;
     }

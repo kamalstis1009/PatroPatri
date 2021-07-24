@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
 
         //-----------------------------------------------| Toolbar
         if (getActivity() != null) {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
+            //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
         }
 
         //-----------------------------------------------| Session

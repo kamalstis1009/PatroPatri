@@ -14,12 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:padding="15dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:padding="15dp"
+                android:layout_marginBottom="15dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -40,7 +41,6 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:padding="15dp"
                 android:id="@+id/items_recycler_view"
                 tools:listitem="@layout/item_user"
                 android:layout_width="match_parent"

@@ -8,8 +8,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Photo;
+import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.utils.GridSpacingItemDecoration;
+import com.patropatri.app.views.adapters.PhotoAdapter;
+
+import java.util.ArrayList;
 
 public class UserPhotoFragment extends Fragment {
 
@@ -41,7 +50,19 @@ public class UserPhotoFragment extends Fragment {
             }
         });*/
 
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+        //initRecyclerView(mRecyclerView, ConstantKey.getCategories());
+
         return view;
+    }
+
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Photo> arrayList) {
+        PhotoAdapter mAdapter = new PhotoAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
+        mAdapter.notifyDataSetChanged();
     }
 
 }

@@ -70,7 +70,7 @@
 
             <!--Personal Information-->
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:padding="15dp"
                 android:orientation="vertical"
                 android:background="@color/colorWhite"
@@ -288,11 +288,11 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </LinearLayout>-->
 
             <!--Contact-->
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:padding="15dp"
                 android:orientation="vertical"
                 android:background="@color/colorWhite"
@@ -345,6 +345,7 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
@@ -369,7 +370,238 @@
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_location_on_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Present Address"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_present_address"
+                            android:text="Mirpur, Dhaka, Bangladesh"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_home_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Permanent Address"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_permanent_address"
+                            android:text="Khulna, Bangladesh"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>-->
+
+            <!--Education-->
+
+            <!--<LinearLayout
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:background="@color/colorWhite"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Education"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageButton
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_baseline_edit_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_account_balance_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="MSc - 2021"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_subject"
+                            android:text="English"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_result"
+                            android:text="CGPA-3.5"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_university"
+                            android:text="Brac University, Dhaka"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_account_balance_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="BSc - 2020"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="English"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="CGPA-3.5"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Brac University, Dhaka"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_account_balance_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="HSC - 2015"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Science"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="GPA-5"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Dhaka College"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_account_balance_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="SSC - 2013"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Science"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="GPA-5"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:text="Adamjee Cantonment College"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>-->
 
 
         </LinearLayout>

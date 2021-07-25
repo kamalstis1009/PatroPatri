@@ -51,7 +51,7 @@ public class UserPhotoFragment extends Fragment {
         });*/
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        //initRecyclerView(mRecyclerView, ConstantKey.getCategories());
+        initRecyclerView(mRecyclerView, ConstantKey.getUserPhotos());
 
         return view;
     }

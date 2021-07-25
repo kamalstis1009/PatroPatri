@@ -1,5 +1,6 @@
 package com.patropatri.app.views.adapters;
 
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Photo model = mArrayList.get(position);
 
-        //holder.imageView.setImageResource(model.getIcon());
-        //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        holder.imageView.setImageResource(model.getIcon());
+        holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +54,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return mArrayList.size();
+        return (mArrayList != null) ? mArrayList.size() : 0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

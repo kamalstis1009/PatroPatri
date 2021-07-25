@@ -2,51 +2,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root_view"
+    android:padding="15dp"
     android:orientation="vertical"
     android:background="@color/colorBackgroundGrey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.fragments.HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
-        android:scrollbars="none"
-        android:fillViewport="true"
+    <TextView
+        android:id="@+id/search_text"
+        android:inputType="text"
+        android:singleLine="true"
+        android:hint="Search"
+        android:textSize="15sp"
+        android:drawableTint="@color/colorDeepGrey"
+        android:drawableEnd="@drawable/ic_baseline_search_24"
+        android:backgroundTint="@color/colorWhite"
+        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:padding="15dp"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_marginBottom="15dp"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/search_text"
-                    android:inputType="text"
-                    android:singleLine="true"
-                    android:hint="Search"
-                    android:textSize="15sp"
-                    android:drawableTint="@color/colorDeepGrey"
-                    android:drawableEnd="@drawable/ic_baseline_search_24"
-                    android:backgroundTint="@color/colorWhite"
-                    android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-                    android:paddingStart="25dp"
-                    android:paddingEnd="25dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/items_recycler_view"
-                tools:listitem="@layout/item_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/items_recycler_view"
+        tools:listitem="@layout/item_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:orientation="vertical"
+    android:background="@color/colorBackgroundGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.fragments.UserDetailFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:scrollbars="none"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--Cover Portion-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--android:scaleType="fitXY"-->
+                <ImageView
+                    android:id="@+id/item_bg_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/mosque"
+                    android:background="@color/colorBackgroundGrey"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"/>
+                <RelativeLayout
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:id="@+id/back_button"
+                        android:src="@drawable/ic_baseline_arrow_back_24"
+                        app:backgroundTint="@color/colorBackgroundGrey"
+                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageButton
+                        android:id="@+id/item_share"
+                        android:layout_alignParentEnd="true"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/ic_baseline_more_vert_24"
+                        app:backgroundTint="@android:color/transparent"
+                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/item_image"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="-80dp"
+                    android:layout_below="@+id/item_bg_image"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/colorLightGrey"
+                    app:civ_circle_background_color="@color/colorWhite"
+                    app:tint="@color/colorWhite"
+                    android:src="@drawable/ic_add_photo"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"/>
+                <RelativeLayout
+                    android:padding="15dp"
+                    android:layout_below="@+id/item_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            app:tint="@color/colorPrimary"
+                            android:src="@drawable/ic_baseline_access_time_24"
+                            android:layout_marginEnd="5dp"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"/>
+                        <TextView
+                            android:id="@+id/item_date"
+                            android:textSize="10sp"
+                            android:text="10th November"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_alignParentEnd="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_marginEnd="10dp"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                app:tint="@color/colorPrimary"
+                                android:src="@drawable/ic_baseline_visibility_24"
+                                android:layout_marginEnd="5dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"/>
+                            <TextView
+                                android:id="@+id/item_viewed"
+                                android:textSize="10sp"
+                                android:text="15K"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                app:tint="@color/colorPrimary"
+                                android:src="@drawable/ic_baseline_favorite_24"
+                                android:layout_marginEnd="5dp"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"/>
+                            <TextView
+                                android:id="@+id/item_liked"
+                                android:textSize="10sp"
+                                android:text="12K"
+                                android:textColor="@color/colorPrimary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--Body Portion-->
+            <LinearLayout
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/item_name"
+                    android:textSize="20sp"
+                    android:text="Mohammad Ali"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/item_address_designation"
+                    android:text="Software Engineer | Chittagong"
+                    android:textColor="@color/colorPurple"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/item_description"
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:textSize="10sp"
+                    android:layout_marginBottom="5dp"
+                    android:text="I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:ellipsize="end"
+                    android:maxLines="4"
+                    android:textSize="10sp"
+                    android:text="Read More..."
+                    android:textColor="@color/colorPurple"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

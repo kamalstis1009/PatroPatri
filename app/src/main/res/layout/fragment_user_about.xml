@@ -18,178 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--Cover Portion-->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <!--android:scaleType="fitXY"-->
-                <ImageView
-                    android:id="@+id/item_bg_image"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/background_image"
-                    android:background="@color/colorBackgroundGrey"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"/>
-                <RelativeLayout
-                    android:padding="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageButton
-                        android:id="@+id/back_button"
-                        android:src="@drawable/ic_baseline_arrow_back_24"
-                        app:backgroundTint="@color/colorBackgroundGrey"
-                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <ImageButton
-                        android:id="@+id/item_share"
-                        android:layout_alignParentEnd="true"
-                        android:scaleType="fitCenter"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/ic_baseline_more_vert_24"
-                        app:backgroundTint="@android:color/transparent"
-                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </RelativeLayout>
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/item_image"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="-80dp"
-                    android:layout_below="@+id/item_bg_image"
-                    app:civ_border_width="1dp"
-                    app:civ_border_color="@color/colorLightGrey"
-                    app:civ_circle_background_color="@color/colorWhite"
-                    app:tint="@color/colorWhite"
-                    android:src="@drawable/ic_add_photo"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"/>
-                <LinearLayout
-                    android:layout_below="@+id/item_image"
-                    android:gravity="center"
-                    android:padding="15dp"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/item_title"
-                        android:textSize="20sp"
-                        android:text="Mohammad Ali"
-                        android:textColor="@color/colorPrimary"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/item_address_designation"
-                        android:text="Software Engineer | Chittagong"
-                        android:textColor="@color/colorPurple"
-                        android:layout_marginBottom="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                app:tint="@color/colorPrimary"
-                                android:src="@drawable/ic_baseline_access_time_24"
-                                android:layout_marginEnd="5dp"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"/>
-                            <TextView
-                                android:id="@+id/item_date"
-                                android:textSize="10sp"
-                                android:text="10th November"
-                                android:textColor="@color/colorPrimary"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_alignParentEnd="true"
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <LinearLayout
-                                android:layout_marginEnd="10dp"
-                                android:orientation="horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:tint="@color/colorPrimary"
-                                    android:src="@drawable/ic_baseline_visibility_24"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"/>
-                                <TextView
-                                    android:id="@+id/item_viewed"
-                                    android:textSize="10sp"
-                                    android:text="15K"
-                                    android:textColor="@color/colorPrimary"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:orientation="horizontal"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <ImageView
-                                    app:tint="@color/colorPrimary"
-                                    android:src="@drawable/ic_baseline_favorite_24"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"/>
-                                <TextView
-                                    android:id="@+id/item_liked"
-                                    android:textSize="10sp"
-                                    android:text="12K"
-                                    android:textColor="@color/colorPrimary"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                            </LinearLayout>
-                        </LinearLayout>
-                    </RelativeLayout>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <!--Button Portion-->
-            <LinearLayout
-                android:weightSum="2"
-                android:layout_marginBottom="15dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="75dp">
-                <LinearLayout
-                    android:gravity="center"
-                    android:layout_marginEnd="2dp"
-                    android:background="@color/colorWhite"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:textSize="12sp"
-                        android:textAlignment="center"
-                        android:text="About"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:gravity="center"
-                    android:background="@color/colorWhite"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:textSize="12sp"
-                        android:textAlignment="center"
-                        android:text="Photos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--Body Portion-->
             <LinearLayout
                 android:padding="15dp"
                 android:orientation="vertical"
@@ -248,34 +76,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:src="@drawable/ic_baseline_call_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Contact Number"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/item_phone"
-                            android:text="01914141707"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
                         android:src="@drawable/ic_baseline_people_24"
                         android:layout_marginEnd="15dp"
                         android:layout_width="20dp"
@@ -291,7 +91,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_gender"
-                            android:text="Male"
+                            android:text="Female"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -328,6 +128,118 @@
 
                 <LinearLayout
                     android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_cake_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Age"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_age"
+                            android:text="24 yrs"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_people_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Marital Status"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_marital_status"
+                            android:text="Unmarried"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_beenhere_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Religion"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_religion"
+                            android:text="Islam"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_location_on_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Home District"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_district"
+                            android:text="Khulna"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
@@ -353,7 +265,6 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

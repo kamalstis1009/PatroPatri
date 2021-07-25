@@ -26,7 +26,7 @@
                 <ImageView
                     android:id="@+id/item_bg_image"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/mosque"
+                    android:src="@drawable/background_image"
                     android:background="@color/colorBackgroundGrey"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"/>
@@ -64,74 +64,119 @@
                     android:src="@drawable/ic_add_photo"
                     android:layout_width="150dp"
                     android:layout_height="150dp"/>
-                <RelativeLayout
-                    android:padding="15dp"
+                <LinearLayout
                     android:layout_below="@+id/item_image"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:orientation="horizontal"
+                    <TextView
+                        android:id="@+id/item_name"
+                        android:textSize="20sp"
+                        android:text="Mohammad Ali"
+                        android:textColor="@color/colorPrimary"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <ImageView
-                            app:tint="@color/colorPrimary"
-                            android:src="@drawable/ic_baseline_access_time_24"
-                            android:layout_marginEnd="5dp"
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"/>
-                        <TextView
-                            android:id="@+id/item_date"
-                            android:textSize="10sp"
-                            android:text="10th November"
-                            android:textColor="@color/colorPrimary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_alignParentEnd="true"
-                        android:orientation="horizontal"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/item_address_designation"
+                        android:text="Software Engineer | Chittagong"
+                        android:textColor="@color/colorPurple"
+                        android:layout_marginBottom="15dp"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_marginEnd="10dp"
-                            android:orientation="horizontal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ImageView
-                                app:tint="@color/colorPrimary"
-                                android:src="@drawable/ic_baseline_visibility_24"
-                                android:layout_marginEnd="5dp"
-                                android:layout_width="15dp"
-                                android:layout_height="15dp"/>
-                            <TextView
-                                android:id="@+id/item_viewed"
-                                android:textSize="10sp"
-                                android:text="15K"
-                                android:textColor="@color/colorPrimary"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                        </LinearLayout>
                         <LinearLayout
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
                                 app:tint="@color/colorPrimary"
-                                android:src="@drawable/ic_baseline_favorite_24"
+                                android:src="@drawable/ic_baseline_access_time_24"
                                 android:layout_marginEnd="5dp"
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"/>
                             <TextView
-                                android:id="@+id/item_liked"
+                                android:id="@+id/item_date"
                                 android:textSize="10sp"
-                                android:text="12K"
+                                android:text="10th November"
                                 android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                         </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
+                        <LinearLayout
+                            android:layout_alignParentEnd="true"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_marginEnd="10dp"
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:tint="@color/colorPrimary"
+                                    android:src="@drawable/ic_baseline_visibility_24"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"/>
+                                <TextView
+                                    android:id="@+id/item_viewed"
+                                    android:textSize="10sp"
+                                    android:text="15K"
+                                    android:textColor="@color/colorPrimary"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <ImageView
+                                    app:tint="@color/colorPrimary"
+                                    android:src="@drawable/ic_baseline_favorite_24"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_width="15dp"
+                                    android:layout_height="15dp"/>
+                                <TextView
+                                    android:id="@+id/item_liked"
+                                    android:textSize="10sp"
+                                    android:text="12K"
+                                    android:textColor="@color/colorPrimary"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
+
+            <!--Button Portion-->
+            <LinearLayout
+                android:gravity="center"
+                android:weightSum="2"
+                android:padding="15dp"
+                android:orientation="horizontal"
+                android:background="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="75dp">
+                <TextView
+                    android:textSize="12sp"
+                    android:textAlignment="center"
+                    android:text="About"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:textSize="12sp"
+                    android:textAlignment="center"
+                    android:text="Photos"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
 
             <!--Body Portion-->
             <LinearLayout

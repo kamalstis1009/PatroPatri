@@ -37,8 +37,8 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Photo model = mArrayList.get(position);
 
-        holder.imageView.setImageResource(model.getIcon());
-        holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+        //holder.imageView.setImageResource(model.getIcon());
+        //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override

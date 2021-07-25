@@ -31,8 +31,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     private ArrayList<User> mArrayList;
     private ArrayList<User> mArrayList1;
 
-    private String [] iconsNames = {"Categories", "Gift Cards", "Express", "Orders", "Newsfeed"};
-    private int[] icons = { R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24 };
+    //private String [] iconsNames = {"Categories", "Gift Cards", "Express", "Orders", "Newsfeed"};
+    //private int[] icons = { R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24 };
 
     public UserAdapter(FragmentActivity activity, ArrayList<User> arrayList) {
         if (mArrayList != null) {

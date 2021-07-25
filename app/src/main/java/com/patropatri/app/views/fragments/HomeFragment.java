@@ -71,17 +71,17 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    @Override
+    /*@Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true *//* enabled by default *//*) {
             @Override
             public void handleOnBackPressed() {
                 // Handle the back button even
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-    }
+    }*/
 
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<User> arrayList) {
         UserAdapter mAdapter = new UserAdapter(getActivity(), arrayList);

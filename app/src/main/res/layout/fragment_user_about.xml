@@ -212,6 +212,62 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
+                        android:src="@drawable/ic_baseline_height_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Height"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_height"
+                            android:text="5.5"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_amp_stories_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Weight"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_weight"
+                            android:text="55 KG"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
                         android:src="@drawable/ic_baseline_people_24"
                         android:layout_marginEnd="15dp"
                         android:layout_width="20dp"
@@ -256,6 +312,34 @@
                         <TextView
                             android:id="@+id/item_religion"
                             android:text="Islam"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_star_rate_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Complex"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_complex"
+                            android:text="Fair"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -794,7 +878,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:text="I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh."
+                            android:text="Looking for an educated, supportive, strong bonded family. A family where she will be treated more as a daughter. And looking for a person who is supportive, honest, responsible, caring, can give respect and have the ability to take a stand in any situation. \nProfession: Any Halal income (Police, Lawyer is not preferable) \nHome district: Any (Noakhali, Comilla and Chandpur is not preferable)."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -822,7 +906,7 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/ic_baseline_star_rate_24"
+                        android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </RelativeLayout>
@@ -833,7 +917,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageView
-                        android:src="@drawable/ic_baseline_favorite_24"
+                        android:src="@drawable/ic_baseline_star_rate_24"
                         android:layout_marginEnd="15dp"
                         android:layout_width="20dp"
                         android:layout_height="20dp"/>
@@ -842,7 +926,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:text="I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh."
+                            android:text="Looking for an educated, supportive, strong bonded family. A family where she will be treated more as a daughter. And looking for a person who is supportive, honest, responsible, caring, can give respect and have the ability to take a stand in any situation. \nProfession: Any Halal income (Police, Lawyer is not preferable) \nHome district: Any (Noakhali, Comilla and Chandpur is not preferable)."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>

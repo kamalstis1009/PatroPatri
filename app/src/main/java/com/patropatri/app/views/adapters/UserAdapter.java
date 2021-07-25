@@ -1,5 +1,6 @@
 package com.patropatri.app.views.adapters;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
+import com.patropatri.app.utils.Utility;
+import com.patropatri.app.views.fragments.UserDetailFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> implements Filterable {
 
@@ -53,16 +58,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
 
         holder.textView.setText(model.getFirstName() + " " + model.getLastName());
-        /*holder.layout.setOnClickListener(new View.OnClickListener() {
+        holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("DATA", new Gson().toJson(model));
-                ProductDetailFragment mFragment = new ProductDetailFragment();
+                UserDetailFragment mFragment = new UserDetailFragment();
                 mFragment.setArguments(bundle);
                 Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
             }
-        });*/
+        });
 
         if (model.getImageName() != null) {
             //Picasso.get().load(ConstantKey.SERVER_URL + "Uploads/" + model.getImageName()).placeholder(R.drawable.ic_baseline_shopping_cart_24).error(R.drawable.ic_baseline_shopping_cart_24).into(((ImageView) view.findViewById(R.id.item_image)));

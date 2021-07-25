@@ -155,27 +155,37 @@
 
             <!--Button Portion-->
             <LinearLayout
-                android:gravity="center"
                 android:weightSum="2"
-                android:padding="15dp"
                 android:orientation="horizontal"
-                android:background="@color/colorWhite"
                 android:layout_width="match_parent"
                 android:layout_height="75dp">
-                <TextView
-                    android:textSize="12sp"
-                    android:textAlignment="center"
-                    android:text="About"
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/colorWhite"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:textSize="12sp"
-                    android:textAlignment="center"
-                    android:text="Photos"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:textSize="12sp"
+                        android:textAlignment="center"
+                        android:text="About"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:background="@color/colorWhite"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <TextView
+                        android:textSize="12sp"
+                        android:textAlignment="center"
+                        android:text="Photos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
             </LinearLayout>
 
             <!--Body Portion-->

@@ -44,12 +44,13 @@ public class UserDetailFragment extends Fragment {
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             //ArrayList<MealMenuModel> mArrayList = new Gson().fromJson(getArguments().getString("DATA", null), new TypeToken<ArrayList<MealMenuModel>>(){}.getType());
         }
-        ((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {
+
+        /*((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new SearchFragment());
+                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new SearchFragment());
             }
-        });
+        });*/
 
         return view;
     }

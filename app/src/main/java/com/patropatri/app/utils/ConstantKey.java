@@ -1,6 +1,7 @@
 package com.patropatri.app.utils;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.Photo;
 import com.patropatri.app.models.User;
 
@@ -25,6 +26,16 @@ public class ConstantKey {
         mArrayList.add(new Photo(3, R.drawable.ic_add_photo));
         mArrayList.add(new Photo(4, R.drawable.ic_add_photo));
         mArrayList.add(new Photo(5, R.drawable.ic_add_photo));
+        return mArrayList;
+    }
+
+    public static ArrayList<Notification> getNotifications() {
+        ArrayList<Notification> mArrayList = new ArrayList<>();
+        mArrayList.add(new Notification("LIKED"));
+        mArrayList.add(new Notification("COMMENT"));
+        mArrayList.add(new Notification("MESSAGE"));
+        mArrayList.add(new Notification("LIKED"));
+        mArrayList.add(new Notification("MESSAGE"));
         return mArrayList;
     }
 

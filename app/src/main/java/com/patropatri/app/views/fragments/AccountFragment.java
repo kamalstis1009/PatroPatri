@@ -26,7 +26,7 @@ public class AccountFragment extends Fragment {
         //-----------------------------------------------| ClickListener
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_profile)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.item_photo)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_gallery)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_notification)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_message)).setOnClickListener(new ActionHandler());
         ((TextView) view.findViewById(R.id.item_settings)).setOnClickListener(new ActionHandler());
@@ -45,14 +45,14 @@ public class AccountFragment extends Fragment {
             if (v.getId() == R.id.item_profile) {
                 //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new OrderFragment());
             }
-            if (v.getId() == R.id.item_photo) {
+            if (v.getId() == R.id.item_gallery) {
                 //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new ProfileFragment());
             }
             if (v.getId() == R.id.item_notification) {
                 Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new NotificationFragment());
             }
             if (v.getId() == R.id.item_message) {
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new MessageFragment());
+                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new InboxFragment());
             }
             if (v.getId() == R.id.item_settings) {
                 Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new SettingFragment());

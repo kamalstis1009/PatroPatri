@@ -65,16 +65,16 @@ public class UserDetailFragment extends Fragment {
             }
         });
 
-        ((TextView) view.findViewById(R.id.item_viewed)).setOnClickListener(new View.OnClickListener() {
+        ((LinearLayout) view.findViewById(R.id.viewed_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+                Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
             }
         });
-        ((TextView) view.findViewById(R.id.item_liked)).setOnClickListener(new View.OnClickListener() {
+        ((LinearLayout) view.findViewById(R.id.liked_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+                Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
             }
         });
 

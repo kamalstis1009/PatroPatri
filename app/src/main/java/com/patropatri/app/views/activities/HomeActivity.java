@@ -14,6 +14,7 @@ import com.patropatri.app.R;
 import com.patropatri.app.services.MyNetworkReceiver;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.HomeFragment;
+import com.patropatri.app.views.fragments.NotificationFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -76,10 +77,10 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.action_home:
                     Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());
                     return true;
-                case R.id.action_question:
-                    //Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());
+                case R.id.action_notification:
+                    Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new NotificationFragment());
                     return true;
-                case R.id.action_review:
+                case R.id.action_inbox:
                     //Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());
                     return true;
             }

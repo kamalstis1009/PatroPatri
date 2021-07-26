@@ -25,4 +25,11 @@
         android:icon="@drawable/ic_baseline_email_24"
         android:title="Inbox"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_account"
+        android:enabled="true"
+        android:iconTint="@color/colorWhite"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Account"
+        app:showAsAction="ifRoom" />
 </menu>

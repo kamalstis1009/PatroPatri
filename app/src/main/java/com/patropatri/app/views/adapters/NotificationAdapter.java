@@ -1,5 +1,6 @@
 package com.patropatri.app.views.adapters;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Notification;
+import com.patropatri.app.utils.Utility;
+import com.patropatri.app.views.fragments.MessageFragment;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -60,11 +65,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Bundle bundle = new Bundle();
-                bundle.putString("category", title);
-                FragmentCategoryWiseProduct mFragment = new FragmentCategoryWiseProduct();
-                mFragment.setArguments(bundle);
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);*/
+                if (model.getType().contains("MESSAGE")) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATA", new Gson().toJson(model));
+                    MessageFragment mFragment = new MessageFragment();
+                    mFragment.setArguments(bundle);
+                    Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+                }
             }
         });
     }

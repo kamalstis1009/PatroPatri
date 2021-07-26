@@ -49,19 +49,32 @@ public class UserDetailFragment extends Fragment {
             //ArrayList<MealMenuModel> mArrayList = new Gson().fromJson(getArguments().getString("DATA", null), new TypeToken<ArrayList<MealMenuModel>>(){}.getType());
         }
 
-        onReplaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new UserAboutFragment());
+        onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserAboutFragment());
 
         ((LinearLayout) view.findViewById(R.id.item_about_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onReplaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new UserAboutFragment());
+                onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserAboutFragment());
             }
         });
 
         ((LinearLayout) view.findViewById(R.id.item_photo_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onReplaceFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new UserPhotoFragment());
+                onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserPhotoFragment());
+            }
+        });
+
+        ((TextView) view.findViewById(R.id.item_viewed)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+            }
+        });
+        ((TextView) view.findViewById(R.id.item_liked)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
             }
         });
 

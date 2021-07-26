@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PatroPatri</string>
+    <string name="app_name">Patropatri</string>
 
     <!-- ProgressDialog -->
     <string name="progress">Please wait…</string>

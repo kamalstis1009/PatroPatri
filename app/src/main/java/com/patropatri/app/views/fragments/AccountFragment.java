@@ -40,25 +40,25 @@ public class AccountFragment extends Fragment {
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.back_button) {
-                Utility.getInstance().onBackFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new AccountFragment());
+                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new AccountFragment());
             }
             if (v.getId() == R.id.item_profile) {
-                //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new OrderFragment());
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new ProfileFragment());
             }
             if (v.getId() == R.id.item_gallery) {
-                //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new ProfileFragment());
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new GalleryFragment());
             }
             if (v.getId() == R.id.item_notification) {
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new NotificationFragment());
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new NotificationFragment());
             }
             if (v.getId() == R.id.item_message) {
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new InboxFragment());
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new InboxFragment());
             }
             if (v.getId() == R.id.item_settings) {
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new SettingFragment());
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SettingFragment());
             }
             if (v.getId() == R.id.item_change_password) {
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new PasswordFragment());
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new PasswordFragment());
             }
             if (v.getId() == R.id.item_change_language) {
                 //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new PasswordFragment());

@@ -14,4 +14,139 @@
         <item>Subra Systems Ltd</item>
         <item>Other</item>
     </string-array>
+
+    <string-array name="division_array">
+        <item>Division</item>
+        <item>Barisal</item>
+        <item>Chittagong</item>
+        <item>Dhaka</item>
+        <item>Khulna</item>
+        <item>Mymensingh</item>
+        <item>Rangpur</item>
+        <item>Rajshahi</item>
+        <item>Sylhet</item>
+    </string-array>
+
+    <string-array name="district_array">
+        <item>District</item>
+        <item>Barguna</item>
+        <item>Barishal</item>
+        <item>Bhola</item>
+        <item>Jhalokati</item>
+        <item>Patuakhali</item>
+        <item>Pirojpur</item>
+        <item>Bandarban</item>
+        <item>Brahmanbaria</item>
+        <item>Chandpur</item>
+        <item>Chattogram</item>
+        <item>Cumilla</item>
+        <item>Cox\'s Bazar</item>
+        <item>Feni</item>
+        <item>Khagrachhari</item>
+        <item>Lakshmipur</item>
+        <item>Noakhali</item>
+        <item>Rangamati</item>
+        <item>Dhaka</item>
+        <item>Faridpur</item>
+        <item>Gazipur</item>
+        <item>Gopalganj</item>
+        <item>Kishoreganj</item>
+        <item>Madaripur</item>
+        <item>Manikganj</item>
+        <item>Munshiganj</item>
+        <item>Narayanganj</item>
+        <item>Narsingdi</item>
+        <item>Rajbari</item>
+        <item>Shariatpur</item>
+        <item>Tangail</item>
+        <item>Bagerhat</item>
+        <item>Chuadanga</item>
+        <item>Jashore</item>
+        <item>Jhenaidah</item>
+        <item>Khulna</item>
+        <item>Kushtia</item>
+        <item>Magura</item>
+        <item>Meherpur</item>
+        <item>Narail</item>
+        <item>Satkhira</item>
+        <item>Jamalpur</item>
+        <item>Mymensingh</item>
+        <item>Netrokona</item>
+        <item>Sherpur</item>
+        <item>Bogura</item>
+        <item>Joypurhat</item>
+        <item>Naogaon</item>
+        <item>Natore</item>
+        <item>Chapainawabganj</item>
+        <item>Pabna</item>
+        <item>Rajshahi</item>
+        <item>Sirajganj</item>
+        <item>Dinajpur</item>
+        <item>Gaibandha</item>
+        <item>Kurigram</item>
+        <item>Lalmonirhat</item>
+        <item>Nilphamari</item>
+        <item>Panchagarh</item>
+        <item>Rangpur</item>
+        <item>Thakurgaon</item>
+        <item>Habiganj</item>
+        <item>Moulvibazar</item>
+        <item>Sunamganj</item>
+        <item>Sylhet</item>
+    </string-array>
+
+    <string-array name="area_array">
+        <item>Area</item>
+        <item>Adabor</item>
+        <item>Airport</item>
+        <item>Badda</item>
+        <item>Banani</item>
+        <item>Bangshal</item>
+        <item>Bhashantek</item>
+        <item>Cantonment</item>
+        <item>Chackbazar</item>
+        <item>Dakshin Khan</item>
+        <item>Darus-Salam</item>
+        <item>Demra</item>
+        <item>Dhanmondi</item>
+        <item>Gandaria</item>
+        <item>Gulshan</item>
+        <item>Hatirjheel</item>
+        <item>Hazaribag</item>
+        <item>Jattrabari</item>
+        <item>Kadamtoli</item>
+        <item>Kafrul</item>
+        <item>Kalabagan</item>
+        <item>Kamrangirchar</item>
+        <item>Khilgaon</item>
+        <item>Khilkhet</item>
+        <item>Kotwali</item>
+        <item>Lalbagh</item>
+        <item>Mirpur Model</item>
+        <item>Mohammadpur</item>
+        <item>Motijheel</item>
+        <item>Mugda</item>
+        <item>New Market</item>
+        <item>Pallabi</item>
+        <item>Paltan Model</item>
+        <item>Ramna Model</item>
+        <item>Rampura</item>
+        <item>Rupnagar</item>
+        <item>Sabujbag</item>
+        <item>Shah Ali</item>
+        <item>Shahbag</item>
+        <item>Shahjahanpur</item>
+        <item>Sher e Bangla Nagar</item>
+        <item>Shyampur</item>
+        <item>Sutrapur</item>
+        <item>Tejgaon</item>
+        <item>Tejgaon Industrial</item>
+        <item>Turag</item>
+        <item>Uttar Khan</item>
+        <item>Uttara East</item>
+        <item>Uttara West</item>
+        <item>Vatara</item>
+        <item>Wari</item>
+    </string-array>
+
 </resources>

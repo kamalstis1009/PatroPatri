@@ -51,7 +51,7 @@ public class MessageFragment extends Fragment {
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utility.getInstance().onBackFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new MessageFragment());
+                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new MessageFragment());
             }
         });
 

@@ -21,7 +21,6 @@
         android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
         android:paddingStart="25dp"
         android:paddingEnd="25dp"
-        android:layout_marginBottom="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

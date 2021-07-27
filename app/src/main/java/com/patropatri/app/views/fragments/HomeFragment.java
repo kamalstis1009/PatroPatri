@@ -88,7 +88,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
+        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(45 /*px spacing*/));
         mAdapter.notifyDataSetChanged();
     }
 

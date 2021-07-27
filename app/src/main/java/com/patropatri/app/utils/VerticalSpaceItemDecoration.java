@@ -7,15 +7,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
-    private int verticalSpaceHeight;
+    private int space;
 
     public VerticalSpaceItemDecoration(int verticalSpaceHeight) {
-        this.verticalSpaceHeight = 0;
-        this.verticalSpaceHeight = verticalSpaceHeight;
+        this.space = 0;
+        this.space = verticalSpaceHeight;
     }
 
     @Override
     public void getItemOffsets(Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        outRect.bottom = verticalSpaceHeight;
+        outRect.set(0, space, 0, 0);
     }
 }

@@ -423,7 +423,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_phone"
-                            android:text="01914141707"
+                            android:text="01910000000"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>

@@ -49,7 +49,7 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment {
         AttachPhotoAdapter mAdapter = new AttachPhotoAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
         mAdapter.notifyDataSetChanged();
     }

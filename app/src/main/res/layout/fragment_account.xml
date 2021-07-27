@@ -213,7 +213,7 @@
                         android:id="@+id/item_change_password"
                         android:textSize="20sp"
                         android:textAlignment="center"
-                        android:text="Change Password"
+                        android:text="Terms &amp; Conditions"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -234,7 +234,7 @@
                         android:id="@+id/item_change_language"
                         android:textSize="20sp"
                         android:textAlignment="center"
-                        android:text="Language Change"
+                        android:text="About"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

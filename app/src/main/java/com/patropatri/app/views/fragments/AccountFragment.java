@@ -30,8 +30,6 @@ public class AccountFragment extends Fragment {
         ((ImageButton) view.findViewById(R.id.item_notification)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_message)).setOnClickListener(new ActionHandler());
         ((TextView) view.findViewById(R.id.item_settings)).setOnClickListener(new ActionHandler());
-        ((TextView) view.findViewById(R.id.item_change_password)).setOnClickListener(new ActionHandler());
-        ((TextView) view.findViewById(R.id.item_change_language)).setOnClickListener(new ActionHandler());
 
         return view;
     }
@@ -56,12 +54,6 @@ public class AccountFragment extends Fragment {
             }
             if (v.getId() == R.id.item_settings) {
                 Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SettingFragment());
-            }
-            if (v.getId() == R.id.item_change_password) {
-                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new PasswordFragment());
-            }
-            if (v.getId() == R.id.item_change_language) {
-                //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new PasswordFragment());
             }
         }
     }

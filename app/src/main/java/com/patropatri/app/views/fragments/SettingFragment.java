@@ -26,6 +26,20 @@ public class SettingFragment extends Fragment {
             }
         });
 
+        ((ImageButton) view.findViewById(R.id.item_change_password)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new PasswordFragment());
+            }
+        });
+
+        ((ImageButton) view.findViewById(R.id.item_change_language)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new PasswordFragment());
+            }
+        });
+
         return view;
     }
 

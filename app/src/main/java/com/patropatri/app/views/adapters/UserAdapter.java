@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -19,6 +20,8 @@ import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
+import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 import com.patropatri.app.views.fragments.UserDetailFragment;
 import com.squareup.picasso.Picasso;
 
@@ -69,6 +72,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             }
         });
 
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("Position", position);
+                MessageFragmentDialog mFragment = new MessageFragmentDialog();
+                mFragment.setArguments(bundle);
+                Utility.getInstance().onShowFragmentDialog(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+            }
+        });
+
         if (model.getImageName() != null) {
             //Picasso.get().load(ConstantKey.SERVER_URL + "Uploads/" + model.getImageName()).placeholder(R.drawable.ic_baseline_shopping_cart_24).error(R.drawable.ic_baseline_shopping_cart_24).into(((ImageView) view.findViewById(R.id.item_image)));
         }
@@ -112,10 +126,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     class MyViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout layout;
         TextView textView;
+        Button button;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = (RelativeLayout) itemView.findViewById(R.id.item_layout);
             textView = (TextView) itemView.findViewById(R.id.item_name);
+            button = (Button) itemView.findViewById(R.id.message_button);
         }
     }
 

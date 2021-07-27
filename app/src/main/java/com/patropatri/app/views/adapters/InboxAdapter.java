@@ -44,7 +44,8 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.MyViewHolder
         Message model = mArrayList.get(position);
 
         if (model != null) {
-            holder.itemName.setText("Adnan liked your resume.");
+            holder.itemName.setText(model.getName());
+            holder.itemMessage.setText(model.getText());
         }
 
         //holder.itemIcon.setImageResource(model.getIcon());

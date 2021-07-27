@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment;
 import com.patropatri.app.R;
 import com.patropatri.app.utils.Utility;
 
-import java.util.Objects;
-
 public class AccountFragment extends Fragment {
 
     @Nullable

@@ -27,9 +27,14 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
+
+        ((ImageButton) view.findViewById(R.id.summary_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.personal_info_button)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.address_button)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.item_photo_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_contact_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_education_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_family_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_interest_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_expectation_button)).setOnClickListener(new ActionHandler());
 
         return view;
     }
@@ -40,10 +45,25 @@ public class ProfileFragment extends Fragment {
             if (v.getId() == R.id.back_button) {
                 Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new ProfileFragment());
             }
-            if (v.getId() == R.id.personal_info_button) {
+            if (v.getId() == R.id.summary_button) {
                 onShowDialog(1);
             }
-            if (v.getId() == R.id.address_button) {
+            if (v.getId() == R.id.personal_info_button) {
+                onShowDialog(2);
+            }
+            if (v.getId() == R.id.item_contact_button) {
+                onShowDialog(2);
+            }
+            if (v.getId() == R.id.item_education_button) {
+                onShowDialog(2);
+            }
+            if (v.getId() == R.id.item_family_button) {
+                onShowDialog(2);
+            }
+            if (v.getId() == R.id.item_interest_button) {
+                onShowDialog(2);
+            }
+            if (v.getId() == R.id.item_expectation_button) {
                 onShowDialog(2);
             }
         }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,6 +51,13 @@ public class UserDetailFragment extends Fragment {
         }
 
         onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserAboutFragment());
+
+        ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new UserDetailFragment());
+            }
+        });
 
         ((LinearLayout) view.findViewById(R.id.item_about_button)).setOnClickListener(new View.OnClickListener() {
             @Override

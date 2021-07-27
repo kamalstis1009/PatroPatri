@@ -21,7 +21,7 @@
                 android:padding="15dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:background="@color/colorWhite"
+                android:background="@color/colorPrimary"
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -37,6 +37,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
+                        android:visibility="gone"
                         android:layout_centerInParent="true"
                         android:text="Account"
                         android:textSize="20sp"
@@ -49,31 +50,26 @@
                         android:scaleType="fitCenter"
                         android:adjustViewBounds="true"
                         android:src="@drawable/ic_baseline_more_vert_24"
-                        android:backgroundTint="@android:color/transparent"
+                        app:backgroundTint="@android:color/transparent"
                         android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/item_photo"
-                    app:civ_border_width="2dp"
+                    app:civ_border_width="1dp"
                     app:civ_border_color="@color/colorLightGrey"
-                    android:tint="@color/colorPrimary"
-                    android:src="@drawable/ic_baseline_person_24"
-                    android:layout_centerInParent="true"
+                    app:civ_circle_background_color="@color/colorWhite"
+                    app:tint="@color/colorWhite"
+                    android:src="@drawable/ic_add_photo"
                     android:layout_marginBottom="15dp"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp" />
+                    android:layout_width="150dp"
+                    android:layout_height="150dp" />
                 <TextView
                     android:id="@+id/item_name"
                     android:text="Your Full Name"
                     android:textSize="25sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/item_ref_no"
-                    android:text="+88 01914141707"
-                    android:textSize="12sp"
+                    android:textColor="@color/colorWhite"
                     android:layout_marginBottom="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -100,7 +96,7 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Profile"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -122,7 +118,7 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Gallery"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -144,7 +140,7 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Notification"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -166,7 +162,7 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Messages"
-                            android:textColor="@color/colorPrimaryDark"
+                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -225,6 +221,7 @@
                 <LinearLayout
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
+                    android:layout_marginBottom="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <ImageButton
@@ -238,6 +235,26 @@
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="Language Change"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:src="@drawable/ic_baseline_exit_to_app_24"
+                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:id="@+id/item_sign_out"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+                        android:text="Sign Out"
                         android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

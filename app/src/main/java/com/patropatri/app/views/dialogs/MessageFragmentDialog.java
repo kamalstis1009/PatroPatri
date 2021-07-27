@@ -22,7 +22,6 @@ import com.patropatri.app.models.Photo;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.views.adapters.AttachPhotoAdapter;
-import com.patropatri.app.views.adapters.PhotoAdapter;
 
 import java.util.ArrayList;
 

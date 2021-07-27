@@ -41,7 +41,18 @@
                         android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+                    <Button
+                        android:id="@+id/message_button"
+                        android:text="Message"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorWhite"
+                        app:cornerRadius="25dp"
+                        android:layout_alignParentEnd="true"
+                        app:backgroundTint="@color/colorAccent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
                     <ImageButton
+                        android:visibility="gone"
                         android:id="@+id/item_share"
                         android:layout_alignParentEnd="true"
                         android:scaleType="fitCenter"

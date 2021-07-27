@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,10 +19,8 @@ import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
 import com.patropatri.app.utils.Utility;
-import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
 import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 import com.patropatri.app.views.fragments.UserDetailFragment;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;

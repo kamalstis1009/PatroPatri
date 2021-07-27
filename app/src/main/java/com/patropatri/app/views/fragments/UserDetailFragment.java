@@ -4,28 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.User;
-import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
-import com.patropatri.app.views.adapters.UserAdapter;
-
-import java.util.ArrayList;
-import java.util.Objects;
+import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 
 public class UserDetailFragment extends Fragment {
 
@@ -56,6 +46,17 @@ public class UserDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new UserDetailFragment());
+            }
+        });
+
+        ((Button) view.findViewById(R.id.message_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                //bundle.putInt("Position", position);
+                MessageFragmentDialog mFragment = new MessageFragmentDialog();
+                mFragment.setArguments(bundle);
+                Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
             }
         });
 

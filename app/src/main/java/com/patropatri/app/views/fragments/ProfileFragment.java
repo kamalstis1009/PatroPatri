@@ -14,11 +14,6 @@ import com.patropatri.app.R;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Objects;
-
 public class ProfileFragment extends Fragment {
 
     @Nullable

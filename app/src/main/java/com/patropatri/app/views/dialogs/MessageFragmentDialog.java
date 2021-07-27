@@ -10,11 +10,21 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Photo;
+import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.utils.GridSpacingItemDecoration;
+import com.patropatri.app.views.adapters.AttachPhotoAdapter;
+import com.patropatri.app.views.adapters.PhotoAdapter;
+
+import java.util.ArrayList;
 
 public class MessageFragmentDialog extends BottomSheetDialogFragment {
 
@@ -22,6 +32,9 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message_dialog, container, false);
+
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+        initRecyclerView(mRecyclerView, ConstantKey.getUserPhotos());
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +44,15 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment {
         });
 
         return view;
+    }
+
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Photo> arrayList) {
+        AttachPhotoAdapter mAdapter = new AttachPhotoAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
+        mAdapter.notifyDataSetChanged();
     }
 
     //===============================================| Back pressed dismiss

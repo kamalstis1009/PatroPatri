@@ -30,6 +30,13 @@
                     android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:text="Filter"
+                    android:textSize="15sp"
+                    android:textAllCaps="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <ImageButton
                     android:id="@+id/item_share"
                     android:layout_alignParentEnd="true"

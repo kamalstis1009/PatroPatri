@@ -10,15 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.Photo;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
-import com.patropatri.app.views.adapters.NotificationAdapter;
 import com.patropatri.app.views.adapters.PhotoAdapter;
 
 import java.util.ArrayList;

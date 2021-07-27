@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,11 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
 import com.patropatri.app.utils.ConstantKey;
-import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.adapters.UserAdapter;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class HomeFragment extends Fragment {
 
@@ -71,24 +68,24 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    /*@Override
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OnBackPressedCallback callback = new OnBackPressedCallback(true *//* enabled by default *//*) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true  /* enabled by default */ ) {
             @Override
             public void handleOnBackPressed() {
                 // Handle the back button even
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
-    }*/
+    }
 
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<User> arrayList) {
         UserAdapter mAdapter = new UserAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(45 /*px spacing*/));
+        //recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(45 /*px spacing*/));
         mAdapter.notifyDataSetChanged();
     }
 

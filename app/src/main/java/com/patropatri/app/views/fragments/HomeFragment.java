@@ -18,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
 import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.adapters.UserAdapter;
+import com.patropatri.app.views.dialogs.FilterFragmentDialog;
 
 import java.util.ArrayList;
 
@@ -61,7 +63,11 @@ public class HomeFragment extends Fragment {
         ((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new SearchFragment());
+                Bundle bundle = new Bundle();
+                //bundle.putInt("Position", position);
+                FilterFragmentDialog mFragment = new FilterFragmentDialog();
+                mFragment.setArguments(bundle);
+                Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
             }
         });
 

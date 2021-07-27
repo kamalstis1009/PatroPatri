@@ -27,6 +27,56 @@
         <item>Sylhet</item>
     </string-array>
 
+    <string-array name="marital_status_array">
+        <item>Marital Status</item>
+        <item>Never Married</item>
+        <item>Divorce</item>
+        <item>Short Divorce</item>
+        <item>Awaiting Divorce</item>
+        <item>Widowed</item>
+        <item>Annulled</item>
+    </string-array>
+
+    <string-array name="religion_array">
+        <item>Religion</item>
+        <item>All</item>
+        <item>Muslim</item>
+        <item>Christian</item>
+        <item>Jewish</item>
+        <item>Buddhism</item>
+        <item>Hindu</item>
+    </string-array>
+
+    <string-array name="profession_array">
+        <item>Profession</item>
+        <item>All</item>
+        <item>Student</item>
+        <item>Job Holder</item>
+        <item>Doctor</item>
+        <item>Engineer</item>
+        <item>Teacher</item>
+    </string-array>
+
+    <string-array name="from_year_array">
+        <item>From Age</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+    </string-array>
+
+    <string-array name="to_year_array">
+        <item>To Age</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+        <item>1990</item>
+    </string-array>
+
     <string-array name="district_array">
         <item>District</item>
         <item>Barguna</item>

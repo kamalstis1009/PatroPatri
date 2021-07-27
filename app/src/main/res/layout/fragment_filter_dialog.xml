@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:background="@color/colorBackgroundGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.dialogs.FilterFragmentDialog">
+
+    <androidx.core.widget.NestedScrollView
+        android:scrollbars="none"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:padding="15dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Toolbar -->
+            <RelativeLayout
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/back_button"
+                    android:src="@drawable/ic_baseline_arrow_back_24"
+                    app:backgroundTint="@color/colorWhite"
+                    android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageButton
+                    android:id="@+id/item_share"
+                    android:layout_alignParentEnd="true"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_baseline_more_vert_24"
+                    app:backgroundTint="@android:color/transparent"
+                    android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <Spinner
+                android:entries="@array/marital_status_array"
+                android:background="@drawable/layer_list_spinner"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:entries="@array/religion_array"
+                android:background="@drawable/layer_list_spinner"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:id="@+id/item_division"
+                android:entries="@array/profession_array"
+                android:background="@drawable/layer_list_spinner"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <Spinner
+                        android:entries="@array/from_year_array"
+                        android:background="@drawable/layer_list_spinner"
+                        android:padding="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginStart="5dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <Spinner
+                        android:entries="@array/to_year_array"
+                        android:background="@drawable/layer_list_spinner"
+                        android:padding="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <Spinner
+                android:id="@+id/item_district"
+                android:entries="@array/district_array"
+                android:background="@drawable/layer_list_spinner"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RadioGroup
+                android:id="@+id/gender_group"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/item_gender_male"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"/>
+                <RadioButton
+                    android:id="@+id/item_gender_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"/>
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/submit_button"
+                android:text="Submit"
+                android:textColor="@color/colorWhite"
+                app:cornerRadius="25dp"
+                android:padding="15dp"
+                app:backgroundTint="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

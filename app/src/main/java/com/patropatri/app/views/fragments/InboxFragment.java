@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.Message;
 import com.patropatri.app.utils.ConstantKey;
-import com.patropatri.app.views.adapters.NotificationAdapter;
+import com.patropatri.app.views.adapters.InboxAdapter;
 
 import java.util.ArrayList;
 
@@ -26,13 +26,13 @@ public class InboxFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
-        initRecyclerView(mRecyclerView, ConstantKey.getNotifications());
+        initRecyclerView(mRecyclerView, ConstantKey.getMessages());
 
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Notification> arrayList) {
-        NotificationAdapter mAdapter = new NotificationAdapter(getActivity(), arrayList);
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Message> arrayList) {
+        InboxAdapter mAdapter = new InboxAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

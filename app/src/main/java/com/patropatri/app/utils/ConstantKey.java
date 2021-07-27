@@ -2,6 +2,7 @@ package com.patropatri.app.utils;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.Comment;
+import com.patropatri.app.models.Message;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.Photo;
 import com.patropatri.app.models.User;
@@ -37,6 +38,16 @@ public class ConstantKey {
         mArrayList.add(new Notification("MESSAGE"));
         mArrayList.add(new Notification("LIKED"));
         mArrayList.add(new Notification("MESSAGE"));
+        return mArrayList;
+    }
+
+    public static ArrayList<Message> getMessages() {
+        ArrayList<Message> mArrayList = new ArrayList<>();
+        mArrayList.add(new Message("Mohammad Ali", "Very Nice!"));
+        mArrayList.add(new Message("Barsha Ahnaf", "Beautiful Nice!"));
+        mArrayList.add(new Message("Salman Rahman", "Woow Nice!"));
+        mArrayList.add(new Message("Ashfakur Talukdar", "Good Resume!"));
+        mArrayList.add(new Message("Mohammad Solaiman", "Very Nice!"));
         return mArrayList;
     }
 

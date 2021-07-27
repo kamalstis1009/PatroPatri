@@ -48,6 +48,11 @@ public class ConstantKey {
         mArrayList.add(new Message("Salman Rahman", "Woow Nice!"));
         mArrayList.add(new Message("Ashfakur Talukdar", "Good Resume!"));
         mArrayList.add(new Message("Mohammad Solaiman", "Very Nice!"));
+        mArrayList.add(new Message("Mohammad Ali", "Very Nice!"));
+        mArrayList.add(new Message("Barsha Ahnaf", "Beautiful Nice!"));
+        mArrayList.add(new Message("Salman Rahman", "Woow Nice!"));
+        mArrayList.add(new Message("Ashfakur Talukdar", "Good Resume!"));
+        mArrayList.add(new Message("Mohammad Solaiman", "Very Nice!"));
         return mArrayList;
     }
 

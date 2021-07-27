@@ -21,7 +21,7 @@
                 android:padding="15dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorWhite"
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -69,7 +69,6 @@
                     android:id="@+id/item_name"
                     android:text="Your Full Name"
                     android:textSize="25sp"
-                    android:textColor="@color/colorWhite"
                     android:layout_marginBottom="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -96,7 +95,6 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Profile"
-                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -118,7 +116,6 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Gallery"
-                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -140,7 +137,6 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Notification"
-                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -162,7 +158,6 @@
                             android:textSize="12sp"
                             android:textAlignment="center"
                             android:text="Messages"
-                            android:textColor="@color/colorWhite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -193,7 +188,6 @@
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="Settings"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -214,7 +208,6 @@
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="Terms &amp; Conditions"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -235,7 +228,6 @@
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="About"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -255,7 +247,6 @@
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="Sign Out"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>

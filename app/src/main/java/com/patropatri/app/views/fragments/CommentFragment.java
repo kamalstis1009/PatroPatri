@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.patropatri.app.R;
 import com.patropatri.app.models.Comment;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.utils.Utility;
 import com.patropatri.app.utils.VerticalSpaceItemDecoration;
 import com.patropatri.app.views.adapters.CommentAdapter;
 import com.patropatri.app.views.adapters.NotificationAdapter;
@@ -30,6 +32,13 @@ public class CommentFragment extends Fragment {
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         initRecyclerView(mRecyclerView, ConstantKey.getComments());
+
+        ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+            }
+        });
 
         return view;
     }

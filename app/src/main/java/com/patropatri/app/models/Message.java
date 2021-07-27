@@ -10,7 +10,7 @@ public class Message {
     private String imageName;
     private String createdAt = String.valueOf(new Timestamp(System.currentTimeMillis()));
 
-    public Message(String text, String name) {
+    public Message(String name, String text) {
         this.text = text;
         this.name = name;
     }

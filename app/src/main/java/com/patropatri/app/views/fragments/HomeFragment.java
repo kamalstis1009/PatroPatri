@@ -47,6 +47,8 @@ public class HomeFragment extends Fragment {
 
         //-----------------------------------------------| findViewById
         EditText editText = (EditText) view.findViewById(R.id.search_item);
+        ImageButton searchButton = (ImageButton) view.findViewById(R.id.search_button);
+        ImageButton filterButton = (ImageButton) view.findViewById(R.id.filter_button);
 
         //-----------------------------------------------| Session
         //User mUser = SharedPefManager.getInstance(getActivity()).getUser();
@@ -72,7 +74,7 @@ public class HomeFragment extends Fragment {
             }
         });*/
 
-        ((ImageButton) view.findViewById(R.id.filter_button)).setOnClickListener(new View.OnClickListener() {
+        (filterButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
@@ -83,15 +85,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ((ImageButton) view.findViewById(R.id.search_button)).setOnClickListener(new View.OnClickListener() {
+        (searchButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (editText.getVisibility() == View.VISIBLE) {
                     editText.setVisibility(View.GONE);
-                    ((ImageButton) view.findViewById(R.id.search_button)).setImageResource(R.drawable.ic_baseline_search_24);
+                    searchButton.setImageResource(R.drawable.ic_baseline_search_24);
                 } else {
                     editText.setVisibility(View.VISIBLE);
-                    ((ImageButton) view.findViewById(R.id.search_button)).setImageResource(R.drawable.ic_baseline_close_24);
+                    searchButton.setImageResource(R.drawable.ic_baseline_close_24);
                 }
             }
         });

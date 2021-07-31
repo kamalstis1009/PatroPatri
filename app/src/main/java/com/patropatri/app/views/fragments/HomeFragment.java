@@ -45,6 +45,9 @@ public class HomeFragment extends Fragment {
             //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
         }
 
+        //-----------------------------------------------| findViewById
+        EditText editText = (EditText) view.findViewById(R.id.search_item);
+
         //-----------------------------------------------| Session
         //User mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
@@ -83,8 +86,27 @@ public class HomeFragment extends Fragment {
         ((ImageButton) view.findViewById(R.id.search_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSearchDialog();
+                if (editText.getVisibility() == View.VISIBLE) {
+                    editText.setVisibility(View.GONE);
+                    ((ImageButton) view.findViewById(R.id.search_button)).setImageResource(R.drawable.ic_baseline_search_24);
+                } else {
+                    editText.setVisibility(View.VISIBLE);
+                    ((ImageButton) view.findViewById(R.id.search_button)).setImageResource(R.drawable.ic_baseline_close_24);
+                }
             }
+        });
+
+        (editText).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mAdapter != null) {
+                    mAdapter.getFilter().filter(s);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
 
         return view;
@@ -119,6 +141,7 @@ public class HomeFragment extends Fragment {
             builder.setCancelable(true);
             builder.create();
             final AlertDialog dialog = builder.show();
+            dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             ((EditText) view.findViewById(R.id.search_item)).addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {}

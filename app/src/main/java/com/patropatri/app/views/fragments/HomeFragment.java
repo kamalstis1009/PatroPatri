@@ -7,17 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -89,11 +87,13 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (editText.getVisibility() == View.VISIBLE) {
-                    editText.setVisibility(View.GONE);
                     searchButton.setImageResource(R.drawable.ic_baseline_search_24);
+                    editText.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.anim_left_out));
+                    editText.setVisibility(View.GONE);
                 } else {
-                    editText.setVisibility(View.VISIBLE);
                     searchButton.setImageResource(R.drawable.ic_baseline_close_24);
+                    editText.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.anim_right_in));
+                    editText.setVisibility(View.VISIBLE);
                 }
             }
         });

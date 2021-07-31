@@ -7,28 +7,28 @@
         android:id="@+id/action_home"
         android:enabled="true"
         android:checked="true"
-        android:iconTint="@color/colorWhite"
+        app:iconTint="@color/colorWhite"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_notification"
         android:enabled="true"
-        android:iconTint="@color/colorWhite"
+        app:iconTint="@color/colorWhite"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="Notification"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_inbox"
         android:enabled="true"
-        android:iconTint="@color/colorWhite"
+        app:iconTint="@color/colorWhite"
         android:icon="@drawable/ic_baseline_email_24"
         android:title="Inbox"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_account"
         android:enabled="true"
-        android:iconTint="@color/colorWhite"
+        app:iconTint="@color/colorWhite"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Account"
         app:showAsAction="ifRoom" />

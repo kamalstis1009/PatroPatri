@@ -1,11 +1,14 @@
 package com.patropatri.app.views.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -25,6 +28,8 @@ import com.patropatri.app.views.dialogs.FilterFragmentDialog;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+
+    private UserAdapter mAdapter;
 
     @Nullable
     @Override
@@ -60,7 +65,7 @@ public class HomeFragment extends Fragment {
             }
         });*/
 
-        ((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) view.findViewById(R.id.filter_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
@@ -69,6 +74,19 @@ public class HomeFragment extends Fragment {
                 mFragment.setArguments(bundle);
                 Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
             }
+        });
+
+        ((EditText) view.findViewById(R.id.search_item)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mAdapter != null){
+                    mAdapter.getFilter().filter(s);
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {}
         });
 
         return view;
@@ -87,7 +105,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<User> arrayList) {
-        UserAdapter mAdapter = new UserAdapter(getActivity(), arrayList);
+        mAdapter = new UserAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

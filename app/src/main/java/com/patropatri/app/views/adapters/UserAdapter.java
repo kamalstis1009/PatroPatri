@@ -144,7 +144,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
                 } else {
                     ArrayList<User> filterList = new ArrayList<>();
                     for (User model : mArrayList1){
-                        if (model.getFirstName().toLowerCase().contains(charString.toLowerCase())){
+                        if (model.getFirstName().toLowerCase().contains(charString.toLowerCase()) || model.getLastName().toLowerCase().contains(charString.toLowerCase())){
                             filterList.add(model);
                         }
                     }

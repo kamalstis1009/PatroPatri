@@ -7,13 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -76,17 +80,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ((EditText) view.findViewById(R.id.search_item)).addTextChangedListener(new TextWatcher() {
+        ((ImageButton) view.findViewById(R.id.search_button)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mAdapter != null){
-                    mAdapter.getFilter().filter(s);
-                }
+            public void onClick(View v) {
+                showSearchDialog();
             }
-            @Override
-            public void afterTextChanged(Editable s) {}
         });
 
         return view;
@@ -111,6 +109,35 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(45 /*px spacing*/));
         mAdapter.notifyDataSetChanged();
+    }
+
+    private void showSearchDialog() {
+        if (getActivity() != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_search, null, false);
+            builder.setView(view);
+            builder.setCancelable(true);
+            builder.create();
+            final AlertDialog dialog = builder.show();
+            ((EditText) view.findViewById(R.id.search_item)).addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (mAdapter != null) {
+                        mAdapter.getFilter().filter(s);
+                    }
+                }
+                @Override
+                public void afterTextChanged(Editable s) {}
+            });
+            /*((Button) view.findViewById(R.id.ok_button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });*/
+        }
     }
 
 }

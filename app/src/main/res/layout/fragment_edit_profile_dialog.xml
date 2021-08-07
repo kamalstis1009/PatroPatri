@@ -334,9 +334,101 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
+            <!-- Portion 4 -->
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/part_4"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_phone_number"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:maxLength="25"
+                        android:maxEms="25"
+                        android:hint="Phone Number"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_call_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_email"
+                        android:inputType="textWebEmailAddress"
+                        android:singleLine="true"
+                        android:hint="Email"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_email_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_present_address"
+                        android:gravity="top"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Present Address"
+                        android:inputType="text|textMultiLine"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_permanent_address"
+                        android:gravity="top"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Permanent Address"
+                        android:inputType="text|textMultiLine"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/submit_button"
-                android:text="Submit"
+                android:text="Update"
                 android:textColor="@color/colorWhite"
                 android:padding="15dp"
                 android:layout_marginTop="25dp"

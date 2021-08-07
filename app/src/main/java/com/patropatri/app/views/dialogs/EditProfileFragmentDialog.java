@@ -49,6 +49,11 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText itemCompanyAddress = (EditText) view.findViewById(R.id.item_company_address);
         EditText itemCompanyWebsite = (EditText) view.findViewById(R.id.item_company_website);
 
+        EditText itemPhone = (EditText) view.findViewById(R.id.item_phone_number);
+        EditText itemEmail = (EditText) view.findViewById(R.id.item_email);
+        EditText itemPresentAddress = (EditText) view.findViewById(R.id.item_present_address);
+        EditText itemPermanentAddress = (EditText) view.findViewById(R.id.item_permanent_address);
+
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 

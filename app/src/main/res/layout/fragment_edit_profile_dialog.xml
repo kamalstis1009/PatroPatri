@@ -204,7 +204,7 @@
                 <Spinner
                     android:id="@+id/item_division"
                     android:entries="@array/division_array"
-                    android:background="@drawable/layer_list_spinner"
+                    android:background="@drawable/layer_list_spinner_radius_8"
                     android:layout_marginBottom="10dp"
                     android:padding="20dp"
                     android:layout_width="match_parent"
@@ -212,7 +212,7 @@
                 <Spinner
                     android:id="@+id/item_district"
                     android:entries="@array/district_array"
-                    android:background="@drawable/layer_list_spinner"
+                    android:background="@drawable/layer_list_spinner_radius_8"
                     android:layout_marginBottom="10dp"
                     android:padding="20dp"
                     android:layout_width="match_parent"
@@ -220,7 +220,7 @@
                 <Spinner
                     android:id="@+id/item_police_station"
                     android:entries="@array/area_array"
-                    android:background="@drawable/layer_list_spinner"
+                    android:background="@drawable/layer_list_spinner_radius_8"
                     android:layout_marginBottom="10dp"
                     android:padding="20dp"
                     android:layout_width="match_parent"

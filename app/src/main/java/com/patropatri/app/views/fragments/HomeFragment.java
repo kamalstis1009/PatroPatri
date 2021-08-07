@@ -59,6 +59,8 @@ public class HomeFragment extends Fragment {
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             //ArrayList<MealMenuModel> mArrayList = new Gson().fromJson(getArguments().getString("DATA", null), new TypeToken<ArrayList<MealMenuModel>>(){}.getType());
+            //mModel = new Gson().fromJson(getArguments().getString("DATA", null), Answered.class);
+            //int mIntId = getArguments().getInt("INTERVIEW_ID", 0);
         }
 
         //-----------------------------------------------| Search Disable Focus

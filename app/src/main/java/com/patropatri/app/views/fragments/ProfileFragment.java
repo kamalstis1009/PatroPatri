@@ -1,6 +1,8 @@
 package com.patropatri.app.views.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,10 +75,15 @@ public class ProfileFragment extends Fragment {
     }
 
     private void onShowDialog(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("POSITION", position);
-        EditProfileFragmentDialog mFragment = new EditProfileFragmentDialog();
-        mFragment.setArguments(bundle);
-        Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Bundle bundle = new Bundle();
+                bundle.putInt("POSITION", position);
+                EditProfileFragmentDialog mFragment = new EditProfileFragmentDialog();
+                mFragment.setArguments(bundle);
+                Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
+            }
+        });
     }
 }

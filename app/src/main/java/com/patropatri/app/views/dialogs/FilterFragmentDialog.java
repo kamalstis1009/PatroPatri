@@ -16,6 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.patropatri.app.R;
 
+import java.util.Objects;
+
 public class FilterFragmentDialog extends BottomSheetDialogFragment {
 
     @Nullable
@@ -42,12 +44,13 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
 
     //===============================================| Display all full size at first
     private void expandedFullLayout() {
-        getDialog().setOnShowListener(new DialogInterface.OnShowListener() {
+        Objects.requireNonNull(getDialog()).setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
                 BottomSheetDialog d = (BottomSheetDialog) dialog;
-                View bottomSheetInternal = d.findViewById(R.id.design_bottom_sheet);
-                BottomSheetBehavior.from(bottomSheetInternal).setState(BottomSheetBehavior.STATE_EXPANDED);
+                View view = d.findViewById(R.id.design_bottom_sheet);
+                if (view != null)
+                    BottomSheetBehavior.from(view).setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
     }

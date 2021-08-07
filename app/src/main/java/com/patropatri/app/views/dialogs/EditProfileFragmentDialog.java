@@ -1,6 +1,5 @@
 package com.patropatri.app.views.dialogs;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,11 +9,17 @@ import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.patropatri.app.R;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.viewmodels.UserViewModel;
+
+import java.util.Objects;
 
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
@@ -22,6 +27,18 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile_dialog, container, false);
+
+        //-----------------------------------------------| Session
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+
+        //-----------------------------------------------| Receive and observe the data from view model
+        UserViewModel mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
+        //------------------------------------------------| Get Bundle Data
+        if (getArguments() != null) {
+            int mPosition = getArguments().getInt("POSITION", 0);
+            //if (mPosition > 0)
+        }
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,12 +59,13 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     //===============================================| Display all full size at first
     private void expandedFullLayout() {
-        getDialog().setOnShowListener(new DialogInterface.OnShowListener() {
+        Objects.requireNonNull(getDialog()).setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(DialogInterface dialog) {
                 BottomSheetDialog d = (BottomSheetDialog) dialog;
-                View bottomSheetInternal = d.findViewById(R.id.design_bottom_sheet);
-                BottomSheetBehavior.from(bottomSheetInternal).setState(BottomSheetBehavior.STATE_EXPANDED);
+                View view = d.findViewById(R.id.design_bottom_sheet);
+                if (view != null)
+                    BottomSheetBehavior.from(view).setState(BottomSheetBehavior.STATE_EXPANDED);
             }
         });
     }

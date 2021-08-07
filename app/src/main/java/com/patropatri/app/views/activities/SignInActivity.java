@@ -49,9 +49,9 @@ public class SignInActivity extends AppCompatActivity {
                 String user = username.getText().toString().trim(),
                         pass = password.getText().toString().trim();
                 if (TextUtils.isEmpty(user)) {
-                    Snackbar.make(findViewById(android.R.id.content), "Empty is not allowed!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content), "Empty username is not allowed!", Snackbar.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(pass)) {
-                    Snackbar.make(findViewById(android.R.id.content), "Empty is not allowed!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(android.R.id.content), "Empty password is not allowed!", Snackbar.LENGTH_SHORT).show();
                 } else {
                     JwtRequest model = new JwtRequest();
                     model.setPassword(user);

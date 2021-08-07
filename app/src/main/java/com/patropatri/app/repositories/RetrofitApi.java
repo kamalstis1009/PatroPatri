@@ -30,7 +30,7 @@ public interface RetrofitApi {
     Call<UserWithToken> login(@Body JwtRequest request);
 
     @Headers("Content-Type: application/json")
-    @POST("authenticate")
+    @POST("register")
     Call<Authentication> register(@Body JwtRequest item);
 
     //======================================================| User

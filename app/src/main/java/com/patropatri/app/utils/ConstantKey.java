@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ConstantKey {
 
     //public static final String SERVER_URL = "http://36.255.68.34:8076/"; //Cloud
-    public static final String SERVER_URL = "http://localhost:8080/patropatri/"; //Local
+    public static final String SERVER_URL = "http://10.0.2.2:8080/patropatri/"; //127.0.0.1 | localhost
 
     public static ArrayList<User> getUsers() {
         ArrayList<User> mArrayList = new ArrayList<>();

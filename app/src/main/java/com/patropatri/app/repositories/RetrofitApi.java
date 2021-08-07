@@ -26,11 +26,11 @@ public interface RetrofitApi {
 
     //======================================================| SignIn & SignUp
     @Headers("Content-Type: application/json")
-    @POST("authenticate")
+    @POST("jwt/login")
     Call<UserWithToken> login(@Body JwtRequest request);
 
     @Headers("Content-Type: application/json")
-    @POST("register")
+    @POST("jwt/register")
     Call<Authentication> register(@Body JwtRequest item);
 
     //======================================================| User

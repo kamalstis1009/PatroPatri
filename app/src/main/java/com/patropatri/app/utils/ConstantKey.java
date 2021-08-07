@@ -11,13 +11,16 @@ import java.util.ArrayList;
 
 public class ConstantKey {
 
+    //public static final String SERVER_URL = "http://36.255.68.34:8076/"; //Cloud
+    public static final String SERVER_URL = "http://localhost:8080/patropatri/"; //Local
+
     public static ArrayList<User> getUsers() {
         ArrayList<User> mArrayList = new ArrayList<>();
-        mArrayList.add(new User("Mohammad", "Ali", "Dhaka"));
+        /*mArrayList.add(new User("Mohammad", "Ali", "Dhaka"));
         mArrayList.add(new User("Barsha", "Ahnaf", "Chittagong"));
         mArrayList.add(new User("Salman", "Rahman", "Rangpur"));
         mArrayList.add(new User("Ashfakur", "Talukdar", "Dhaka"));
-        mArrayList.add(new User("Mohammad", "Solaiman", "Dhaka"));
+        mArrayList.add(new User("Mohammad", "Solaiman", "Dhaka"));*/
         return mArrayList;
     }
 

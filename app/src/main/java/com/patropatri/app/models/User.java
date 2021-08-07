@@ -3,244 +3,154 @@ package com.patropatri.app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
 public class User {
 
     @SerializedName("Id")
     @Expose
-    private String id;
-    @SerializedName("FirstName")
+    private Long id;
+
+    //---------------------| Personal
+    @SerializedName("full_name")
     @Expose
-    private String firstName;
-    @SerializedName("LastName")
-    @Expose
-    private String lastName;
-    @SerializedName("PhoneNumber")
-    @Expose
-    private String phoneNumber;
-    @SerializedName("Gender")
+    private String fullName;
+
+    @SerializedName("gender")
     @Expose
     private String gender;
-    @SerializedName("BirthDate")
+
+    @SerializedName("birth_date")
     @Expose
-    private String birthDate;
-    @SerializedName("Email")
+    private Date birthDate;
+
+    @SerializedName("birth_place")
     @Expose
-    private String email;
-    @SerializedName("Division")
+    private String birthPlace;
+
+    @SerializedName("height")
     @Expose
-    private String division;
-    @SerializedName("District")
+    private String height;
+
+    @SerializedName("weight")
+    @Expose
+    private String weight;
+
+    @SerializedName("marital_status")
+    @Expose
+    private String maritalStatus;
+
+    @SerializedName("religion")
+    @Expose
+    private String religion;
+
+    @SerializedName("complex")
+    @Expose
+    private String complex;
+
+    @SerializedName("district")
     @Expose
     private String district;
-    @SerializedName("PoliceStation")
+
+    //---------------------| Profession
+    @SerializedName("profession")
     @Expose
-    private String policeStation;
-    @SerializedName("Address")
+    private String profession;
+
+    @SerializedName("designation")
     @Expose
-    private String address;
-    @SerializedName("Location")
+    private String designation;
+
+    @SerializedName("company")
     @Expose
-    private String location;
-    @SerializedName("ImageName")
+    private String company;
+
+    @SerializedName("company_address")
+    @Expose
+    private String companyAddress;
+
+    @SerializedName("company_website")
+    @Expose
+    private String companyWebsite;
+
+    //---------------------| Contact
+    @SerializedName("phone_number")
+    @Expose
+    private String phoneNumber;
+
+    @SerializedName("email")
+    @Expose
+    private String email;
+
+    @SerializedName("present_address")
+    @Expose
+    private String presentAddress;
+
+    @SerializedName("permanent_address")
+    @Expose
+    private String permanentAddress;
+
+    //---------------------| Other
+    @SerializedName("summary")
+    @Expose
+    private String summary;
+
+    @SerializedName("interest")
+    @Expose
+    private String interest;
+
+    @SerializedName("other_activity")
+    @Expose
+    private String otherActivity;
+
+    @SerializedName("expectation")
+    @Expose
+    private String expectation;
+
+    //---------------------| Image
+    @SerializedName("image_name")
     @Expose
     private String imageName;
-    @SerializedName("ImagePath")
+
+    @SerializedName("image_cover_name")
     @Expose
-    private String imagePath;
-    @SerializedName("Token")
+    private String imageCoverName;
+
+    @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("RefId")
+
+    @SerializedName("is_active")
     @Expose
-    private String refId;
-    @SerializedName("CreateUser")
+    private Boolean isActive;
+
+    //---------------------| Count
+    @SerializedName("comment_amount")
     @Expose
-    private String createUser;
-    @SerializedName("CreateDate")
+    private Integer commentAmount;
+
+    @SerializedName("liked_amount")
     @Expose
-    private String createDate;
-    @SerializedName("EditUser")
+    private Integer likedAmount;
+
+    //---------------------| Audit
+    @SerializedName("created_at")
     @Expose
-    private String editUser;
-    @SerializedName("EditDate")
+    private Date createdAt; // String.valueOf(new Timestamp(System.currentTimeMillis()));
+
+    @SerializedName("created_by")
     @Expose
-    private String editDate;
-    @SerializedName("OCode")
+    private Long createdBy;
+
+    @SerializedName("updated_at")
     @Expose
-    private String oCode;
+    private Date updatedAt;
 
-    public User(String firstName, String lastName, String district) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.district = district;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDivision() {
-        return division;
-    }
-
-    public void setDivision(String division) {
-        this.division = division;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getPoliceStation() {
-        return policeStation;
-    }
-
-    public void setPoliceStation(String policeStation) {
-        this.policeStation = policeStation;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getRefId() {
-        return refId;
-    }
-
-    public void setRefId(String refId) {
-        this.refId = refId;
-    }
-
-    public String getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(String createUser) {
-        this.createUser = createUser;
-    }
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getEditUser() {
-        return editUser;
-    }
-
-    public void setEditUser(String editUser) {
-        this.editUser = editUser;
-    }
-
-    public String getEditDate() {
-        return editDate;
-    }
-
-    public void setEditDate(String editDate) {
-        this.editDate = editDate;
-    }
-
-    public String getoCode() {
-        return oCode;
-    }
-
-    public void setoCode(String oCode) {
-        this.oCode = oCode;
-    }
+    @SerializedName("updated_by")
+    @Expose
+    private Long updatedBy;
 
 }

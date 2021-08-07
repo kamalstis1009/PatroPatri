@@ -28,11 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
-                android:id="@+id/user_email"
-                android:inputType="textWebEmailAddress"
+                android:id="@+id/username"
+                android:inputType="text"
                 android:singleLine="true"
                 android:maxLength="25"
-                android:hint="Email"
+                android:hint="Username"
                 app:drawableTint="@color/colorDeepGrey"
                 android:drawableEnd="@drawable/ic_baseline_person_24"
                 android:background="@drawable/shape_radius_100_edit_text"

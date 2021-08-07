@@ -17,7 +17,7 @@ import android.widget.EditText;
 import com.google.android.material.snackbar.Snackbar;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Authentication;
-import com.patropatri.app.models.JwtRequest;
+import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.services.MyNetworkReceiver;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
@@ -59,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
                 } else if (!pass.contains(conf)) {
                     Snackbar.make(findViewById(android.R.id.content), "Password and confirm password are not the same!", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    JwtRequest model = new JwtRequest();
+                    AuthenticationDto model = new AuthenticationDto();
                     model.setUsername(user);
                     model.setPassword(pass);
                     mProgress = Utility.getInstance().showProgressDialog(SignUpActivity.this, getResources().getString(R.string.progress), true);

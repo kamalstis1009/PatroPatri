@@ -17,10 +17,8 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.patropatri.app.R;
-import com.patropatri.app.models.JwtRequest;
-import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.services.MyNetworkReceiver;
-import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
 
@@ -53,15 +51,28 @@ public class SignInActivity extends AppCompatActivity {
                 } else if (TextUtils.isEmpty(pass)) {
                     Snackbar.make(findViewById(android.R.id.content), "Empty password is not allowed!", Snackbar.LENGTH_SHORT).show();
                 } else {
-                    JwtRequest model = new JwtRequest();
+                    AuthenticationDto model = new AuthenticationDto();
                     model.setPassword(user);
                     model.setPassword(pass);
                     mProgress = Utility.getInstance().showProgressDialog(SignInActivity.this, getResources().getString(R.string.progress), true);
-                    mViewModel.login(model).observe(SignInActivity.this, new Observer<UserWithToken>() {
+                    /*mViewModel.login(model).observe(SignInActivity.this, new Observer<UserWithToken>() {
                         @Override
                         public void onChanged(UserWithToken item) {
                             if (item != null) {
                                 SharedPefManager.getInstance(SignInActivity.this).saveUser(item);
+                                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                                //Toast.makeText(SignInActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Snackbar.make(findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
+                            }
+                            Utility.getInstance().dismissProgressDialog(mProgress);
+                        }
+                    });*/
+
+                    mViewModel.authentication(model).observe(SignInActivity.this, new Observer<String>() {
+                        @Override
+                        public void onChanged(String item) {
+                            if (item != null) {
                                 startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                                 //Toast.makeText(SignInActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();
                             } else {

@@ -1,7 +1,7 @@
 package com.patropatri.app.repositories;
 
 import com.patropatri.app.models.Authentication;
-import com.patropatri.app.models.JwtRequest;
+import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 
@@ -27,11 +27,15 @@ public interface RetrofitApi {
     //======================================================| SignIn & SignUp
     @Headers("Content-Type: application/json")
     @POST("jwt/login")
-    Call<UserWithToken> login(@Body JwtRequest request);
+    Call<UserWithToken> login(@Body AuthenticationDto request);
+
+    @Headers("Content-Type: application/json")
+    @POST("jwt/authenticate")
+    Call<ResponseBody> authentication(@Body AuthenticationDto request);
 
     @Headers("Content-Type: application/json")
     @POST("jwt/register")
-    Call<Authentication> register(@Body JwtRequest item);
+    Call<Authentication> register(@Body AuthenticationDto request);
 
     //======================================================| User
     @GET("api/access/GetAllAccessByUserId")

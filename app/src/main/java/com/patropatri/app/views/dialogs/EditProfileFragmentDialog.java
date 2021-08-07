@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -53,6 +55,25 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText itemEmail = (EditText) view.findViewById(R.id.item_email);
         EditText itemPresentAddress = (EditText) view.findViewById(R.id.item_present_address);
         EditText itemPermanentAddress = (EditText) view.findViewById(R.id.item_permanent_address);
+
+        EditText itemDegreeName = (EditText) view.findViewById(R.id.item_degree_name);
+        EditText itemSubjectName = (EditText) view.findViewById(R.id.item_subject_name);
+        EditText itemPassingYear = (EditText) view.findViewById(R.id.item_passing_year);
+        EditText itemResult = (EditText) view.findViewById(R.id.item_result);
+        EditText itemInstitute = (EditText) view.findViewById(R.id.item_institute);
+        Button addEducation = (Button) view.findViewById(R.id.add_education_button);
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+
+        EditText itemMember_name = (EditText) view.findViewById(R.id.item_member_name);
+        EditText itemRelation = (EditText) view.findViewById(R.id.item_relation);
+        EditText itemOccupation = (EditText) view.findViewById(R.id.item_occupation);
+        EditText itemMemberDetails = (EditText) view.findViewById(R.id.item_member_details);
+        Button addFamily = (Button) view.findViewById(R.id.add_family_button);
+        RecyclerView mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
+
+        EditText itemInterest = (EditText) view.findViewById(R.id.item_interest);
+        EditText itemOtherActivity = (EditText) view.findViewById(R.id.item_other_activity);
+        EditText itemExpectation = (EditText) view.findViewById(R.id.item_expectation);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();

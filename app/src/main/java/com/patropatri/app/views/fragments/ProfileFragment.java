@@ -23,12 +23,14 @@ public class ProfileFragment extends Fragment {
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
 
-        ((ImageButton) view.findViewById(R.id.summary_button)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.personal_info_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_summary_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_personal_info_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_profession_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_contact_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_education_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_family_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_interest_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_activity_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_expectation_button)).setOnClickListener(new ActionHandler());
 
         return view;
@@ -40,26 +42,32 @@ public class ProfileFragment extends Fragment {
             if (v.getId() == R.id.back_button) {
                 Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new ProfileFragment());
             }
-            if (v.getId() == R.id.summary_button) {
+            if (v.getId() == R.id.item_summary_button) {
                 onShowDialog(1);
             }
-            if (v.getId() == R.id.personal_info_button) {
+            if (v.getId() == R.id.item_personal_info_button) {
                 onShowDialog(2);
+            }
+            if (v.getId() == R.id.item_profession_button) {
+                onShowDialog(3);
             }
             if (v.getId() == R.id.item_contact_button) {
-                onShowDialog(2);
+                onShowDialog(4);
             }
             if (v.getId() == R.id.item_education_button) {
-                onShowDialog(2);
+                onShowDialog(5);
             }
             if (v.getId() == R.id.item_family_button) {
-                onShowDialog(2);
+                onShowDialog(6);
             }
             if (v.getId() == R.id.item_interest_button) {
-                onShowDialog(2);
+                onShowDialog(7);
+            }
+            if (v.getId() == R.id.item_activity_button) {
+                onShowDialog(8);
             }
             if (v.getId() == R.id.item_expectation_button) {
-                onShowDialog(2);
+                onShowDialog(9);
             }
         }
     }

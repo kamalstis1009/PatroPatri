@@ -174,7 +174,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <ImageButton
-                        android:id="@+id/summary_button"
+                        android:id="@+id/item_summary_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <ImageButton
-                        android:id="@+id/personal_info_button"
+                        android:id="@+id/item_personal_info_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
@@ -531,7 +531,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <ImageButton
-                        android:id="@+id/profession_button"
+                        android:id="@+id/item_profession_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"

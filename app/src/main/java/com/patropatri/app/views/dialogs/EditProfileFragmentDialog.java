@@ -89,6 +89,20 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     ((LinearLayout) view.findViewById(R.id.part_1)).setVisibility(View.VISIBLE);
                 if (mPosition == 2)
                     ((LinearLayout) view.findViewById(R.id.part_2)).setVisibility(View.VISIBLE);
+                if (mPosition == 3)
+                    ((LinearLayout) view.findViewById(R.id.part_3)).setVisibility(View.VISIBLE);
+                if (mPosition == 4)
+                    ((LinearLayout) view.findViewById(R.id.part_4)).setVisibility(View.VISIBLE);
+                if (mPosition == 5)
+                    ((LinearLayout) view.findViewById(R.id.part_5)).setVisibility(View.VISIBLE);
+                if (mPosition == 6)
+                    ((LinearLayout) view.findViewById(R.id.part_6)).setVisibility(View.VISIBLE);
+                if (mPosition == 7)
+                    ((LinearLayout) view.findViewById(R.id.part_7)).setVisibility(View.VISIBLE);
+                if (mPosition == 8)
+                    ((LinearLayout) view.findViewById(R.id.part_8)).setVisibility(View.VISIBLE);
+                if (mPosition == 9)
+                    ((LinearLayout) view.findViewById(R.id.part_9)).setVisibility(View.VISIBLE);
             }
         }
 

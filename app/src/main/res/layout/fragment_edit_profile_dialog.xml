@@ -29,6 +29,13 @@
                     android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:text="Update"
+                    android:textSize="15sp"
+                    android:textAllCaps="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <ImageButton
                     android:id="@+id/item_share"
                     android:layout_alignParentEnd="true"
@@ -44,111 +51,67 @@
             <!-- Portion 1 -->
             <LinearLayout
                 android:id="@+id/part_1"
+                android:visibility="gone"
                 android:orientation="vertical"
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:weightSum="2"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <RelativeLayout
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:id="@+id/item_first_name"
-                                android:inputType="text"
-                                android:singleLine="true"
-                                android:maxLength="250"
-                                android:maxEms="250"
-                                android:hint="First Name"
-                                android:textSize="12sp"
-                                app:drawableTint="@color/colorDeepGrey"
-                                android:drawableEnd="@drawable/ic_baseline_title_24"
-                                android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
-                                android:paddingStart="25dp"
-                                android:paddingEnd="25dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_marginStart="5dp"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:id="@+id/item_last_name"
-                                android:inputType="text"
-                                android:singleLine="true"
-                                android:maxLength="250"
-                                android:maxEms="250"
-                                android:hint="Last Name"
-                                android:textSize="12sp"
-                                app:drawableTint="@color/colorDeepGrey"
-                                android:drawableEnd="@drawable/ic_baseline_title_24"
-                                android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
-                                android:paddingStart="25dp"
-                                android:paddingEnd="25dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </RelativeLayout>
-                </LinearLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
-                        android:id="@+id/item_phone_number"
-                        android:inputType="phone"
-                        android:singleLine="true"
-                        android:maxLength="25"
-                        android:maxEms="25"
-                        android:hint="Phone Number"
-                        android:textSize="12sp"
-                        app:drawableTint="@color/colorDeepGrey"
-                        android:drawableEnd="@drawable/ic_baseline_call_24"
+                        android:id="@+id/item_summary"
+                        android:gravity="top"
+                        android:maxLength="1550"
+                        android:maxEms="1550"
+                        android:hint="Summary"
+                        android:inputType="text|textMultiLine"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
                         android:layout_marginBottom="10dp"
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="150dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Portion 2 -->
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/part_2"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
-                        android:id="@+id/item_email"
-                        android:inputType="textWebEmailAddress"
+                        android:id="@+id/item_full_name"
+                        android:inputType="text"
                         android:singleLine="true"
-                        android:hint="Email"
                         android:maxLength="250"
                         android:maxEms="250"
+                        android:hint="Full Name"
                         android:textSize="12sp"
                         app:drawableTint="@color/colorDeepGrey"
-                        android:drawableEnd="@drawable/ic_baseline_email_24"
+                        android:drawableEnd="@drawable/ic_baseline_title_24"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
-                        android:layout_marginBottom="10dp"
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <Spinner
+                    android:id="@+id/item_gender"
+                    android:entries="@array/gender_array"
+                    android:background="@drawable/layer_list_spinner_radius_8"
+                    android:layout_marginBottom="10dp"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -169,38 +132,152 @@
                         android:paddingEnd="25dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:clickable="true"
                         android:focusable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"/>
                 </com.google.android.material.textfield.TextInputLayout>
-                <RadioGroup
-                    android:id="@+id/gender_group"
-                    android:orientation="horizontal"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <RadioButton
-                        android:id="@+id/item_gender_male"
-                        android:checked="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Male"/>
-                    <RadioButton
-                        android:id="@+id/item_gender_female"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Female"/>
-                </RadioGroup>
+                    <EditText
+                        android:id="@+id/item_height"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="10"
+                        android:maxEms="10"
+                        android:hint="Height"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_title_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_weight"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="10"
+                        android:maxEms="10"
+                        android:hint="Weight"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_title_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <Spinner
+                    android:id="@+id/item_marital_status"
+                    android:entries="@array/marital_status_array"
+                    android:background="@drawable/layer_list_spinner_radius_8"
+                    android:layout_marginBottom="10dp"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/item_religion"
+                    android:entries="@array/religion_array"
+                    android:background="@drawable/layer_list_spinner_radius_8"
+                    android:layout_marginBottom="10dp"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/item_complex"
+                    android:entries="@array/complex_array"
+                    android:background="@drawable/layer_list_spinner_radius_8"
+                    android:layout_marginBottom="10dp"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/item_district"
+                    android:entries="@array/district_array"
+                    android:background="@drawable/layer_list_spinner_radius_8"
+                    android:layout_marginBottom="10dp"
+                    android:padding="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <!-- Portion 2 -->
+            <!-- Portion 3 -->
             <LinearLayout
-                android:id="@+id/part_2"
+                android:id="@+id/part_3"
                 android:orientation="vertical"
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_service"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Service Name"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_title_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_designation"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Designation"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_title_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_company"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Company Name"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_title_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
                 <Spinner
                     android:id="@+id/item_division"
                     android:entries="@array/division_array"

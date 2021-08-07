@@ -10,21 +10,9 @@
     <string name="error_msg_network">Network connection is not available.</string>
     <string name="error_msg_location">Location service is not enabled.</string>
 
-    <string-array name="company_array">
-        <item>Subra Systems Ltd</item>
-        <item>Other</item>
-    </string-array>
-
-    <string-array name="division_array">
-        <item>Division</item>
-        <item>Barisal</item>
-        <item>Chittagong</item>
-        <item>Dhaka</item>
-        <item>Khulna</item>
-        <item>Mymensingh</item>
-        <item>Rangpur</item>
-        <item>Rajshahi</item>
-        <item>Sylhet</item>
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
 
     <string-array name="marital_status_array">
@@ -45,6 +33,15 @@
         <item>Jewish</item>
         <item>Buddhism</item>
         <item>Hindu</item>
+    </string-array>
+
+    <string-array name="complex_array">
+        <item>Complex</item>
+        <item>Fair</item>
+        <item>Brown</item>
+        <item>Light Brown</item>
+        <item>Black</item>
+        <item>White</item>
     </string-array>
 
     <string-array name="profession_array">
@@ -75,6 +72,18 @@
         <item>1990</item>
         <item>1990</item>
         <item>1990</item>
+    </string-array>
+
+    <string-array name="division_array">
+        <item>Division</item>
+        <item>Barisal</item>
+        <item>Chittagong</item>
+        <item>Dhaka</item>
+        <item>Khulna</item>
+        <item>Mymensingh</item>
+        <item>Rangpur</item>
+        <item>Rajshahi</item>
+        <item>Sylhet</item>
     </string-array>
 
     <string-array name="district_array">

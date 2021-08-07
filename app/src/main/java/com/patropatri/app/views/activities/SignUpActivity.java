@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if (item != null) {
                                 startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
                             } else {
-                                Snackbar.make(findViewById(android.R.id.content), "Not successfully authenticated!", Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(findViewById(android.R.id.content), "The registration process was not successful!", Snackbar.LENGTH_SHORT).show();
                             }
                             Utility.getInstance().dismissProgressDialog(mProgress);
                         }

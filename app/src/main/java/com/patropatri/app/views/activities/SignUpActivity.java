@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Snackbar.make(findViewById(android.R.id.content), "Password and confirm password are not the same!", Snackbar.LENGTH_SHORT).show();
                 } else {
                     JwtRequest model = new JwtRequest();
-                    model.setPassword(user);
+                    model.setUsername(user);
                     model.setPassword(pass);
                     mProgress = Utility.getInstance().showProgressDialog(SignUpActivity.this, getResources().getString(R.string.progress), true);
                     mViewModel.register(model).observe(SignUpActivity.this, new Observer<Authentication>() {

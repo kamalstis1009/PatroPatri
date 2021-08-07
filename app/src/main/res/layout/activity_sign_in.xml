@@ -29,10 +29,10 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/username"
-                android:inputType="text"
+                android:inputType="phone"
                 android:singleLine="true"
                 android:maxLength="25"
-                android:hint="Username"
+                android:hint="Phone"
                 app:drawableTint="@color/colorDeepGrey"
                 android:drawableEnd="@drawable/ic_baseline_person_24"
                 android:background="@drawable/shape_radius_100_edit_text"

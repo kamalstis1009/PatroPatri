@@ -1,6 +1,8 @@
 package com.patropatri.app.views.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -75,11 +77,16 @@ public class HomeFragment extends Fragment {
         (filterButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                //bundle.putInt("Position", position);
-                FilterFragmentDialog mFragment = new FilterFragmentDialog();
-                mFragment.setArguments(bundle);
-                Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Bundle bundle = new Bundle();
+                        //bundle.putInt("Position", position);
+                        FilterFragmentDialog mFragment = new FilterFragmentDialog();
+                        mFragment.setArguments(bundle);
+                        Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
+                    }
+                });
             }
         });
 

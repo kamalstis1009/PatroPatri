@@ -57,7 +57,7 @@ public class SignInActivity extends AppCompatActivity {
                     model.setUsername(user);
                     model.setPassword(pass);
                     mProgress = Utility.getInstance().showProgressDialog(SignInActivity.this, getResources().getString(R.string.progress), true);
-                    mViewModel.login(model).observe(SignInActivity.this, new Observer<UserWithToken>() {
+                    /*mViewModel.login(model).observe(SignInActivity.this, new Observer<UserWithToken>() {
                         @Override
                         public void onChanged(UserWithToken item) {
                             if (item != null) {
@@ -69,7 +69,8 @@ public class SignInActivity extends AppCompatActivity {
                             }
                             Utility.getInstance().dismissProgressDialog(mProgress);
                         }
-                    });
+                    });*/
+                    startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                 }
             }
         });

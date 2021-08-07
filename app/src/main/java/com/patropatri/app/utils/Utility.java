@@ -412,7 +412,7 @@ public class Utility {
         }
     }
     public void onShowFragmentDialog(FragmentManager mFragmentManager, BottomSheetDialogFragment mFragment){
-        mFragment.setCancelable(false);
+        mFragment.setCancelable(true);
         mFragment.show(mFragmentManager, mFragment.getTag());
     }
 

@@ -74,7 +74,7 @@ public class ProfileFragment extends Fragment {
 
     private void onShowDialog(int position) {
         Bundle bundle = new Bundle();
-        bundle.putInt("Position", position);
+        bundle.putInt("POSITION", position);
         EditProfileFragmentDialog mFragment = new EditProfileFragmentDialog();
         mFragment.setArguments(bundle);
         Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);

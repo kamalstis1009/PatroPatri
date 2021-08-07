@@ -33,18 +33,6 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
         return view;
     }
 
-    //===============================================| Back pressed dismiss
-    @Override
-    @NonNull
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new BottomSheetDialog(getActivity(), getTheme()){
-            @Override
-            public void onBackPressed() {
-                dismiss();
-            }
-        };
-    }
-
     //===============================================| Remove modal dialog background scrim grey color
     @Override
     public void onResume() {

@@ -34,46 +34,46 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile_dialog, container, false);
 
         //-----------------------------------------------| Session
-        EditText itemSummary = (EditText) view.findViewById(R.id.item_summary);
-        EditText itemFullName = (EditText) view.findViewById(R.id.item_full_name);
-        Spinner itemGender = (Spinner) view.findViewById(R.id.item_gender);
-        EditText itemBirth = (EditText) view.findViewById(R.id.item_birth);
-        EditText itemHeight = (EditText) view.findViewById(R.id.item_height);
-        EditText itemWeight = (EditText) view.findViewById(R.id.item_weight);
-        Spinner itemMaritalStatus = (Spinner) view.findViewById(R.id.item_marital_status);
-        Spinner itemReligion = (Spinner) view.findViewById(R.id.item_religion);
-        Spinner itemComplex = (Spinner) view.findViewById(R.id.item_complex);
-        Spinner itemDistrict = (Spinner) view.findViewById(R.id.item_district);
+        EditText mItemSummary = (EditText) view.findViewById(R.id.item_summary);
+        EditText mItemFullName = (EditText) view.findViewById(R.id.item_full_name);
+        Spinner mItemGender = (Spinner) view.findViewById(R.id.item_gender);
+        EditText mItemBirth = (EditText) view.findViewById(R.id.item_birth);
+        EditText mItemHeight = (EditText) view.findViewById(R.id.item_height);
+        EditText mItemWeight = (EditText) view.findViewById(R.id.item_weight);
+        Spinner mItemMaritalStatus = (Spinner) view.findViewById(R.id.item_marital_status);
+        Spinner mItemReligion = (Spinner) view.findViewById(R.id.item_religion);
+        Spinner mItemComplex = (Spinner) view.findViewById(R.id.item_complex);
+        Spinner mItemDistrict = (Spinner) view.findViewById(R.id.item_district);
 
-        EditText itemService = (EditText) view.findViewById(R.id.item_service);
-        EditText itemDesignation = (EditText) view.findViewById(R.id.item_designation);
-        EditText itemCompany = (EditText) view.findViewById(R.id.item_company);
-        EditText itemCompanyAddress = (EditText) view.findViewById(R.id.item_company_address);
-        EditText itemCompanyWebsite = (EditText) view.findViewById(R.id.item_company_website);
+        EditText mItemService = (EditText) view.findViewById(R.id.item_service);
+        EditText mItemDesignation = (EditText) view.findViewById(R.id.item_designation);
+        EditText mItemCompany = (EditText) view.findViewById(R.id.item_company);
+        EditText mItemCompanyAddress = (EditText) view.findViewById(R.id.item_company_address);
+        EditText mItemCompanyWebsite = (EditText) view.findViewById(R.id.item_company_website);
 
-        EditText itemPhone = (EditText) view.findViewById(R.id.item_phone_number);
-        EditText itemEmail = (EditText) view.findViewById(R.id.item_email);
-        EditText itemPresentAddress = (EditText) view.findViewById(R.id.item_present_address);
-        EditText itemPermanentAddress = (EditText) view.findViewById(R.id.item_permanent_address);
+        EditText mItemPhone = (EditText) view.findViewById(R.id.item_phone_number);
+        EditText mItemEmail = (EditText) view.findViewById(R.id.item_email);
+        EditText mItemPresentAddress = (EditText) view.findViewById(R.id.item_present_address);
+        EditText mItemPermanentAddress = (EditText) view.findViewById(R.id.item_permanent_address);
 
-        EditText itemDegreeName = (EditText) view.findViewById(R.id.item_degree_name);
-        EditText itemSubjectName = (EditText) view.findViewById(R.id.item_subject_name);
-        EditText itemPassingYear = (EditText) view.findViewById(R.id.item_passing_year);
-        EditText itemResult = (EditText) view.findViewById(R.id.item_result);
-        EditText itemInstitute = (EditText) view.findViewById(R.id.item_institute);
-        Button addEducation = (Button) view.findViewById(R.id.add_education_button);
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+        EditText mItemDegreeName = (EditText) view.findViewById(R.id.item_degree_name);
+        EditText mItemSubjectName = (EditText) view.findViewById(R.id.item_subject_name);
+        EditText mItemPassingYear = (EditText) view.findViewById(R.id.item_passing_year);
+        EditText mItemResult = (EditText) view.findViewById(R.id.item_result);
+        EditText mItemInstitute = (EditText) view.findViewById(R.id.item_institute);
+        Button mAddEducation = (Button) view.findViewById(R.id.add_education_button);
+        RecyclerView mEducationRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
 
-        EditText itemMember_name = (EditText) view.findViewById(R.id.item_member_name);
-        EditText itemRelation = (EditText) view.findViewById(R.id.item_relation);
-        EditText itemOccupation = (EditText) view.findViewById(R.id.item_occupation);
-        EditText itemMemberDetails = (EditText) view.findViewById(R.id.item_member_details);
-        Button addFamily = (Button) view.findViewById(R.id.add_family_button);
+        EditText mItemMember_name = (EditText) view.findViewById(R.id.item_member_name);
+        EditText mItemRelation = (EditText) view.findViewById(R.id.item_relation);
+        EditText mItemOccupation = (EditText) view.findViewById(R.id.item_occupation);
+        EditText mItemMemberDetails = (EditText) view.findViewById(R.id.item_member_details);
+        Button mAddFamily = (Button) view.findViewById(R.id.add_family_button);
         RecyclerView mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
 
-        EditText itemInterest = (EditText) view.findViewById(R.id.item_interest);
-        EditText itemOtherActivity = (EditText) view.findViewById(R.id.item_other_activity);
-        EditText itemExpectation = (EditText) view.findViewById(R.id.item_expectation);
+        EditText mItemInterest = (EditText) view.findViewById(R.id.item_interest);
+        EditText mItemOtherActivity = (EditText) view.findViewById(R.id.item_other_activity);
+        EditText mItemExpectation = (EditText) view.findViewById(R.id.item_expectation);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();

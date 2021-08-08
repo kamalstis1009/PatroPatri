@@ -25,7 +25,7 @@ public class User {
 
     @SerializedName("birthDate")
     @Expose
-    private Date birthDate;
+    private String birthDate;
 
     @SerializedName("birthPlace")
     @Expose

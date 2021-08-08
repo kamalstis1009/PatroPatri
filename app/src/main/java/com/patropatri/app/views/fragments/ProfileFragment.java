@@ -1,8 +1,10 @@
 package com.patropatri.app.views.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +14,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
 
 import java.util.Calendar;
 import java.util.Date;
 
 public class ProfileFragment extends Fragment implements EditProfileFragmentDialog.BottomSheetListener {
+
+    private ProgressDialog mProgress;
 
     private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
 
@@ -69,6 +78,23 @@ public class ProfileFragment extends Fragment implements EditProfileFragmentDial
         ((ImageButton) view.findViewById(R.id.item_activity_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_expectation_button)).setOnClickListener(new ActionHandler());
 
+        //-----------------------------------------------| Session
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+
+        //-----------------------------------------------| Receive and observe the data from view model
+        UserViewModel mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
+        if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+            mViewModel.getUserById(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+                @Override
+                public void onChanged(User item) {
+                    if (item != null) {
+                        onAddItem(item);
+                    }
+                }
+            });
+        }
+
         return view;
     }
 
@@ -82,7 +108,7 @@ public class ProfileFragment extends Fragment implements EditProfileFragmentDial
             if (model.getBirthDate() != null)
                 mItemBirth.setText(model.getBirthDate() + "");
             if (model.getBirthDate() != null)
-                mItemAge.setText(calculateAge(model.getBirthDate()) + "");
+                mItemAge.setText(calculateAge(Utility.getInstance().getDateFromStringDate(model.getBirthDate())) + "");
             if (model.getHeight() != null)
                 mIemHeight.setText(model.getHeight());
             if (model.getWeight() != null)

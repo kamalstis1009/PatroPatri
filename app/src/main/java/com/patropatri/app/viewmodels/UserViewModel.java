@@ -79,6 +79,31 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     //===============================================| Login
+    public LiveData<User> getUserById(long id, String token) {
+        MutableLiveData<User> data = new MutableLiveData<>();
+        Call<User> call = RetrofitClient.getInstance().getApi().getUserById(id, token);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
     public LiveData<User> updateUser(User model, String token) {
         MutableLiveData<User> data = new MutableLiveData<>();
         Call<User> call = RetrofitClient.getInstance().getApi().addUser(model, token);

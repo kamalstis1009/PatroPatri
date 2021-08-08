@@ -18,6 +18,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RetrofitApi {
@@ -35,8 +36,8 @@ public interface RetrofitApi {
     Call<Authentication> register(@Body AuthenticationDto request);
 
     //======================================================| User
-    @GET("api/access/GetAllAccessByUserId")
-    Call<ArrayList<User>> GetAllAccessByUserId(@Query("userId") String userId, @Header("Authorization") String token);
+    @GET("user/{id")
+    Call<User> getUserById(@Path("id") long id, @Header("Authorization") String token);
 
     @Headers("Content-Type: application/json")
     @PUT("user")

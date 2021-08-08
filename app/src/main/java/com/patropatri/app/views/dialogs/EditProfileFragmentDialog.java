@@ -3,6 +3,7 @@ package com.patropatri.app.views.dialogs;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
@@ -33,6 +35,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
+
+    private static final String TAG = "EditProfileFragment";
 
     private int mPosition;
     private ProgressDialog mProgress;
@@ -244,6 +248,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     private void storeUser(User model) {
         if (getActivity() != null && mUser != null) {
             model.setId(mUser.getAuth().getId());
+            Log.d(TAG, new Gson().toJson(model));
             mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
             mViewModel.addUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
                 @Override
@@ -253,7 +258,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         SharedPefManager.getInstance(getActivity()).saveUser(mUser);
                         dismiss();
                     } else {
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                     }
                     Utility.getInstance().dismissProgressDialog(mProgress);
                 }

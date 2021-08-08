@@ -25,13 +25,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
@@ -105,6 +108,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
 
+        (mImageView).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_summary_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_personal_info_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_profession_button)).setOnClickListener(new ActionHandler());
@@ -119,6 +123,9 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mUser = SharedPefManager.getInstance(getActivity()).getUser();
         if (mUser != null && mUser.getAuth() != null) {
             onAddItem(mUser.getUser());
+            if (mUser.getUser() != null && mUser.getUser().getImageName() != null) {
+                Picasso.get().load(ConstantKey.RESOURCE_URL + "IMG_20210809_002923_845.jpg" ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(mImageView);
+            }
         }
 
         //-----------------------------------------------| Receive and observe the data from view model
@@ -404,8 +411,21 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                     @Override
                     public void onChanged(String result) {
                         if (result != null) {
-                            mUser.getUser().setImageName(result);
-                            SharedPefManager.getInstance(getActivity()).saveUser(mUser);
+                            User model = new User();
+                            model.setId(mUser.getAuth().getId());
+                            mViewModel.updateUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+                                @Override
+                                public void onChanged(User item) {
+                                    if (item != null) {
+                                        mUser.setUser(item);
+                                        mUser.getUser().setImageName(result);
+                                        SharedPefManager.getInstance(getActivity()).saveUser(mUser);
+                                    } else {
+                                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                    Utility.getInstance().dismissProgressDialog(mProgress);
+                                }
+                            });
                         } else {
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file Unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }

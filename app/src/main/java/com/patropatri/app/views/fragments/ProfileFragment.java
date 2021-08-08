@@ -7,21 +7,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.User;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements EditProfileFragmentDialog.BottomSheetListener {
+
+    private TextView mItemSummary, mItemName;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
+        mItemSummary = (TextView) view.findViewById(R.id.item_summary);
+        mItemName = (TextView) view.findViewById(R.id.item_name);
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
 
@@ -36,6 +44,16 @@ public class ProfileFragment extends Fragment {
         ((ImageButton) view.findViewById(R.id.item_expectation_button)).setOnClickListener(new ActionHandler());
 
         return view;
+    }
+
+    @Override
+    public void onAddItem(User model) {
+        if (model != null) {
+            if (model.getSummary() != null)
+                mItemSummary.setText(model.getSummary());
+            if (model.getFullName() != null)
+                mItemName.setText(model.getFullName());
+        }
     }
 
     private class ActionHandler implements View.OnClickListener {
@@ -78,12 +96,15 @@ public class ProfileFragment extends Fragment {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                Bundle bundle = new Bundle();
-                bundle.putInt("POSITION", position);
-                EditProfileFragmentDialog mFragment = new EditProfileFragmentDialog();
-                mFragment.setArguments(bundle);
-                Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
+                onShow(position);
             }
         });
+    }
+    private void onShow(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("POSITION", position);
+        EditProfileFragmentDialog mFragment = new EditProfileFragmentDialog(this);
+        mFragment.setArguments(bundle);
+        Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
     }
 }

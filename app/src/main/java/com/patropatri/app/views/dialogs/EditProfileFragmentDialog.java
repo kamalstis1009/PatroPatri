@@ -32,6 +32,7 @@ import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
@@ -43,6 +44,16 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private UserWithToken mUser;
     private UserViewModel mViewModel;
+
+    private BottomSheetListener mListener;
+
+    public interface BottomSheetListener {
+        void onAddItem(User model);
+    }
+
+    public EditProfileFragmentDialog(BottomSheetListener listener) {
+        this.mListener = listener;
+    }
 
     @Nullable
     @Override
@@ -249,9 +260,6 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private void storeUser(User model) {
         if (getActivity() != null && mUser != null) {
-
-            Log.d(TAG, new Gson().toJson(model));
-
             mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
             mViewModel.updateUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
                 @Override
@@ -259,6 +267,9 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     if (item != null) {
                         mUser.setUser(item);
                         SharedPefManager.getInstance(getActivity()).saveUser(mUser);
+                        if (mListener != null) {
+                            mListener.onAddItem(item);
+                        }
                         dismiss();
                     } else {
                         Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();

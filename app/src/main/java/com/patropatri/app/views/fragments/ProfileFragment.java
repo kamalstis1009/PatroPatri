@@ -18,6 +18,9 @@ import com.patropatri.app.models.User;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class ProfileFragment extends Fragment implements EditProfileFragmentDialog.BottomSheetListener {
 
     private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
@@ -72,9 +75,6 @@ public class ProfileFragment extends Fragment implements EditProfileFragmentDial
     @Override
     public void onAddItem(User model) {
         if (model != null) {
-            if (model.getSummary() != null)
-                mItemSummary.setText(model.getSummary());
-
             if (model.getFullName() != null)
                 mItemName.setText(model.getFullName());
             if (model.getGender() != null)
@@ -82,14 +82,61 @@ public class ProfileFragment extends Fragment implements EditProfileFragmentDial
             if (model.getBirthDate() != null)
                 mItemBirth.setText(model.getBirthDate() + "");
             if (model.getBirthDate() != null)
-                mItemAge.setText(model.getFullName());
-            if (model.getFullName() != null)
-                mItemName.setText(model.getFullName());
-            if (model.getFullName() != null)
-                mItemName.setText(model.getFullName());
-            if (model.getFullName() != null)
-                mItemName.setText(model.getFullName());
+                mItemAge.setText(calculateAge(model.getBirthDate()) + "");
+            if (model.getHeight() != null)
+                mIemHeight.setText(model.getHeight());
+            if (model.getWeight() != null)
+                mItemWeight.setText(model.getWeight());
+            if (model.getMaritalStatus() != null)
+                mItemMarital.setText(model.getMaritalStatus());
+            if (model.getReligion() != null)
+                mItemReligion.setText(model.getReligion());
+            if (model.getComplex() != null)
+                mItemComplex.setText(model.getComplex());
+            if (model.getDistrict() != null)
+                mItemDistrict.setText(model.getDistrict());
+
+            if (model.getProfession() != null)
+                mItemProfession.setText(model.getProfession());
+            if (model.getDesignation() != null)
+                mItemDesignation.setText(model.getDesignation());
+            if (model.getCompany() != null)
+                mItemCompany.setText(model.getCompany());
+            if (model.getCompanyAddress() != null)
+                mItemCompanyAddress.setText(model.getCompanyAddress());
+            if (model.getCompanyWebsite() != null)
+                mItemWebsite.setText(model.getCompanyWebsite());
+
+            if (model.getPhoneNumber() != null)
+                mItemPhone.setText(model.getPhoneNumber());
+            if (model.getEmail() != null)
+                mItemEmail.setText(model.getEmail());
+            if (model.getPresentAddress() != null)
+                mItemPresent.setText(model.getPresentAddress());
+            if (model.getPermanentAddress() != null)
+                mItemPermanent.setText(model.getPermanentAddress());
+
+            if (model.getSummary() != null)
+                mItemSummary.setText(model.getSummary());
+            if (model.getInterest() != null)
+                mItemInterest.setText(model.getInterest());
+            if (model.getOtherActivity() != null)
+                mItemActivity.setText(model.getOtherActivity());
+            if (model.getExpectation() != null)
+                mItemExpectation.setText(model.getExpectation());
         }
+    }
+
+    public int calculateAge(Date date) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(date);
+        Calendar cal2 = Calendar.getInstance();
+        int i = 0;
+        while (cal1.before(cal2)) {
+            cal1.add(Calendar.YEAR, 1);
+            i += 1;
+        }
+        return i;
     }
 
     private class ActionHandler implements View.OnClickListener {

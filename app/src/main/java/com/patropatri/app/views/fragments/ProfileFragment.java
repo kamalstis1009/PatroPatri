@@ -404,7 +404,8 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                     @Override
                     public void onChanged(String result) {
                         if (result != null) {
-                            //
+                            mUser.getUser().setImageName(result);
+                            SharedPefManager.getInstance(getActivity()).saveUser(mUser);
                         } else {
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file Unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }

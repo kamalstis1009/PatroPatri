@@ -170,6 +170,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                 if (mPosition == 1) {
                     String summary = mItemSummary.getText().toString().trim();
                     model.setSummary(summary);
+                    storeUser(model);
                 }
                 if (mPosition == 2) {
                     String fullName = mItemFullName.getText().toString().trim(),
@@ -190,6 +191,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     model.setReligion(religion);
                     model.setComplex(complex);
                     model.setDistrict(district);
+                    storeUser(model);
                 }
                 if (mPosition == 3) {
                     String service = mItemService.getSelectedItem().toString().trim(),
@@ -202,6 +204,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     model.setCompany(company);
                     model.setCompanyAddress(address);
                     model.setCompanyWebsite(website);
+                    storeUser(model);
                 }
                 if (mPosition == 4) {
                     String phone = mItemPhone.getText().toString().trim(),
@@ -212,23 +215,26 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     model.setEmail(email);
                     model.setPresentAddress(present);
                     model.setPermanentAddress(permanent);
+                    storeUser(model);
                 }
                 if (mPosition == 7) {
                     String interest = mItemInterest.getText().toString().trim();
                     model.setInterest(interest);
+                    storeUser(model);
                 }
                 if (mPosition == 8) {
                     String otherActivity = mItemOtherActivity.getText().toString().trim();
                     model.setOtherActivity(otherActivity);
+                    storeUser(model);
                 }
                 if (mPosition == 9) {
                     String expectation = mItemExpectation.getText().toString().trim();
                     model.setExpectation(expectation);
+                    storeUser(model);
                 }
                 /*if (TextUtils.isEmpty(summary)) {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty question id did not allowed!", Snackbar.LENGTH_SHORT).show();
                 }*/
-                storeUser(model);
             }
         });
 
@@ -236,13 +242,16 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     }
 
     private void storeUser(User model) {
-        if (getActivity() != null) {
+        if (getActivity() != null && mUser != null) {
+            model.setId(mUser.getAuth().getId());
             mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
             mViewModel.addUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
                 @Override
                 public void onChanged(User item) {
                     if (item != null) {
-                        //SharedPefManager.getInstance(getActivity()).saveUser(item);
+                        mUser.setUser(item);
+                        SharedPefManager.getInstance(getActivity()).saveUser(mUser);
+                        dismiss();
                     } else {
                         Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
                     }

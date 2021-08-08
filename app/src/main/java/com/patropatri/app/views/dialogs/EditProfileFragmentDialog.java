@@ -228,22 +228,28 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                 /*if (TextUtils.isEmpty(summary)) {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty question id did not allowed!", Snackbar.LENGTH_SHORT).show();
                 }*/
-                mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
-                mViewModel.addUser(model).observe(getActivity(), new Observer<User>() {
-                    @Override
-                    public void onChanged(User item) {
-                        if (item != null) {
-                            //SharedPefManager.getInstance(getActivity()).saveUser(item);
-                        } else {
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
-                        }
-                        Utility.getInstance().dismissProgressDialog(mProgress);
-                    }
-                });
+                storeUser(model);
             }
         });
 
         return view;
+    }
+
+    private void storeUser(User model) {
+        if (getActivity() != null) {
+            mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
+            mViewModel.addUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+                @Override
+                public void onChanged(User item) {
+                    if (item != null) {
+                        //SharedPefManager.getInstance(getActivity()).saveUser(item);
+                    } else {
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
+                    }
+                    Utility.getInstance().dismissProgressDialog(mProgress);
+                }
+            });
+        }
     }
 
     //===============================================| Remove modal dialog background scrim grey color

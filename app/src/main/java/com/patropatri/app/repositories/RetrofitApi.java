@@ -39,7 +39,7 @@ public interface RetrofitApi {
 
     @Headers("Content-Type: application/json")
     @POST("user")
-    Call<User> addUser(@Body User item);
+    Call<User> addUser(@Body User item, @Header("Authorization") String token);
 
     //======================================================| File Upload & Download
     @Multipart

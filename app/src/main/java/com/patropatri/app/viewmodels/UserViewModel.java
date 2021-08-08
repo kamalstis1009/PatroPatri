@@ -79,9 +79,9 @@ public class UserViewModel extends AndroidViewModel {
     }
 
     //===============================================| Login
-    public LiveData<User> addUser(User model) {
+    public LiveData<User> addUser(User model, String token) {
         MutableLiveData<User> data = new MutableLiveData<>();
-        Call<User> call = RetrofitClient.getInstance().getApi().addUser(model);
+        Call<User> call = RetrofitClient.getInstance().getApi().addUser(model, token);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {

@@ -15,7 +15,7 @@ public class User {
     private Long id;
 
     //---------------------| Personal
-    @SerializedName("full_name")
+    @SerializedName("fullName")
     @Expose
     private String fullName;
 
@@ -23,11 +23,11 @@ public class User {
     @Expose
     private String gender;
 
-    @SerializedName("birth_date")
+    @SerializedName("birthDate")
     @Expose
     private Date birthDate;
 
-    @SerializedName("birth_place")
+    @SerializedName("birthPlace")
     @Expose
     private String birthPlace;
 
@@ -39,7 +39,7 @@ public class User {
     @Expose
     private String weight;
 
-    @SerializedName("marital_status")
+    @SerializedName("maritalStatus")
     @Expose
     private String maritalStatus;
 
@@ -68,16 +68,16 @@ public class User {
     @Expose
     private String company;
 
-    @SerializedName("company_address")
+    @SerializedName("companyAddress")
     @Expose
     private String companyAddress;
 
-    @SerializedName("company_website")
+    @SerializedName("companyWebsite")
     @Expose
     private String companyWebsite;
 
     //---------------------| Contact
-    @SerializedName("phone_number")
+    @SerializedName("phoneNumber")
     @Expose
     private String phoneNumber;
 
@@ -85,11 +85,11 @@ public class User {
     @Expose
     private String email;
 
-    @SerializedName("present_address")
+    @SerializedName("presentAddress")
     @Expose
     private String presentAddress;
 
-    @SerializedName("permanent_address")
+    @SerializedName("permanentAddress")
     @Expose
     private String permanentAddress;
 
@@ -102,7 +102,7 @@ public class User {
     @Expose
     private String interest;
 
-    @SerializedName("other_activity")
+    @SerializedName("otherActivity")
     @Expose
     private String otherActivity;
 
@@ -111,11 +111,11 @@ public class User {
     private String expectation;
 
     //---------------------| Image
-    @SerializedName("image_name")
+    @SerializedName("imageName")
     @Expose
     private String imageName;
 
-    @SerializedName("image_cover_name")
+    @SerializedName("imageCoverName")
     @Expose
     private String imageCoverName;
 
@@ -123,33 +123,33 @@ public class User {
     @Expose
     private String token;
 
-    @SerializedName("is_active")
+    @SerializedName("isActive")
     @Expose
     private Boolean isActive;
 
     //---------------------| Count
-    @SerializedName("comment_amount")
+    @SerializedName("commentAmount")
     @Expose
     private Integer commentAmount;
 
-    @SerializedName("liked_amount")
+    @SerializedName("likedAmount")
     @Expose
     private Integer likedAmount;
 
     //---------------------| Audit
-    @SerializedName("created_at")
+    @SerializedName("createdAt")
     @Expose
     private Date createdAt; // String.valueOf(new Timestamp(System.currentTimeMillis()));
 
-    @SerializedName("created_by")
+    @SerializedName("createdBy")
     @Expose
     private Long createdBy;
 
-    @SerializedName("updated_at")
+    @SerializedName("updatedAt")
     @Expose
     private Date updatedAt;
 
-    @SerializedName("updated_by")
+    @SerializedName("updatedBy")
     @Expose
     private Long updatedBy;
 

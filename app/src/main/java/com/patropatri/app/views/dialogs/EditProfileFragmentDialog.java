@@ -61,10 +61,10 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile_dialog, container, false);
 
         //-----------------------------------------------| findViewById
-        EditText mItemSummary = (EditText) view.findViewById(R.id.item_summary);
         EditText mItemFullName = (EditText) view.findViewById(R.id.item_full_name);
         Spinner mItemGender = (Spinner) view.findViewById(R.id.item_gender);
         EditText mItemBirth = (EditText) view.findViewById(R.id.item_birth);
+        EditText mItemBirthPlace = (EditText) view.findViewById(R.id.item_birth_place);
         EditText mItemHeight = (EditText) view.findViewById(R.id.item_height);
         EditText mItemWeight = (EditText) view.findViewById(R.id.item_weight);
         Spinner mItemMaritalStatus = (Spinner) view.findViewById(R.id.item_marital_status);
@@ -96,6 +96,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText mItemMemberDetails = (EditText) view.findViewById(R.id.item_member_details);
         RecyclerView mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
 
+        EditText mItemSummary = (EditText) view.findViewById(R.id.item_summary);
         EditText mItemInterest = (EditText) view.findViewById(R.id.item_interest);
         EditText mItemOtherActivity = (EditText) view.findViewById(R.id.item_other_activity);
         EditText mItemExpectation = (EditText) view.findViewById(R.id.item_expectation);
@@ -180,78 +181,82 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         ((Button) view.findViewById(R.id.submit_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User model = new User();
-
-                if (mUser != null)
+                if (mUser != null && mUser.getAuth() != null) {
+                    User model = new User();
                     model.setId(mUser.getAuth().getId());
-                if (mPosition == 1) {
-                    String summary = mItemSummary.getText().toString().trim();
-                    model.setSummary(summary);
-                    storeUser(model);
+
+                    if (mPosition == 1) {
+                        String summary = mItemSummary.getText().toString().trim();
+                        model.setSummary(summary);
+                        storeUser(model);
+                    }
+                    if (mPosition == 2) {
+                        String fullName = mItemFullName.getText().toString().trim(),
+                                gender = mItemGender.getSelectedItem().toString().trim(),
+                                birth = mItemBirth.getText().toString().trim(),
+                                place = mItemBirthPlace.getText().toString().trim(),
+                                height = mItemHeight.getText().toString().trim(),
+                                weight = mItemWeight.getText().toString().trim(),
+                                status = mItemMaritalStatus.getSelectedItem().toString().trim(),
+                                religion = mItemReligion.getSelectedItem().toString().trim(),
+                                complex = mItemComplex.getSelectedItem().toString().trim(),
+                                district = mItemDistrict.getSelectedItem().toString().trim();
+                        //name,birth,status,
+                        model.setFullName(fullName);
+                        model.setGender(gender);
+                        model.setBirthDate(Utility.getInstance().getDateFromStringDate(birth));
+                        model.setBirthPlace(place);
+                        model.setHeight(height);
+                        model.setWeight(weight);
+                        model.setMaritalStatus(status);
+                        model.setReligion(religion);
+                        model.setComplex(complex);
+                        model.setDistrict(district);
+                        storeUser(model);
+                    }
+                    if (mPosition == 3) {
+                        String service = mItemService.getSelectedItem().toString().trim(),
+                                designation = mItemDesignation.getText().toString().trim(),
+                                company = mItemCompany.getText().toString().trim(),
+                                address = mItemCompanyAddress.getText().toString().trim(),
+                                website = mItemCompanyWebsite.getText().toString().trim();
+                        model.setProfession(service);
+                        model.setDesignation(designation);
+                        model.setCompany(company);
+                        model.setCompanyAddress(address);
+                        model.setCompanyWebsite(website);
+                        storeUser(model);
+                    }
+                    if (mPosition == 4) {
+                        String phone = mItemPhone.getText().toString().trim(),
+                                email = mItemEmail.getText().toString().trim(),
+                                present = mItemPresentAddress.getText().toString().trim(),
+                                permanent = mItemPermanentAddress.getText().toString().trim();
+                        model.setPhoneNumber(phone);
+                        model.setEmail(email);
+                        model.setPresentAddress(present);
+                        model.setPermanentAddress(permanent);
+                        storeUser(model);
+                    }
+                    if (mPosition == 7) {
+                        String interest = mItemInterest.getText().toString().trim();
+                        model.setInterest(interest);
+                        storeUser(model);
+                    }
+                    if (mPosition == 8) {
+                        String otherActivity = mItemOtherActivity.getText().toString().trim();
+                        model.setOtherActivity(otherActivity);
+                        storeUser(model);
+                    }
+                    if (mPosition == 9) {
+                        String expectation = mItemExpectation.getText().toString().trim();
+                        model.setExpectation(expectation);
+                        storeUser(model);
+                    }
+                    /*if (TextUtils.isEmpty(summary)) {
+                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty question id did not allowed!", Snackbar.LENGTH_SHORT).show();
+                    }*/
                 }
-                if (mPosition == 2) {
-                    String fullName = mItemFullName.getText().toString().trim(),
-                            gender = mItemGender.getSelectedItem().toString().trim(),
-                            birth = mItemBirth.getText().toString().trim(),
-                            height = mItemHeight.getText().toString().trim(),
-                            weight = mItemWeight.getText().toString().trim(),
-                            status = mItemMaritalStatus.getSelectedItem().toString().trim(),
-                            religion = mItemReligion.getSelectedItem().toString().trim(),
-                            complex = mItemComplex.getSelectedItem().toString().trim(),
-                            district = mItemDistrict.getSelectedItem().toString().trim();
-                    model.setFullName(fullName);
-                    model.setGender(gender);
-                    model.setBirthDate(Utility.getInstance().getDateFromStringDate(birth));
-                    model.setHeight(height);
-                    model.setWeight(weight);
-                    model.setMaritalStatus(status);
-                    model.setReligion(religion);
-                    model.setComplex(complex);
-                    model.setDistrict(district);
-                    storeUser(model);
-                }
-                if (mPosition == 3) {
-                    String service = mItemService.getSelectedItem().toString().trim(),
-                            designation = mItemDesignation.getText().toString().trim(),
-                            company = mItemCompany.getText().toString().trim(),
-                            address = mItemCompanyAddress.getText().toString().trim(),
-                            website = mItemCompanyWebsite.getText().toString().trim();
-                    model.setProfession(service);
-                    model.setDesignation(designation);
-                    model.setCompany(company);
-                    model.setCompanyAddress(address);
-                    model.setCompanyWebsite(website);
-                    storeUser(model);
-                }
-                if (mPosition == 4) {
-                    String phone = mItemPhone.getText().toString().trim(),
-                            email = mItemEmail.getText().toString().trim(),
-                            present = mItemPresentAddress.getText().toString().trim(),
-                            permanent = mItemPermanentAddress.getText().toString().trim();
-                    model.setPhoneNumber(phone);
-                    model.setEmail(email);
-                    model.setPresentAddress(present);
-                    model.setPermanentAddress(permanent);
-                    storeUser(model);
-                }
-                if (mPosition == 7) {
-                    String interest = mItemInterest.getText().toString().trim();
-                    model.setInterest(interest);
-                    storeUser(model);
-                }
-                if (mPosition == 8) {
-                    String otherActivity = mItemOtherActivity.getText().toString().trim();
-                    model.setOtherActivity(otherActivity);
-                    storeUser(model);
-                }
-                if (mPosition == 9) {
-                    String expectation = mItemExpectation.getText().toString().trim();
-                    model.setExpectation(expectation);
-                    storeUser(model);
-                }
-                /*if (TextUtils.isEmpty(summary)) {
-                    Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty question id did not allowed!", Snackbar.LENGTH_SHORT).show();
-                }*/
             }
         });
 

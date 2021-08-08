@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Photo {
 
-    @SerializedName("Id")
+    @SerializedName("id")
     @Expose
     private int id;
     @SerializedName("ImageName")

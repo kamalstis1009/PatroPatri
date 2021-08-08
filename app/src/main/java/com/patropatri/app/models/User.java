@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class User {
 
-    @SerializedName("Id")
+    @SerializedName("id")
     @Expose
     private Long id;
 

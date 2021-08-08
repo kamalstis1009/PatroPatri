@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class Authentication {
 
-    @SerializedName("Id")
+    @SerializedName("id")
     @Expose
-    private Long id;
+    private long id;
 
     @SerializedName("username")
     @Expose

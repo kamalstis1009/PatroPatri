@@ -171,6 +171,8 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             public void onClick(View v) {
                 User model = new User();
 
+                if (mUser != null)
+                    model.setId(mUser.getAuth().getId());
                 if (mPosition == 1) {
                     String summary = mItemSummary.getText().toString().trim();
                     model.setSummary(summary);
@@ -247,10 +249,11 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private void storeUser(User model) {
         if (getActivity() != null && mUser != null) {
-            model.setId(mUser.getAuth().getId());
+
             Log.d(TAG, new Gson().toJson(model));
+
             mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
-            mViewModel.addUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+            mViewModel.updateUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
                 @Override
                 public void onChanged(User item) {
                     if (item != null) {

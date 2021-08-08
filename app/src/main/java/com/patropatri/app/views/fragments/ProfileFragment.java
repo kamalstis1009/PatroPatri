@@ -80,11 +80,14 @@ public class ProfileFragment extends Fragment implements EditProfileFragmentDial
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        if (mUser != null && mUser.getAuth() != null) {
+            onAddItem(mUser.getUser());
+        }
 
         //-----------------------------------------------| Receive and observe the data from view model
         UserViewModel mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
-        if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+        /*if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
             mViewModel.getUserById(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
                 @Override
                 public void onChanged(User item) {
@@ -93,7 +96,7 @@ public class ProfileFragment extends Fragment implements EditProfileFragmentDial
                     }
                 }
             });
-        }
+        }*/
 
         return view;
     }

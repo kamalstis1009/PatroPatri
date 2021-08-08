@@ -759,6 +759,19 @@
                         android:layout_height="150dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+			
+			<!--<TextView
+				android:id="@+id/show_maps"
+				android:padding="15dp"
+				android:textSize="12sp"
+				android:textAlignment="center"
+				android:textColor="@color/colorPrimary"
+				android:drawableLeft="@drawable/ic_baseline_map_24"
+				android:text="Select Google Maps"
+				android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />-->
+
 
             <Button
                 android:id="@+id/submit_button"

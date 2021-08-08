@@ -1,7 +1,10 @@
 package com.patropatri.app.views.dialogs;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,21 +22,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.snackbar.Snackbar;
 import com.patropatri.app.R;
+import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
+import com.patropatri.app.views.activities.HomeActivity;
+import com.patropatri.app.views.activities.SignInActivity;
 
 import java.util.Objects;
 
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
+
+    private int mPosition;
+    private ProgressDialog mProgress;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile_dialog, container, false);
 
-        //-----------------------------------------------| Session
+        //-----------------------------------------------| findViewById
         EditText mItemSummary = (EditText) view.findViewById(R.id.item_summary);
         EditText mItemFullName = (EditText) view.findViewById(R.id.item_full_name);
         Spinner mItemGender = (Spinner) view.findViewById(R.id.item_gender);
@@ -61,14 +73,12 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText mItemPassingYear = (EditText) view.findViewById(R.id.item_passing_year);
         EditText mItemResult = (EditText) view.findViewById(R.id.item_result);
         EditText mItemInstitute = (EditText) view.findViewById(R.id.item_institute);
-        Button mAddEducation = (Button) view.findViewById(R.id.add_education_button);
         RecyclerView mEducationRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
 
-        EditText mItemMember_name = (EditText) view.findViewById(R.id.item_member_name);
+        EditText mItemMemberName = (EditText) view.findViewById(R.id.item_member_name);
         EditText mItemRelation = (EditText) view.findViewById(R.id.item_relation);
         EditText mItemOccupation = (EditText) view.findViewById(R.id.item_occupation);
         EditText mItemMemberDetails = (EditText) view.findViewById(R.id.item_member_details);
-        Button mAddFamily = (Button) view.findViewById(R.id.add_family_button);
         RecyclerView mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
 
         EditText mItemInterest = (EditText) view.findViewById(R.id.item_interest);
@@ -83,7 +93,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null) {
-            int mPosition = getArguments().getInt("POSITION", 0);
+            mPosition = getArguments().getInt("POSITION", 0);
             if (mPosition > 0) {
                 if (mPosition == 1)
                     ((LinearLayout) view.findViewById(R.id.part_1)).setVisibility(View.VISIBLE);
@@ -110,6 +120,116 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+
+        ((Button) view.findViewById(R.id.add_education_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPosition == 5) {
+                    String degree = mItemDegreeName.getText().toString().trim(),
+                            subject = mItemSubjectName.getText().toString().trim(),
+                            passingYear = mItemPassingYear.getText().toString().trim(),
+                            result = mItemResult.getText().toString().trim(),
+                            institute = mItemInstitute.getText().toString().trim();
+                    //
+                }
+            }
+        });
+
+        ((Button) view.findViewById(R.id.add_family_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mPosition == 6) {
+                    String memberName = mItemMemberName.getText().toString().trim(),
+                            relation = mItemRelation.getText().toString().trim(),
+                            occupation = mItemOccupation.getText().toString().trim(),
+                            memberDetails = mItemMemberDetails.getText().toString().trim();
+                    //
+                }
+            }
+        });
+
+        ((Button) view.findViewById(R.id.submit_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                User model = new User();
+                
+                if (mPosition == 1) {
+                    String summary = mItemSummary.getText().toString().trim();
+                    model.setSummary(summary);
+                }
+                if (mPosition == 2) {
+                    String fullName = mItemFullName.getText().toString().trim(),
+                            gender = mItemGender.getSelectedItem().toString().trim(),
+                            birth = mItemBirth.getText().toString().trim(),
+                            height = mItemHeight.getText().toString().trim(),
+                            weight = mItemWeight.getText().toString().trim(),
+                            status = mItemMaritalStatus.getSelectedItem().toString().trim(),
+                            religion = mItemReligion.getSelectedItem().toString().trim(),
+                            complex = mItemComplex.getSelectedItem().toString().trim(),
+                            district = mItemDistrict.getSelectedItem().toString().trim();
+                    model.setFullName(fullName);
+                    model.setGender(gender);
+                    //model.setBirthDate(birth);
+                    model.setHeight(height);
+                    model.setWeight(weight);
+                    model.setMaritalStatus(status);
+                    model.setReligion(religion);
+                    model.setComplex(complex);
+                    model.setDistrict(district);
+                }
+                if (mPosition == 3) {
+                    String service = mItemService.getText().toString().trim(),
+                            designation = mItemDesignation.getText().toString().trim(),
+                            company = mItemCompany.getText().toString().trim(),
+                            address = mItemCompanyAddress.getText().toString().trim(),
+                            website = mItemCompanyWebsite.getText().toString().trim();
+                    model.setProfession(service);
+                    model.setDesignation(designation);
+                    model.setCompany(company);
+                    model.setCompanyAddress(address);
+                    model.setCompanyWebsite(website);
+                }
+                if (mPosition == 4) {
+                    String phone = mItemPhone.getText().toString().trim(),
+                            email = mItemEmail.getText().toString().trim(),
+                            present = mItemPresentAddress.getText().toString().trim(),
+                            permanent = mItemPermanentAddress.getText().toString().trim();
+                    model.setPhoneNumber(phone);
+                    model.setEmail(email);
+                    model.setPresentAddress(present);
+                    model.setPermanentAddress(permanent);
+                }
+                if (mPosition == 7) {
+                    String interest = mItemInterest.getText().toString().trim();
+                    model.setInterest(interest);
+                }
+                if (mPosition == 8) {
+                    String otherActivity = mItemOtherActivity.getText().toString().trim();
+                    model.setOtherActivity(otherActivity);
+                }
+                if (mPosition == 9) {
+                    String expectation = mItemExpectation.getText().toString().trim();
+                    model.setExpectation(expectation);
+                }
+                /*if (TextUtils.isEmpty(summary)) {
+                    Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty question id did not allowed!", Snackbar.LENGTH_SHORT).show();
+                }*/
+                mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
+                /*mViewModel.login(model).observe(SignInActivity.this, new Observer<UserWithToken>() {
+                    @Override
+                    public void onChanged(UserWithToken item) {
+                        if (item != null) {
+                            SharedPefManager.getInstance(SignInActivity.this).saveUser(item);
+                            startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                            //Toast.makeText(SignInActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Snackbar.make(findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
+                        }
+                        Utility.getInstance().dismissProgressDialog(mProgress);
+                    }
+                });*/
             }
         });
 

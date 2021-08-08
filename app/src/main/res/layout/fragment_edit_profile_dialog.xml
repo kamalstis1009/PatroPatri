@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
-            <!-- Portion 1 -->
+            <!-- Portion 1 | Summary -->
             <LinearLayout
                 android:id="@+id/part_1"
                 android:visibility="gone"
@@ -73,11 +73,11 @@
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="250dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Portion 2 -->
+            <!-- Portion 2 | Personal -->
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/part_2"
@@ -241,7 +241,7 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <!-- Portion 3 -->
+            <!-- Portion 3 | Profession -->
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/part_3"
@@ -344,7 +344,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Portion 4 -->
+            <!-- Portion 4 | Contact -->
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/part_4"
@@ -400,19 +400,20 @@
                     android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/item_present_address"
-                        android:gravity="top"
+                        android:inputType="text"
+                        android:singleLine="true"
                         android:maxLength="250"
                         android:maxEms="250"
                         android:hint="Present Address"
-                        android:inputType="text|textMultiLine"
+                        android:textSize="12sp"
                         app:drawableTint="@color/colorDeepGrey"
                         android:drawableEnd="@drawable/ic_baseline_location_on_24"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
-                        android:layout_marginBottom="10dp"
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -420,23 +421,24 @@
                     android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/item_permanent_address"
-                        android:gravity="top"
+                        android:inputType="text"
+                        android:singleLine="true"
                         android:maxLength="250"
                         android:maxEms="250"
                         android:hint="Permanent Address"
-                        android:inputType="text|textMultiLine"
+                        android:textSize="12sp"
                         app:drawableTint="@color/colorDeepGrey"
                         android:drawableEnd="@drawable/ic_baseline_location_on_24"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
-                        android:layout_marginBottom="10dp"
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
+                        android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Portion 5 -->
+            <!-- Portion 5 | Education -->
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/part_5"
@@ -579,7 +581,7 @@
                     android:layout_height="240dp"/>
             </LinearLayout>
 
-            <!-- Portion 6 -->
+            <!-- Portion 6 | Family -->
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/part_6"
@@ -682,7 +684,7 @@
                     android:layout_height="240dp"/>
             </LinearLayout>
 
-            <!-- Portion 7 -->
+            <!-- Portion 7 | Interest -->
             <LinearLayout
                 android:id="@+id/part_7"
                 android:visibility="gone"
@@ -707,11 +709,11 @@
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="250dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Portion 8 -->
+            <!-- Portion 8 | Other Activities -->
             <LinearLayout
                 android:id="@+id/part_8"
                 android:visibility="gone"
@@ -736,11 +738,11 @@
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="250dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Portion 9 -->
+            <!-- Portion 9 | Expectation -->
             <LinearLayout
                 android:id="@+id/part_9"
                 android:visibility="gone"
@@ -765,7 +767,7 @@
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"/>
+                        android:layout_height="250dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 			

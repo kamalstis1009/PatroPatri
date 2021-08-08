@@ -511,7 +511,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-
             <!--Profession-->
 
             <LinearLayout
@@ -992,6 +991,8 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+
+            <!--Family-->
 
             <LinearLayout
                 android:padding="15dp"

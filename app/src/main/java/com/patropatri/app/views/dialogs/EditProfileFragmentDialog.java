@@ -270,6 +270,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                 @Override
                 public void onChanged(User item) {
                     if (item != null) {
+                        Log.d(TAG, new Gson().toJson(item));
                         mUser.setUser(item);
                         SharedPefManager.getInstance(getActivity()).saveUser(mUser);
                         if (mListener != null) {

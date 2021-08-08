@@ -2,9 +2,7 @@ package com.patropatri.app.views.dialogs;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,21 +23,22 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.patropatri.app.R;
-import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
-import com.patropatri.app.views.activities.HomeActivity;
-import com.patropatri.app.views.activities.SignInActivity;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private int mPosition;
     private ProgressDialog mProgress;
+
+    private UserWithToken mUser;
+    private UserViewModel mViewModel;
 
     @Nullable
     @Override
@@ -86,10 +86,10 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText mItemExpectation = (EditText) view.findViewById(R.id.item_expectation);
 
         //-----------------------------------------------| Session
-        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| Receive and observe the data from view model
-        UserViewModel mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null) {
@@ -120,6 +120,18 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 dismiss();
+            }
+        });
+
+        mItemBirth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utility.getInstance().getDatePickerDialog(new Utility.DatePickerListener() {
+                    @Override
+                    public void onDate(String date) {
+                        mItemBirth.setText(date);
+                    }
+                }, getActivity());
             }
         });
 
@@ -171,7 +183,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                             district = mItemDistrict.getSelectedItem().toString().trim();
                     model.setFullName(fullName);
                     model.setGender(gender);
-                    //model.setBirthDate(birth);
+                    model.setBirthDate(new Date(birth));
                     model.setHeight(height);
                     model.setWeight(weight);
                     model.setMaritalStatus(status);
@@ -217,19 +229,17 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty question id did not allowed!", Snackbar.LENGTH_SHORT).show();
                 }*/
                 mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
-                /*mViewModel.login(model).observe(SignInActivity.this, new Observer<UserWithToken>() {
+                mViewModel.addUser(model).observe(getActivity(), new Observer<User>() {
                     @Override
-                    public void onChanged(UserWithToken item) {
+                    public void onChanged(User item) {
                         if (item != null) {
-                            SharedPefManager.getInstance(SignInActivity.this).saveUser(item);
-                            startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                            //Toast.makeText(SignInActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();
+                            //SharedPefManager.getInstance(getActivity()).saveUser(item);
                         } else {
-                            Snackbar.make(findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not match username or password!", Snackbar.LENGTH_SHORT).show();
                         }
                         Utility.getInstance().dismissProgressDialog(mProgress);
                     }
-                });*/
+                });
             }
         });
 

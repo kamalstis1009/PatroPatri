@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.repositories.RetrofitClient;
 
@@ -70,6 +71,32 @@ public class UserViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(@NonNull Call<Authentication> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    //===============================================| Login
+    public LiveData<User> addUser(User model) {
+        MutableLiveData<User> data = new MutableLiveData<>();
+        Call<User> call = RetrofitClient.getInstance().getApi().addUser(model);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

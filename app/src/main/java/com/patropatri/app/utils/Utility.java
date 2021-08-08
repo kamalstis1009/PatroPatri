@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -28,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -209,7 +211,7 @@ public class Utility {
     }
 
     //====================================================| DatePicker
-    public void getDatePickerDialog(Context context, final EditText birth) {
+    public void getDatePickerDialog(DatePickerListener listener, Context context) {
         DatePicker datePicker = new DatePicker(context);
         int day = datePicker.getDayOfMonth();
         int mon = datePicker.getMonth();
@@ -217,10 +219,31 @@ public class Utility {
         new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = year +"-"+ (String.format("%02d", month+1)) +"-"+ String.format("%02d", dayOfMonth);
-                birth.setText(date);
+                //String currentTime = new SimpleDateFormat("HH:mm:ss.SSS", Locale.getDefault()).format(new Date());
+                String date = String.format("%02d", dayOfMonth) +"-"+ (String.format("%02d", month+1)) +"-"+ year + " "; // + currentTime;
+                listener.onDate(date);
             }
         }, year, mon, day).show();
+    }
+    public interface DatePickerListener {
+        void onDate(String date);
+    }
+
+    public void getTimePickerDialog(TimePickerListener listener, Context context) {
+        Calendar calendar = Calendar.getInstance();
+        int mHour = calendar.get(Calendar.HOUR_OF_DAY);
+        int mMinute = calendar.get(Calendar.MINUTE);
+        int mSecond = calendar.get(Calendar.SECOND);
+        int mMillisecond = calendar.get(Calendar.MILLISECOND);
+        new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                listener.onTime(hour + ":" + minute + ":" + mSecond + "." + mMillisecond); //yyyy-MM-dd HH:mm:ss | 2020-07-21 01:57:33.435
+            }
+        }, mHour, mMinute, false).show();
+    }
+    public interface TimePickerListener {
+        void onTime(String time);
     }
 
     //normal date format with 0 infront of days and month

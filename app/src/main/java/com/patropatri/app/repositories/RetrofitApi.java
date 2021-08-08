@@ -38,8 +38,8 @@ public interface RetrofitApi {
     Call<ArrayList<User>> GetAllAccessByUserId(@Query("userId") String userId, @Header("Authorization") String token);
 
     @Headers("Content-Type: application/json")
-    @POST("api/user/AddUser")
-    Call<User> addUser(@Body User model);
+    @POST("user")
+    Call<User> addUser(@Body User item);
 
     //======================================================| File Upload & Download
     @Multipart

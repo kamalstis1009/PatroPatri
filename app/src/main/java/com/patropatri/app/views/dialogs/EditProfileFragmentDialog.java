@@ -57,7 +57,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         Spinner mItemComplex = (Spinner) view.findViewById(R.id.item_complex);
         Spinner mItemDistrict = (Spinner) view.findViewById(R.id.item_district);
 
-        EditText mItemService = (EditText) view.findViewById(R.id.item_service);
+        Spinner mItemService = (Spinner) view.findViewById(R.id.item_service);
         EditText mItemDesignation = (EditText) view.findViewById(R.id.item_designation);
         EditText mItemCompany = (EditText) view.findViewById(R.id.item_company);
         EditText mItemCompanyAddress = (EditText) view.findViewById(R.id.item_company_address);
@@ -154,7 +154,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 User model = new User();
-                
+
                 if (mPosition == 1) {
                     String summary = mItemSummary.getText().toString().trim();
                     model.setSummary(summary);
@@ -180,7 +180,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     model.setDistrict(district);
                 }
                 if (mPosition == 3) {
-                    String service = mItemService.getText().toString().trim(),
+                    String service = mItemService.getSelectedItem().toString().trim(),
                             designation = mItemDesignation.getText().toString().trim(),
                             company = mItemCompany.getText().toString().trim(),
                             address = mItemCompanyAddress.getText().toString().trim(),

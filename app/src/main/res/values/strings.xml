@@ -11,6 +11,7 @@
     <string name="error_msg_location">Location service is not enabled.</string>
 
     <string-array name="gender_array">
+        <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
     </string-array>

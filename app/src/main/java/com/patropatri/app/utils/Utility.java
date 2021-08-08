@@ -47,6 +47,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -151,6 +152,35 @@ public class Utility {
     public String getDateFromTimestamp(String input) {
         java.sql.Timestamp ts = java.sql.Timestamp.valueOf(input);
         return String.valueOf(new SimpleDateFormat("dd-MM-yyyy").format(ts)); //java.text.DateFormat.getDateTimeInstance().format(ts.getTime())
+    }
+
+    public String getDateFromCSharpDateTime(String input) {
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(input);
+            return String.valueOf(new SimpleDateFormat("dd-MM-yyyy").format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Date getDateFromCSharpStringDateTime(String input) {
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(input);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Date getDateFromStringDate(String input) {
+        try {
+            return new SimpleDateFormat("dd-MM-yyyy").parse(input);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     //get date with your format pattern

@@ -201,7 +201,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                             district = mItemDistrict.getSelectedItem().toString().trim();
                     model.setFullName(fullName);
                     model.setGender(gender);
-                    model.setBirthDate(new Date(birth));
+                    model.setBirthDate(Utility.getInstance().getDateFromStringDate(birth));
                     model.setHeight(height);
                     model.setWeight(weight);
                     model.setMaritalStatus(status);

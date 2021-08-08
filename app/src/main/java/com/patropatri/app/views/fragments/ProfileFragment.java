@@ -20,16 +20,39 @@ import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
 
 public class ProfileFragment extends Fragment implements EditProfileFragmentDialog.BottomSheetListener {
 
-    private TextView mItemSummary, mItemName;
+    private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        mItemName = (TextView) view.findViewById(R.id.item_name);
+        mItemGender = (TextView) view.findViewById(R.id.item_gender);
+        mItemBirth = (TextView) view.findViewById(R.id.item_birth);
+        mItemAge = (TextView) view.findViewById(R.id.item_age);
+        mIemHeight = (TextView) view.findViewById(R.id.item_height);
+        mItemWeight = (TextView) view.findViewById(R.id.item_weight);
+        mItemMarital = (TextView) view.findViewById(R.id.item_marital_status);
+        mItemReligion = (TextView) view.findViewById(R.id.item_religion);
+        mItemComplex = (TextView) view.findViewById(R.id.item_complex);
+        mItemDistrict = (TextView) view.findViewById(R.id.item_district);
+
+        mItemProfession = (TextView) view.findViewById(R.id.item_profession);
+        mItemDesignation = (TextView) view.findViewById(R.id.item_designation);
+        mItemCompany = (TextView) view.findViewById(R.id.item_company);
+        mItemCompanyAddress = (TextView) view.findViewById(R.id.item_company_address);
+        mItemWebsite = (TextView) view.findViewById(R.id.item_website);
+
+        mItemPhone = (TextView) view.findViewById(R.id.item_phone);
+        mItemEmail = (TextView) view.findViewById(R.id.item_email);
+        mItemPresent = (TextView) view.findViewById(R.id.item_present_address);
+        mItemPermanent = (TextView) view.findViewById(R.id.item_permanent_address);
 
         mItemSummary = (TextView) view.findViewById(R.id.item_summary);
-        mItemName = (TextView) view.findViewById(R.id.item_name);
+        mItemInterest = (TextView) view.findViewById(R.id.item_interest);
+        mItemActivity = (TextView) view.findViewById(R.id.item_other_activity);
+        mItemExpectation = (TextView) view.findViewById(R.id.item_expectation);
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
 
@@ -51,6 +74,19 @@ public class ProfileFragment extends Fragment implements EditProfileFragmentDial
         if (model != null) {
             if (model.getSummary() != null)
                 mItemSummary.setText(model.getSummary());
+
+            if (model.getFullName() != null)
+                mItemName.setText(model.getFullName());
+            if (model.getGender() != null)
+                mItemGender.setText(model.getGender());
+            if (model.getBirthDate() != null)
+                mItemBirth.setText(model.getBirthDate() + "");
+            if (model.getBirthDate() != null)
+                mItemAge.setText(model.getFullName());
+            if (model.getFullName() != null)
+                mItemName.setText(model.getFullName());
+            if (model.getFullName() != null)
+                mItemName.setText(model.getFullName());
             if (model.getFullName() != null)
                 mItemName.setText(model.getFullName());
         }

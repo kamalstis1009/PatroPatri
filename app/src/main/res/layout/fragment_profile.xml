@@ -1186,6 +1186,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/item_interest"
                             android:text="Looking for an educated, supportive, strong bonded family. A family where she will be treated more as a daughter. And looking for a person who is supportive, honest, responsible, caring, can give respect and have the ability to take a stand in any situation. \nProfession: Any Halal income (Police, Lawyer is not preferable) \nHome district: Any (Noakhali, Comilla and Chandpur is not preferable)."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
@@ -1235,6 +1236,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/item_other_activity"
                             android:text="Looking for an educated, supportive, strong bonded family. A family where she will be treated more as a daughter. And looking for a person who is supportive, honest, responsible, caring, can give respect and have the ability to take a stand in any situation. \nProfession: Any Halal income (Police, Lawyer is not preferable) \nHome district: Any (Noakhali, Comilla and Chandpur is not preferable)."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
@@ -1284,6 +1286,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/item_expectation"
                             android:text="Looking for an educated, supportive, strong bonded family. A family where she will be treated more as a daughter. And looking for a person who is supportive, honest, responsible, caring, can give respect and have the ability to take a stand in any situation. \nProfession: Any Halal income (Police, Lawyer is not preferable) \nHome district: Any (Noakhali, Comilla and Chandpur is not preferable)."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"

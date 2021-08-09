@@ -123,9 +123,9 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mUser = SharedPefManager.getInstance(getActivity()).getUser();
         if (mUser != null && mUser.getAuth() != null) {
             onAddItem(mUser.getUser());
-            //if (mUser.getUser() != null && mUser.getUser().getImageName() != null) {
-                Picasso.get().load(ConstantKey.RESOURCE_URL + "IMG_20210809_171250_288.jpg" ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(mImageView);
-            //}
+            if (mUser.getUser() != null && mUser.getUser().getImageName() != null) {
+                Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(mImageView);
+            }
         }
 
         //-----------------------------------------------| Receive and observe the data from view model

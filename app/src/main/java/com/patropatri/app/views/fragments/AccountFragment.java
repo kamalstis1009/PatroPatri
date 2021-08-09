@@ -12,7 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AccountFragment extends Fragment {
 
@@ -20,6 +26,15 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
+        //-----------------------------------------------| Session
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        if (mUser.getUser() != null) {
+            if (mUser.getUser().getFullName() != null)
+                ((TextView) view.findViewById(R.id.item_name)).setText(mUser.getUser().getFullName());
+            if (mUser.getUser().getImageName() != null)
+                Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((CircleImageView) view.findViewById(R.id.item_photo)) );
+        }
 
         //-----------------------------------------------| ClickListener
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());

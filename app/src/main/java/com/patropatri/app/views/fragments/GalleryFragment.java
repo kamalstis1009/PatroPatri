@@ -67,6 +67,8 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
     private String mCurrentPhotoPath;
     private File mFile;
 
+    private PhotoAdapter mAdapter;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
@@ -100,8 +102,8 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Photo> arrayList) {
-        PhotoAdapter mAdapter = new PhotoAdapter(getActivity(), arrayList);
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Gallery> arrayList) {
+        mAdapter = new PhotoAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));

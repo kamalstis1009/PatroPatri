@@ -1,6 +1,5 @@
 package com.patropatri.app.views.adapters;
 
-import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +11,18 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.Photo;
+import com.patropatri.app.models.Gallery;
+import com.patropatri.app.utils.ConstantKey;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder> {
 
     private FragmentActivity mActivity;
-    private ArrayList<Photo> mArrayList;
+    private ArrayList<Gallery> mArrayList;
 
-    public PhotoAdapter(FragmentActivity context, ArrayList<Photo> arrayList) {
+    public PhotoAdapter(FragmentActivity context, ArrayList<Gallery> arrayList) {
         this.mActivity = context;
         this.mArrayList = arrayList;
     }
@@ -35,8 +36,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Photo model = mArrayList.get(position);
+        Gallery model = mArrayList.get(position);
 
+        if (model.getImageName() != null)
+            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
         //holder.imageView.setImageResource(model.getIcon());
         //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
 

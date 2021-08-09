@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Photo;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
@@ -51,12 +52,12 @@ public class UserPhotoFragment extends Fragment {
         });*/
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        initRecyclerView(mRecyclerView, ConstantKey.getUserPhotos());
+        //initRecyclerView(mRecyclerView, ConstantKey.getUserPhotos());
 
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Photo> arrayList) {
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Gallery> arrayList) {
         PhotoAdapter mAdapter = new PhotoAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

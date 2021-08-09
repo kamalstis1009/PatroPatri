@@ -45,8 +45,8 @@ public interface RetrofitApi {
     Call<User> addUser(@Body User item, @Header("Authorization") String token);
 
     //======================================================| Gallery
-    @GET("galleries")
-    Call<ArrayList<Gallery>> getGalleriesById(@Path("userId") long userId, @Header("Authorization") String token);
+    @GET("galleries/{id}")
+    Call<ArrayList<Gallery>> getGalleriesById(@Path("id") long userId, @Header("Authorization") String token);
 
     //======================================================| File Upload & Download
     @Multipart

@@ -134,7 +134,6 @@ public class UserViewModel extends AndroidViewModel {
     public MutableLiveData<String> uploadFileForProfileAndCover(MultipartBody.Part file, String fileName, boolean isProfile, long id, String token) {
         MutableLiveData<String> data = new MutableLiveData<>();
         Call<String> call = RetrofitClient.getInstance().getApi().uploadFileForProfileAndCover(file, fileName, isProfile, id, token);
-        //Call<ResponseBody> call = ApiClient.getInstance(mContext).getApi().uploadFile(fileToUpload, file.getName());
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

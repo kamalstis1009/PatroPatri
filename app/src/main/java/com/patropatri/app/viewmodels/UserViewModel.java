@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.repositories.RetrofitClient;
@@ -149,6 +150,31 @@ public class UserViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+    public MutableLiveData<Gallery> uploadGalleryImage(MultipartBody.Part file, long id, String token) {
+        MutableLiveData<Gallery> data = new MutableLiveData<>();
+        Call<Gallery> call = RetrofitClient.getInstance().getApi().uploadGalleryImage(file, id, token);
+        call.enqueue(new Callback<Gallery>() {
+            @Override
+            public void onResponse(@NonNull Call<Gallery> call, @NonNull Response<Gallery> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Gallery> call, @NonNull Throwable t) {
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
                 data.setValue(null);
             }

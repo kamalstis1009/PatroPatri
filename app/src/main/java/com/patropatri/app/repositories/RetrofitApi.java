@@ -2,6 +2,7 @@ package com.patropatri.app.repositories;
 
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 
@@ -47,6 +48,10 @@ public interface RetrofitApi {
     @Multipart
     @POST("file/upload/update-profile-cover")
     Call<String> uploadFileForProfileAndCover(@Part MultipartBody.Part file, @Query("fileName") String fileName, @Query("isProfile") boolean isProfile, @Query("id") long id, @Header("Authorization") String token);
+
+    @Multipart
+    @POST("file/upload/gallery-image")
+    Call<Gallery> uploadGalleryImage(@Part MultipartBody.Part file, @Query("userId") long userId, @Header("Authorization") String token);
 
 
 

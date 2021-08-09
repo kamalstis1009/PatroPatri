@@ -36,6 +36,17 @@ public class AccountFragment extends Fragment {
                 Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((CircleImageView) view.findViewById(R.id.item_photo)) );
         }
 
+        /*if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+            mViewModel.getUserById(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+                @Override
+                public void onChanged(User item) {
+                    if (item != null) {
+                        onAddItem(item);
+                    }
+                }
+            });
+        }*/
+
         //-----------------------------------------------| ClickListener
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_profile)).setOnClickListener(new ActionHandler());

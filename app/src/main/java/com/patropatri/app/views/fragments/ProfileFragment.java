@@ -411,21 +411,10 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                     @Override
                     public void onChanged(String result) {
                         if (result != null) {
-                            User model = new User();
-                            model.setId(mUser.getAuth().getId());
-                            mViewModel.updateUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
-                                @Override
-                                public void onChanged(User item) {
-                                    if (item != null) {
-                                        mUser.setUser(item);
-                                        mUser.getUser().setImageName(result);
-                                        SharedPefManager.getInstance(getActivity()).saveUser(mUser);
-                                    } else {
-                                        Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
-                                    }
-                                    Utility.getInstance().dismissProgressDialog(mProgress);
-                                }
-                            });
+                            if (mUser.getUser() != null) {
+                                mUser.getUser().setImageName(result);
+                                SharedPefManager.getInstance(getActivity()).saveUser(mUser);
+                            }
                         } else {
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file Unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }

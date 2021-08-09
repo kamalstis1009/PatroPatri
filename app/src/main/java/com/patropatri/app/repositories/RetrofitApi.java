@@ -44,6 +44,10 @@ public interface RetrofitApi {
     @PUT("user")
     Call<User> addUser(@Body User item, @Header("Authorization") String token);
 
+    //======================================================| Gallery
+    @GET("galleries")
+    Call<ArrayList<Gallery>> getGalleriesById(@Path("userId") long userId, @Header("Authorization") String token);
+
     //======================================================| File Upload & Download
     @Multipart
     @POST("file/upload/update-profile-cover")

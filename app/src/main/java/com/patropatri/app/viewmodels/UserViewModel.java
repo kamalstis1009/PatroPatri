@@ -15,6 +15,8 @@ import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.repositories.RetrofitClient;
 
+import java.util.ArrayList;
+
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -80,7 +82,7 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
-    //===============================================| Login
+    //===============================================| User
     public LiveData<User> getUserById(long id, String token) {
         MutableLiveData<User> data = new MutableLiveData<>();
         Call<User> call = RetrofitClient.getInstance().getApi().getUserById(id, token);
@@ -124,6 +126,32 @@ public class UserViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    //===============================================| Gallery
+    public LiveData<ArrayList<Gallery>> getGalleriesById(long userId, String token) {
+        MutableLiveData<ArrayList<Gallery>> data = new MutableLiveData<>();
+        Call<ArrayList<Gallery>> call = RetrofitClient.getInstance().getApi().getGalleriesById(userId, token);
+        call.enqueue(new Callback<ArrayList<Gallery>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Gallery>> call, @NonNull Response<ArrayList<Gallery>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Gallery>> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

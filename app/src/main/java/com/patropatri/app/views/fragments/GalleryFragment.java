@@ -26,10 +26,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.snackbar.Snackbar;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Gallery;
-import com.patropatri.app.models.Photo;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
-import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
@@ -37,12 +35,9 @@ import com.patropatri.app.views.adapters.PhotoAdapter;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -67,6 +62,7 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
     private String mCurrentPhotoPath;
     private File mFile;
 
+    private ArrayList<Gallery> mArrayList = new ArrayList<>();
     private PhotoAdapter mAdapter;
 
     @Override
@@ -80,21 +76,22 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
         mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        /*if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-            mViewModel.getUserById(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+        if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+            mViewModel.getGalleriesById(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Gallery>>() {
                 @Override
-                public void onChanged(User item) {
-                    if (item != null) {
-                        onAddItem(item);
+                public void onChanged(ArrayList<Gallery> arrayList) {
+                    if (arrayList != null) {
+                        mArrayList.addAll(arrayList);
                     }
+                    initRecyclerView(mRecyclerView, mArrayList);
                 }
             });
-        }*/
+        }
 
         ((ImageButton) view.findViewById(R.id.add_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mImageFileName = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.getDefault()).format(new Date()) + ".jpg";
+                mImageFileName = "IMG_GALLERY.jpg";
                 showDialog();
             }
         });
@@ -248,9 +245,10 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
                 mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
                 mViewModel.uploadGalleryImage(uploadFile(mFile, mImageFileName), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Gallery>() {
                     @Override
-                    public void onChanged(Gallery result) {
-                        if (result != null) {
-                            //
+                    public void onChanged(Gallery model) {
+                        if (model != null) {
+                            mArrayList.add(model);
+                            mAdapter.notifyItemInserted(mArrayList.size());
                         } else {
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file Unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }

@@ -407,7 +407,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                 Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty image is not allowed!", Snackbar.LENGTH_SHORT).show();
             } else {
                 mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
-                mViewModel.deleteAndUpload(uploadFile(mFile, mImageFileName), mImageFileName, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<String>() {
+                mViewModel.uploadFileForProfileAndCover(uploadFile(mFile, mImageFileName), mImageFileName, true, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<String>() {
                     @Override
                     public void onChanged(String result) {
                         if (result != null) {

@@ -45,8 +45,8 @@ public interface RetrofitApi {
 
     //======================================================| File Upload & Download
     @Multipart
-    @POST("file/deleteAndUpload")
-    Call<String> deleteAndUpload(@Part MultipartBody.Part file, @Query("fileName") String fileName, @Header("Authorization") String token);
+    @POST("file/upload/update-profile-cover")
+    Call<String> uploadFileForProfileAndCover(@Part MultipartBody.Part file, @Query("fileName") String fileName, @Query("isProfile") boolean isProfile, @Query("id") long id, @Header("Authorization") String token);
 
 
 

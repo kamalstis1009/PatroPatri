@@ -9,14 +9,21 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
+import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.NotificationViewModel;
 import com.patropatri.app.views.adapters.InboxAdapter;
 
 import java.util.ArrayList;
@@ -27,8 +34,24 @@ public class InboxFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
 
+        //-----------------------------------------------| Session
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+
+        //-----------------------------------------------| Receive and observe the data from view model
+        NotificationViewModel mViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
+
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
-        initRecyclerView(mRecyclerView, ConstantKey.getMessages());
+        if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+            mViewModel.getAllInboxesByUserId(1, 15, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
+                @Override
+                public void onChanged(ArrayList<Inbox> arrayList) {
+                    if (arrayList != null)
+                        initRecyclerView(mRecyclerView, arrayList);
+                    //else
+                        //initRecyclerView(mRecyclerView, ConstantKey.getMessages());
+                }
+            });
+        }
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +63,7 @@ public class InboxFragment extends Fragment {
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Message> arrayList) {
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Inbox> arrayList) {
         InboxAdapter mAdapter = new InboxAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.patropatri.app.R;
-import com.patropatri.app.models.Message;
+import com.patropatri.app.models.Inbox;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.MessageFragment;
 
@@ -25,9 +25,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.MyViewHolder> {
 
     private FragmentActivity mActivity;
-    private ArrayList<Message> mArrayList;
+    private ArrayList<Inbox> mArrayList;
 
-    public InboxAdapter(FragmentActivity context, ArrayList<Message> arrayList) {
+    public InboxAdapter(FragmentActivity context, ArrayList<Inbox> arrayList) {
         this.mActivity = context;
         this.mArrayList = arrayList;
     }
@@ -41,11 +41,11 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Message model = mArrayList.get(position);
+        Inbox model = mArrayList.get(position);
 
         if (model != null) {
-            holder.itemName.setText(model.getName());
-            holder.itemMessage.setText(model.getText());
+            //holder.itemName.setText(model.getName());
+            holder.itemMessage.setText(model.getMessage());
         }
 
         //holder.itemIcon.setImageResource(model.getIcon());

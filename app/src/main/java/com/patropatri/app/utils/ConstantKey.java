@@ -38,11 +38,21 @@ public class ConstantKey {
 
     public static ArrayList<Notification> getNotifications() {
         ArrayList<Notification> mArrayList = new ArrayList<>();
-        mArrayList.add(new Notification("LIKED"));
-        mArrayList.add(new Notification("COMMENT"));
-        mArrayList.add(new Notification("MESSAGE"));
-        mArrayList.add(new Notification("LIKED"));
-        mArrayList.add(new Notification("MESSAGE"));
+        Notification model = new Notification();
+        model.setTitle("LIKED");
+        mArrayList.add(model);
+        Notification model2 = new Notification();
+        model2.setTitle("COMMENT");
+        mArrayList.add(model2);
+        Notification model3 = new Notification();
+        model3.setTitle("MESSAGE");
+        mArrayList.add(model3);
+        Notification model4 = new Notification();
+        model4.setTitle("LIKED");
+        mArrayList.add(model4);
+        Notification model5 = new Notification();
+        model5.setTitle("MESSAGE");
+        mArrayList.add(model5);
         return mArrayList;
     }
 

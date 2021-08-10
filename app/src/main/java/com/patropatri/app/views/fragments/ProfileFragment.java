@@ -76,6 +76,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
     private File mFile;
 
     private CircleImageView mImageView;
+    private RecyclerView mEducationRecyclerView, mFamilyRecyclerView;
     private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
 
     @Nullable
@@ -112,8 +113,8 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mItemActivity = (TextView) view.findViewById(R.id.item_other_activity);
         mItemExpectation = (TextView) view.findViewById(R.id.item_expectation);
 
-        RecyclerView mEducationRecyclerView = (RecyclerView) view.findViewById(R.id.items_education_recycler_view);
-        RecyclerView mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
+        mEducationRecyclerView = (RecyclerView) view.findViewById(R.id.items_education_recycler_view);
+        mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
 
@@ -141,24 +142,32 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-            mViewModel.getAllEducationsByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Education>>() {
-                @Override
-                public void onChanged(ArrayList<Education> arrayList) {
-                    initEducationRecyclerView(mEducationRecyclerView, arrayList);
-                }
-            });
+            getAllEducations(mEducationRecyclerView);
         }
 
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-            mViewModel.getAllFamiliesByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Family>>() {
-                @Override
-                public void onChanged(ArrayList<Family> arrayList) {
-                    initFamilyRecyclerView(mFamilyRecyclerView, arrayList);
-                }
-            });
+            getAllFamilies(mFamilyRecyclerView);
         }
 
         return view;
+    }
+
+    private void getAllFamilies(RecyclerView mFamilyRecyclerView) {
+        mViewModel.getAllFamiliesByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Family>>() {
+            @Override
+            public void onChanged(ArrayList<Family> arrayList) {
+                initFamilyRecyclerView(mFamilyRecyclerView, arrayList);
+            }
+        });
+    }
+
+    private void getAllEducations(RecyclerView mEducationRecyclerView) {
+        mViewModel.getAllEducationsByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Education>>() {
+            @Override
+            public void onChanged(ArrayList<Education> arrayList) {
+                initEducationRecyclerView(mEducationRecyclerView, arrayList);
+            }
+        });
     }
 
     private void initFamilyRecyclerView(RecyclerView recyclerView, ArrayList<Family> arrayList) {
@@ -231,6 +240,17 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                 mItemActivity.setText(model.getOtherActivity());
             if (model.getExpectation() != null)
                 mItemExpectation.setText(model.getExpectation());
+        }
+    }
+
+    @Override
+    public void onRecyclerViewItems(boolean isEducation) {
+        if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+            if (isEducation) {
+                getAllEducations(mEducationRecyclerView);
+            } else {
+                getAllFamilies(mFamilyRecyclerView);
+            }
         }
     }
 

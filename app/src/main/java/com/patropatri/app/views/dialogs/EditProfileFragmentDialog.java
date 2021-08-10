@@ -60,6 +60,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     public interface BottomSheetListener {
         void onAddItem(User model);
+        void onRecyclerViewItems(boolean isEducation);
     }
 
     public EditProfileFragmentDialog(BottomSheetListener listener) {
@@ -322,6 +323,18 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         model.setPresentAddress(present);
                         model.setPermanentAddress(permanent);
                         storeUser(model);
+                    }
+                    if (mPosition == 5) {
+                        if (mListener != null) {
+                            mListener.onRecyclerViewItems(true);
+                        }
+                        dismiss();
+                    }
+                    if (mPosition == 6) {
+                        if (mListener != null) {
+                            mListener.onRecyclerViewItems(false);
+                        }
+                        dismiss();
                     }
                     if (mPosition == 7) {
                         String interest = mItemInterest.getText().toString().trim();

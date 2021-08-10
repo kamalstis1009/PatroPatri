@@ -14,6 +14,7 @@ import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -51,11 +52,10 @@ public interface RetrofitApi {
     @POST("family")
     Call<Family> addFamily(@Body Family item, @Header("Authorization") String token);
 
-    @Headers("Content-Type: application/json")
-    @POST("family/{id}")
+    @DELETE("family/{id}")
     Call<Integer> deleteFamilyById(@Path("id") long id, @Header("Authorization") String token);
 
-    @GET("families/{id}")
+    @GET("families/{userId}")
     Call<ArrayList<Family>> getAllFamiliesByUserId(@Path("userId") long userId, @Header("Authorization") String token);
 
     //======================================================| Education
@@ -63,24 +63,23 @@ public interface RetrofitApi {
     @POST("education")
     Call<Education> addEducation(@Body Education item, @Header("Authorization") String token);
 
-    @Headers("Content-Type: application/json")
-    @POST("education/{id}")
+    @DELETE("education/{id}")
     Call<Integer> deleteEducationById(@Path("id") long id, @Header("Authorization") String token);
 
-    @GET("educations/{id}")
+    @GET("educations/{userId}")
     Call<ArrayList<Education>> getAllEducationsByUserId(@Path("userId") long userId, @Header("Authorization") String token);
 
     //======================================================| Gallery
-    @GET("galleries/{id}")
-    Call<ArrayList<Gallery>> getGalleriesById(@Path("id") long userId, @Header("Authorization") String token);
+    @GET("galleries/{userId}")
+    Call<ArrayList<Gallery>> getAllGalleriesByUserId(@Path("userId") long userId, @Header("Authorization") String token);
 
-    @GET("gallery/{id}")
-    Call<Integer> deleteGalleryById(@Path("id") long userId, @Query("fileName") String fileName, @Header("Authorization") String token);
+    @DELETE("gallery/{id}")
+    Call<Integer> deleteGalleryById(@Path("id") long id, @Query("fileName") String fileName, @Header("Authorization") String token);
 
     //======================================================| File Upload & Download
     @Multipart
     @POST("file/upload/update-profile-cover")
-    Call<String> uploadFileForProfileAndCover(@Part MultipartBody.Part file, @Query("fileName") String fileName, @Query("isProfile") boolean isProfile, @Query("id") long id, @Header("Authorization") String token);
+    Call<String> uploadFileForProfileAndCover(@Part MultipartBody.Part file, @Query("fileName") String fileName, @Query("isProfile") boolean isProfile, @Query("userId") long userId, @Header("Authorization") String token);
 
     @Multipart
     @POST("file/upload/gallery-image")

@@ -290,7 +290,7 @@ public class UserViewModel extends AndroidViewModel {
     //===============================================| Gallery
     public LiveData<ArrayList<Gallery>> getGalleriesById(long userId, String token) {
         MutableLiveData<ArrayList<Gallery>> data = new MutableLiveData<>();
-        Call<ArrayList<Gallery>> call = RetrofitClient.getInstance().getApi().getGalleriesById(userId, token);
+        Call<ArrayList<Gallery>> call = RetrofitClient.getInstance().getApi().getAllGalleriesByUserId(userId, token);
         call.enqueue(new Callback<ArrayList<Gallery>>() {
             @Override
             public void onResponse(@NonNull Call<ArrayList<Gallery>> call, @NonNull Response<ArrayList<Gallery>> response) {

@@ -159,6 +159,31 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
+    public LiveData<Integer> deleteGalleryById(long id, String fileName, String token) {
+        MutableLiveData<Integer> data = new MutableLiveData<>();
+        Call<Integer> call = RetrofitClient.getInstance().getApi().deleteGalleryById(id, fileName, token);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
     //===============================================| File Upload
     public MutableLiveData<String> uploadFileForProfileAndCover(MultipartBody.Part file, String fileName, boolean isProfile, long id, String token) {
         MutableLiveData<String> data = new MutableLiveData<>();

@@ -48,6 +48,9 @@ public interface RetrofitApi {
     @GET("galleries/{id}")
     Call<ArrayList<Gallery>> getGalleriesById(@Path("id") long userId, @Header("Authorization") String token);
 
+    @GET("gallery/{id}")
+    Call<Integer> deleteGalleryById(@Path("id") long userId, @Query("fileName") String fileName, @Header("Authorization") String token);
+
     //======================================================| File Upload & Download
     @Multipart
     @POST("file/upload/update-profile-cover")

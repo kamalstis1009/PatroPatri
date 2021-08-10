@@ -845,7 +845,7 @@
                     android:id="@+id/items_education_recycler_view"
                     tools:listitem="@layout/item_education"
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <!--Family-->
@@ -878,7 +878,7 @@
                     android:id="@+id/items_family_recycler_view"
                     tools:listitem="@layout/item_family"
                     android:layout_width="match_parent"
-                    android:layout_height="240dp"/>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <!--Interest-->

@@ -3,37 +3,32 @@ package com.patropatri.app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
+
+@Data
 public class Notification {
 
-    private int id;
+    @SerializedName("id")
+    @Expose
+    private Long id;
+
+    @SerializedName("title")
+    @Expose
+    private String title;
+
+    @SerializedName("type")
+    @Expose
     private String type;
-    private String imageName;
 
-    public Notification(String type) {
-        this.type = type;
-    }
+    @SerializedName("userId")
+    @Expose
+    private Long userId;
 
-    public int getId() {
-        return id;
-    }
+    @SerializedName("isEnabled")
+    @Expose
+    private Boolean isEnabled;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
+    @SerializedName("createdAt")
+    @Expose
+    private String createdAt;
 }

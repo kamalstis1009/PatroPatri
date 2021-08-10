@@ -9,15 +9,21 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.NotificationViewModel;
+import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.adapters.NotificationAdapter;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -26,6 +32,14 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
+
+        //-----------------------------------------------| Session
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        if (mUser != null && mUser.getAuth() != null) {
+        }
+
+        //-----------------------------------------------| Receive and observe the data from view model
+        NotificationViewModel mViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
         initRecyclerView(mRecyclerView, ConstantKey.getNotifications());

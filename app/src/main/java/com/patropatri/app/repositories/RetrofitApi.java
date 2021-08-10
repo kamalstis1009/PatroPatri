@@ -5,6 +5,8 @@ import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
+import com.patropatri.app.models.Inbox;
+import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 
@@ -29,6 +31,16 @@ public interface RetrofitApi {
 
     @GET("/")
     public ResponseBody getAll();
+
+    //======================================================| File
+    @Multipart
+    @POST("file/upload/update-profile-cover")
+    Call<String> uploadFileForProfileAndCover(@Part MultipartBody.Part file, @Query("fileName") String fileName, @Query("isProfile") boolean isProfile, @Query("userId") long userId, @Header("Authorization") String token);
+
+    @Multipart
+    @POST("file/upload/gallery-image")
+    Call<Gallery> uploadGalleryImage(@Part MultipartBody.Part file, @Query("userId") long userId, @Header("Authorization") String token);
+
 
     //======================================================| SignIn & SignUp
     @Headers("Content-Type: application/json")
@@ -76,14 +88,29 @@ public interface RetrofitApi {
     @DELETE("gallery/{id}")
     Call<Integer> deleteGalleryById(@Path("id") long id, @Query("fileName") String fileName, @Header("Authorization") String token);
 
-    //======================================================| File Upload & Download
-    @Multipart
-    @POST("file/upload/update-profile-cover")
-    Call<String> uploadFileForProfileAndCover(@Part MultipartBody.Part file, @Query("fileName") String fileName, @Query("isProfile") boolean isProfile, @Query("userId") long userId, @Header("Authorization") String token);
+    //======================================================| Notification
+    @GET("notifications/{no}")
+    Call<ArrayList<Notification>> getAllNotificationsByUserId(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
 
-    @Multipart
-    @POST("file/upload/gallery-image")
-    Call<Gallery> uploadGalleryImage(@Part MultipartBody.Part file, @Query("userId") long userId, @Header("Authorization") String token);
+    @Headers("Content-Type: application/json")
+    @POST("notification")
+    Call<Notification> addNotification(@Body Notification item, @Header("Authorization") String token);
+
+    @DELETE("notification/{id}")
+    Call<Integer> deleteNotificationById(@Path("id") long id, @Header("Authorization") String token);
+
+    //======================================================| Inbox
+    @GET("inbox/{no}")
+    Call<ArrayList<Inbox>> getAllInboxesByUserId(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
+
+    @Headers("Content-Type: application/json")
+    @POST("inbox")
+    Call<Inbox> addInbox(@Body Inbox item, @Header("Authorization") String token);
+
+    @DELETE("inbox/{id}")
+    Call<Integer> deleteInboxById(@Path("id") long id, @Header("Authorization") String token);
+
+
 
 
 

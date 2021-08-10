@@ -17,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -25,12 +27,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Family;
+import com.patropatri.app.models.Gallery;
+import com.patropatri.app.models.Message;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
+import com.patropatri.app.views.adapters.FamilyAdapter;
+import com.patropatri.app.views.adapters.InboxAdapter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
@@ -38,6 +46,8 @@ import java.util.Objects;
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private static final String TAG = "EditProfileFragment";
+
+    private ArrayList<Family> mFamilyList = new ArrayList<>();
 
     private int mPosition;
     private ProgressDialog mProgress;
@@ -121,8 +131,21 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     ((LinearLayout) view.findViewById(R.id.part_4)).setVisibility(View.VISIBLE);
                 if (mPosition == 5)
                     ((LinearLayout) view.findViewById(R.id.part_5)).setVisibility(View.VISIBLE);
-                if (mPosition == 6)
+                if (mPosition == 6) {
                     ((LinearLayout) view.findViewById(R.id.part_6)).setVisibility(View.VISIBLE);
+
+                    if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+                        mViewModel.getAllFamiliesByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Family>>() {
+                            @Override
+                            public void onChanged(ArrayList<Family> arrayList) {
+                                if (arrayList != null) {
+                                    mFamilyList.addAll(arrayList);
+                                }
+                                initFamilyRecyclerView(mFamilyRecyclerView, mFamilyList);
+                            }
+                        });
+                    }
+                }
                 if (mPosition == 7)
                     ((LinearLayout) view.findViewById(R.id.part_7)).setVisibility(View.VISIBLE);
                 if (mPosition == 8)
@@ -261,6 +284,15 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         });
 
         return view;
+    }
+
+    private void initFamilyRecyclerView(RecyclerView recyclerView, ArrayList<Family> arrayList) {
+        FamilyAdapter mAdapter = new FamilyAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
+        mAdapter.notifyDataSetChanged();
     }
 
     private void storeUser(User model) {

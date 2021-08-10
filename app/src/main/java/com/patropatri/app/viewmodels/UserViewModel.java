@@ -210,6 +210,82 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
+    //===============================================| Family
+    public LiveData<Family> addFamily(Family model, String token) {
+        MutableLiveData<Family> data = new MutableLiveData<>();
+        Call<Family> call = RetrofitClient.getInstance().getApi().addFamily(model, token);
+        call.enqueue(new Callback<Family>() {
+            @Override
+            public void onResponse(@NonNull Call<Family> call, @NonNull Response<Family> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Family> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Integer> deleteFamilyById(long id, String token) {
+        MutableLiveData<Integer> data = new MutableLiveData<>();
+        Call<Integer> call = RetrofitClient.getInstance().getApi().deleteFamilyById(id, token);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(0);
+                    }
+                } else {
+                    data.setValue(0);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+                data.setValue(0);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ArrayList<Family>> getAllFamiliesByUserId(long userId, String token) {
+        MutableLiveData<ArrayList<Family>> data = new MutableLiveData<>();
+        Call<ArrayList<Family>> call = RetrofitClient.getInstance().getApi().getAllFamiliesByUserId(userId, token);
+        call.enqueue(new Callback<ArrayList<Family>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Family>> call, @NonNull Response<ArrayList<Family>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Family>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
     //===============================================| Gallery
     public LiveData<ArrayList<Gallery>> getGalleriesById(long userId, String token) {
         MutableLiveData<ArrayList<Gallery>> data = new MutableLiveData<>();

@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/item_details"
-            android:text="More information"
+            android:text="Add more if you have any information."
             android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

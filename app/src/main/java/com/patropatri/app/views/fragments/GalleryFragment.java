@@ -247,10 +247,12 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
                     @Override
                     public void onChanged(Gallery model) {
                         if (model != null) {
-                            mArrayList.add(model);
-                            mAdapter.notifyItemInserted(mArrayList.size());
+                            if (mAdapter != null) {
+                                mArrayList.add(model);
+                                mAdapter.notifyItemInserted(mArrayList.size());
+                            }
                         } else {
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file Unsuccessfully!", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }
                         Utility.getInstance().dismissProgressDialog(mProgress);
                     }

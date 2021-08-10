@@ -27,6 +27,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Message;
@@ -48,6 +49,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     private static final String TAG = "EditProfileFragment";
 
     private ArrayList<Family> mFamilyList = new ArrayList<>();
+    private FamilyAdapter mFamilyAdapter;
 
     private int mPosition;
     private ProgressDialog mProgress;
@@ -178,12 +180,36 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 if (mPosition == 5) {
-                    String degree = mItemDegreeName.getText().toString().trim(),
-                            subject = mItemSubjectName.getText().toString().trim(),
-                            passingYear = mItemPassingYear.getText().toString().trim(),
-                            result = mItemResult.getText().toString().trim(),
-                            institute = mItemInstitute.getText().toString().trim();
-                    //
+                    if (mUser != null && mUser.getAuth() != null) {
+                        String degree = mItemDegreeName.getText().toString().trim(),
+                                subject = mItemSubjectName.getText().toString().trim(),
+                                passingYear = mItemPassingYear.getText().toString().trim(),
+                                result = mItemResult.getText().toString().trim(),
+                                institute = mItemInstitute.getText().toString().trim();
+                        Education model = new Education();
+                        model.setDegree(degree);
+                        model.setSubject(subject);
+                        model.setPassingYear(Integer.parseInt(passingYear));
+                        model.setResult(result);
+                        model.setInstitution(institute);
+                        model.setUserId(mUser.getAuth().getId());
+
+                        mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
+                        mViewModel.addFamily(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Family>() {
+                            @Override
+                            public void onChanged(Family item) {
+                                if (item != null) {
+                                    if (mFamilyAdapter != null) {
+                                        mFamilyList.add(item);
+                                        mFamilyAdapter.notifyItemInserted(mFamilyList.size());
+                                    }
+                                } else {
+                                    Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
+                                }
+                                Utility.getInstance().dismissProgressDialog(mProgress);
+                            }
+                        });
+                    }
                 }
             }
         });
@@ -192,11 +218,35 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 if (mPosition == 6) {
-                    String memberName = mItemMemberName.getText().toString().trim(),
-                            relation = mItemRelation.getText().toString().trim(),
-                            occupation = mItemOccupation.getText().toString().trim(),
-                            memberDetails = mItemMemberDetails.getText().toString().trim();
-                    //
+                    if (mUser != null && mUser.getAuth() != null) {
+                        String memberName = mItemMemberName.getText().toString().trim(),
+                                relation = mItemRelation.getText().toString().trim(),
+                                occupation = mItemOccupation.getText().toString().trim(),
+                                memberDetails = mItemMemberDetails.getText().toString().trim();
+                        Family model = new Family();
+                        model.setFullName(memberName);
+                        model.setRelation(relation);
+                        model.setOccupation(occupation);
+                        model.setOccupation(occupation);
+                        model.setSummary(memberDetails);
+                        model.setUserId(mUser.getAuth().getId());
+
+                        mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
+                        mViewModel.addFamily(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Family>() {
+                            @Override
+                            public void onChanged(Family item) {
+                                if (item != null) {
+                                    if (mFamilyAdapter != null) {
+                                        mFamilyList.add(item);
+                                        mFamilyAdapter.notifyItemInserted(mFamilyList.size());
+                                    }
+                                } else {
+                                    Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
+                                }
+                                Utility.getInstance().dismissProgressDialog(mProgress);
+                            }
+                        });
+                    }
                 }
             }
         });
@@ -287,12 +337,12 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     }
 
     private void initFamilyRecyclerView(RecyclerView recyclerView, ArrayList<Family> arrayList) {
-        FamilyAdapter mAdapter = new FamilyAdapter(getActivity(), arrayList);
-        recyclerView.setAdapter(mAdapter);
+        mFamilyAdapter = new FamilyAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mFamilyAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
-        mAdapter.notifyDataSetChanged();
+        mFamilyAdapter.notifyDataSetChanged();
     }
 
     private void storeUser(User model) {

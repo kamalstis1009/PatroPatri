@@ -659,7 +659,7 @@
                         android:maxLength="250"
                         android:maxEms="250"
                         android:textSize="12sp"
-                        android:hint="Other Details"
+                        android:hint="Add more if you have any information."
                         android:inputType="text|textMultiLine"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
                         android:layout_marginBottom="10dp"

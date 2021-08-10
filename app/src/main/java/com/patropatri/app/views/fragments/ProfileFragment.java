@@ -9,7 +9,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,22 +22,29 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Education;
+import com.patropatri.app.models.Family;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
+import com.patropatri.app.views.adapters.EducationAdapter;
+import com.patropatri.app.views.adapters.FamilyAdapter;
 import com.patropatri.app.views.dialogs.EditProfileFragmentDialog;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -106,6 +112,9 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mItemActivity = (TextView) view.findViewById(R.id.item_other_activity);
         mItemExpectation = (TextView) view.findViewById(R.id.item_expectation);
 
+        RecyclerView mEducationRecyclerView = (RecyclerView) view.findViewById(R.id.items_education_recycler_view);
+        RecyclerView mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
+
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
 
         (mImageView).setOnClickListener(new ActionHandler());
@@ -131,18 +140,43 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         //-----------------------------------------------| Receive and observe the data from view model
         mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
-        /*if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-            mViewModel.getUserById(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+        if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+            mViewModel.getAllEducationsByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Education>>() {
                 @Override
-                public void onChanged(User item) {
-                    if (item != null) {
-                        onAddItem(item);
-                    }
+                public void onChanged(ArrayList<Education> arrayList) {
+                    initEducationRecyclerView(mEducationRecyclerView, arrayList);
                 }
             });
-        }*/
+        }
+
+        if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+            mViewModel.getAllFamiliesByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Family>>() {
+                @Override
+                public void onChanged(ArrayList<Family> arrayList) {
+                    initFamilyRecyclerView(mFamilyRecyclerView, arrayList);
+                }
+            });
+        }
 
         return view;
+    }
+
+    private void initFamilyRecyclerView(RecyclerView recyclerView, ArrayList<Family> arrayList) {
+        FamilyAdapter mAdapter = new FamilyAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void initEducationRecyclerView(RecyclerView recyclerView, ArrayList<Education> arrayList) {
+        EducationAdapter mAdapter = new EducationAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -73,7 +73,7 @@
             android:textColor="@color/colorWhite"
             app:cornerRadius="25dp"
             android:padding="15dp"
-            app:backgroundTint="@color/colorAccent"
+            app:backgroundTint="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -88,7 +88,6 @@
         <TextView
             android:textSize="15sp"
             android:text="New User? "
-            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
@@ -96,7 +95,7 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:text="Sign Up"
-            android:textColor="@color/colorGuardsmanRed"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>

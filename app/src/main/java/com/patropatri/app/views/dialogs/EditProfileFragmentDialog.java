@@ -29,19 +29,15 @@ import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
-import com.patropatri.app.models.Gallery;
-import com.patropatri.app.models.Message;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
+import com.patropatri.app.views.adapters.EducationAdapter;
 import com.patropatri.app.views.adapters.FamilyAdapter;
-import com.patropatri.app.views.adapters.InboxAdapter;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
@@ -50,6 +46,9 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private ArrayList<Family> mFamilyList = new ArrayList<>();
     private FamilyAdapter mFamilyAdapter;
+
+    private ArrayList<Education> mEducationList = new ArrayList<>();
+    private EducationAdapter mEducationAdapter;
 
     private int mPosition;
     private ProgressDialog mProgress;
@@ -131,8 +130,21 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     ((LinearLayout) view.findViewById(R.id.part_3)).setVisibility(View.VISIBLE);
                 if (mPosition == 4)
                     ((LinearLayout) view.findViewById(R.id.part_4)).setVisibility(View.VISIBLE);
-                if (mPosition == 5)
+                if (mPosition == 5) {
                     ((LinearLayout) view.findViewById(R.id.part_5)).setVisibility(View.VISIBLE);
+
+                    if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+                        mViewModel.getAllEducationsByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Education>>() {
+                            @Override
+                            public void onChanged(ArrayList<Education> arrayList) {
+                                if (arrayList != null) {
+                                    mEducationList.addAll(arrayList);
+                                }
+                                initEducationRecyclerView(mEducationRecyclerView, mEducationList);
+                            }
+                        });
+                    }
+                }
                 if (mPosition == 6) {
                     ((LinearLayout) view.findViewById(R.id.part_6)).setVisibility(View.VISIBLE);
 
@@ -195,13 +207,13 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         model.setUserId(mUser.getAuth().getId());
 
                         mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
-                        mViewModel.addFamily(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Family>() {
+                        mViewModel.addEducation(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Education>() {
                             @Override
-                            public void onChanged(Family item) {
+                            public void onChanged(Education item) {
                                 if (item != null) {
-                                    if (mFamilyAdapter != null) {
-                                        mFamilyList.add(item);
-                                        mFamilyAdapter.notifyItemInserted(mFamilyList.size());
+                                    if (mEducationAdapter != null) {
+                                        mEducationList.add(item);
+                                        mEducationAdapter.notifyItemInserted(mEducationList.size());
                                     }
                                 } else {
                                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
@@ -343,6 +355,15 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
         mFamilyAdapter.notifyDataSetChanged();
+    }
+
+    private void initEducationRecyclerView(RecyclerView recyclerView, ArrayList<Education> arrayList) {
+        mEducationAdapter = new EducationAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mEducationAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
+        mEducationAdapter.notifyDataSetChanged();
     }
 
     private void storeUser(User model) {

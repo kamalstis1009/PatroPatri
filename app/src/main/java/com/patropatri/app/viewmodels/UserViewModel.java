@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.User;
@@ -210,13 +211,13 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
-    //===============================================| Family
-    public LiveData<Family> addFamily(Family model, String token) {
-        MutableLiveData<Family> data = new MutableLiveData<>();
-        Call<Family> call = RetrofitClient.getInstance().getApi().addFamily(model, token);
-        call.enqueue(new Callback<Family>() {
+    //===============================================| Education
+    public LiveData<Education> addEducation(Education model, String token) {
+        MutableLiveData<Education> data = new MutableLiveData<>();
+        Call<Education> call = RetrofitClient.getInstance().getApi().addEducation(model, token);
+        call.enqueue(new Callback<Education>() {
             @Override
-            public void onResponse(@NonNull Call<Family> call, @NonNull Response<Family> response) {
+            public void onResponse(@NonNull Call<Education> call, @NonNull Response<Education> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         data.setValue(response.body());
@@ -228,7 +229,7 @@ public class UserViewModel extends AndroidViewModel {
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<Family> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<Education> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -236,9 +237,9 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
-    public LiveData<Integer> deleteFamilyById(long id, String token) {
+    public LiveData<Integer> deleteEducationById(long id, String token) {
         MutableLiveData<Integer> data = new MutableLiveData<>();
-        Call<Integer> call = RetrofitClient.getInstance().getApi().deleteFamilyById(id, token);
+        Call<Integer> call = RetrofitClient.getInstance().getApi().deleteEducationById(id, token);
         call.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
@@ -261,12 +262,12 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
-    public LiveData<ArrayList<Family>> getAllFamiliesByUserId(long userId, String token) {
-        MutableLiveData<ArrayList<Family>> data = new MutableLiveData<>();
-        Call<ArrayList<Family>> call = RetrofitClient.getInstance().getApi().getAllFamiliesByUserId(userId, token);
-        call.enqueue(new Callback<ArrayList<Family>>() {
+    public LiveData<ArrayList<Education>> getAllEducationsByUserId(long userId, String token) {
+        MutableLiveData<ArrayList<Education>> data = new MutableLiveData<>();
+        Call<ArrayList<Education>> call = RetrofitClient.getInstance().getApi().getAllEducationsByUserId(userId, token);
+        call.enqueue(new Callback<ArrayList<Education>>() {
             @Override
-            public void onResponse(@NonNull Call<ArrayList<Family>> call, @NonNull Response<ArrayList<Family>> response) {
+            public void onResponse(@NonNull Call<ArrayList<Education>> call, @NonNull Response<ArrayList<Education>> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         data.setValue(response.body());
@@ -278,7 +279,7 @@ public class UserViewModel extends AndroidViewModel {
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<ArrayList<Family>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ArrayList<Education>> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

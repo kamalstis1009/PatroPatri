@@ -2,6 +2,7 @@ package com.patropatri.app.repositories;
 
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.User;
@@ -56,6 +57,18 @@ public interface RetrofitApi {
 
     @GET("families/{id}")
     Call<ArrayList<Family>> getAllFamiliesByUserId(@Path("userId") long userId, @Header("Authorization") String token);
+
+    //======================================================| Education
+    @Headers("Content-Type: application/json")
+    @POST("education")
+    Call<Education> addEducation(@Body Education item, @Header("Authorization") String token);
+
+    @Headers("Content-Type: application/json")
+    @POST("education/{id}")
+    Call<Integer> deleteEducationById(@Path("id") long id, @Header("Authorization") String token);
+
+    @GET("educations/{id}")
+    Call<ArrayList<Education>> getAllEducationsByUserId(@Path("userId") long userId, @Header("Authorization") String token);
 
     //======================================================| Gallery
     @GET("galleries/{id}")

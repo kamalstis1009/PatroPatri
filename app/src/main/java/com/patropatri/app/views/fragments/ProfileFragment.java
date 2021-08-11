@@ -470,7 +470,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                                 SharedPefManager.getInstance(getActivity()).saveUser(mUser);
                             }
                         } else {
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file Unsuccessfully!", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not store image file unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }
                         Utility.getInstance().dismissProgressDialog(mProgress);
                     }

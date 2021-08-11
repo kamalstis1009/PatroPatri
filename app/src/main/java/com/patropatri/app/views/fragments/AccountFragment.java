@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.patropatri.app.R;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
@@ -72,6 +73,11 @@ public class AccountFragment extends Fragment {
                         if (mUser.getUser() != null) {
                             mUser.getUser().setIsActive(isActive);
                             SharedPefManager.getInstance(getActivity()).saveUser(mUser);
+                        }
+                        if (isActive) {
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Activated successfully!", Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not active this post unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });

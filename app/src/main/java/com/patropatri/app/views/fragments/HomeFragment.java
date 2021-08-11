@@ -37,7 +37,10 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
+    private ArrayList<Candidate> mArrayList = new ArrayList<>();
     private UserAdapter mAdapter;
+    private boolean isLoading = false;
+    private int pastVisibleItems, visibleItemCount, totalItemCount;
 
     @Nullable
     @Override
@@ -76,7 +79,50 @@ public class HomeFragment extends Fragment {
             mViewModel.getAllCandidatesByPaginated(1, 15, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                 @Override
                 public void onChanged(ArrayList<Candidate> arrayList) {
-                    initRecyclerView(mRecyclerView, arrayList);
+                    if (arrayList != null) {
+                        mArrayList.addAll(arrayList);
+                    }
+                    initRecyclerView(mRecyclerView, mArrayList);
+                }
+            });
+        }
+
+        if (getActivity() != null) {
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    LinearLayoutManager mLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    if (dy > 0) {
+                        //check for scroll down
+                        visibleItemCount = mLayoutManager.getChildCount();
+                        totalItemCount = mLayoutManager.getItemCount();
+                        pastVisibleItems = mLayoutManager.findFirstVisibleItemPosition();
+
+                        if (isLoading) {
+                            if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                                isLoading = false;
+                                //Log.v("...", "Last Item Wow !");
+                                // Do pagination.. i.e. fetch new data
+                                if (mUser != null && mUser.getAuth() != null) {
+                                    mViewModel.getAllCandidatesByPaginated(1, 10, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+                                        @Override
+                                        public void onChanged(ArrayList<Candidate> arrayList) {
+                                            if (arrayList != null) {
+                                                mArrayList.addAll(arrayList);
+                                            }
+                                        }
+                                    });
+                                }
+                                isLoading = true;
+                            }
+                        }
+                    }
                 }
             });
         }

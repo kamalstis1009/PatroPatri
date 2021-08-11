@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,11 +26,14 @@ import com.patropatri.app.views.fragments.UserDetailFragment;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> implements Filterable {
+public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private FragmentActivity mActivity;
     private ArrayList<Candidate> mArrayList;
     private ArrayList<Candidate> mArrayList1;
+
+    private final int VIEW_TYPE_ITEM = 0;
+    private final int VIEW_TYPE_LOADING = 1;
 
     //private String [] iconsNames = {"Categories", "Gift Cards", "Express", "Orders", "Newsfeed"};
     //private int[] icons = { R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24 };
@@ -46,16 +50,37 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
-        return new MyViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == VIEW_TYPE_ITEM) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user, parent, false);
+            return new MyViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading, parent, false);
+            return new LoadingViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof MyViewHolder) {
+            populateItemRows((MyViewHolder) holder, position);
+        } else if (holder instanceof LoadingViewHolder) {
+            showLoadingView((LoadingViewHolder) holder, position);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return (mArrayList != null) ? mArrayList.size() : 0;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return mArrayList.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+    }
+
+    private void populateItemRows(MyViewHolder holder, int position) {
         Candidate model = mArrayList.get(position);
-
-
 
         holder.textView.setText(model.getFullName());
         holder.layout.setOnClickListener(new View.OnClickListener() {
@@ -100,9 +125,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return (mArrayList != null) ? mArrayList.size() : 0;
+    private void showLoadingView(LoadingViewHolder viewHolder, int position) {
+        viewHolder.progressBar.setVisibility(View.VISIBLE);
     }
 
     private void setLayoutBackgroundColor(@NonNull MyViewHolder holder) {
@@ -129,6 +153,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             layout = (RelativeLayout) itemView.findViewById(R.id.item_layout);
             textView = (TextView) itemView.findViewById(R.id.item_name);
             button = (Button) itemView.findViewById(R.id.message_button);
+        }
+    }
+
+    private class LoadingViewHolder extends RecyclerView.ViewHolder {
+        ProgressBar progressBar;
+        public LoadingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            progressBar = itemView.findViewById(R.id.progress_bar);
         }
     }
 

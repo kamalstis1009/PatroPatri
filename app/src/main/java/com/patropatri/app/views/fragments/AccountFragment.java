@@ -38,6 +38,8 @@ public class AccountFragment extends Fragment {
         //-----------------------------------------------| Session
         mUser = SharedPefManager.getInstance(getActivity()).getUser();
         if (mUser.getUser() != null) {
+            if (mUser.getUser().getIsActive())
+                ((Switch) view.findViewById(R.id.is_active_switch)).setChecked(true);
             if (mUser.getUser().getFullName() != null)
                 ((TextView) view.findViewById(R.id.item_name)).setText(mUser.getUser().getFullName());
             if (mUser.getUser().getImageName() != null)

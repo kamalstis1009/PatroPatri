@@ -19,12 +19,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 import com.patropatri.app.views.fragments.UserDetailFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
@@ -82,9 +86,11 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     private void populateItemRows(MyViewHolder holder, int position) {
         Candidate model = mArrayList.get(position);
 
-        holder.textView.setText(model.getFullName());
-        holder.textView.setText(model.getFullName());
-        holder.textView.setText(model.getFullName());
+        holder.itemName.setText(model.getFullName());
+        holder.itemTitle.setText(model.getProfession() + " | " + model.getDistrict());
+        holder.itemDescription.setText(model.getSummary());
+        holder.itemViewed.setText(model.getCommentAmount() + "");
+        holder.itemLiked.setText(model.getLikedAmount() + "");
 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +115,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         });
 
         if (model.getImageName() != null) {
-            //Picasso.get().load(ConstantKey.SERVER_URL + "Uploads/" + model.getImageName()).placeholder(R.drawable.ic_baseline_shopping_cart_24).error(R.drawable.ic_baseline_shopping_cart_24).into(((ImageView) view.findViewById(R.id.item_image)));
+            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
         }
 
         //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
@@ -123,6 +129,8 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
             //String day = Utility.getInstance().getFormatDateFromDate("EEEE", Utility.getInstance().getParseDateFromStringDate("yyyy-MM-dd", model.getAttendanceDate()));
             //holder.day.setText(day); //yyyy-MM-dd HH:mm:ss | 2020-07-21 01:57:33.435
+
+            holder.itemDate.setText(Utility.getInstance().getFormatFromStringDate("dd MMM yyyy", model.getCreatedAt()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -150,11 +158,13 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout layout;
+        CircleImageView imageView;
         TextView itemName, itemTitle, itemDescription, itemDate, itemViewed, itemLiked;
         Button button;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = (RelativeLayout) itemView.findViewById(R.id.item_layout);
+            imageView = (CircleImageView) itemView.findViewById(R.id.item_image);
             itemName = (TextView) itemView.findViewById(R.id.item_name);
             itemTitle = (TextView) itemView.findViewById(R.id.item_short_title);
             itemDescription = (TextView) itemView.findViewById(R.id.item_description);

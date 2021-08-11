@@ -83,6 +83,9 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         Candidate model = mArrayList.get(position);
 
         holder.textView.setText(model.getFullName());
+        holder.textView.setText(model.getFullName());
+        holder.textView.setText(model.getFullName());
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,12 +150,17 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout layout;
-        TextView textView;
+        TextView itemName, itemTitle, itemDescription, itemDate, itemViewed, itemLiked;
         Button button;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = (RelativeLayout) itemView.findViewById(R.id.item_layout);
-            textView = (TextView) itemView.findViewById(R.id.item_name);
+            itemName = (TextView) itemView.findViewById(R.id.item_name);
+            itemTitle = (TextView) itemView.findViewById(R.id.item_short_title);
+            itemDescription = (TextView) itemView.findViewById(R.id.item_description);
+            itemDate = (TextView) itemView.findViewById(R.id.item_date);
+            itemViewed = (TextView) itemView.findViewById(R.id.item_viewed);
+            itemLiked = (TextView) itemView.findViewById(R.id.item_liked);
             button = (Button) itemView.findViewById(R.id.message_button);
         }
     }

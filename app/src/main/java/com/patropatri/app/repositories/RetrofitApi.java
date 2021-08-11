@@ -2,6 +2,7 @@ package com.patropatri.app.repositories;
 
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
@@ -21,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -51,6 +53,10 @@ public interface RetrofitApi {
     @POST("jwt/register")
     Call<Authentication> register(@Body AuthenticationDto request);
 
+    //======================================================| Home
+    @GET("users")
+    Call<ArrayList<Candidate>> getAllCandidates(@Header("Authorization") String token);
+
     //======================================================| User
     @GET("user/{id")
     Call<User> getUserById(@Path("id") long id, @Header("Authorization") String token);
@@ -58,6 +64,9 @@ public interface RetrofitApi {
     @Headers("Content-Type: application/json")
     @PUT("user")
     Call<User> addUser(@Body User item, @Header("Authorization") String token);
+
+    @PATCH("user/{id}")
+    Call<Boolean> updateUserPost(@Path("id") long id, @Query("isActive") boolean isActive, @Header("Authorization") String token);
 
     //======================================================| Family
     @Headers("Content-Type: application/json")

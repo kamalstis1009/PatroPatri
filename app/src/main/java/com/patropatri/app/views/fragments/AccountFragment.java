@@ -69,8 +69,9 @@ public class AccountFragment extends Fragment {
                 mViewModel.updateUserPost(mUser.getAuth().getId(), isChecked, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean isActive) {
-                        if (isActive) {
-                            //
+                        if (mUser.getUser() != null) {
+                            mUser.getUser().setIsActive(isActive);
+                            SharedPefManager.getInstance(getActivity()).saveUser(mUser);
                         }
                     }
                 });

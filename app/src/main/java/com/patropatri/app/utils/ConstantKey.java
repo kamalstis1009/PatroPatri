@@ -16,6 +16,36 @@ public class ConstantKey {
     //public static final String SERVER_URL = "http://10.0.2.2:8080/api/v1/"; //Localhost IntelliJ IDEA
     public static final String RESOURCE_URL = SERVER_URL + "file/download/";
 
+
+    /*
+{
+"id": 1,
+"type": "Hello",
+"senderId": 1,
+"createdAt": "2020-04-27T07:39:28.000+00:00",
+"isEnabled": true,
+"title": "Hello",
+"senderName": "Kamal",
+"senderImage": "IMG_20210810_202307_691.jpg"
+}
+{
+"message": "message",
+"id": 1,
+"senderId": 1,
+"createdAt": "2020-04-27T07:39:28.000+00:00",
+"isEnabled": true,
+"senderName": "Kamal",
+"senderImage": "IMG_20210810_202307_691.jpg"
+}
+    */
+
+
+
+
+
+
+
+
     public static ArrayList<User> getUsers() {
         ArrayList<User> mArrayList = new ArrayList<>();
         /*mArrayList.add(new User("Mohammad", "Ali", "Dhaka"));
@@ -58,7 +88,7 @@ public class ConstantKey {
 
     public static ArrayList<Message> getMessages() {
         ArrayList<Message> mArrayList = new ArrayList<>();
-        mArrayList.add(new Message("Mohammad Ali", "Very Nice!"));
+        /*mArrayList.add(new Message("Mohammad Ali", "Very Nice!"));
         mArrayList.add(new Message("Barsha Ahnaf", "Beautiful Nice!"));
         mArrayList.add(new Message("Salman Rahman", "Woow Nice!"));
         mArrayList.add(new Message("Ashfakur Talukdar", "Good Resume!"));
@@ -67,7 +97,7 @@ public class ConstantKey {
         mArrayList.add(new Message("Barsha Ahnaf", "Beautiful Nice!"));
         mArrayList.add(new Message("Salman Rahman", "Woow Nice!"));
         mArrayList.add(new Message("Ashfakur Talukdar", "Good Resume!"));
-        mArrayList.add(new Message("Mohammad Solaiman", "Very Nice!"));
+        mArrayList.add(new Message("Mohammad Solaiman", "Very Nice!"));*/
         return mArrayList;
     }
 

@@ -126,6 +126,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     private void showLoadingView(LoadingViewHolder viewHolder, int position) {
+        //ProgressBar would be displayed
         viewHolder.progressBar.setVisibility(View.VISIBLE);
     }
 

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.patropatri.app.R;
-import com.patropatri.app.models.User;
+import com.patropatri.app.models.Candidate;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 import com.patropatri.app.views.fragments.UserDetailFragment;
@@ -28,13 +28,13 @@ import java.util.Objects;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> implements Filterable {
 
     private FragmentActivity mActivity;
-    private ArrayList<User> mArrayList;
-    private ArrayList<User> mArrayList1;
+    private ArrayList<Candidate> mArrayList;
+    private ArrayList<Candidate> mArrayList1;
 
     //private String [] iconsNames = {"Categories", "Gift Cards", "Express", "Orders", "Newsfeed"};
     //private int[] icons = { R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24, R.drawable.ic_baseline_lock_24 };
 
-    public UserAdapter(FragmentActivity activity, ArrayList<User> arrayList) {
+    public UserAdapter(FragmentActivity activity, ArrayList<Candidate> arrayList) {
         if (mArrayList != null) {
             mArrayList.clear();
             mArrayList1.clear();
@@ -53,7 +53,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        User model = mArrayList.get(position);
+        Candidate model = mArrayList.get(position);
 
 
 
@@ -142,8 +142,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
                 if (charString.isEmpty()){
                     mArrayList = mArrayList1;
                 } else {
-                    ArrayList<User> filterList = new ArrayList<>();
-                    for (User model : mArrayList1){
+                    ArrayList<Candidate> filterList = new ArrayList<>();
+                    for (Candidate model : mArrayList1){
                         if (model.getFullName().toLowerCase().contains(charString.toLowerCase())){
                             filterList.add(model);
                         }
@@ -157,7 +157,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                mArrayList = (ArrayList<User>) results.values;
+                mArrayList = (ArrayList<Candidate>) results.values;
                 notifyDataSetChanged();
             }
         };

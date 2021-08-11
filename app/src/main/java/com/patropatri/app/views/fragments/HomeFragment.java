@@ -18,14 +18,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.User;
-import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.models.Candidate;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.adapters.UserAdapter;
 import com.patropatri.app.views.dialogs.FilterFragmentDialog;
 
@@ -51,10 +55,10 @@ public class HomeFragment extends Fragment {
         ImageButton filterButton = (ImageButton) view.findViewById(R.id.filter_button);
 
         //-----------------------------------------------| Session
-        //User mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| Receive and observe the data from view model
-        //CampaignViewModel mViewModel = new ViewModelProvider(this).get(CampaignViewModel.class);
+        UserViewModel mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
@@ -68,13 +72,14 @@ public class HomeFragment extends Fragment {
 
         //-----------------------------------------------| Category
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        initRecyclerView(mRecyclerView, ConstantKey.getUsers());
-        /*mProductViewModel.getAllProductCategory().observe(getActivity(), new Observer<ArrayList<Category>>() {
-            @Override
-            public void onChanged(ArrayList<Category> arrayList) {
-                initRecyclerView(mRecyclerView0, arrayList);
-            }
-        });*/
+        if (mUser != null && mUser.getAuth() != null) {
+            mViewModel.getAllCandidatesByPaginated(1, 15, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+                @Override
+                public void onChanged(ArrayList<Candidate> arrayList) {
+                    initRecyclerView(mRecyclerView, arrayList);
+                }
+            });
+        }
 
         (filterButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +140,7 @@ public class HomeFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, ArrayList<User> arrayList) {
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Candidate> arrayList) {
         mAdapter = new UserAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

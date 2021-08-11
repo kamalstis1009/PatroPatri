@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
+import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
@@ -84,6 +85,32 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
+    //===============================================| Home
+    public LiveData<ArrayList<Candidate>> getAllCandidatesByPaginated(int pageNo, int rowSize, String token) {
+        MutableLiveData<ArrayList<Candidate>> data = new MutableLiveData<>();
+        Call<ArrayList<Candidate>> call = RetrofitClient.getInstance().getApi().getAllCandidatesByPaginated(pageNo, rowSize, token);
+        call.enqueue(new Callback<ArrayList<Candidate>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Candidate>> call, @NonNull Response<ArrayList<Candidate>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Candidate>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
     //===============================================| User
     public LiveData<User> getUserById(long id, String token) {
         MutableLiveData<User> data = new MutableLiveData<>();
@@ -129,6 +156,31 @@ public class UserViewModel extends AndroidViewModel {
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
                 data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Boolean> updateUserPost(long id, boolean isActive, String token) {
+        MutableLiveData<Boolean> data = new MutableLiveData<>();
+        Call<Boolean> call = RetrofitClient.getInstance().getApi().updateUserPost(id, isActive, token);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(@NonNull Call<Boolean> call, @NonNull Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(false);
+                    }
+                } else {
+                    data.setValue(false);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Boolean> call, @NonNull Throwable t) {
+                data.setValue(false);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

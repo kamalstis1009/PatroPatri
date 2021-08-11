@@ -115,6 +115,7 @@ public class HomeFragment extends Fragment {
                                         public void onChanged(ArrayList<Candidate> arrayList) {
                                             if (arrayList != null) {
                                                 mArrayList.addAll(arrayList);
+                                                mAdapter.notifyDataSetChanged();
                                             }
                                         }
                                     });

@@ -7,6 +7,8 @@ import lombok.Data;
 @Data
 public class Candidate {
 
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
+
     private Long id;
     private String fullName;
     private String gender;

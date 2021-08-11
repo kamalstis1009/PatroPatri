@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class AuthenticationDto {
 
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
+
     @SerializedName("username")
     @Expose
     private String username;

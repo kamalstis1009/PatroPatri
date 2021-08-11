@@ -1,57 +1,31 @@
 package com.patropatri.app.models;
 
-import java.sql.Timestamp;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
 
 public class Message {
 
-    private int id;
-    private String text;
-    private String name;
-    private String imageName;
-    private String createdAt = String.valueOf(new Timestamp(System.currentTimeMillis()));
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
 
-    public Message(String name, String text) {
-        this.text = text;
-        this.name = name;
-    }
+    @SerializedName("id")
+    @Expose
+    private Long id;
 
-    public int getId() {
-        return id;
-    }
+    @SerializedName("message")
+    @Expose
+    private String message;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @SerializedName("imageFiles")
+    @Expose
+    private String [] imageFiles;
 
-    public String getText() {
-        return text;
-    }
+    @SerializedName("inboxId")
+    @Expose
+    private Long inboxId;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImageName() {
-        return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
+    @SerializedName("createdAt")
+    @Expose
+    private Date createdAt;
 }

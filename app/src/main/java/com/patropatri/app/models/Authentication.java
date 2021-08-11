@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class Authentication {
 
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
+
     @SerializedName("id")
     @Expose
     private long id;

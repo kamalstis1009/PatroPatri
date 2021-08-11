@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class Gallery {
 
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
+
     @SerializedName("id")
     @Expose
     private long id;

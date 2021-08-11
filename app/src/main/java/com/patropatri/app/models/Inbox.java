@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class Inbox {
 
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
+    
     @SerializedName("id")
     @Expose
     private Long id;

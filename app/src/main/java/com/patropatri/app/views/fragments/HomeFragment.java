@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
         //-----------------------------------------------| Search Disable Focus
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        //-----------------------------------------------| Category
+        //-----------------------------------------------| Candidates
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         if (mUser != null && mUser.getAuth() != null) {
             mViewModel.getAllCandidatesByPaginated(1, 15, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {

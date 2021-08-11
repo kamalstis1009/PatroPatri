@@ -100,9 +100,9 @@ public class HomeFragment extends Fragment {
                     LinearLayoutManager mLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                     if (dy > 0) {
                         //check for scroll down
-                        visibleItemCount = mLayoutManager.getChildCount();
-                        totalItemCount = mLayoutManager.getItemCount();
-                        pastVisibleItems = mLayoutManager.findFirstVisibleItemPosition();
+                        visibleItemCount = mLayoutManager != null ? mLayoutManager.getChildCount() : 0;
+                        totalItemCount = mLayoutManager != null ? mLayoutManager.getItemCount() : 0;
+                        pastVisibleItems = mLayoutManager != null ? mLayoutManager.findFirstVisibleItemPosition() : 0;
 
                         if (isLoading) {
                             if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {

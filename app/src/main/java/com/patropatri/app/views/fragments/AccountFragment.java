@@ -4,23 +4,31 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.UserViewModel;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AccountFragment extends Fragment {
+
+    private UserWithToken mUser;
+    private UserViewModel mViewModel;
 
     @Nullable
     @Override
@@ -28,7 +36,7 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         //-----------------------------------------------| Session
-        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        mUser = SharedPefManager.getInstance(getActivity()).getUser();
         if (mUser.getUser() != null) {
             if (mUser.getUser().getFullName() != null)
                 ((TextView) view.findViewById(R.id.item_name)).setText(mUser.getUser().getFullName());
@@ -36,29 +44,37 @@ public class AccountFragment extends Fragment {
                 Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((CircleImageView) view.findViewById(R.id.item_photo)) );
         }
 
-        /*if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-            mViewModel.getUserById(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
-                @Override
-                public void onChanged(User item) {
-                    if (item != null) {
-                        onAddItem(item);
-                    }
-                }
-            });
-        }*/
+        //-----------------------------------------------| Receive and observe the data from view model
+        mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+
 
         //-----------------------------------------------| ClickListener
-        ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.item_profile)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.item_gallery)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.item_notification)).setOnClickListener(new ActionHandler());
-        ((ImageButton) view.findViewById(R.id.item_message)).setOnClickListener(new ActionHandler());
-        ((TextView) view.findViewById(R.id.item_settings)).setOnClickListener(new ActionHandler());
+        ((Switch) view.findViewById(R.id.is_active_switch)).setOnCheckedChangeListener(new ActionEventHandler());
+        ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionEventHandler());
+        ((ImageButton) view.findViewById(R.id.item_profile)).setOnClickListener(new ActionEventHandler());
+        ((ImageButton) view.findViewById(R.id.item_gallery)).setOnClickListener(new ActionEventHandler());
+        ((ImageButton) view.findViewById(R.id.item_notification)).setOnClickListener(new ActionEventHandler());
+        ((ImageButton) view.findViewById(R.id.item_message)).setOnClickListener(new ActionEventHandler());
+        ((TextView) view.findViewById(R.id.item_settings)).setOnClickListener(new ActionEventHandler());
 
         return view;
     }
 
-    private class ActionHandler implements View.OnClickListener {
+    private class ActionEventHandler implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+                mViewModel.updateUserPost(mUser.getAuth().getId(), isChecked, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean isActive) {
+                        if (isActive) {
+                            //
+                        }
+                    }
+                });
+            }
+        }
+
         @Override
         public void onClick(View v) {
             if (v.getId() == R.id.back_button) {

@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <Switch
-                        android:id="@+id/dark_theme_switch"
+                        android:id="@+id/is_active_switch"
                         android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
                         android:textColor="@color/colorDeepGrey"

@@ -67,13 +67,12 @@ public class AccountFragment extends Fragment {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
+                mUser.getUser().setIsActive(isChecked);
+                SharedPefManager.getInstance(getActivity()).saveUser(mUser);
+
                 mViewModel.updateUserPost(mUser.getAuth().getId(), isChecked, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean isActive) {
-                        if (mUser.getUser() != null) {
-                            mUser.getUser().setIsActive(isActive);
-                            SharedPefManager.getInstance(getActivity()).saveUser(mUser);
-                        }
                         if (isActive) {
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "Activated successfully!", Snackbar.LENGTH_SHORT).show();
                         } else {

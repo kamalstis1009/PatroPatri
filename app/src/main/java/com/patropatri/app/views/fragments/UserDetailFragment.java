@@ -42,9 +42,13 @@ public class UserDetailFragment extends Fragment {
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
-        }
 
-        onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserAboutFragment());
+            Bundle bundle = new Bundle();
+            bundle.putString("DATA", new Gson().toJson(mModel));
+            UserAboutFragment mFragment = new UserAboutFragment();
+            mFragment.setArguments(bundle);
+            onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+        }
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override

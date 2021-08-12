@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.patropatri.app.models.Inbox;
+import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.repositories.RetrofitClient;
 
@@ -28,12 +29,12 @@ public class NotificationViewModel extends AndroidViewModel {
     }
 
     //===============================================| Notification
-    public LiveData<ArrayList<NotificationDto>> getAllNotificationsByUserId(int pageNo, int rowSize, long userId, String token) {
-        MutableLiveData<ArrayList<NotificationDto>> data = new MutableLiveData<>();
-        Call<ArrayList<NotificationDto>> call = RetrofitClient.getInstance().getApi().getAllNotificationsByUserId(pageNo, rowSize, userId, token);
-        call.enqueue(new Callback<ArrayList<NotificationDto>>() {
+    public LiveData<ArrayList<Notification>> getAllNotificationsByUserId(int pageNo, int rowSize, long userId, String token) {
+        MutableLiveData<ArrayList<Notification>> data = new MutableLiveData<>();
+        Call<ArrayList<Notification>> call = RetrofitClient.getInstance().getApi().getAllNotificationsByUserId(pageNo, rowSize, userId, token);
+        call.enqueue(new Callback<ArrayList<Notification>>() {
             @Override
-            public void onResponse(@NonNull Call<ArrayList<NotificationDto>> call, @NonNull Response<ArrayList<NotificationDto>> response) {
+            public void onResponse(@NonNull Call<ArrayList<Notification>> call, @NonNull Response<ArrayList<Notification>> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         data.setValue(response.body());
@@ -45,7 +46,7 @@ public class NotificationViewModel extends AndroidViewModel {
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<ArrayList<NotificationDto>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<ArrayList<Notification>> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
@@ -40,9 +41,9 @@ public class NotificationFragment extends Fragment {
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-            mViewModel.getAllNotificationsByUserId(1, 15, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<NotificationDto>>() {
+            mViewModel.getAllNotificationsByUserId(1, 15, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Notification>>() {
                 @Override
-                public void onChanged(ArrayList<NotificationDto> arrayList) {
+                public void onChanged(ArrayList<Notification> arrayList) {
                     if (arrayList != null)
                         initRecyclerView(mRecyclerView, arrayList);
                     else
@@ -62,7 +63,7 @@ public class NotificationFragment extends Fragment {
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, ArrayList<NotificationDto> arrayList) {
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Notification> arrayList) {
         NotificationAdapter mAdapter = new NotificationAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -9,18 +9,15 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.Comment;
-import com.patropatri.app.models.Notification;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.utils.VerticalSpaceItemDecoration;
 import com.patropatri.app.views.adapters.CommentAdapter;
-import com.patropatri.app.views.adapters.NotificationAdapter;
 
 import java.util.ArrayList;
 

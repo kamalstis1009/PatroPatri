@@ -7,7 +7,7 @@ import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Inbox;
-import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 
@@ -102,11 +102,11 @@ public interface RetrofitApi {
 
     //======================================================| Notification
     @GET("notifications/{no}")
-    Call<ArrayList<Notification>> getAllNotificationsByUserId(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
+    Call<ArrayList<NotificationDto>> getAllNotificationsByUserId(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
 
     @Headers("Content-Type: application/json")
     @POST("notification")
-    Call<Notification> addNotification(@Body Notification item, @Header("Authorization") String token);
+    Call<NotificationDto> addNotification(@Body NotificationDto item, @Header("Authorization") String token);
 
     @DELETE("notification/{id}")
     Call<Integer> deleteNotificationById(@Path("id") long id, @Header("Authorization") String token);

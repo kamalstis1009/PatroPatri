@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.patropatri.app.R;
-import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.MessageFragment;
 
@@ -26,9 +26,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.MyViewHolder> {
 
     private FragmentActivity mActivity;
-    private ArrayList<Notification> mArrayList;
+    private ArrayList<NotificationDto> mArrayList;
 
-    public NotificationAdapter(FragmentActivity context, ArrayList<Notification> arrayList) {
+    public NotificationAdapter(FragmentActivity context, ArrayList<NotificationDto> arrayList) {
         this.mActivity = context;
         this.mArrayList = arrayList;
     }
@@ -42,7 +42,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Notification model = mArrayList.get(position);
+        NotificationDto model = mArrayList.get(position);
 
         if (model != null) {
             if (model.getType().contains("LIKED")) {

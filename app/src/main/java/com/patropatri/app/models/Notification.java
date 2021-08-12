@@ -3,6 +3,8 @@ package com.patropatri.app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -20,9 +22,17 @@ public class Notification {
     @Expose
     private String type;
 
-    @SerializedName("userId")
+    @SerializedName("senderId")
     @Expose
-    private Long userId;
+    private Long senderId;
+
+    @SerializedName("senderName")
+    @Expose
+    private String senderName;
+
+    @SerializedName("senderImage")
+    @Expose
+    private String senderImage;
 
     @SerializedName("isEnabled")
     @Expose
@@ -30,5 +40,6 @@ public class Notification {
 
     @SerializedName("createdAt")
     @Expose
-    private String createdAt;
+    private Date createdAt;
+
 }

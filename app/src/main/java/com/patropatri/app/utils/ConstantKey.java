@@ -3,7 +3,7 @@ package com.patropatri.app.utils;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Comment;
 import com.patropatri.app.models.Message;
-import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.models.Photo;
 import com.patropatri.app.models.User;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class ConstantKey {
 
     //public static final String SERVER_URL = "http://36.255.68.34:8076/"; //Cloud
-    public static final String SERVER_URL = "http://192.168.0.174:5050/patropatri/api/v1/"; //Local Tomcat
+    public static final String SERVER_URL = "http://192.168.0.202:5050/patropatri/api/v1/"; //Local Tomcat
     //public static final String SERVER_URL = "http://10.0.2.2:8080/api/v1/"; //Localhost IntelliJ IDEA
     public static final String RESOURCE_URL = SERVER_URL + "file/download/";
 
@@ -28,15 +28,7 @@ public class ConstantKey {
 "senderName": "Kamal",
 "senderImage": "IMG_20210810_202307_691.jpg"
 }
-{
-"message": "message",
-"id": 1,
-"senderId": 1,
-"createdAt": "2020-04-27T07:39:28.000+00:00",
-"isEnabled": true,
-"senderName": "Kamal",
-"senderImage": "IMG_20210810_202307_691.jpg"
-}
+
 
 NOTIFICATION:
 =============
@@ -75,21 +67,21 @@ USER:
         return mArrayList;
     }
 
-    public static ArrayList<Notification> getNotifications() {
-        ArrayList<Notification> mArrayList = new ArrayList<>();
-        Notification model = new Notification();
+    public static ArrayList<NotificationDto> getNotifications() {
+        ArrayList<NotificationDto> mArrayList = new ArrayList<>();
+        NotificationDto model = new NotificationDto();
         model.setTitle("LIKED");
         mArrayList.add(model);
-        Notification model2 = new Notification();
+        NotificationDto model2 = new NotificationDto();
         model2.setTitle("COMMENT");
         mArrayList.add(model2);
-        Notification model3 = new Notification();
+        NotificationDto model3 = new NotificationDto();
         model3.setTitle("MESSAGE");
         mArrayList.add(model3);
-        Notification model4 = new Notification();
+        NotificationDto model4 = new NotificationDto();
         model4.setTitle("LIKED");
         mArrayList.add(model4);
-        Notification model5 = new Notification();
+        NotificationDto model5 = new NotificationDto();
         model5.setTitle("MESSAGE");
         mArrayList.add(model5);
         return mArrayList;

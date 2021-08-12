@@ -17,8 +17,12 @@ import androidx.fragment.app.FragmentManager;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.MessageFragmentDialog;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserDetailFragment extends Fragment {
 
@@ -38,14 +42,26 @@ public class UserDetailFragment extends Fragment {
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
 
-            ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
-            ((TextView) view.findViewById(R.id.item_address_designation)).setText(mModel.getProfession() + " | " + mModel.getDistrict());
+            if (mModel != null) {
+                Picasso.get().load(ConstantKey.RESOURCE_URL + mModel.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((CircleImageView) view.findViewById(R.id.item_image)) );
 
-            Bundle bundle = new Bundle();
-            bundle.putString("DATA", new Gson().toJson(mModel));
-            UserAboutFragment mFragment = new UserAboutFragment();
-            mFragment.setArguments(bundle);
-            onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+                try {
+                    ((TextView) view.findViewById(R.id.item_date)).setText(Utility.getInstance().getFormatFromStringDate("dd MMM yyyy", mModel.getCreatedAt()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                ((TextView) view.findViewById(R.id.item_viewed)).setText(mModel.getCommentAmount());
+                ((TextView) view.findViewById(R.id.item_liked)).setText(mModel.getLikedAmount());
+
+                ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
+                ((TextView) view.findViewById(R.id.item_address_designation)).setText(mModel.getProfession() + " | " + mModel.getDistrict());
+
+                Bundle bundle = new Bundle();
+                bundle.putString("DATA", new Gson().toJson(mModel));
+                UserAboutFragment mFragment = new UserAboutFragment();
+                mFragment.setArguments(bundle);
+                onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+            }
         }
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {

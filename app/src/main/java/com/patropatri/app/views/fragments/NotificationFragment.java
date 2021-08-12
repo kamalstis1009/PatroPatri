@@ -17,10 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
 import com.patropatri.app.models.Notification;
-import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
-import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.NotificationViewModel;
 import com.patropatri.app.views.adapters.NotificationAdapter;
@@ -46,8 +44,8 @@ public class NotificationFragment extends Fragment {
                 public void onChanged(ArrayList<Notification> arrayList) {
                     if (arrayList != null)
                         initRecyclerView(mRecyclerView, arrayList);
-                    else
-                        initRecyclerView(mRecyclerView, ConstantKey.getNotifications());
+                    //else
+                        //initRecyclerView(mRecyclerView, ConstantKey.getNotifications());
                 }
             });
         }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,15 +34,12 @@ public class UserDetailFragment extends Fragment {
             //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
         }
 
-        //-----------------------------------------------| Session
-        //User mUser = SharedPefManager.getInstance(getActivity()).getUser();
-
-        //-----------------------------------------------| Receive and observe the data from view model
-        //CampaignViewModel mViewModel = new ViewModelProvider(this).get(CampaignViewModel.class);
-
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
+
+            ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
+            ((TextView) view.findViewById(R.id.item_address_designation)).setText(mModel.getProfession() + " | " + mModel.getDistrict());
 
             Bundle bundle = new Bundle();
             bundle.putString("DATA", new Gson().toJson(mModel));

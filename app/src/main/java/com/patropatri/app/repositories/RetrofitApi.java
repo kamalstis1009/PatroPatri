@@ -102,25 +102,25 @@ public interface RetrofitApi {
     Call<Integer> deleteGalleryById(@Path("id") long id, @Query("fileName") String fileName, @Header("Authorization") String token);
 
     //======================================================| Notification
-    @GET("notifications/{no}")
+    @GET("message/notifications/{no}")
     Call<ArrayList<Notification>> getAllNotificationsByUserId(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
 
     @Headers("Content-Type: application/json")
-    @POST("notification")
+    @POST("message/notification")
     Call<NotificationDto> addNotification(@Body NotificationDto item, @Header("Authorization") String token);
 
-    @DELETE("notification/{id}")
+    @DELETE("message/notification/{id}")
     Call<Integer> deleteNotificationById(@Path("id") long id, @Header("Authorization") String token);
 
     //======================================================| Inbox
-    @GET("inbox/{no}")
+    @GET("message/inbox/{no}")
     Call<ArrayList<Inbox>> getAllInboxesByUserId(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
 
     @Headers("Content-Type: application/json")
-    @POST("inbox")
+    @POST("message/inbox")
     Call<Inbox> addInbox(@Body Inbox item, @Header("Authorization") String token);
 
-    @DELETE("inbox/{id}")
+    @DELETE("message/inbox/{id}")
     Call<Integer> deleteInboxById(@Path("id") long id, @Header("Authorization") String token);
 
 

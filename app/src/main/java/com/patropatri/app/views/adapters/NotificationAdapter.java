@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Notification;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.MessageFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -56,6 +58,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if (model.getType().contains("MESSAGE")) {
                 holder.itemTitle.setText("Hasan sent a message on your inbox.");
                 holder.itemIcon.setImageResource(R.drawable.ic_baseline_email_24);
+            }
+            if (model.getSenderImage() != null) {
+                Picasso.get().load(ConstantKey.RESOURCE_URL + model.getSenderImage() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
             }
         }
 

@@ -62,6 +62,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if (model.getSenderImage() != null) {
                 Picasso.get().load(ConstantKey.RESOURCE_URL + model.getSenderImage() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
             }
+            try {
+                holder.itemTime.setText(Utility.getInstance().getFormatFromStringDate("dd MMM yyyy", model.getCreatedAt()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         //holder.itemIcon.setImageResource(model.getIcon());

@@ -38,7 +38,7 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:visibility="gone"
-                        android:id="@+id/summary_button"
+                        android:id="@+id/item_summary_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/item_summary"
-                            android:text="I am a person who is positive about every aspect of life. There are many things I like to do, to see, and to experience. I like to read, I like to write; I like to think, I like to dream; I like to talk, I like to listen. I like to see the sunrise in the morning, I like to see the moonlight at night; I like to feel the music flowing on my face, I like to smell the wind coming from the ocean. I like to look at the clouds in the sky with a blank mind, I like to do thought experiment when I cannot sleep in the middle of the night. I like flowers in spring, rain in summer, leaves in autumn, and snow in winter. I like to sleep early, I like to get up late; I like to be alone, I like to be surrounded by people. I like country’s peace, I like metropolis’ noise; I like the beautiful west lake in Hangzhou, I like the flat cornfield in Champaign. I like delicious food and comfortable shoes; I like good books and romantic movies. I like the land and the nature, I like people. And, I like to laugh."
+                            android:text="Briefly describe yourself."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:visibility="gone"
-                        android:id="@+id/personal_info_button"
+                        android:id="@+id/item_personal_info_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_name"
-                            android:text="Mustofa Kamal"
+                            android:text="Write your full name"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -145,7 +145,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_gender"
-                            android:text="Female"
+                            android:text="Your gender"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -201,7 +201,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_age"
-                            android:text="24 yrs"
+                            android:text="0 yrs"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -229,7 +229,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_height"
-                            android:text="5.5"
+                            android:text="0.0 inches"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -257,7 +257,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_weight"
-                            android:text="55 KG"
+                            android:text="00 KG"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -285,7 +285,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_marital_status"
-                            android:text="Unmarried"
+                            android:text="Write your marital status"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -313,7 +313,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_religion"
-                            android:text="Islam"
+                            android:text="Write your religion"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -341,7 +341,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_complex"
-                            android:text="Fair"
+                            android:text="Write your skin tone"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -368,7 +368,174 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_district"
-                            android:text="Khulna"
+                            android:text="Your home district"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Profession-->
+
+            <LinearLayout
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:background="@color/colorWhite"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Profession"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageButton
+                        android:visibility="gone"
+                        android:id="@+id/item_profession_button"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_baseline_edit_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_person_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Service Name"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_profession"
+                            android:text="Write your service's name"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_credit_card_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Designation"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_designation"
+                            android:text="Write your designation"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_account_balance_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Company Name"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_company"
+                            android:text="Your company name"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_location_on_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Address"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_company_address"
+                            android:text="Your company address"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_web_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Website"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:id="@+id/item_website"
+                            android:text="www.patropatri.com"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -396,6 +563,7 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:visibility="gone"
+                        android:id="@+id/item_contact_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
@@ -479,7 +647,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_present_address"
-                            android:text="Mirpur, Dhaka, Bangladesh"
+                            android:text="Dhaka, Bangladesh"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -506,7 +674,7 @@
                             android:layout_height="wrap_content"/>
                         <TextView
                             android:id="@+id/item_permanent_address"
-                            android:text="Khulna, Bangladesh"
+                            android:text="Dhaka, Bangladesh"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -534,162 +702,21 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:visibility="gone"
+                        android:id="@+id/item_education_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/items_education_recycler_view"
+                    tools:listitem="@layout/item_education"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_account_balance_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="MSc - 2021"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/item_subject"
-                            android:text="English"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/item_result"
-                            android:text="CGPA-3.5"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:id="@+id/item_university"
-                            android:text="Brac University, Dhaka"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_account_balance_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="BSc - 2020"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="English"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="CGPA-3.5"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Brac University, Dhaka"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_account_balance_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="HSC - 2015"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Science"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="GPA-5"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Dhaka College"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_account_balance_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="SSC - 2013"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Science"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="GPA-5"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Adamjee Cantonment College"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
+
+            <!--Family-->
 
             <LinearLayout
                 android:padding="15dp"
@@ -709,138 +736,18 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:visibility="gone"
+                        android:id="@+id/item_family_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/items_family_recycler_view"
+                    tools:listitem="@layout/item_family"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_person_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Father"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Father's Name"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Father's Occupation"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_person_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Mother"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Mother's Name"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Mother's Occupation"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_person_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Brother"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Brother's Name"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Brother's Occupation"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_baseline_person_24"
-                        android:layout_marginEnd="15dp"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Sister"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Sister's Name"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <TextView
-                            android:text="Sister's Occupation"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <!--Interest-->
@@ -863,6 +770,7 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:visibility="gone"
+                        android:id="@+id/item_interest_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
@@ -884,7 +792,59 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:text="Looking for an educated, supportive, strong bonded family. A family where she will be treated more as a daughter. And looking for a person who is supportive, honest, responsible, caring, can give respect and have the ability to take a stand in any situation. \nProfession: Any Halal income (Police, Lawyer is not preferable) \nHome district: Any (Noakhali, Comilla and Chandpur is not preferable)."
+                            android:id="@+id/item_interest"
+                            android:text="Describe your interest."
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Other Activities-->
+
+            <LinearLayout
+                android:padding="15dp"
+                android:orientation="vertical"
+                android:background="@color/colorWhite"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginBottom="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Other Activities"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <ImageButton
+                        android:visibility="gone"
+                        android:id="@+id/item_activity_button"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_baseline_edit_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_baseline_bubble_chart_24"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/item_other_activity"
+                            android:text="Describe your other activities."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -912,6 +872,7 @@
                         android:layout_height="wrap_content"/>
                     <ImageButton
                         android:visibility="gone"
+                        android:id="@+id/item_expectation_button"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/ic_baseline_edit_24"
                         android:layout_width="wrap_content"
@@ -933,7 +894,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:text="Looking for an educated, supportive, strong bonded family. A family where she will be treated more as a daughter. And looking for a person who is supportive, honest, responsible, caring, can give respect and have the ability to take a stand in any situation. \nProfession: Any Halal income (Police, Lawyer is not preferable) \nHome district: Any (Noakhali, Comilla and Chandpur is not preferable)."
+                            android:id="@+id/item_expectation"
+                            android:text="Describe your expectations."
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>

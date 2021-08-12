@@ -113,7 +113,7 @@ public interface RetrofitApi {
     Call<Integer> deleteNotificationById(@Path("id") long id, @Header("Authorization") String token);
 
     //======================================================| Inbox
-    @GET("message/inbox/{no}")
+    @GET("message/inboxes/{no}")
     Call<ArrayList<Inbox>> getAllInboxesByUserId(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
 
     @Headers("Content-Type: application/json")

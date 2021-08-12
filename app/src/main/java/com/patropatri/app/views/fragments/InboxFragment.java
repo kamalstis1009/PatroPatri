@@ -44,8 +44,6 @@ public class InboxFragment extends Fragment {
                 public void onChanged(ArrayList<Inbox> arrayList) {
                     if (arrayList != null)
                         initRecyclerView(mRecyclerView, arrayList);
-                    //else
-                        //initRecyclerView(mRecyclerView, ConstantKey.getMessages());
                 }
             });
         }

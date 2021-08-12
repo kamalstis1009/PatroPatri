@@ -4,8 +4,6 @@ import com.patropatri.app.R;
 import com.patropatri.app.models.Comment;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.Notification;
-import com.patropatri.app.models.NotificationDto;
-import com.patropatri.app.models.Photo;
 import com.patropatri.app.models.User;
 
 import java.util.ArrayList;
@@ -36,16 +34,6 @@ public class ConstantKey {
         mArrayList.add(new User("Salman", "Rahman", "Rangpur"));
         mArrayList.add(new User("Ashfakur", "Talukdar", "Dhaka"));
         mArrayList.add(new User("Mohammad", "Solaiman", "Dhaka"));*/
-        return mArrayList;
-    }
-
-    public static ArrayList<Photo> getUserPhotos() {
-        ArrayList<Photo> mArrayList = new ArrayList<>();
-        mArrayList.add(new Photo(1, R.drawable.ic_add_photo));
-        mArrayList.add(new Photo(2, R.drawable.ic_add_photo));
-        mArrayList.add(new Photo(3, R.drawable.ic_add_photo));
-        mArrayList.add(new Photo(4, R.drawable.ic_add_photo));
-        mArrayList.add(new Photo(5, R.drawable.ic_add_photo));
         return mArrayList;
     }
 

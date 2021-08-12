@@ -1,5 +1,6 @@
 package com.patropatri.app.views.adapters;
 
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,15 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.Photo;
 
 import java.util.ArrayList;
 
 public class AttachPhotoAdapter extends RecyclerView.Adapter<AttachPhotoAdapter.MyViewHolder> {
 
     private FragmentActivity mActivity;
-    private ArrayList<Photo> mArrayList;
+    private ArrayList<Bitmap> mArrayList;
 
-    public AttachPhotoAdapter(FragmentActivity context, ArrayList<Photo> arrayList) {
+    public AttachPhotoAdapter(FragmentActivity context, ArrayList<Bitmap> arrayList) {
         this.mActivity = context;
         this.mArrayList = arrayList;
     }
@@ -34,8 +34,9 @@ public class AttachPhotoAdapter extends RecyclerView.Adapter<AttachPhotoAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Photo model = mArrayList.get(position);
+        Bitmap bitmap = mArrayList.get(position);
 
+        holder.imageView.setImageBitmap(bitmap);
         //holder.imageView.setImageResource(model.getIcon());
         //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
 

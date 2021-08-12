@@ -50,8 +50,8 @@ public class UserDetailFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                ((TextView) view.findViewById(R.id.item_viewed)).setText(mModel.getCommentAmount());
-                ((TextView) view.findViewById(R.id.item_liked)).setText(mModel.getLikedAmount());
+                ((TextView) view.findViewById(R.id.item_viewed)).setText(mModel.getCommentAmount() + "");
+                ((TextView) view.findViewById(R.id.item_liked)).setText(mModel.getLikedAmount() + "");
 
                 ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
                 ((TextView) view.findViewById(R.id.item_address_designation)).setText(mModel.getProfession() + " | " + mModel.getDistrict());

@@ -44,8 +44,6 @@ public class NotificationFragment extends Fragment {
                 public void onChanged(ArrayList<Notification> arrayList) {
                     if (arrayList != null)
                         initRecyclerView(mRecyclerView, arrayList);
-                    //else
-                        //initRecyclerView(mRecyclerView, ConstantKey.getNotifications());
                 }
             });
         }

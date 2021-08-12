@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Photo;
 import com.patropatri.app.utils.ConstantKey;
@@ -41,7 +43,7 @@ public class UserPhotoFragment extends Fragment {
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
-            //ArrayList<MealMenuModel> mArrayList = new Gson().fromJson(getArguments().getString("DATA", null), new TypeToken<ArrayList<MealMenuModel>>(){}.getType());
+            Candidate mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
         }
 
         /*((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {

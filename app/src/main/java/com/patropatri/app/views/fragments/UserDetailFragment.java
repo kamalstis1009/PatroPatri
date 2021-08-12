@@ -13,11 +13,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Candidate;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 
 public class UserDetailFragment extends Fragment {
+
+    private Candidate mModel;
 
     @Nullable
     @Override
@@ -37,7 +41,7 @@ public class UserDetailFragment extends Fragment {
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
-            //ArrayList<MealMenuModel> mArrayList = new Gson().fromJson(getArguments().getString("DATA", null), new TypeToken<ArrayList<MealMenuModel>>(){}.getType());
+            mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
         }
 
         onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserAboutFragment());
@@ -63,14 +67,26 @@ public class UserDetailFragment extends Fragment {
         ((LinearLayout) view.findViewById(R.id.item_about_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserAboutFragment());
+                if (mModel != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATA", new Gson().toJson(mModel));
+                    UserAboutFragment mFragment = new UserAboutFragment();
+                    mFragment.setArguments(bundle);
+                    onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+                }
             }
         });
 
         ((LinearLayout) view.findViewById(R.id.item_photo_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onReplaceFragment(requireActivity().getSupportFragmentManager(), new UserPhotoFragment());
+                if (mModel != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATA", new Gson().toJson(mModel));
+                    UserPhotoFragment mFragment = new UserPhotoFragment();
+                    mFragment.setArguments(bundle);
+                    onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+                }
             }
         });
 

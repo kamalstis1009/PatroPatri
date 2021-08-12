@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Candidate;
 
 public class UserAboutFragment extends Fragment {
 
@@ -31,7 +33,7 @@ public class UserAboutFragment extends Fragment {
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
-            //ArrayList<MealMenuModel> mArrayList = new Gson().fromJson(getArguments().getString("DATA", null), new TypeToken<ArrayList<MealMenuModel>>(){}.getType());
+            Candidate mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
         }
 
         /*((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {

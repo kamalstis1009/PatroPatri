@@ -8,10 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
+import com.patropatri.app.models.User;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.viewmodels.UserViewModel;
 
 public class UserAboutFragment extends Fragment {
 
@@ -26,14 +32,22 @@ public class UserAboutFragment extends Fragment {
         }
 
         //-----------------------------------------------| Session
-        //User mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| Receive and observe the data from view model
-        //CampaignViewModel mViewModel = new ViewModelProvider(this).get(CampaignViewModel.class);
+        UserViewModel mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             Candidate mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
+
+            if (mModel != null) {
+                mViewModel.getUserById(mModel.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
+                    @Override
+                    public void onChanged(User item) {
+                    }
+                });
+            }
         }
 
         /*((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {

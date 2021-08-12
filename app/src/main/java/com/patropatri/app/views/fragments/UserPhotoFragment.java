@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,9 +18,10 @@ import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Gallery;
-import com.patropatri.app.models.Photo;
-import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
+import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.adapters.PhotoAdapter;
 
 import java.util.ArrayList;
@@ -35,26 +38,29 @@ public class UserPhotoFragment extends Fragment {
             //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
         }
 
+        //-----------------------------------------------| findViewById
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+
         //-----------------------------------------------| Session
-        //User mUser = SharedPefManager.getInstance(getActivity()).getUser();
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| Receive and observe the data from view model
-        //CampaignViewModel mViewModel = new ViewModelProvider(this).get(CampaignViewModel.class);
+        UserViewModel mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             Candidate mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
-        }
 
-        /*((TextView) view.findViewById(R.id.search_text)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), new SearchFragment());
+            if (mModel != null) {
+                mViewModel.getGalleriesById(mModel.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Gallery>>() {
+                    @Override
+                    public void onChanged(ArrayList<Gallery> arrayList) {
+                        if (arrayList != null)
+                            initRecyclerView(mRecyclerView, arrayList);
+                    }
+                });
             }
-        });*/
-
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        //initRecyclerView(mRecyclerView, ConstantKey.getUserPhotos());
+        }
 
         return view;
     }

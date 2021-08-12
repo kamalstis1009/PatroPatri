@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/item_address"
+                    android:id="@+id/item_message"
                     android:gravity="top"
                     android:maxLength="250"
                     android:maxEms="250"
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <ImageButton
-                    android:id="@+id/add_task_button"
+                    android:id="@+id/add_photo_button"
                     android:layout_alignParentEnd="true"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"

@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.patropatri.app.models.Inbox;
+import com.patropatri.app.models.Message;
+import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.repositories.RetrofitClient;
@@ -130,12 +132,12 @@ public class NotificationViewModel extends AndroidViewModel {
         return data;
     }
 
-    public LiveData<Inbox> addInbox(Inbox item, String token) {
-        MutableLiveData<Inbox> data = new MutableLiveData<>();
-        Call<Inbox> call = RetrofitClient.getInstance().getApi().addInbox(item, token);
-        call.enqueue(new Callback<Inbox>() {
+    public LiveData<Message> addInbox(MessageDto item, String token) {
+        MutableLiveData<Message> data = new MutableLiveData<>();
+        Call<Message> call = RetrofitClient.getInstance().getApi().addInbox(item, token);
+        call.enqueue(new Callback<Message>() {
             @Override
-            public void onResponse(@NonNull Call<Inbox> call, @NonNull Response<Inbox> response) {
+            public void onResponse(@NonNull Call<Message> call, @NonNull Response<Message> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         data.setValue(response.body());
@@ -147,7 +149,7 @@ public class NotificationViewModel extends AndroidViewModel {
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<Inbox> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<Message> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

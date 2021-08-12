@@ -107,7 +107,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putInt("Position", position);
+                bundle.putString("DATA", new Gson().toJson(model));
                 MessageFragmentDialog mFragment = new MessageFragmentDialog();
                 mFragment.setArguments(bundle);
                 Utility.getInstance().onShowFragmentDialog(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);

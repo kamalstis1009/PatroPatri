@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public class InboxDto {
+public class MessageDto {
 
     @SerializedName("message")
     @Expose

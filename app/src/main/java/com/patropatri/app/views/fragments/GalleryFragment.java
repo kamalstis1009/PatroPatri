@@ -30,6 +30,7 @@ import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.FileViewModel;
 import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.adapters.PhotoAdapter;
 
@@ -57,6 +58,7 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
     private UserWithToken mUser;
     private ProgressDialog mProgress;
     private UserViewModel mViewModel;
+    private FileViewModel mFileViewModel;
 
     private String mImageFileName;
     private String mCurrentPhotoPath;
@@ -74,6 +76,7 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
 
         //-----------------------------------------------| Receive and observe the data from view model
         mViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        mFileViewModel = new ViewModelProvider(this).get(FileViewModel.class);
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
@@ -243,7 +246,7 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
                 Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty image is not allowed!", Snackbar.LENGTH_SHORT).show();
             } else {
                 mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
-                mViewModel.uploadGalleryImage(uploadFile(mFile, mImageFileName), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Gallery>() {
+                mFileViewModel.uploadGalleryImage(uploadFile(mFile, mImageFileName), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Gallery>() {
                     @Override
                     public void onChanged(Gallery model) {
                         if (model != null) {

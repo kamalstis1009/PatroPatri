@@ -7,6 +7,8 @@ import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Inbox;
+import com.patropatri.app.models.Message;
+import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.models.User;
@@ -43,6 +45,10 @@ public interface RetrofitApi {
     @Multipart
     @POST("file/upload/gallery-image")
     Call<Gallery> uploadGalleryImage(@Part MultipartBody.Part file, @Query("userId") long userId, @Header("Authorization") String token);
+
+    @Multipart
+    @POST("file/upload/update-files")
+    Call<ArrayList<String>> uploadMultiFiles(@Part MultipartBody.Part[] files, @Header("Authorization") String token);
 
 
     //======================================================| SignIn & SignUp
@@ -118,7 +124,7 @@ public interface RetrofitApi {
 
     @Headers("Content-Type: application/json")
     @POST("message/inbox")
-    Call<Inbox> addInbox(@Body Inbox item, @Header("Authorization") String token);
+    Call<Message> addInbox(@Body MessageDto item, @Header("Authorization") String token);
 
     @DELETE("message/inbox/{id}")
     Call<Integer> deleteInboxById(@Path("id") long id, @Header("Authorization") String token);

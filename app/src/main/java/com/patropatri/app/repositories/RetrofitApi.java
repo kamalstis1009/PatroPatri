@@ -62,7 +62,7 @@ public interface RetrofitApi {
     Call<ArrayList<Candidate>> getAllCandidatesByPaginated(@Path("no") int pageNo, @Query("row") int rowSize, @Header("Authorization") String token);
 
     //======================================================| User
-    @GET("user/{id")
+    @GET("user/{id}")
     Call<User> getUserById(@Path("id") long id, @Header("Authorization") String token);
 
     @Headers("Content-Type: application/json")

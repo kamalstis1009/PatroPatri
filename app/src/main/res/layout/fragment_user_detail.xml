@@ -63,6 +63,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
+                <ImageButton
+                    android:id="@+id/item_like_button"
+                    android:layout_below="@+id/item_bg_image"
+                    android:layout_marginTop="-22dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_baseline_favorite_24"
+                    app:backgroundTint="@color/colorWhite"
+                    android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"/>
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/item_image"
                     android:layout_centerInParent="true"
@@ -120,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <LinearLayout
-                                android:id="@+id/comment_button"
+                                android:id="@+id/show_comment_button"
                                 android:layout_marginEnd="10dp"
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
@@ -139,7 +150,7 @@
                                     android:layout_height="wrap_content"/>
                             </LinearLayout>
                             <LinearLayout
-                                android:id="@+id/liked_button"
+                                android:id="@+id/show_liked_button"
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">

@@ -108,7 +108,7 @@ public class UserDetailFragment extends Fragment {
             }
         });
 
-        ((LinearLayout) view.findViewById(R.id.comment_button)).setOnClickListener(new View.OnClickListener() {
+        ((LinearLayout) view.findViewById(R.id.show_comment_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mModel != null) {
@@ -120,7 +120,7 @@ public class UserDetailFragment extends Fragment {
                 }
             }
         });
-        ((LinearLayout) view.findViewById(R.id.liked_button)).setOnClickListener(new View.OnClickListener() {
+        ((LinearLayout) view.findViewById(R.id.show_liked_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());

@@ -118,10 +118,15 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                                 mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Message>() {
                                                     @Override
                                                     public void onChanged(Message item) {
-                                                        if (item != null)
+                                                        if (item != null) {
                                                             dismiss();
+                                                        }  else {
+                                                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Message not sent successfully!", Snackbar.LENGTH_SHORT).show();
+                                                        }
                                                     }
                                                 });
+                                            } else {
+                                                Snackbar.make(getActivity().findViewById(android.R.id.content), "Unfortunately the picture could not be sent!", Snackbar.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -133,8 +138,11 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                     mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Message>() {
                                         @Override
                                         public void onChanged(Message item) {
-                                            if (item != null)
+                                            if (item != null) {
                                                 dismiss();
+                                            }  else {
+                                                Snackbar.make(getActivity().findViewById(android.R.id.content), "Message not sent successfully!", Snackbar.LENGTH_SHORT).show();
+                                            }
                                         }
                                     });
                                 }

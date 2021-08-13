@@ -48,7 +48,7 @@ public interface RetrofitApi {
 
     @Multipart
     @POST("file/upload/update-files")
-    Call<ArrayList<String>> uploadMultiFiles(@Part MultipartBody.Part[] files, @Header("Authorization") String token);
+    Call<ArrayList<String>> uploadMultiFiles(@Part MultipartBody.Part[] file, @Header("Authorization") String token);
 
 
     //======================================================| SignIn & SignUp

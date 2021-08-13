@@ -21,11 +21,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NotificationViewModel extends AndroidViewModel {
+public class MessageViewModel extends AndroidViewModel {
 
     private Application mApplication;
 
-    public NotificationViewModel(@NonNull Application application) {
+    public MessageViewModel(@NonNull Application application) {
         super(application);
         this.mApplication = application;
     }

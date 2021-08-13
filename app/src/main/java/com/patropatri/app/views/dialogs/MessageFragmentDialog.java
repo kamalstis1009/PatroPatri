@@ -40,7 +40,7 @@ import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.FileViewModel;
-import com.patropatri.app.viewmodels.NotificationViewModel;
+import com.patropatri.app.viewmodels.MessageViewModel;
 import com.patropatri.app.views.adapters.AttachPhotoAdapter;
 
 import java.io.File;
@@ -91,7 +91,7 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
 
         //-----------------------------------------------| Receive and observe the data from view model
         mFileViewModel = new ViewModelProvider(this).get(FileViewModel.class);
-        NotificationViewModel mViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
+        MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             Candidate mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);

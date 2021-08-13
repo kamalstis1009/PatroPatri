@@ -20,7 +20,7 @@ import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
-import com.patropatri.app.viewmodels.NotificationViewModel;
+import com.patropatri.app.viewmodels.MessageViewModel;
 import com.patropatri.app.views.adapters.InboxAdapter;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class InboxFragment extends Fragment {
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| Receive and observe the data from view model
-        NotificationViewModel mViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
+        MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {

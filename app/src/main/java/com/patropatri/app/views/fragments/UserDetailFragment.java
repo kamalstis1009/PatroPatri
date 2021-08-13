@@ -75,7 +75,7 @@ public class UserDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                //bundle.putInt("Position", position);
+                bundle.putString("DATA", new Gson().toJson(mModel));
                 MessageFragmentDialog mFragment = new MessageFragmentDialog();
                 mFragment.setArguments(bundle);
                 Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);

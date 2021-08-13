@@ -114,9 +114,9 @@ public class UserDetailFragment extends Fragment {
                 if (mModel != null) {
                     Bundle bundle = new Bundle();
                     bundle.putString("DATA", new Gson().toJson(mModel));
-                    UserPhotoFragment mFragment = new UserPhotoFragment();
+                    CommentFragment mFragment = new CommentFragment();
                     mFragment.setArguments(bundle);
-                    Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+                    Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
                 }
             }
         });

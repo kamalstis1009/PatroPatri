@@ -11,7 +11,6 @@ import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Liked;
 import com.patropatri.app.models.LikedDto;
-import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;

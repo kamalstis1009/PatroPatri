@@ -8,8 +8,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.patropatri.app.models.Comment;
+import com.patropatri.app.models.CommentDto;
 import com.patropatri.app.models.Inbox;
-import com.patropatri.app.models.Message;
+import com.patropatri.app.models.Liked;
+import com.patropatri.app.models.LikedDto;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
@@ -176,6 +179,158 @@ public class MessageViewModel extends AndroidViewModel {
             @Override
             public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
                 data.setValue(0);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    //===============================================| Comment
+    public LiveData<ArrayList<CommentDto>> getAllCommentsByUserId(long userId, String token) {
+        MutableLiveData<ArrayList<CommentDto>> data = new MutableLiveData<>();
+        Call<ArrayList<CommentDto>> call = RetrofitClient.getInstance().getApi().getAllCommentsByUserId(userId, token);
+        call.enqueue(new Callback<ArrayList<CommentDto>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<CommentDto>> call, @NonNull Response<ArrayList<CommentDto>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<CommentDto>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Comment> addComment(Comment item, String token) {
+        MutableLiveData<Comment> data = new MutableLiveData<>();
+        Call<Comment> call = RetrofitClient.getInstance().getApi().addComment(item, token);
+        call.enqueue(new Callback<Comment>() {
+            @Override
+            public void onResponse(@NonNull Call<Comment> call, @NonNull Response<Comment> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Comment> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Integer> deleteCommentById(long id, String token) {
+        MutableLiveData<Integer> data = new MutableLiveData<>();
+        Call<Integer> call = RetrofitClient.getInstance().getApi().deleteCommentById(id, token);
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(@NonNull Call<Integer> call, @NonNull Response<Integer> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(0);
+                    }
+                } else {
+                    data.setValue(0);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
+                data.setValue(0);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    //===============================================| Liked
+    public LiveData<ArrayList<LikedDto>> getAllLikesByUserId(long userId, String token) {
+        MutableLiveData<ArrayList<LikedDto>> data = new MutableLiveData<>();
+        Call<ArrayList<LikedDto>> call = RetrofitClient.getInstance().getApi().getAllLikesByUserId(userId, token);
+        call.enqueue(new Callback<ArrayList<LikedDto>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<LikedDto>> call, @NonNull Response<ArrayList<LikedDto>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<LikedDto>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Liked> getLikedByUserId(long userId, String token) {
+        MutableLiveData<Liked> data = new MutableLiveData<>();
+        Call<Liked> call = RetrofitClient.getInstance().getApi().getLikedByUserId(userId, token);
+        call.enqueue(new Callback<Liked>() {
+            @Override
+            public void onResponse(@NonNull Call<Liked> call, @NonNull Response<Liked> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Liked> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Liked> addLiked(Liked item, String token) {
+        MutableLiveData<Liked> data = new MutableLiveData<>();
+        Call<Liked> call = RetrofitClient.getInstance().getApi().addLiked(item, token);
+        call.enqueue(new Callback<Liked>() {
+            @Override
+            public void onResponse(@NonNull Call<Liked> call, @NonNull Response<Liked> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<Liked> call, @NonNull Throwable t) {
+                data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

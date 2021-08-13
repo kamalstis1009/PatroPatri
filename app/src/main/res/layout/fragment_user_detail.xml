@@ -92,7 +92,6 @@
                     <TextView
                         android:id="@+id/item_address_designation"
                         android:text="Designation | District"
-                        android:textColor="@color/colorPurple"
                         android:layout_marginBottom="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -104,7 +103,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <ImageView
-                                app:tint="@color/colorPrimary"
                                 android:src="@drawable/ic_baseline_access_time_24"
                                 android:layout_marginEnd="5dp"
                                 android:layout_width="15dp"
@@ -113,7 +111,6 @@
                                 android:id="@+id/item_date"
                                 android:textSize="10sp"
                                 android:text="10th November"
-                                android:textColor="@color/colorPrimary"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
                         </LinearLayout>
@@ -128,17 +125,16 @@
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
-                                <ImageView
-                                    app:tint="@color/colorPrimary"
-                                    android:src="@drawable/ic_baseline_visibility_24"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"/>
                                 <TextView
                                     android:id="@+id/item_viewed"
                                     android:textSize="10sp"
                                     android:text="15K"
-                                    android:textColor="@color/colorPrimary"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:textSize="10sp"
+                                    android:text="Comments"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
                             </LinearLayout>
@@ -147,17 +143,16 @@
                                 android:orientation="horizontal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
-                                <ImageView
-                                    app:tint="@color/colorPrimary"
-                                    android:src="@drawable/ic_baseline_favorite_24"
-                                    android:layout_marginEnd="5dp"
-                                    android:layout_width="15dp"
-                                    android:layout_height="15dp"/>
                                 <TextView
                                     android:id="@+id/item_liked"
                                     android:textSize="10sp"
                                     android:text="12K"
-                                    android:textColor="@color/colorPrimary"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                                <TextView
+                                    android:textSize="10sp"
+                                    android:text="Likes"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"/>
                             </LinearLayout>

@@ -111,6 +111,10 @@ public class UserDetailFragment extends Fragment {
         ((LinearLayout) view.findViewById(R.id.viewed_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("DATA", new Gson().toJson(mModel));
+                UserPhotoFragment mFragment = new UserPhotoFragment();
+                mFragment.setArguments(bundle);
                 Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
             }
         });

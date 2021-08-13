@@ -10,7 +10,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.Comment;
+import com.patropatri.app.models.CommentDto;
+import com.patropatri.app.utils.ConstantKey;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,9 +21,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHolder> {
 
     private FragmentActivity mActivity;
-    private ArrayList<Comment> mArrayList;
+    private ArrayList<CommentDto> mArrayList;
 
-    public CommentAdapter(FragmentActivity activity, ArrayList<Comment> arrayList) {
+    public CommentAdapter(FragmentActivity activity, ArrayList<CommentDto> arrayList) {
         this.mActivity = activity;
         this.mArrayList = arrayList;
     }
@@ -35,15 +37,15 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Comment model = mArrayList.get(position);
+        CommentDto model = mArrayList.get(position);
 
 
 
-        if (model.getImagePath() != null && !model.getImagePath().isEmpty()) {
-            //Picasso.get().load(ConstantKey.IMAGE_SERVER_URL + model.getImageName()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.imageView);
+        if (model.getImageName() != null) {
+            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
         }
         holder.fullName.setText("" + model.getFullName());
-        holder.comment.setText("" + model.getComments());
+        holder.comment.setText("" + model.getMessage());
         //holder.commentDate.setText("" + model.getCreatedAt());
 
         holder.commentReply.setOnClickListener(new View.OnClickListener() {

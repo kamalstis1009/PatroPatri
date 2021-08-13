@@ -47,16 +47,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         Notification model = mArrayList.get(position);
 
         if (model != null) {
+            holder.itemTitle.setText(model.getTitle());
             if (model.getType().contains("LIKED")) {
-                holder.itemTitle.setText("Adnan liked your resume.");
                 holder.itemIcon.setImageResource(R.drawable.ic_baseline_favorite_24);
             }
             if (model.getType().contains("COMMENT")) {
-                holder.itemTitle.setText("Ahmed Hasan posted a comment on your resume.");
                 holder.itemIcon.setImageResource(R.drawable.ic_baseline_comment_24);
             }
             if (model.getType().contains("MESSAGE")) {
-                holder.itemTitle.setText("Hasan sent a message on your inbox.");
                 holder.itemIcon.setImageResource(R.drawable.ic_baseline_email_24);
             }
             if (model.getSenderImage() != null) {

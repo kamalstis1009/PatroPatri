@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class UserWithToken {
 
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
+
     @SerializedName("token")
     @Expose
     private String token;

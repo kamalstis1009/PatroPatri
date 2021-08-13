@@ -13,12 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.ChatMessage;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.adapters.MessageAdapter;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class MessageFragment extends Fragment {
 

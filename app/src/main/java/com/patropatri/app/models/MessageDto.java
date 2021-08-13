@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class MessageDto {
 
+    //String.valueOf(new Timestamp(System.currentTimeMillis()));
+
     @SerializedName("message")
     @Expose
     private String message;

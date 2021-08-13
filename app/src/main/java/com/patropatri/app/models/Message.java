@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class Message {
 
     //String.valueOf(new Timestamp(System.currentTimeMillis()));

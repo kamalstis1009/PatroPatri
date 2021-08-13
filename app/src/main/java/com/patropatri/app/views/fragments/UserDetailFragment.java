@@ -106,7 +106,7 @@ public class UserDetailFragment extends Fragment {
                         @Override
                         public void onChanged(Liked model) {
                             if (model != null) {
-                                ((ImageButton) view.findViewById(R.id.item_like_button)).setColorFilter(getActivity().getResources().getColor(R.color.colorDeepGrey), PorterDuff.Mode.SRC_ATOP);
+                                ((ImageButton) view.findViewById(R.id.item_like_button)).setColorFilter(getActivity().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                             }
                         }
                     });

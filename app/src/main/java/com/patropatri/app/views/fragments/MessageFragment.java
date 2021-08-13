@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Message;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.adapters.MessageAdapter;
 
@@ -35,11 +36,11 @@ public class MessageFragment extends Fragment {
         //-----------------------------------------------| Receive and observe the data from view model
         //mViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
 
-        ArrayList<ChatMessage> mArrayList = new ArrayList<>();
-        mArrayList.add(new ChatMessage(true, null, "Hi!", null));
-        mArrayList.add(new ChatMessage(false, null, "Hi!", null));
-        mArrayList.add(new ChatMessage(true, null, "How are you?", null));
-        mArrayList.add(new ChatMessage(false, null, "I'm well, You?", null));
+        ArrayList<Message> mArrayList = new ArrayList<>();
+        //mArrayList.add(new ChatMessage(true, null, "Hi!", null));
+        //mArrayList.add(new ChatMessage(false, null, "Hi!", null));
+        //mArrayList.add(new ChatMessage(true, null, "How are you?", null));
+        //mArrayList.add(new ChatMessage(false, null, "I'm well, You?", null));
         initRecyclerView(mRecyclerView, mArrayList);
 
         //------------------------------------------------| Get Bundle Data
@@ -56,7 +57,7 @@ public class MessageFragment extends Fragment {
         return view;
     }
 
-    private void initRecyclerView(RecyclerView mRecyclerView, ArrayList<ChatMessage> mArrayList) {
+    private void initRecyclerView(RecyclerView mRecyclerView, ArrayList<Message> mArrayList) {
         MessageAdapter mAdapter = new MessageAdapter(getActivity(), mArrayList);
         //mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

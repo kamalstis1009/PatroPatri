@@ -13,6 +13,9 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Message;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 
 import java.util.ArrayList;
 
@@ -21,13 +24,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
 
     private FragmentActivity mContext;
-    private ArrayList<ChatMessage> mArrayList;
+    private ArrayList<Message> mArrayList;
     private ProgressDialog mProgress;
+    private UserWithToken mUser;
 
-    public MessageAdapter(FragmentActivity context, ArrayList<ChatMessage> arrayList) {
+    public MessageAdapter(FragmentActivity context, ArrayList<Message> arrayList) {
         if (mArrayList != null) {
             mArrayList.clear(); //change here
         }
+        mUser = SharedPefManager.getInstance(context).getUser();
         this.mContext = context;
         this.mArrayList = arrayList;
     }
@@ -41,9 +46,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ChatMessage model = mArrayList.get(position);
+        Message model = mArrayList.get(position);
 
-        if (model.isUser()) {
+        /*if (model.isUser()) {
             setVisibility(true, holder);
 
             if (model.getAttachmentUrl() != null) {
@@ -80,7 +85,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             } else {
                 holder.otherText.setText(model.getChatText());
             }
-        }
+        }*/
     }
 
     @Override

@@ -3,10 +3,14 @@ package com.patropatri.app.repositories;
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.models.Candidate;
+import com.patropatri.app.models.Comment;
+import com.patropatri.app.models.CommentDto;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Inbox;
+import com.patropatri.app.models.Liked;
+import com.patropatri.app.models.LikedDto;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
@@ -129,8 +133,26 @@ public interface RetrofitApi {
     @DELETE("message/inbox/{id}")
     Call<Integer> deleteInboxById(@Path("id") long id, @Header("Authorization") String token);
 
+    //======================================================| Comment
+    @GET("message/comments/{userId}")
+    Call<ArrayList<CommentDto>> getAllCommentsByUserId(@Path("userId") long userId, @Header("Authorization") String token);
 
+    @Headers("Content-Type: application/json")
+    @POST("message/comment")
+    Call<Comment> addComment(@Body Comment item, @Header("Authorization") String token);
 
+    @DELETE("message/comment/{id}")
+    Call<Integer> deleteCommentById(@Path("id") long id, @Header("Authorization") String token);
 
+    //======================================================| Liked
+    @GET("message/like/{userId}")
+    Call<Liked> getLikedByUserId(@Path("userId") long userId, @Header("Authorization") String token);
+
+    @GET("message/likes/{userId}")
+    Call<ArrayList<LikedDto>> getAllLikesByUserId(@Path("userId") long userId, @Header("Authorization") String token);
+
+    @Headers("Content-Type: application/json")
+    @POST("message/like")
+    Call<Liked> addLiked(@Body Liked item, @Header("Authorization") String token);
 
 }

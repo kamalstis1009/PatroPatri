@@ -1,11 +1,13 @@
 package com.patropatri.app.views.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -22,6 +24,7 @@ import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
+import com.patropatri.app.views.activities.SignInActivity;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -59,6 +62,7 @@ public class AccountFragment extends Fragment {
         ((ImageButton) view.findViewById(R.id.item_notification)).setOnClickListener(new ActionEventHandler());
         ((ImageButton) view.findViewById(R.id.item_message)).setOnClickListener(new ActionEventHandler());
         ((TextView) view.findViewById(R.id.item_settings)).setOnClickListener(new ActionEventHandler());
+        ((LinearLayout) view.findViewById(R.id.sign_out_button)).setOnClickListener(new ActionEventHandler());
 
         return view;
     }
@@ -102,6 +106,9 @@ public class AccountFragment extends Fragment {
             }
             if (v.getId() == R.id.item_settings) {
                 Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SettingFragment());
+            }
+            if (v.getId() == R.id.sign_out_button) {
+                startActivity(new Intent(getActivity(), SignInActivity.class));
             }
         }
     }

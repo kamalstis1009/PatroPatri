@@ -78,7 +78,7 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onChanged(Boolean isActive) {
                         if (isActive) {
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Activated successfully!", Snackbar.LENGTH_SHORT).show();
+                            //Snackbar.make(getActivity().findViewById(android.R.id.content), "Activated successfully!", Snackbar.LENGTH_SHORT).show();
                         } else {
                             Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not active this post unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                         }

@@ -50,7 +50,7 @@ public class UserDetailFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                ((TextView) view.findViewById(R.id.item_viewed)).setText(mModel.getCommentAmount() + "");
+                ((TextView) view.findViewById(R.id.item_comment)).setText(mModel.getCommentAmount() + "");
                 ((TextView) view.findViewById(R.id.item_liked)).setText(mModel.getLikedAmount() + "");
 
                 ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
@@ -108,14 +108,16 @@ public class UserDetailFragment extends Fragment {
             }
         });
 
-        ((LinearLayout) view.findViewById(R.id.viewed_button)).setOnClickListener(new View.OnClickListener() {
+        ((LinearLayout) view.findViewById(R.id.comment_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("DATA", new Gson().toJson(mModel));
-                UserPhotoFragment mFragment = new UserPhotoFragment();
-                mFragment.setArguments(bundle);
-                Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+                if (mModel != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATA", new Gson().toJson(mModel));
+                    UserPhotoFragment mFragment = new UserPhotoFragment();
+                    mFragment.setArguments(bundle);
+                    Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+                }
             }
         });
         ((LinearLayout) view.findViewById(R.id.liked_button)).setOnClickListener(new View.OnClickListener() {

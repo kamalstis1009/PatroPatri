@@ -14,17 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
-import com.patropatri.app.models.Comment;
+import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.CommentDto;
-import com.patropatri.app.models.Family;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
-import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.utils.VerticalSpaceItemDecoration;
 import com.patropatri.app.viewmodels.MessageViewModel;
-import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.adapters.CommentAdapter;
 
 import java.util.ArrayList;
@@ -43,13 +41,20 @@ public class CommentFragment extends Fragment {
         //-----------------------------------------------| Receive and observe the data from view model
         MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
-        mViewModel.getAllCommentsByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<CommentDto>>() {
-            @Override
-            public void onChanged(ArrayList<CommentDto> arrayList) {
-                if (arrayList != null)
-                    initRecyclerView(mRecyclerView, arrayList);
+        //------------------------------------------------| Get Bundle Data
+        if (getArguments() != null && getArguments().getString("DATA", null) != null) {
+            Candidate mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
+
+            if (mModel != null) {
+                mViewModel.getAllCommentsByUserId(mModel.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<CommentDto>>() {
+                    @Override
+                    public void onChanged(ArrayList<CommentDto> arrayList) {
+                        if (arrayList != null)
+                            initRecyclerView(mRecyclerView, arrayList);
+                    }
+                });
             }
-        });
+        }
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override

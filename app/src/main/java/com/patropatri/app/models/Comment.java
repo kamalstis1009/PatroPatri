@@ -3,7 +3,7 @@ package com.patropatri.app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -12,36 +12,24 @@ public class Comment {
 
     //String.valueOf(new Timestamp(System.currentTimeMillis()));
 
-    @SerializedName("CommentId")
+    @SerializedName("id")
     @Expose
-    private String commentId;
+    private Long id;
 
-    @SerializedName("ProductId")
+    @SerializedName("message")
     @Expose
-    private String productId;
+    private String message;
 
-    @SerializedName("Comments")
+    @SerializedName("userId")
     @Expose
-    private String comments;
+    private Long userId;
 
-    @SerializedName("AuthId")
+    @SerializedName("createdAt")
     @Expose
-    private String authId;
+    private Date createdAt;
 
-    @SerializedName("FullName")
+    @SerializedName("createdBy")
     @Expose
-    private String fullName;
-
-    @SerializedName("ImageName")
-    @Expose
-    private String imageName;
-
-    @SerializedName("ImagePath")
-    @Expose
-    private String imagePath;
-
-    @SerializedName("CreatedAt")
-    @Expose
-    private String createdAt = String.valueOf(new Timestamp(System.currentTimeMillis()));
+    private Long createdBy;
 
 }

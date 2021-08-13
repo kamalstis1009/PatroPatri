@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.patropatri.app.R;
 import com.patropatri.app.models.CommentDto;
 import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.utils.Utility;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -46,7 +47,11 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
         }
         holder.fullName.setText("" + model.getFullName());
         holder.comment.setText("" + model.getMessage());
-        //holder.commentDate.setText("" + model.getCreatedAt());
+        try {
+            holder.commentDate.setText(Utility.getInstance().getFormatFromStringDate("dd MMM yyyy", model.getCreatedAt()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         holder.commentReply.setOnClickListener(new View.OnClickListener() {
             @Override

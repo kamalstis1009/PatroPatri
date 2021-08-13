@@ -1,5 +1,6 @@
 package com.patropatri.app.views.fragments;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
+import com.patropatri.app.models.Liked;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.MessageViewModel;
 import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 import com.squareup.picasso.Picasso;
 
@@ -37,6 +44,12 @@ public class UserDetailFragment extends Fragment {
         if (getActivity() != null) {
             //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
         }
+
+        //-----------------------------------------------| Session
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+
+        //-----------------------------------------------| Receive and observe the data from view model
+        MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
@@ -61,6 +74,17 @@ public class UserDetailFragment extends Fragment {
                 UserAboutFragment mFragment = new UserAboutFragment();
                 mFragment.setArguments(bundle);
                 onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+
+                if (getActivity() != null && mUser != null) {
+                    mViewModel.getLikedByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Liked>() {
+                        @Override
+                        public void onChanged(Liked model) {
+                            if (model != null) {
+                                ((ImageButton) view.findViewById(R.id.item_like_button)).setColorFilter(getActivity().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+                            }
+                        }
+                    });
+                }
             }
         }
 
@@ -68,6 +92,25 @@ public class UserDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new UserDetailFragment());
+            }
+        });
+
+        ((ImageButton) view.findViewById(R.id.item_like_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() != null && mModel != null && mUser != null) {
+                    Liked model = new Liked();
+                    model.setUserId(mModel.getId());
+                    model.setCreatedBy(mUser.getAuth().getId());
+                    mViewModel.addLiked(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Liked>() {
+                        @Override
+                        public void onChanged(Liked model) {
+                            if (model != null) {
+                                ((ImageButton) view.findViewById(R.id.item_like_button)).setColorFilter(getActivity().getResources().getColor(R.color.colorDeepGrey), PorterDuff.Mode.SRC_ATOP);
+                            }
+                        }
+                    });
+                }
             }
         });
 

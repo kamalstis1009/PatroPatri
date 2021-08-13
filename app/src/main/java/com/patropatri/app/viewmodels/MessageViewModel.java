@@ -132,12 +132,12 @@ public class MessageViewModel extends AndroidViewModel {
         return data;
     }
 
-    public LiveData<Message> addInbox(MessageDto item, String token) {
-        MutableLiveData<Message> data = new MutableLiveData<>();
-        Call<Message> call = RetrofitClient.getInstance().getApi().addInbox(item, token);
-        call.enqueue(new Callback<Message>() {
+    public LiveData<MessageDto> addInbox(MessageDto item, String token) {
+        MutableLiveData<MessageDto> data = new MutableLiveData<>();
+        Call<MessageDto> call = RetrofitClient.getInstance().getApi().addInbox(item, token);
+        call.enqueue(new Callback<MessageDto>() {
             @Override
-            public void onResponse(@NonNull Call<Message> call, @NonNull Response<Message> response) {
+            public void onResponse(@NonNull Call<MessageDto> call, @NonNull Response<MessageDto> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         data.setValue(response.body());
@@ -149,7 +149,7 @@ public class MessageViewModel extends AndroidViewModel {
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<Message> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<MessageDto> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

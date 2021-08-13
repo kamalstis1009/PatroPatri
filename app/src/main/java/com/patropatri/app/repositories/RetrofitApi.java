@@ -124,7 +124,7 @@ public interface RetrofitApi {
 
     @Headers("Content-Type: application/json")
     @POST("message/inbox")
-    Call<Message> addInbox(@Body MessageDto item, @Header("Authorization") String token);
+    Call<MessageDto> addInbox(@Body MessageDto item, @Header("Authorization") String token);
 
     @DELETE("message/inbox/{id}")
     Call<Integer> deleteInboxById(@Path("id") long id, @Header("Authorization") String token);

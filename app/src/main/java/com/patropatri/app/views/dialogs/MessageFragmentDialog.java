@@ -115,9 +115,9 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                                 model.setImageFiles(arrayList.toArray(new String[arrayList.size()]));
                                                 model.setSenderId(mUser.getAuth().getId());
                                                 model.setReceiverId(mModel.getId());
-                                                mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Message>() {
+                                                mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<MessageDto>() {
                                                     @Override
-                                                    public void onChanged(Message item) {
+                                                    public void onChanged(MessageDto item) {
                                                         if (item != null) {
                                                             dismiss();
                                                         }  else {
@@ -135,9 +135,9 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                     model.setMessage(message);
                                     model.setSenderId(mUser.getAuth().getId());
                                     model.setReceiverId(mModel.getId());
-                                    mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Message>() {
+                                    mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<MessageDto>() {
                                         @Override
-                                        public void onChanged(Message item) {
+                                        public void onChanged(MessageDto item) {
                                             if (item != null) {
                                                 dismiss();
                                             }  else {

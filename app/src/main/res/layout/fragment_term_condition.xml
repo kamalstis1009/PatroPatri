@@ -26,20 +26,12 @@
                     app:tint="@color/colorPrimary"
                     android:src="@drawable/ic_logo"
                     android:layout_width="250dp"
-                    android:layout_height="250dp"/>
+                    android:layout_height="150dp"/>
                 <TextView
-                    android:text="@string/about_details"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
+                    android:text="We expect that you would complete the online registration process with fairness and honesty while furnishing your personal information\s to BM. You would appreciate that efficient and effective match making through our automated system depend upon yourself furnishing true, accurate, current, complete information and photos etc. We expect you to read the relevant column before keying in the details or selecting the option available or uploading the photo. You are requested not to key in details of the profile in field other than the applicable field (including mentioning id\s of other platforms/Websites) or repeating your details in another fields, after filling them once in the relevant fields or other person\s photographs. You further undertake that you or the registrant alone shall be responsible for any information provided to BM. In order to serve you better if BM requires additional details you agree to provide it. BM shall reproduce the registered member details on 'as is as available' basis to other registered members, and BM members shall be solely liable for the information given by such BM member. You may also give a missed call to any of our retail outlet's phone number for us to call you back and assist you in getting your profile registered on our website App. Further you may fill in your email id and phone number in any of our registration campaigns appearing in various websites App as part of our advertisements, basis which you may receive call from our Customer Service Center and assist you in getting your profile registered on our website/WAP/App. BM may also reproduce your profile information in other consortium of websites owned by MCL to provide better prospects to you."
+                    android:textAlignment="inherit"
+                    android:textSize="12sp"
                     android:layout_marginBottom="25dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/credit_by"
-                    android:text="@string/credit_by"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

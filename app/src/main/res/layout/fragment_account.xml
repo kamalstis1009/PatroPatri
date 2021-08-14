@@ -181,6 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
+                    android:id="@+id/item_setting_button"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_marginBottom="15dp"
@@ -193,7 +194,6 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp" />
                     <TextView
-                        android:id="@+id/item_settings"
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="Settings"
@@ -201,6 +201,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/item_terms_button"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_marginBottom="15dp"
@@ -213,7 +214,6 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp" />
                     <TextView
-                        android:id="@+id/item_change_password"
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="Terms &amp; Conditions"
@@ -221,6 +221,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/item_about_button"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_marginBottom="15dp"
@@ -233,7 +234,6 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp" />
                     <TextView
-                        android:id="@+id/item_change_language"
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="About"
@@ -241,7 +241,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/sign_out_button"
+                    android:id="@+id/item_sign_out_button"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -253,7 +253,6 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp" />
                     <TextView
-                        android:id="@+id/item_sign_out"
                         android:textSize="20sp"
                         android:textAlignment="center"
                         android:text="Sign Out"

@@ -61,8 +61,11 @@ public class AccountFragment extends Fragment {
         ((ImageButton) view.findViewById(R.id.item_gallery)).setOnClickListener(new ActionEventHandler());
         ((ImageButton) view.findViewById(R.id.item_notification)).setOnClickListener(new ActionEventHandler());
         ((ImageButton) view.findViewById(R.id.item_message)).setOnClickListener(new ActionEventHandler());
-        ((TextView) view.findViewById(R.id.item_settings)).setOnClickListener(new ActionEventHandler());
-        ((LinearLayout) view.findViewById(R.id.sign_out_button)).setOnClickListener(new ActionEventHandler());
+
+        ((LinearLayout) view.findViewById(R.id.item_setting_button)).setOnClickListener(new ActionEventHandler());
+        ((LinearLayout) view.findViewById(R.id.item_terms_button)).setOnClickListener(new ActionEventHandler());
+        ((LinearLayout) view.findViewById(R.id.item_about_button)).setOnClickListener(new ActionEventHandler());
+        ((LinearLayout) view.findViewById(R.id.item_sign_out_button)).setOnClickListener(new ActionEventHandler());
 
         return view;
     }
@@ -104,10 +107,16 @@ public class AccountFragment extends Fragment {
             if (v.getId() == R.id.item_message) {
                 Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new InboxFragment());
             }
-            if (v.getId() == R.id.item_settings) {
+            if (v.getId() == R.id.item_setting_button) {
                 Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SettingFragment());
             }
-            if (v.getId() == R.id.sign_out_button) {
+            if (v.getId() == R.id.item_terms_button) {
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new TermConditionFragment());
+            }
+            if (v.getId() == R.id.item_about_button) {
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new AboutFragment());
+            }
+            if (v.getId() == R.id.item_sign_out_button) {
                 startActivity(new Intent(getActivity(), SignInActivity.class));
             }
         }

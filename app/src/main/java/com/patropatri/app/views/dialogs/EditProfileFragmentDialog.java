@@ -115,9 +115,12 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText mItemOtherActivity = (EditText) view.findViewById(R.id.item_other_activity);
         EditText mItemExpectation = (EditText) view.findViewById(R.id.item_expectation);
 
+        //-----------------------------------------------| Districts sort
         String[] districts = getResources().getStringArray(R.array.district_array);
         Arrays.sort(districts);
-        ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, districts);
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(districts));
+        list.add(0, "District");
+        ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
         mItemDistrict.setAdapter(mArrayAdapter);
 
         //-----------------------------------------------| Session

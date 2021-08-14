@@ -102,7 +102,7 @@
     </string-array>
 
     <string-array name="district_array">
-        <item>District</item>
+        <!--<item>District</item>-->
         <item>Barguna</item>
         <item>Barishal</item>
         <item>Bhola</item>

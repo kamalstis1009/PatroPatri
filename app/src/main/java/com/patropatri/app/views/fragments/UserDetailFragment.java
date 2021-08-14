@@ -166,7 +166,13 @@ public class UserDetailFragment extends Fragment {
         ((LinearLayout) view.findViewById(R.id.show_liked_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), new CommentFragment());
+                if (mModel != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATA", new Gson().toJson(mModel));
+                    LikedFragment mFragment = new LikedFragment();
+                    mFragment.setArguments(bundle);
+                    Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+                }
             }
         });
 

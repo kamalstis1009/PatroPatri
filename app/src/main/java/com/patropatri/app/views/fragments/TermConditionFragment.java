@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.patropatri.app.R;
@@ -17,11 +16,6 @@ public class TermConditionFragment extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_term_condition, container, false);
-
-        //-----------------------------------------------| Toolbar
-        if (getActivity() != null) {
-            ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Home");
-        }
 
         //-----------------------------------------------| findViewById
         //mProgressBar = view.findViewById(R.id.progress_bar);

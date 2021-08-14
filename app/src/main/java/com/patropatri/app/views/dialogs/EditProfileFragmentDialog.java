@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,6 +39,7 @@ import com.patropatri.app.views.adapters.EducationAdapter;
 import com.patropatri.app.views.adapters.FamilyAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
@@ -112,6 +114,11 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText mItemInterest = (EditText) view.findViewById(R.id.item_interest);
         EditText mItemOtherActivity = (EditText) view.findViewById(R.id.item_other_activity);
         EditText mItemExpectation = (EditText) view.findViewById(R.id.item_expectation);
+
+        String[] districts = getResources().getStringArray(R.array.district_array);
+        Arrays.sort(districts);
+        ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, districts);
+        mItemDistrict.setAdapter(mArrayAdapter);
 
         //-----------------------------------------------| Session
         mUser = SharedPefManager.getInstance(getActivity()).getUser();

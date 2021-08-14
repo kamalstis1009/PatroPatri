@@ -10,6 +10,30 @@
     <string name="error_msg_network">Network connection is not available.</string>
     <string name="error_msg_location">Location service is not enabled.</string>
 
+    <!-- About -->
+    <string name="about_details1">
+        <b>Developed By</b>
+        \nAdroit Corporation
+        \nApp Version: 1.0.0
+        \nwww.adroitsoft.net
+        \ninfo@adroitsoft.net
+    </string>
+
+    <!-- About -->
+    <string name="about_details">
+        <b>Developed By</b>
+        \nZaaibo Ltd
+        \nApp Version: 1.0.10
+        \nwww.zaaiboltd.com.bd
+        \nzaaiboltd@gamil.com
+    </string>
+    <string name="credit_by">
+        <b>Credit</b>
+        \nGraph-AI
+        \nhttps://graph-ai.com/
+        \ngraphai777@gmail.com
+    </string>
+
     <string-array name="gender_array">
         <item>Gender</item>
         <item>Male</item>

@@ -39,7 +39,8 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<Candidate> mArrayList = new ArrayList<>();
     private UserAdapter mAdapter;
-    private boolean isLoading = false;
+    private boolean isLoading = true;
+    private int mInitPageNo = 1;
     private int pastVisibleItems, visibleItemCount, totalItemCount;
 
     @Nullable
@@ -76,7 +77,7 @@ public class HomeFragment extends Fragment {
         //-----------------------------------------------| Candidates
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         if (mUser != null && mUser.getAuth() != null) {
-            mViewModel.getAllCandidatesByPaginated(1, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+            mViewModel.getAllCandidatesByPaginated(mInitPageNo, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                 @Override
                 public void onChanged(ArrayList<Candidate> arrayList) {
                     if (arrayList != null) {
@@ -107,10 +108,11 @@ public class HomeFragment extends Fragment {
                         if (isLoading) {
                             if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
                                 isLoading = false;
+                                mInitPageNo++;
                                 //Log.v("...", "Last Item Wow !");
                                 // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
-                                    mViewModel.getAllCandidatesByPaginated(1, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+                                    mViewModel.getAllCandidatesByPaginated(mInitPageNo, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                                         @Override
                                         public void onChanged(ArrayList<Candidate> arrayList) {
                                             if (arrayList != null) {

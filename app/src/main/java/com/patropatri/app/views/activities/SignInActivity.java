@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import com.patropatri.app.viewmodels.UserViewModel;
 
 public class SignInActivity extends AppCompatActivity {
 
+    private static final String TAG = "SignInActivity";
     private ProgressDialog mProgress;
     private MyNetworkReceiver mNetworkReceiver;
 
@@ -61,6 +63,7 @@ public class SignInActivity extends AppCompatActivity {
                         @Override
                         public void onChanged(UserWithToken item) {
                             if (item != null) {
+                                Log.d(TAG, item.getToken());
                                 SharedPefManager.getInstance(SignInActivity.this).saveUser(item);
                                 startActivity(new Intent(SignInActivity.this, HomeActivity.class));
                                 //Toast.makeText(SignInActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();

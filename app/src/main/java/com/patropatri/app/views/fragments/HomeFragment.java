@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
         //-----------------------------------------------| Candidates
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         if (mUser != null && mUser.getAuth() != null) {
-            mViewModel.getAllCandidatesByPaginated(1, 15, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+            mViewModel.getAllCandidatesByPaginated(1, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                 @Override
                 public void onChanged(ArrayList<Candidate> arrayList) {
                     if (arrayList != null) {
@@ -110,7 +110,7 @@ public class HomeFragment extends Fragment {
                                 //Log.v("...", "Last Item Wow !");
                                 // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
-                                    mViewModel.getAllCandidatesByPaginated(1, 10, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+                                    mViewModel.getAllCandidatesByPaginated(1, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                                         @Override
                                         public void onChanged(ArrayList<Candidate> arrayList) {
                                             if (arrayList != null) {

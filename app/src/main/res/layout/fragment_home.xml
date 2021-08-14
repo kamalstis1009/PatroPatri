@@ -8,64 +8,90 @@
     android:layout_height="match_parent"
     tools:context=".views.fragments.HomeFragment">
 
-    <RelativeLayout
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:layout_marginBottom="1dp"
-        android:background="@color/colorWhite"
+    <androidx.core.widget.NestedScrollView
+        android:scrollbars="none"
+        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            app:tint="@color/colorPrimary"
-            android:src="@drawable/ic_logo"
-            android:cropToPadding="true"
-            android:layout_width="150dp"
-            android:layout_height="60dp"/>
-        <EditText
-            android:visibility="gone"
-            android:id="@+id/search_item"
-            android:inputType="text"
-            android:singleLine="true"
-            android:hint="Search"
-            android:textSize="15sp"
-            app:drawableTint="@color/colorDeepGrey"
-            android:drawableEnd="@drawable/ic_baseline_search_24"
-            android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-            android:paddingStart="25dp"
-            android:paddingEnd="25dp"
-            android:layout_marginEnd="100dp"
-            android:layout_centerVertical="true"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:background="@color/colorBackgroundGrey"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <ImageButton
-            android:id="@+id/search_button"
-            android:layout_toLeftOf="@+id/filter_button"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-            android:tint="@color/colorDeepGrey"
-            android:src="@drawable/ic_baseline_search_24"
-            android:layout_marginEnd="5dp"
-            android:layout_centerVertical="true"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-        <ImageButton
-            android:id="@+id/filter_button"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-            android:tint="@color/colorDeepGrey"
-            android:src="@drawable/ic_baseline_filter_alt_24"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-    </RelativeLayout>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        app:tint="@color/colorPrimary"
+                        android:src="@drawable/ic_logo"
+                        android:cropToPadding="true"
+                        android:layout_width="150dp"
+                        android:layout_height="60dp"/>
+                    <EditText
+                        android:visibility="gone"
+                        android:id="@+id/search_item"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:hint="Search"
+                        android:textSize="15sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_search_24"
+                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_marginEnd="100dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <ImageButton
+                        android:id="@+id/search_button"
+                        android:layout_toLeftOf="@+id/filter_button"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                        android:tint="@color/colorDeepGrey"
+                        android:src="@drawable/ic_baseline_search_24"
+                        android:layout_marginEnd="5dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
+                    <ImageButton
+                        android:id="@+id/filter_button"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                        android:tint="@color/colorDeepGrey"
+                        android:src="@drawable/ic_baseline_filter_alt_24"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp" />
+                </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/items_recycler_view"
-        tools:listitem="@layout/item_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/items_recycler_view"
+                    tools:listitem="@layout/item_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                style="?android:attr/progressBarStyleLarge"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

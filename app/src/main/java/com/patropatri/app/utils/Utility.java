@@ -27,6 +27,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -116,6 +117,20 @@ public class Utility {
     }
     //private ProgressDialog mProgress = Utility.getInstance().showProgressDialog(this, getResources().getString( R.string.progress), true);
     //Utility.getInstance().dismissProgressDialog(mProgress);
+
+    public void onVisibleProgressBar(ProgressBar mProgressBar) {
+        if (mProgressBar.getVisibility() == View.INVISIBLE) {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+    }
+    public void onInvisibleProgressBar(ProgressBar mProgressBar) {
+        if (mProgressBar.getVisibility() == View.VISIBLE) {
+            mProgressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+    //private ProgressBar mProgressBar = view.findViewById(R.id.progress_bar);
+    //Utility.getInstance().onVisibleProgressBar(mProgressBar);
+    //Utility.getInstance().onInvisibleProgressBar(mProgressBar);
 
     //====================================================| Round a double to 2 decimal
     public double roundTwoDecimal(double value, int places) {

@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
+    private ProgressBar mProgressBar;
     private ArrayList<Candidate> mArrayList = new ArrayList<>();
     private UserAdapter mAdapter;
     private boolean isLoading = true;
@@ -54,6 +56,7 @@ public class HomeFragment extends Fragment {
         }
 
         //-----------------------------------------------| findViewById
+        mProgressBar = view.findViewById(R.id.progress_bar);
         EditText editText = (EditText) view.findViewById(R.id.search_item);
         ImageButton searchButton = (ImageButton) view.findViewById(R.id.search_button);
         ImageButton filterButton = (ImageButton) view.findViewById(R.id.filter_button);
@@ -77,6 +80,7 @@ public class HomeFragment extends Fragment {
         //-----------------------------------------------| Candidates
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         if (mUser != null && mUser.getAuth() != null) {
+            Utility.getInstance().onVisibleProgressBar(mProgressBar);
             mViewModel.getAllCandidatesByPaginated(mInitPageNo, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                 @Override
                 public void onChanged(ArrayList<Candidate> arrayList) {
@@ -84,6 +88,7 @@ public class HomeFragment extends Fragment {
                         mArrayList.addAll(arrayList);
                     }
                     initRecyclerView(mRecyclerView, mArrayList);
+                    Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                 }
             });
         }
@@ -112,6 +117,7 @@ public class HomeFragment extends Fragment {
                                 //Log.v("...", "Last Item Wow !");
                                 // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
+                                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
                                     mViewModel.getAllCandidatesByPaginated(mInitPageNo, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                                         @Override
                                         public void onChanged(ArrayList<Candidate> arrayList) {
@@ -119,6 +125,7 @@ public class HomeFragment extends Fragment {
                                                 mArrayList.addAll(arrayList);
                                                 mAdapter.notifyDataSetChanged();
                                             }
+                                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                                         }
                                     });
                                 }

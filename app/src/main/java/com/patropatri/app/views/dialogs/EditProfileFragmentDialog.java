@@ -296,15 +296,15 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 district = mItemDistrict.getSelectedItem().toString().trim();
                         //name,birth,status,
                         model.setFullName(fullName);
-                        model.setGender(gender);
+                        model.setGender(gender.contains("Gender") ? null : gender);
                         model.setBirthDate(birth);
                         model.setBirthPlace(place);
                         model.setHeight(height);
                         model.setWeight(weight);
-                        model.setMaritalStatus(status);
-                        model.setReligion(religion);
-                        model.setComplex(complex);
-                        model.setDistrict(district);
+                        model.setMaritalStatus(status.contains("Marital Status") ? null : status);
+                        model.setReligion(religion.contains("Religion") ? null : religion);
+                        model.setComplex(complex.contains("Complex") ? null : complex);
+                        model.setDistrict(district.contains("District") ? null : district);
                         storeUser(model);
                     }
                     if (mPosition == 3) {
@@ -313,7 +313,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 company = mItemCompany.getText().toString().trim(),
                                 address = mItemCompanyAddress.getText().toString().trim(),
                                 website = mItemCompanyWebsite.getText().toString().trim();
-                        model.setProfession(service);
+                        model.setProfession(service.contains("Profession") ? null : service);
                         model.setDesignation(designation);
                         model.setCompany(company);
                         model.setCompanyAddress(address);

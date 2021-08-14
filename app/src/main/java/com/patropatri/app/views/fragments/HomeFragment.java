@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
     private ProgressBar mProgressBar;
     private ArrayList<Candidate> mArrayList = new ArrayList<>();
     private UserAdapter mAdapter;
+
     private boolean isLoading = true;
     private int mInitPageNo = 1;
     private int pastVisibleItems, visibleItemCount, totalItemCount;

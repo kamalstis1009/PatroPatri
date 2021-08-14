@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,9 +28,21 @@ import java.util.ArrayList;
 
 public class InboxFragment extends Fragment {
 
+    private ProgressBar mProgressBar;
+    private InboxAdapter mAdapter;
+    private ArrayList<Inbox> mArrayList = new ArrayList<>();
+
+    private boolean isLoading = true;
+    private int mInitPageNo = 1;
+    private int pastVisibleItems, visibleItemCount, totalItemCount;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
+
+        //-----------------------------------------------| findViewById
+        mProgressBar = view.findViewById(R.id.progress_bar);
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
@@ -37,13 +50,60 @@ public class InboxFragment extends Fragment {
         //-----------------------------------------------| Receive and observe the data from view model
         MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-            mViewModel.getAllInboxesByUserId(1, 15, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
+            Utility.getInstance().onVisibleProgressBar(mProgressBar);
+            mViewModel.getAllInboxesByUserId(mInitPageNo, 5, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
                 @Override
                 public void onChanged(ArrayList<Inbox> arrayList) {
-                    if (arrayList != null)
-                        initRecyclerView(mRecyclerView, arrayList);
+                    if (arrayList != null) {
+                        mArrayList.addAll(arrayList);
+                    }
+                    initRecyclerView(mRecyclerView, mArrayList);
+                    Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                }
+            });
+        }
+
+        if (getActivity() != null) {
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    LinearLayoutManager mLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    if (dy > 0) {
+                        //check for scroll down
+                        visibleItemCount = mLayoutManager != null ? mLayoutManager.getChildCount() : 0;
+                        totalItemCount = mLayoutManager != null ? mLayoutManager.getItemCount() : 0;
+                        pastVisibleItems = mLayoutManager != null ? mLayoutManager.findFirstVisibleItemPosition() : 0;
+
+                        if (isLoading) {
+                            if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                                isLoading = false;
+                                mInitPageNo++;
+                                //Log.v("...", "Last Item Wow !");
+                                // Do pagination.. i.e. fetch new data
+                                if (mUser != null && mUser.getAuth() != null) {
+                                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                                    mViewModel.getAllInboxesByUserId(mInitPageNo, 5, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
+                                        @Override
+                                        public void onChanged(ArrayList<Inbox> arrayList) {
+                                            if (arrayList != null) {
+                                                mArrayList.addAll(arrayList);
+                                                mAdapter.notifyDataSetChanged();
+                                            }
+                                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                                        }
+                                    });
+                                }
+                                isLoading = true;
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -59,7 +119,7 @@ public class InboxFragment extends Fragment {
     }
 
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<Inbox> arrayList) {
-        InboxAdapter mAdapter = new InboxAdapter(getActivity(), arrayList);
+        mAdapter = new InboxAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -40,16 +40,20 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
 
+        //-----------------------------------------------| findViewById
+        mProgressBar = view.findViewById(R.id.progress_bar);
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
+
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| Receive and observe the data from view model
         MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_items);
+
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
             Utility.getInstance().onVisibleProgressBar(mProgressBar);
-            mViewModel.getAllNotificationsByUserId(mInitPageNo, 15, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Notification>>() {
+            mViewModel.getAllNotificationsByUserId(mInitPageNo, 5, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Notification>>() {
                 @Override
                 public void onChanged(ArrayList<Notification> arrayList) {
                     if (arrayList != null) {

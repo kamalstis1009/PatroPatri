@@ -71,7 +71,8 @@ public interface RetrofitApi {
     @GET("users/{no}")
     Call<ArrayList<Candidate>> getAllCandidatesByPaginated(@Path("no") int pageNo, @Query("row") int rowSize, @Header("Authorization") String token);
 
-    @GET("filters")
+    @Headers("Content-Type: application/json")
+    @POST("filters")
     Call<ArrayList<Candidate>> getAllCandidatesByFilter(@Body Filter model, @Header("Authorization") String token);
 
     //======================================================| User

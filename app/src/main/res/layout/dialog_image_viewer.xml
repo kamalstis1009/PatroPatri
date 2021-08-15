@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:scaleType="centerInside"
+        android:src="@drawable/background_image"
+        android:background="@color/colorBackgroundGrey"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageButton
+        android:id="@+id/previous_button"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+        android:tint="@color/colorWhite"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:layout_centerVertical="true"
+        android:layout_margin="15dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/next_button"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        app:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+        android:tint="@color/colorWhite"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="15dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

@@ -50,6 +50,15 @@
             </RelativeLayout>
 
             <Spinner
+                android:id="@+id/item_gender"
+                android:entries="@array/gender_array"
+                android:background="@drawable/layer_list_spinner"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <Spinner
+                android:id="@+id/item_marital_status"
                 android:entries="@array/marital_status_array"
                 android:background="@drawable/layer_list_spinner"
                 android:layout_marginBottom="10dp"
@@ -57,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <Spinner
+                android:id="@+id/item_religion"
                 android:entries="@array/religion_array"
                 android:background="@drawable/layer_list_spinner"
                 android:layout_marginBottom="10dp"
@@ -64,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <Spinner
-                android:id="@+id/item_division"
+                android:id="@+id/item_profession"
                 android:entries="@array/profession_array"
                 android:background="@drawable/layer_list_spinner"
                 android:layout_marginBottom="10dp"
@@ -83,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
                     <Spinner
+                        android:id="@+id/item_from_year"
                         android:entries="@array/from_year_array"
                         android:background="@drawable/layer_list_spinner"
                         android:padding="20dp"
@@ -95,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
                     <Spinner
+                        android:id="@+id/item_to_year"
                         android:entries="@array/to_year_array"
                         android:background="@drawable/layer_list_spinner"
                         android:padding="20dp"
@@ -110,23 +122,6 @@
                 android:padding="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <RadioGroup
-                android:id="@+id/gender_group"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/item_gender_male"
-                    android:checked="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male"/>
-                <RadioButton
-                    android:id="@+id/item_gender_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female"/>
-            </RadioGroup>
 
             <Button
                 android:id="@+id/submit_button"

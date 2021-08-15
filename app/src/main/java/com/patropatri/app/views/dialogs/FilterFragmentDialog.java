@@ -53,9 +53,8 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
         ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
         mItemDistrict.setAdapter(mArrayAdapter);
 
-        ArrayAdapter<String> mArrayAdapter2 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ConstantKey.getYears( Integer.parseInt(Utility.getInstance().getYear()) ));
-        mItemFromYear.setAdapter(mArrayAdapter2);
-        mItemToYear.setAdapter(mArrayAdapter2);
+        mItemFromYear.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ConstantKey.getYears("From Year", Integer.parseInt(Utility.getInstance().getYear()) )));
+        mItemToYear.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ConstantKey.getYears("To Year", Integer.parseInt(Utility.getInstance().getYear()) )));
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
@@ -79,8 +78,8 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
                 model.setMaritalStatus(status.contains("Marital Status") ? null : status);
                 model.setReligion(religion.contains("Religion") ? null : religion);
                 model.setProfession(profession.contains("Profession") ? null : profession);
-                model.setFromYear(fromYear.contains("From Age") ? null : Integer.parseInt(fromYear));
-                model.setToYear(toYear.contains("To Age") ? null : Integer.parseInt(toYear));
+                model.setFromYear(fromYear.contains("From Year") ? null : Integer.parseInt(fromYear));
+                model.setToYear(toYear.contains("To Year") ? null : Integer.parseInt(toYear));
                 model.setDistrict(district.contains("District") ? null : district);
             }
         });

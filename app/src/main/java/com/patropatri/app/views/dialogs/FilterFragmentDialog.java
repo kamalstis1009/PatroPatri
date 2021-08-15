@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,8 @@ import java.util.Objects;
 
 public class FilterFragmentDialog extends BottomSheetDialogFragment {
 
+    private ProgressBar mProgressBar;
+
     private MyListener mListener;
 
     public interface MyListener {
@@ -49,6 +52,7 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_filter_dialog, container, false);
 
         //-----------------------------------------------| findViewById
+        mProgressBar = view.findViewById(R.id.progress_bar);
         Spinner mItemGender = (Spinner) view.findViewById(R.id.item_gender);
         Spinner mItemMaritalStatus = (Spinner) view.findViewById(R.id.item_marital_status);
         Spinner mItemReligion = (Spinner) view.findViewById(R.id.item_religion);
@@ -95,12 +99,14 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
                 model.setDistrict(district.contains("District") ? null : district);
 
                 if (getActivity() != null && mUser != null) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
                     mViewModel.getAllCandidatesByFilter(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                         @Override
                         public void onChanged(ArrayList<Candidate> arrayList) {
                             if (arrayList != null && mListener != null) {
                                 mListener.onAddItems(arrayList);
                             }
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                             dismiss();
                         }
                     });

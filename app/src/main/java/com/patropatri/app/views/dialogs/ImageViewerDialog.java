@@ -1,6 +1,8 @@
 package com.patropatri.app.views.dialogs;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,9 +45,10 @@ public class ImageViewerDialog {
         builder.create();
         try {
             mDialog = builder.show();
-
+            
             //pop up the soft keyboard
             if(mDialog.getWindow() != null) {
+                mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 mDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
             }
         } catch (WindowManager.BadTokenException e) {

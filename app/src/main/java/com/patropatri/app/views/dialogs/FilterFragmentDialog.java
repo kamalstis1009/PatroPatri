@@ -12,12 +12,14 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Filter;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
@@ -30,6 +32,16 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class FilterFragmentDialog extends BottomSheetDialogFragment {
+
+    private MyListener mListener;
+
+    public interface MyListener {
+        void onAddItems(ArrayList<Candidate> arrayList);
+    }
+
+    public FilterFragmentDialog(MyListener listener) {
+        this.mListener = listener;
+    }
 
     @Nullable
     @Override
@@ -81,6 +93,17 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
                 model.setFromYear(fromYear.contains("From Year") ? null : Integer.parseInt(fromYear));
                 model.setToYear(toYear.contains("To Year") ? null : Integer.parseInt(toYear));
                 model.setDistrict(district.contains("District") ? null : district);
+
+                if (getActivity() != null && mUser != null) {
+                    mViewModel.getAllCandidatesByFilter(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+                        @Override
+                        public void onChanged(ArrayList<Candidate> arrayList) {
+                            if (arrayList != null && mListener != null) {
+                                mListener.onAddItems(arrayList);
+                            }
+                        }
+                    });
+                }
             }
         });
 

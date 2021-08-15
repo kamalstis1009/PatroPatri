@@ -36,7 +36,7 @@ import com.patropatri.app.views.dialogs.FilterFragmentDialog;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements FilterFragmentDialog.MyListener {
 
     private ProgressBar mProgressBar;
     private ArrayList<Candidate> mArrayList = new ArrayList<>();
@@ -144,11 +144,7 @@ public class HomeFragment extends Fragment {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        Bundle bundle = new Bundle();
-                        //bundle.putInt("Position", position);
-                        FilterFragmentDialog mFragment = new FilterFragmentDialog();
-                        mFragment.setArguments(bundle);
-                        Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
+                        onShowFilterDialog();
                     }
                 });
             }
@@ -236,4 +232,22 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    private void onShowFilterDialog() {
+        Bundle bundle = new Bundle();
+        //bundle.putInt("Position", position);
+        FilterFragmentDialog mFragment = new FilterFragmentDialog(this);
+        mFragment.setArguments(bundle);
+        Utility.getInstance().onShowFragmentDialog(requireActivity().getSupportFragmentManager(), mFragment);
+    }
+
+    @Override
+    public void onAddItems(ArrayList<Candidate> arrayList) {
+        if (mArrayList != null && mArrayList.size() > 0) {
+            mArrayList.clear();
+            mArrayList.addAll(arrayList);
+            if (mAdapter != null) {
+                mAdapter.notifyItemInserted(mArrayList.size());
+            }
+        }
+    }
 }

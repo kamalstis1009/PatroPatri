@@ -12,8 +12,8 @@ public class ConstantKey {
     public static ArrayList<String> getYears(String title, int current) {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(title);
-        for (int i=0; i<current - 1990; i++) {
-            arrayList.add( (i+1990) + "");
+        for (int i=0; i<current - 1950; i++) {
+            arrayList.add( (i+1950) + "");
         }
         return arrayList;
     }

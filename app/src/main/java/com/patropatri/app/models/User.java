@@ -129,6 +129,10 @@ public class User {
     @Expose
     private Boolean isActive;
 
+    @SerializedName("isApproved")
+    @Expose
+    private Boolean isApproved;
+
     //---------------------| Count
     @SerializedName("commentAmount")
     @Expose

@@ -21,6 +21,8 @@ import com.patropatri.app.R;
 import com.patropatri.app.models.Filter;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
 
 import java.util.ArrayList;
@@ -50,6 +52,10 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
         list.add(0, "District");
         ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
         mItemDistrict.setAdapter(mArrayAdapter);
+
+        ArrayAdapter<String> mArrayAdapter2 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, ConstantKey.getYears( Integer.parseInt(Utility.getInstance().getYear()) ));
+        mItemFromYear.setAdapter(mArrayAdapter2);
+        mItemToYear.setAdapter(mArrayAdapter2);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();

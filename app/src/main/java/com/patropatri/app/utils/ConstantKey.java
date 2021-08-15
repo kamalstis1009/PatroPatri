@@ -1,11 +1,21 @@
 package com.patropatri.app.utils;
 
+import java.util.ArrayList;
+
 public class ConstantKey {
 
     public static final String SERVER_URL = "http://114.31.10.20:5050/patropatri/api/v1/"; //Cloud
     //public static final String SERVER_URL = "http://192.168.0.174:5050/patropatri/api/v1/"; //Local Tomcat
     //public static final String SERVER_URL = "http://10.0.2.2:8080/api/v1/"; //Localhost IntelliJ IDEA
     public static final String RESOURCE_URL = SERVER_URL + "file/download/";
+
+    public static ArrayList<String> getYears(int current) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (int i=0; i<current - 1990; i++) {
+            arrayList.add( (i+1990) + "");
+        }
+        return arrayList;
+    }
 
 
     /*

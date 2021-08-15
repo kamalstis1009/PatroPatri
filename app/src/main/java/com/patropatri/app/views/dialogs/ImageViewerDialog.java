@@ -45,7 +45,7 @@ public class ImageViewerDialog {
         builder.create();
         try {
             mDialog = builder.show();
-            
+
             //pop up the soft keyboard
             if(mDialog.getWindow() != null) {
                 mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

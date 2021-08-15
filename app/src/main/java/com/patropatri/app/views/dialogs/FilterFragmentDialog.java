@@ -101,6 +101,7 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
                             if (arrayList != null && mListener != null) {
                                 mListener.onAddItems(arrayList);
                             }
+                            dismiss();
                         }
                     });
                 }

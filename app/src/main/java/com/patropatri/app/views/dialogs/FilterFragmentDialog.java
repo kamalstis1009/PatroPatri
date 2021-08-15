@@ -64,7 +64,7 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
                         status = mItemMaritalStatus.getSelectedItem().toString().trim(),
                         religion = mItemReligion.getSelectedItem().toString().trim(),
                         profession = mItemProfession.getSelectedItem().toString().trim(),
-                        fromYear = mItemToYear.getSelectedItem().toString().trim(),
+                        fromYear = mItemFromYear.getSelectedItem().toString().trim(),
                         toYear = mItemToYear.getSelectedItem().toString().trim(),
                         district = mItemDistrict.getSelectedItem().toString().trim();
 

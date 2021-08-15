@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.views.dialogs.ImageViewerDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -46,6 +47,13 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.MyViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<String> strings = new ArrayList<>();
+                for (int i=0; i<mArrayList.size(); i++) {
+                    strings.add(mArrayList.get(i).getImageName());
+                }
+                if (strings.size() > 0) {
+                    ImageViewerDialog.getInstance(mActivity).getAlertDialog(strings, position);
+                }
                 /*Bundle bundle = new Bundle();
                 bundle.putString("category", title);
                 FragmentCategoryWiseProduct mFragment = new FragmentCategoryWiseProduct();

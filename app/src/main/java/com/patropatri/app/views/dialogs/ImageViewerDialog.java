@@ -23,7 +23,6 @@ public class ImageViewerDialog {
     private int mPosition;
 
     public ImageViewerDialog(Context context) {
-        this.mPosition = 0;
         this.mContext = context;
     }
 
@@ -35,7 +34,7 @@ public class ImageViewerDialog {
         return new ImageViewerDialog(context);
     }
 
-    public void getAlertDialog(ArrayList<String> items) {
+    public void getAlertDialog(ArrayList<String> items, int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         //AlertDialog.Builder builder = new AlertDialog.Builder(mContext, android.R.style.Theme_Material_Light_NoActionBar_Fullscreen);
         View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_image_viewer, null, false);
@@ -54,7 +53,12 @@ public class ImageViewerDialog {
         }
         //if(!((Activity) mContext).isFinishing()) {}
 
+        this.mPosition = position;
+
         ImageView imageView = (ImageView) view.findViewById(R.id.item_image);
+        if (items.get(mPosition) != null) {
+            Picasso.get().load(ConstantKey.RESOURCE_URL + items.get(mPosition)).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(imageView);
+        }
 
         ((ImageButton) view.findViewById(R.id.previous_button)).setOnClickListener(new View.OnClickListener() {
             @Override

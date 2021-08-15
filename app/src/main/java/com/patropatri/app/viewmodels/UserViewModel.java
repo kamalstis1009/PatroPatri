@@ -13,6 +13,7 @@ import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
+import com.patropatri.app.models.Filter;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
@@ -88,6 +89,31 @@ public class UserViewModel extends AndroidViewModel {
     public LiveData<ArrayList<Candidate>> getAllCandidatesByPaginated(int pageNo, int rowSize, String token) {
         MutableLiveData<ArrayList<Candidate>> data = new MutableLiveData<>();
         Call<ArrayList<Candidate>> call = RetrofitClient.getInstance().getApi().getAllCandidatesByPaginated(pageNo, rowSize, token);
+        call.enqueue(new Callback<ArrayList<Candidate>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Candidate>> call, @NonNull Response<ArrayList<Candidate>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Candidate>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ArrayList<Candidate>> getAllCandidatesByFilter(Filter model, String token) {
+        MutableLiveData<ArrayList<Candidate>> data = new MutableLiveData<>();
+        Call<ArrayList<Candidate>> call = RetrofitClient.getInstance().getApi().getAllCandidatesByFilter(model, token);
         call.enqueue(new Callback<ArrayList<Candidate>>() {
             @Override
             public void onResponse(@NonNull Call<ArrayList<Candidate>> call, @NonNull Response<ArrayList<Candidate>> response) {

@@ -7,6 +7,7 @@ import com.patropatri.app.models.Comment;
 import com.patropatri.app.models.CommentDto;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
+import com.patropatri.app.models.Filter;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Liked;
@@ -69,6 +70,9 @@ public interface RetrofitApi {
 
     @GET("users/{no}")
     Call<ArrayList<Candidate>> getAllCandidatesByPaginated(@Path("no") int pageNo, @Query("row") int rowSize, @Header("Authorization") String token);
+
+    @GET("filters")
+    Call<ArrayList<Candidate>> getAllCandidatesByFilter(@Body Filter model, @Header("Authorization") String token);
 
     //======================================================| User
     @GET("user/{id}")

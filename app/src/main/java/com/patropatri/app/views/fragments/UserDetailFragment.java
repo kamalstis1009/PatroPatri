@@ -61,7 +61,7 @@ public class UserDetailFragment extends Fragment {
                     Picasso.get().load(ConstantKey.RESOURCE_URL + mModel.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((CircleImageView) view.findViewById(R.id.item_image)) );
                 }
                 if (mUser.getUser() != null && mUser.getUser().getImageCoverName() != null) {
-                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageCoverName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((ImageView) view.findViewById(R.id.item_bg_image)) );
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageCoverName() ).placeholder(R.drawable.background_image).error(R.drawable.background_image).into( ((ImageView) view.findViewById(R.id.item_bg_image)) );
                 }
 
                 try {

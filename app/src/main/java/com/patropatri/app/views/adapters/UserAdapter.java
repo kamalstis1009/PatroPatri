@@ -119,7 +119,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
         }
         if (model.getImageCoverName() != null) {
-            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageCoverName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageCoverView );
+            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageCoverName() ).placeholder(R.drawable.background_image).error(R.drawable.background_image).into( holder.imageCoverView );
         }
 
         //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);

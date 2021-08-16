@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -117,6 +118,9 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         if (model.getImageName() != null) {
             Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
         }
+        if (model.getImageCoverName() != null) {
+            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageCoverName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageCoverView );
+        }
 
         //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
         //holder.title.setText(iconsNames[position]);
@@ -159,12 +163,14 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     class MyViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout layout;
         CircleImageView imageView;
+        ImageView imageCoverView;
         TextView itemName, itemTitle, itemDescription, itemDate, itemViewed, itemLiked;
         Button button;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = (RelativeLayout) itemView.findViewById(R.id.item_layout);
             imageView = (CircleImageView) itemView.findViewById(R.id.item_image);
+            imageCoverView = (ImageView) itemView.findViewById(R.id.item_bg_image);
             itemName = (TextView) itemView.findViewById(R.id.item_name);
             itemTitle = (TextView) itemView.findViewById(R.id.item_short_title);
             itemDescription = (TextView) itemView.findViewById(R.id.item_description);

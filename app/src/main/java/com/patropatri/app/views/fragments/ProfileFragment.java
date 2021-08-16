@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -76,7 +77,9 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
     private String mImageFileName;
     private String mCurrentPhotoPath;
     private File mFile;
+    private boolean isProfile;
 
+    private ImageView mImageCoverView;
     private CircleImageView mImageView;
     private RecyclerView mEducationRecyclerView, mFamilyRecyclerView;
     private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
@@ -87,6 +90,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         mImageView = (CircleImageView) view.findViewById(R.id.item_image);
+        mImageCoverView = (ImageView) view.findViewById(R.id.item_bg_image);
 
         mItemName = (TextView) view.findViewById(R.id.item_name);
         mItemGender = (TextView) view.findViewById(R.id.item_gender);
@@ -118,9 +122,9 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mEducationRecyclerView = (RecyclerView) view.findViewById(R.id.items_education_recycler_view);
         mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
 
-        ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
-
         (mImageView).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_add_cover_photo)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_summary_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_personal_info_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_profession_button)).setOnClickListener(new ActionHandler());
@@ -137,6 +141,9 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
             onAddItem(mUser.getUser());
             if (mUser.getUser() != null && mUser.getUser().getImageName() != null) {
                 Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(mImageView);
+            }
+            if (mUser.getUser() != null && mUser.getUser().getImageCoverName() != null) {
+                Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageCoverName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(mImageCoverView);
             }
         }
 
@@ -276,12 +283,20 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                 Utility.getInstance().onBackFragment(requireActivity().getSupportFragmentManager(), new ProfileFragment());
             }
             if (v.getId() == R.id.item_image) {
+                isProfile = true;
                 mImageFileName = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.getDefault()).format(new Date()) + ".jpg";
                 if (mUser != null && mUser.getUser() != null && mUser.getUser().getImageName() != null) {
                     mImageFileName = mUser.getUser().getImageName();
                 }
                 showDialog();
-
+            }
+            if (v.getId() == R.id.item_add_cover_photo) {
+                isProfile = false;
+                mImageFileName = "IMG_" + new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.getDefault()).format(new Date()) + ".jpg";
+                if (mUser != null && mUser.getUser() != null && mUser.getUser().getImageCoverName() != null) {
+                    mImageFileName = mUser.getUser().getImageCoverName();
+                }
+                showDialog();
             }
             if (v.getId() == R.id.item_summary_button) {
                 onShowDialog(1);
@@ -380,19 +395,27 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ACTION_PICK_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
             Uri uri = data.getData();
-            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 250, 250);
-            mImageView.setImageBitmap(bitmap);
+            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, (isProfile ? 250 : 700), (isProfile ? 250 : 438));
+            if (isProfile) {
+                mImageView.setImageBitmap(bitmap);
+            } else {
+                mImageCoverView.setImageBitmap(bitmap);
+            }
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);
-            storeImage();
+            storeImage(isProfile);
         }
         if (requestCode == REQUEST_IMAGE_CAPTURE && mCurrentPhotoPath != null) {
             Uri uri = Uri.fromFile(new File(mCurrentPhotoPath));
-            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 250, 250);
-            mImageView.setImageBitmap(bitmap);
+            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, (isProfile ? 250 : 700), (isProfile ? 250 : 438));
+            if (isProfile) {
+                mImageView.setImageBitmap(bitmap);
+            } else {
+                mImageCoverView.setImageBitmap(bitmap);
+            }
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);
-            storeImage();
+            storeImage(isProfile);
         }
     }
 
@@ -458,18 +481,22 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         return part;
     }
 
-    private void storeImage() {
+    private void storeImage(boolean isProfile) {
         if (mUser != null && getActivity() != null) {
             if (mFile == null) {
                 Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty image is not allowed!", Snackbar.LENGTH_SHORT).show();
             } else {
                 mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
-                mFileViewModel.uploadFileForProfileAndCover(uploadFile(mFile, mImageFileName), mImageFileName, true, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<String>() {
+                mFileViewModel.uploadFileForProfileAndCover(uploadFile(mFile, mImageFileName), mImageFileName, isProfile, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<String>() {
                     @Override
                     public void onChanged(String result) {
                         if (result != null) {
                             if (mUser.getUser() != null) {
-                                mUser.getUser().setImageName(result);
+                                if (isProfile) {
+                                    mUser.getUser().setImageName(result);
+                                } else {
+                                    mUser.getUser().setImageCoverName(result);
+                                }
                                 SharedPefManager.getInstance(getActivity()).saveUser(mUser);
                             }
                         } else {

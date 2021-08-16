@@ -43,15 +43,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <ImageButton
-                        android:id="@+id/item_share"
+                        android:id="@+id/item_add_cover_photo"
                         android:layout_alignParentEnd="true"
                         android:scaleType="fitCenter"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/ic_baseline_more_vert_24"
-                        app:backgroundTint="@android:color/transparent"
+                        app:tint="@color/colorPrimary"
+                        android:src="@drawable/ic_baseline_image_24"
                         android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="45dp"
+                        android:layout_height="45dp" />
                 </RelativeLayout>
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/item_image"

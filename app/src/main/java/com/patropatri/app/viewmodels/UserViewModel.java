@@ -111,9 +111,9 @@ public class UserViewModel extends AndroidViewModel {
         return data;
     }
 
-    public LiveData<ArrayList<Candidate>> getAllCandidatesByFilter(Filter model, String token) {
+    public LiveData<ArrayList<Candidate>> getAllCandidatesByFilter(Filter model, int pageNo, int rowSize, String token) {
         MutableLiveData<ArrayList<Candidate>> data = new MutableLiveData<>();
-        Call<ArrayList<Candidate>> call = RetrofitClient.getInstance().getApi().getAllCandidatesByFilter(model, token);
+        Call<ArrayList<Candidate>> call = RetrofitClient.getInstance().getApi().getAllCandidatesByFilter(model, pageNo, rowSize, token);
         call.enqueue(new Callback<ArrayList<Candidate>>() {
             @Override
             public void onResponse(@NonNull Call<ArrayList<Candidate>> call, @NonNull Response<ArrayList<Candidate>> response) {

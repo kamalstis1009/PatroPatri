@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment implements FilterFragmentDialog.MyLis
     private ProgressBar mProgressBar;
     private ArrayList<Candidate> mArrayList = new ArrayList<>();
     private UserAdapter mAdapter;
+    private RecyclerView mRecyclerView;
 
     private boolean isLoading = true;
     private int mInitPageNo = 1;
@@ -79,7 +80,7 @@ public class HomeFragment extends Fragment implements FilterFragmentDialog.MyLis
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //-----------------------------------------------| Candidates
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         if (mUser != null && mUser.getAuth() != null) {
             Utility.getInstance().onVisibleProgressBar(mProgressBar);
             mViewModel.getAllCandidatesByPaginated(mInitPageNo, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
@@ -245,8 +246,9 @@ public class HomeFragment extends Fragment implements FilterFragmentDialog.MyLis
         if (mArrayList != null && mArrayList.size() > 0) {
             mArrayList.clear();
             mArrayList.addAll(arrayList);
+            initRecyclerView(mRecyclerView, arrayList);
             if (mAdapter != null) {
-                mAdapter.notifyItemInserted(mArrayList.size());
+                //mAdapter.notifyItemInserted(mArrayList.size());
             }
         }
     }

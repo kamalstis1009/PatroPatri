@@ -100,7 +100,7 @@ public class FilterFragmentDialog extends BottomSheetDialogFragment {
 
                 if (getActivity() != null && mUser != null) {
                     Utility.getInstance().onVisibleProgressBar(mProgressBar);
-                    mViewModel.getAllCandidatesByFilter(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
+                    mViewModel.getAllCandidatesByFilter(model, 1, 5, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Candidate>>() {
                         @Override
                         public void onChanged(ArrayList<Candidate> arrayList) {
                             if (arrayList != null && mListener != null) {

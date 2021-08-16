@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,7 +57,12 @@ public class UserDetailFragment extends Fragment {
             mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
 
             if (mModel != null) {
-                Picasso.get().load(ConstantKey.RESOURCE_URL + mModel.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((CircleImageView) view.findViewById(R.id.item_image)) );
+                if (mUser.getUser() != null && mUser.getUser().getImageCoverName() != null) {
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mModel.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((CircleImageView) view.findViewById(R.id.item_image)) );
+                }
+                if (mUser.getUser() != null && mUser.getUser().getImageCoverName() != null) {
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageCoverName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( ((ImageView) view.findViewById(R.id.item_bg_image)) );
+                }
 
                 try {
                     ((TextView) view.findViewById(R.id.item_date)).setText(Utility.getInstance().getFormatFromStringDate("dd MMM yyyy", mModel.getCreatedAt()));

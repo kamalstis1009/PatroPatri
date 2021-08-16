@@ -162,7 +162,7 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ACTION_PICK_REQUEST_CODE && resultCode == getActivity().RESULT_OK && data != null) {
             Uri uri = data.getData();
-            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 250, 250);
+            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 650, 650);
             //mImageView.setImageBitmap(bitmap);
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);
@@ -170,7 +170,7 @@ public class GalleryFragment extends Fragment implements EasyPermissions.Permiss
         }
         if (requestCode == REQUEST_IMAGE_CAPTURE && mCurrentPhotoPath != null) {
             Uri uri = Uri.fromFile(new File(mCurrentPhotoPath));
-            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 250, 250);
+            Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 650, 650);
             //mImageView.setImageBitmap(bitmap);
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);

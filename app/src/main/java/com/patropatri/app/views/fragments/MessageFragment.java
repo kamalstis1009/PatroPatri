@@ -1,5 +1,6 @@
 package com.patropatri.app.views.fragments;
 
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +10,26 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Liked;
 import com.patropatri.app.models.Message;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
+import com.patropatri.app.viewmodels.MessageViewModel;
+import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.adapters.MessageAdapter;
 
 import java.util.ArrayList;
 
 public class MessageFragment extends Fragment {
+
+    private ArrayList<Message> mArrayList = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,21 +40,26 @@ public class MessageFragment extends Fragment {
         //mChatText = (EditText) view.findViewById(R.id.chat_text);
         //mAttachImg = (ImageView) view.findViewById(R.id.attach_image);
 
-        //-----------------------------------------------| Session
-        //mUser = new Gson().fromJson(Prefs.getString(ConstantKey.USER_MODEL, null), UserModel.class);
-
-        //-----------------------------------------------| Receive and observe the data from view model
-        //mViewModel = new ViewModelProvider(this).get(ChatViewModel.class);
-
-        ArrayList<Message> mArrayList = new ArrayList<>();
-        //mArrayList.add(new ChatMessage(true, null, "Hi!", null));
-        //mArrayList.add(new ChatMessage(false, null, "Hi!", null));
-        //mArrayList.add(new ChatMessage(true, null, "How are you?", null));
-        //mArrayList.add(new ChatMessage(false, null, "I'm well, You?", null));
-        initRecyclerView(mRecyclerView, mArrayList);
-
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null) {
+        }
+
+        //-----------------------------------------------| Session
+        UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+
+        //-----------------------------------------------| Receive and observe the data from view model
+        MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
+
+        if (mUser != null && getActivity() != null) {
+            mViewModel.getAllMessages(1,5, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
+                @Override
+                public void onChanged(ArrayList<Message> arrayList) {
+                    if (arrayList != null) {
+                        mArrayList.addAll(arrayList);
+                    }
+                    initRecyclerView(mRecyclerView, mArrayList);
+                }
+            });
         }
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {

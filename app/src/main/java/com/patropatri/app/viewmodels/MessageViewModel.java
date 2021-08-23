@@ -13,6 +13,7 @@ import com.patropatri.app.models.CommentDto;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Liked;
 import com.patropatri.app.models.LikedDto;
+import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
@@ -128,6 +129,31 @@ public class MessageViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(@NonNull Call<ArrayList<Inbox>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ArrayList<Message>> getAllMessages(int pageNo, int rowSize, long userId, String token) {
+        MutableLiveData<ArrayList<Message>> data = new MutableLiveData<>();
+        Call<ArrayList<Message>> call = RetrofitClient.getInstance().getApi().getAllMessages(pageNo, rowSize, userId, token);
+        call.enqueue(new Callback<ArrayList<Message>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Message>> call, @NonNull Response<ArrayList<Message>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Message>> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

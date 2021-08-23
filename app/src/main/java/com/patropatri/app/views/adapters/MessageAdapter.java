@@ -1,10 +1,8 @@
 package com.patropatri.app.views.adapters;
 
-import android.app.ProgressDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,7 +23,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
 
     private FragmentActivity mContext;
     private ArrayList<Message> mArrayList;
-    private ProgressDialog mProgress;
     private UserWithToken mUser;
 
     public MessageAdapter(FragmentActivity context, ArrayList<Message> arrayList) {
@@ -95,39 +92,39 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout otherChatLayout, myChatLayout;
-        private CircleImageView otherImage, myImage;
-        private TextView otherText, myText;
-        private ImageView otherAttachment, myAttachment;
+        private RelativeLayout receiverLayout, senderLayout;
+        private CircleImageView receiverImage, senderImage;
+        private TextView receiverText, senderText;
+        private RecyclerView receiverRecyclerView, senderRecyclerView;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            otherChatLayout = (RelativeLayout) itemView.findViewById(R.id.other_chat_layout);
-            otherImage = (CircleImageView) itemView.findViewById(R.id.other_chat_image);
-            otherText = (TextView) itemView.findViewById(R.id.other_chat_text);
-            otherAttachment = (ImageView) itemView.findViewById(R.id.other_chat_attachment);
+            receiverLayout = (RelativeLayout) itemView.findViewById(R.id.item_receiver_layout);
+            receiverImage = (CircleImageView) itemView.findViewById(R.id.item_receiver_image);
+            receiverText = (TextView) itemView.findViewById(R.id.item_receiver_text);
+            receiverRecyclerView = (RecyclerView) itemView.findViewById(R.id.item_receiver_recycler_view);
 
-            myChatLayout = (RelativeLayout) itemView.findViewById(R.id.my_chat_layout);
-            myImage = (CircleImageView) itemView.findViewById(R.id.my_chat_image);
-            myText = (TextView) itemView.findViewById(R.id.my_chat_text);
-            myAttachment = (ImageView) itemView.findViewById(R.id.my_chat_attachment);
+            senderLayout = (RelativeLayout) itemView.findViewById(R.id.item_sender_layout);
+            senderImage = (CircleImageView) itemView.findViewById(R.id.item_sender_image);
+            senderText = (TextView) itemView.findViewById(R.id.item_sender_text);
+            senderRecyclerView = (RecyclerView) itemView.findViewById(R.id.item_sender_recycler_view);
         }
     }
 
     private void setVisibility(boolean isMine,  MyViewHolder holder) {
         if (isMine) {
-            if (holder.myChatLayout.getVisibility() == View.GONE) {
-                holder.myChatLayout.setVisibility(View.VISIBLE);
+            if (holder.senderLayout.getVisibility() == View.GONE) {
+                holder.senderLayout.setVisibility(View.VISIBLE);
             }
-            if (holder.otherChatLayout.getVisibility() == View.VISIBLE) {
-                holder.otherChatLayout.setVisibility(View.GONE);
+            if (holder.receiverLayout.getVisibility() == View.VISIBLE) {
+                holder.receiverLayout.setVisibility(View.GONE);
             }
         } else {
-            if (holder.myChatLayout.getVisibility() == View.VISIBLE) {
-                holder.myChatLayout.setVisibility(View.GONE);
+            if (holder.senderLayout.getVisibility() == View.VISIBLE) {
+                holder.senderLayout.setVisibility(View.GONE);
             }
-            if (holder.otherChatLayout.getVisibility() == View.GONE) {
-                holder.otherChatLayout.setVisibility(View.VISIBLE);
+            if (holder.receiverLayout.getVisibility() == View.GONE) {
+                holder.receiverLayout.setVisibility(View.VISIBLE);
             }
         }
     }

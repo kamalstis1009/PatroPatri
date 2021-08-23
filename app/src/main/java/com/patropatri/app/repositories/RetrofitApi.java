@@ -12,6 +12,7 @@ import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Liked;
 import com.patropatri.app.models.LikedDto;
+import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
@@ -136,6 +137,10 @@ public interface RetrofitApi {
 
     @DELETE("message/inbox/{id}")
     Call<Integer> deleteInboxById(@Path("id") long id, @Header("Authorization") String token);
+
+    //======================================================| Chat/Message
+    @GET("message/chats/{no}")
+    Call<ArrayList<Message>> getAllMessages(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
 
     //======================================================| Comment
     @GET("message/comments/{userId}")

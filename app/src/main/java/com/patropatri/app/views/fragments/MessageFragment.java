@@ -1,6 +1,5 @@
 package com.patropatri.app.views.fragments;
 
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +11,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
-import com.patropatri.app.models.Liked;
+import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.MessageViewModel;
-import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.adapters.MessageAdapter;
+import com.patropatri.app.views.adapters.PhotoAdapter;
 
 import java.util.ArrayList;
 
@@ -82,5 +84,14 @@ public class MessageFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
         //mAdapter.notifyItemInserted(mItems.size() - 1);
         mRecyclerView.scrollToPosition(mArrayList.size() - 1);
+    }
+
+    private void initImageRecyclerView(RecyclerView recyclerView, ArrayList<Gallery> arrayList) {
+        PhotoAdapter mAdapter = new PhotoAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
+        mAdapter.notifyDataSetChanged();
     }
 }

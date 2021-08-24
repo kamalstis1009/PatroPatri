@@ -76,13 +76,15 @@ public class MessageFragment extends Fragment {
         StompUtils.lifecycle(mClient); //Connection callback
 
         // Subscribe chat endpoint to receive response by RX Java
-        mClient.topic(ConstantKey.CHAT_RESPONSE.replace(ConstantKey.PLACEHOLDER, youChatId)).subscribe(new Consumer<StompMessage>() {
-            @Override
-            public void accept(StompMessage message) throws Exception {
-                JSONObject json = new JSONObject(message.getPayload());
-                Log.i(TAG, "Receive: " + json.toString());
-            }
-        });
+        if (getActivity() != null && mModel != null && mUser != null) {
+            mClient.topic(ConstantKey.CHAT_RESPONSE.replace(ConstantKey.PLACEHOLDER, mUser.getAuth().getId() + "")).subscribe(new Consumer<StompMessage>() {
+                @Override
+                public void accept(StompMessage message) throws Exception {
+                    JSONObject json = new JSONObject(message.getPayload());
+                    Log.i(TAG, "Receive: " + json.toString());
+                }
+            });
+        }
 
         //-----------------------------------------------| Receive and observe the data from view model
         MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);

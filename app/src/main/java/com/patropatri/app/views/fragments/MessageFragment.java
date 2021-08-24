@@ -107,7 +107,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
             mModel = new Gson().fromJson(getArguments().getString("DATA", null), Inbox.class);
 
             if (getActivity() != null && mModel != null && mUser != null) {
-                mViewModel.getAllMessages(1,5, mUser.getAuth().getId(), mModel.getSenderId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
+                mViewModel.getAllMessages(1,5, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
                     @Override
                     public void onChanged(ArrayList<Message> arrayList) {
                         if (arrayList != null) {

@@ -129,7 +129,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
                     Message model = new Message();
                     model.setMessage(message);
-                    //model.setImageFiles(null);
+                    model.setImageFiles(null);
                     model.setSenderId(mUser.getAuth().getId());
                     model.setReceiverId(mModel.getSenderId());
                     model.setIsEnabled(true);

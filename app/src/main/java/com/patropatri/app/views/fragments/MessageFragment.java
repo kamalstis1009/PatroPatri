@@ -41,7 +41,7 @@ public class MessageFragment extends Fragment {
 
         //-----------------------------------------------| findViewById
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        //mChatText = (EditText) view.findViewById(R.id.chat_text);
+        //mChatText = (EditText) view.findViewById(R.id.sent_chat_text);
         //mAttachImg = (ImageView) view.findViewById(R.id.attach_image);
 
         //-----------------------------------------------| Session
@@ -66,6 +66,16 @@ public class MessageFragment extends Fragment {
                 });
             }
         }
+
+        ((ImageButton) view.findViewById(R.id.attach_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {}
+        });
+
+        ((ImageButton) view.findViewById(R.id.send_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {}
+        });
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override

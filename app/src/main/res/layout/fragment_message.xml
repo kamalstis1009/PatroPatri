@@ -51,51 +51,57 @@
     </LinearLayout>
 
     <LinearLayout
-        android:gravity="center_vertical"
+        android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_weight="10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/attach"
-                android:layout_centerInParent="true"
-                android:background="@drawable/ic_baseline_add_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/attach_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"/>
-        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/item_attach_photo"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:spanCount="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <LinearLayout
-            android:layout_weight="80"
-            android:layout_width="0dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/chat_text"
-                android:maxLength="250"
-                android:maxEms="250"
-                android:hint=" Say something..."
-                android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:gravity="center"
-            android:layout_weight="10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/send"
-                android:background="@drawable/ic_baseline_send_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <RelativeLayout
+                android:layout_weight="10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/attach_button"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_baseline_add_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_weight="80"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/sent_chat_text"
+                    android:maxLength="250"
+                    android:maxEms="250"
+                    android:hint=" Say something..."
+                    android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/send_button"
+                    android:background="@drawable/ic_baseline_send_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

@@ -11,7 +11,9 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.patropatri.app.R;
+import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.services.MyNetworkReceiver;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.AccountFragment;
 import com.patropatri.app.views.fragments.HomeFragment;
@@ -20,6 +22,7 @@ import com.patropatri.app.views.fragments.NotificationFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private UserWithToken mUser;
     private MyNetworkReceiver mNetworkReceiver;
     public static BottomNavigationView mNavigationView;
 
@@ -33,8 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         //mLocationReceiver = new MyLocationReceiver(this);
 
         //-----------------------------------------------| Session
-        //mUser = SharedPefManager.getInstance(this).getUser();
-        //mPermissions = SharedPefManager.getInstance(this).getPermission();
+        mUser = SharedPefManager.getInstance(this).getUser();
 
         //-----------------------------------------------| To Display Navigation Bar
         /*Toolbar toolbar = findViewById(R.id.toolbar);
@@ -80,10 +82,14 @@ public class HomeActivity extends AppCompatActivity {
                     Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());
                     return true;
                 case R.id.action_notification:
-                    Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new NotificationFragment());
+                    if (mUser != null && mUser.getUser() != null) {
+                        Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new NotificationFragment());
+                    }
                     return true;
                 case R.id.action_inbox:
-                    Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new InboxFragment());
+                    if (mUser != null && mUser.getUser() != null) {
+                        Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new InboxFragment());
+                    }
                     return true;
                 case R.id.action_account:
                     Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new AccountFragment());

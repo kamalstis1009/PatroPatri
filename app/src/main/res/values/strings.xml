@@ -223,7 +223,7 @@
         <item>Wari</item>
     </string-array>
 
-    <string-array name="country_array">
+    <!--<string-array name="country_array">
         <item>Afghanistan</item>
         <item>Albania</item>
         <item>Algeria</item>
@@ -419,6 +419,6 @@
         <item>Yemen</item>
         <item>Zambia</item>
         <item>Zimbabwe</item>
-    </string-array>
+    </string-array>-->
 
 </resources>

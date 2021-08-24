@@ -29,7 +29,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     private Inbox mInbox;
     private UserWithToken mUser;
 
-    public MessageAdapter(FragmentActivity context, ArrayList<Message> arrayList, Inbox inbox) {
+    private CallBackListener mListener;
+
+    public interface CallBackListener {
+        void onAddItem(Message model);
+        void onRecyclerViewItems(RecyclerView recyclerView, String [] arrayList);
+    }
+
+    public MessageAdapter(FragmentActivity context, ArrayList<Message> arrayList, Inbox inbox, CallBackListener listener) {
         if (mArrayList != null) {
             mArrayList.clear(); //change here
         }
@@ -37,6 +44,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         this.mContext = context;
         this.mArrayList = arrayList;
         this.mInbox = inbox;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -54,13 +62,23 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             if (model.getSenderId() == mUser.getAuth().getId()) {
                 setVisibility(true, holder);
                 holder.senderText.setText(model.getMessage());
-                if (mUser.getUser().getImageName() != null)
-                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.senderImage );
+                if (mUser.getUser().getImageName() != null) {
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.senderImage);
+                }
+                if(model.getImageFiles() != null) {
+                    if (mListener != null)
+                        mListener.onRecyclerViewItems(holder.senderRecyclerView, model.getImageFiles());
+                }
             } else {
                 setVisibility(false, holder);
                 holder.receiverText.setText(model.getMessage());
-                if (mInbox != null)
-                    Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.receiverImage );
+                if (mInbox != null) {
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.receiverImage);
+                }
+                if(model.getImageFiles() != null) {
+                    if (mListener != null)
+                        mListener.onRecyclerViewItems(holder.receiverRecyclerView, model.getImageFiles());
+                }
             }
         }
     }

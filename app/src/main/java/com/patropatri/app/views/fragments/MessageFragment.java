@@ -46,7 +46,7 @@ import ua.naiksoftware.stomp.StompClient;
 import ua.naiksoftware.stomp.dto.StompMessage;
 
 @SuppressWarnings({"FieldCanBeLocal", "ResultOfMethodCallIgnored", "CheckResult"})
-public class MessageFragment extends Fragment {
+public class MessageFragment extends Fragment implements MessageAdapter.CallBackListener {
 
     private static final String TAG = "MessageFragment";
 
@@ -120,7 +120,7 @@ public class MessageFragment extends Fragment {
                     JSONObject json = new JSONObject();
                     try {
                         json.put("message", message);
-                        json.put("imageFiles", new JSONArray((Object) null));
+                        json.put("imageFiles", new JSONArray());
                         json.put("senderId", mUser.getAuth().getId());
                         json.put("receiverId", mModel.getSenderId());
                     } catch (JSONException e) {
@@ -130,7 +130,7 @@ public class MessageFragment extends Fragment {
 
                     Message model = new Message();
                     model.setMessage(message);
-                    model.setImageFiles(null);
+                    //model.setImageFiles(null);
                     model.setSenderId(mUser.getAuth().getId());
                     model.setReceiverId(mModel.getSenderId());
                     model.setIsEnabled(true);
@@ -153,8 +153,18 @@ public class MessageFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAddItem(Message model) {
+
+    }
+
+    @Override
+    public void onRecyclerViewItems(RecyclerView recyclerView, String [] arrayList) {
+        initImageRecyclerView(recyclerView, arrayList);
+    }
+
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<Message> arrayList, Inbox inbox) {
-        mAdapter = new MessageAdapter(getActivity(), arrayList, inbox);
+        mAdapter = new MessageAdapter(getActivity(), arrayList, inbox, this);
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));

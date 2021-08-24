@@ -31,7 +31,7 @@ public class ChatAttachAdapter extends RecyclerView.Adapter<ChatAttachAdapter.My
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mActivity).inflate(R.layout.item_photo, parent, false);
+        View view = LayoutInflater.from(mActivity).inflate(R.layout.item_attach_photo, parent, false);
         return new MyViewHolder(view);
     }
 

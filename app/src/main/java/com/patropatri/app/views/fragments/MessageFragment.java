@@ -174,7 +174,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
     @Override
     public void onRecyclerViewItems(RecyclerView recyclerView, String [] arrayList) {
-        //initImageRecyclerView(recyclerView, arrayList);
+        initImageRecyclerView(recyclerView, arrayList);
     }
 
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<Message> arrayList, Inbox inbox) {

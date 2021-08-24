@@ -9,6 +9,12 @@ public class ConstantKey {
     //public static final String SERVER_URL = "http://10.0.2.2:8080/api/v1/"; //Localhost IntelliJ IDEA
     public static final String RESOURCE_URL = SERVER_URL + "file/download/";
 
+    public static final String SOCKET_SERVER_URL = "ws://10.0.2.2:8080/stomp/websocket";
+    public static final String PLACEHOLDER = "placeholder";
+    public static final String CHAT = "/chat";
+    // replace {@code placeholder} with user id
+    public static final String CHAT_RESPONSE = "/user/" + PLACEHOLDER + "/msg";
+
     public static ArrayList<String> getYears(String title, int current) {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(title);

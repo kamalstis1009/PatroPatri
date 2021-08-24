@@ -1,9 +1,11 @@
 package com.patropatri.app.views.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -20,20 +22,40 @@ import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
+import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
+import com.patropatri.app.utils.StompUtils;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.MessageViewModel;
 import com.patropatri.app.views.adapters.ChatAttachAdapter;
 import com.patropatri.app.views.adapters.MessageAdapter;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import io.reactivex.functions.Consumer;
+import ua.naiksoftware.stomp.Stomp;
+import ua.naiksoftware.stomp.StompClient;
+import ua.naiksoftware.stomp.dto.StompMessage;
+
+@SuppressWarnings({"FieldCanBeLocal", "ResultOfMethodCallIgnored", "CheckResult"})
 public class MessageFragment extends Fragment {
 
+    private static final String TAG = "MessageFragment";
+
+    private EditText editText;
     private Inbox mModel;
+    private MessageAdapter mAdapter;
     private ArrayList<Message> mArrayList = new ArrayList<>();
+
+    private String youChatId = String.valueOf(new Random().nextInt(100));
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,11 +63,26 @@ public class MessageFragment extends Fragment {
 
         //-----------------------------------------------| findViewById
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        //mChatText = (EditText) view.findViewById(R.id.sent_chat_text);
+        editText = (EditText) view.findViewById(R.id.sent_chat_text);
         //mAttachImg = (ImageView) view.findViewById(R.id.attach_image);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
+
+        //-----------------------------------------------| StompClient Connect
+        // Start connecting to server
+        StompClient mClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, ConstantKey.SOCKET_SERVER_URL);
+        mClient.connect();
+        StompUtils.lifecycle(mClient); //Connection callback
+
+        // Subscribe chat endpoint to receive response by RX Java
+        mClient.topic(ConstantKey.CHAT_RESPONSE.replace(ConstantKey.PLACEHOLDER, youChatId)).subscribe(new Consumer<StompMessage>() {
+            @Override
+            public void accept(StompMessage message) throws Exception {
+                JSONObject json = new JSONObject(message.getPayload());
+                Log.i(TAG, "Receive: " + json.toString());
+            }
+        });
 
         //-----------------------------------------------| Receive and observe the data from view model
         MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
@@ -72,9 +109,36 @@ public class MessageFragment extends Fragment {
             public void onClick(View v) {}
         });
 
+        //-----------------------------------------------| Sent Message
         ((ImageButton) view.findViewById(R.id.send_button)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {}
+            public void onClick(View v) {
+                String message = editText.getText().toString().trim();
+                if (mModel != null && mUser != null) {
+                    JSONObject json = new JSONObject();
+                    try {
+                        json.put("message", message);
+                        json.put("imageFiles", new JSONArray((Object) null));
+                        json.put("senderId", mUser.getAuth().getId());
+                        json.put("receiverId", mModel.getSenderId());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    mClient.send(ConstantKey.CHAT, json.toString()).subscribe();
+
+                    Message model = new Message();
+                    model.setMessage(message);
+                    model.setImageFiles(null);
+                    model.setSenderId(mUser.getAuth().getId());
+                    model.setReceiverId(mModel.getSenderId());
+                    model.setIsEnabled(true);
+                    model.setInboxId(mModel.getId());
+                    if (mAdapter != null) {
+                        mArrayList.add(model);
+                        mAdapter.notifyItemInserted(mArrayList.size());
+                    }
+                }
+            }
         });
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
@@ -88,7 +152,7 @@ public class MessageFragment extends Fragment {
     }
 
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<Message> arrayList, Inbox inbox) {
-        MessageAdapter mAdapter = new MessageAdapter(getActivity(), arrayList, inbox);
+        mAdapter = new MessageAdapter(getActivity(), arrayList, inbox);
         //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -100,11 +164,11 @@ public class MessageFragment extends Fragment {
     }
 
     private void initImageRecyclerView(RecyclerView recyclerView, String [] arrayList) {
-        ChatAttachAdapter mAdapter = new ChatAttachAdapter(getActivity(), arrayList);
-        recyclerView.setAdapter(mAdapter);
+        ChatAttachAdapter adapter = new ChatAttachAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
-        mAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
     }
 }

@@ -56,11 +56,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/items_attach_recycler_view"
             tools:listitem="@layout/item_attach_photo"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="100dp" />
         <LinearLayout
             android:gravity="center_vertical"
             android:orientation="horizontal"

@@ -56,10 +56,10 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     //===============================================| Jetpack Component : Room persistence library
     implementation "androidx.room:room-runtime:2.3.0"
-    //===============================================| Lombok : Getter/Setter
-    compileOnly 'org.projectlombok:lombok:1.18.20'
-    annotationProcessor 'org.projectlombok:lombok:1.18.20'
     //===============================================| Android Jetpack Components for MVVM
     api "com.github.NaikSoftware:StompProtocolAndroid:1.6.4"
     api "io.reactivex.rxjava2:rxjava:2.2.5"
+    //===============================================| Lombok : Getter/Setter
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 }

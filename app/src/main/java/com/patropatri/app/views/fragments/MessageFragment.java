@@ -63,8 +63,8 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
         //-----------------------------------------------| findViewById
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
+        RecyclerView mRecyclerView2 = (RecyclerView) view.findViewById(R.id.items_attach_recycler_view);
         editText = (EditText) view.findViewById(R.id.sent_chat_text);
-        //mAttachImg = (ImageView) view.findViewById(R.id.attach_image);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();

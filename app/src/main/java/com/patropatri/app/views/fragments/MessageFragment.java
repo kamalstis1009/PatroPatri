@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.patropatri.app.R;
-import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
@@ -26,8 +25,8 @@ import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.MessageViewModel;
+import com.patropatri.app.views.adapters.ChatAttachAdapter;
 import com.patropatri.app.views.adapters.MessageAdapter;
-import com.patropatri.app.views.adapters.PhotoAdapter;
 
 import java.util.ArrayList;
 
@@ -90,8 +89,8 @@ public class MessageFragment extends Fragment {
         recyclerView.scrollToPosition(mArrayList.size() - 1);
     }
 
-    private void initImageRecyclerView(RecyclerView recyclerView, ArrayList<Gallery> arrayList) {
-        PhotoAdapter mAdapter = new PhotoAdapter(getActivity(), arrayList);
+    private void initImageRecyclerView(RecyclerView recyclerView, String [] arrayList) {
+        ChatAttachAdapter mAdapter = new ChatAttachAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));

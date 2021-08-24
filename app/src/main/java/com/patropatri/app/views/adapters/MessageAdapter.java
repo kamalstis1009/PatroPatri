@@ -15,6 +15,8 @@ import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.ConstantKey;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -51,8 +53,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         if (model != null && mUser != null) {
             if (model.getSenderId() == mUser.getAuth().getId()) {
                 setVisibility(true, holder);
+                if (mUser.getUser().getImageName() != null)
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.senderImage );
             } else {
                 setVisibility(false, holder);
+                if (mInbox != null)
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.receiverImage );
             }
         }
     }

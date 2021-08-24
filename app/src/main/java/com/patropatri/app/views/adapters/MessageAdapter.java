@@ -25,9 +25,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHolder> {
 
     private FragmentActivity mContext;
-    private ArrayList<Message> mArrayList;
     private Inbox mInbox;
     private UserWithToken mUser;
+    private ArrayList<Message> mArrayList;
 
     private CallBackListener mListener;
 

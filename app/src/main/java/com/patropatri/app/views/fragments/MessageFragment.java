@@ -22,7 +22,6 @@ import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
-import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;

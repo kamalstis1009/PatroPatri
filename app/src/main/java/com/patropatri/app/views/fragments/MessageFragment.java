@@ -16,8 +16,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Gallery;
+import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
 
 public class MessageFragment extends Fragment {
 
+    private Inbox mModel;
     private ArrayList<Message> mArrayList = new ArrayList<>();
 
     @Override
@@ -42,26 +45,27 @@ public class MessageFragment extends Fragment {
         //mChatText = (EditText) view.findViewById(R.id.chat_text);
         //mAttachImg = (ImageView) view.findViewById(R.id.attach_image);
 
-        //------------------------------------------------| Get Bundle Data
-        if (getArguments() != null) {
-        }
-
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| Receive and observe the data from view model
         MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
-        if (mUser != null && getActivity() != null) {
-            mViewModel.getAllMessages(1,5, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
-                @Override
-                public void onChanged(ArrayList<Message> arrayList) {
-                    if (arrayList != null) {
-                        mArrayList.addAll(arrayList);
+        //------------------------------------------------| Get Bundle Data
+        if (getArguments() != null && getArguments().getString("DATA", null) != null) {
+            mModel = new Gson().fromJson(getArguments().getString("DATA", null), Inbox.class);
+
+            if (getActivity() != null && mModel != null && mUser != null) {
+                mViewModel.getAllMessages(1,5, mUser.getAuth().getId(), mModel.getSenderId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
+                    @Override
+                    public void onChanged(ArrayList<Message> arrayList) {
+                        if (arrayList != null) {
+                            mArrayList.addAll(arrayList);
+                        }
+                        initRecyclerView(mRecyclerView, mArrayList, mModel);
                     }
-                    initRecyclerView(mRecyclerView, mArrayList);
-                }
-            });
+                });
+            }
         }
 
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
@@ -74,16 +78,16 @@ public class MessageFragment extends Fragment {
         return view;
     }
 
-    private void initRecyclerView(RecyclerView mRecyclerView, ArrayList<Message> mArrayList) {
-        MessageAdapter mAdapter = new MessageAdapter(getActivity(), mArrayList);
-        //mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        //mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mAdapter);
+    private void initRecyclerView(RecyclerView recyclerView, ArrayList<Message> arrayList, Inbox inbox) {
+        MessageAdapter mAdapter = new MessageAdapter(getActivity(), arrayList, inbox);
+        //recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        //recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         //mAdapter.notifyItemInserted(mItems.size() - 1);
-        mRecyclerView.scrollToPosition(mArrayList.size() - 1);
+        recyclerView.scrollToPosition(mArrayList.size() - 1);
     }
 
     private void initImageRecyclerView(RecyclerView recyclerView, ArrayList<Gallery> arrayList) {

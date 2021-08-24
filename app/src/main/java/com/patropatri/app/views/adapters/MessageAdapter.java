@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
@@ -23,15 +24,17 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
 
     private FragmentActivity mContext;
     private ArrayList<Message> mArrayList;
+    private Inbox mInbox;
     private UserWithToken mUser;
 
-    public MessageAdapter(FragmentActivity context, ArrayList<Message> arrayList) {
+    public MessageAdapter(FragmentActivity context, ArrayList<Message> arrayList, Inbox inbox) {
         if (mArrayList != null) {
             mArrayList.clear(); //change here
         }
         mUser = SharedPefManager.getInstance(context).getUser();
         this.mContext = context;
         this.mArrayList = arrayList;
+        this.mInbox = inbox;
     }
 
     @NonNull
@@ -45,44 +48,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Message model = mArrayList.get(position);
 
-        /*if (model.isUser()) {
-            setVisibility(true, holder);
-
-            if (model.getAttachmentUrl() != null) {
-                try {
-                    //ImageLoader.getInstance().displayImage(model.getAttachmentUrl(), holder.myAttachment);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        if (model != null && mUser != null) {
+            if (model.getSenderId() == mUser.getAuth().getId()) {
+                setVisibility(true, holder);
             } else {
-                if (holder.myAttachment.getVisibility() == View.VISIBLE) {
-                    holder.myAttachment.setVisibility(View.GONE);
-                }
+                setVisibility(false, holder);
             }
-            if (model.getChatText().isEmpty()) {
-                holder.myText.setText("Attached Image");
-            } else {
-                holder.myText.setText(model.getChatText());
-            }
-        } else {
-            setVisibility(false, holder);
-            if (model.getAttachmentUrl() != null) {
-                try {
-                    //ImageLoader.getInstance().displayImage(model.getAttachmentUrl(), holder.otherAttachment);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                if (holder.otherAttachment.getVisibility() == View.VISIBLE) {
-                    holder.otherAttachment.setVisibility(View.GONE);
-                }
-            }
-            if (model.getChatText().isEmpty()) {
-                holder.otherText.setText("Attached Image");
-            } else {
-                holder.otherText.setText(model.getChatText());
-            }
-        }*/
+        }
     }
 
     @Override

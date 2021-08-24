@@ -24,6 +24,18 @@ public class Message {
     @Expose
     private String [] imageFiles;
 
+    @SerializedName("senderId")
+    @Expose
+    private Long senderId;
+
+    @SerializedName("receiverId")
+    @Expose
+    private Long receiverId;
+
+    @SerializedName("isEnabled")
+    @Expose
+    private Boolean isEnabled;
+
     @SerializedName("inboxId")
     @Expose
     private Long inboxId;

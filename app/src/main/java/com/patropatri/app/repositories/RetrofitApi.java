@@ -140,7 +140,7 @@ public interface RetrofitApi {
 
     //======================================================| Chat/Message
     @GET("message/chats/{no}")
-    Call<ArrayList<Message>> getAllMessages(@Path("no") int pageNo, @Query("row") int rowSize, @Query("userId") long userId, @Header("Authorization") String token);
+    Call<ArrayList<Message>> getAllMessages(@Path("no") int pageNo, @Query("row") int rowSize, @Query("senderId") long senderId, @Query("receiverId") long receiverId, @Header("Authorization") String token);
 
     //======================================================| Comment
     @GET("message/comments/{userId}")

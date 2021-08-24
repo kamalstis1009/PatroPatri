@@ -136,9 +136,9 @@ public class MessageViewModel extends AndroidViewModel {
         return data;
     }
 
-    public LiveData<ArrayList<Message>> getAllMessages(int pageNo, int rowSize, long userId, String token) {
+    public LiveData<ArrayList<Message>> getAllMessages(int pageNo, int rowSize, long senderId, long receiverId, String token) {
         MutableLiveData<ArrayList<Message>> data = new MutableLiveData<>();
-        Call<ArrayList<Message>> call = RetrofitClient.getInstance().getApi().getAllMessages(pageNo, rowSize, userId, token);
+        Call<ArrayList<Message>> call = RetrofitClient.getInstance().getApi().getAllMessages(pageNo, rowSize, senderId, receiverId, token);
         call.enqueue(new Callback<ArrayList<Message>>() {
             @Override
             public void onResponse(@NonNull Call<ArrayList<Message>> call, @NonNull Response<ArrayList<Message>> response) {

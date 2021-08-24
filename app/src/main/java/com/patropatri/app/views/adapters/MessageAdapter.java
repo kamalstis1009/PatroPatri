@@ -53,10 +53,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         if (model != null && mUser != null) {
             if (model.getSenderId() == mUser.getAuth().getId()) {
                 setVisibility(true, holder);
+                holder.senderText.setText(model.getMessage());
                 if (mUser.getUser().getImageName() != null)
                     Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.senderImage );
             } else {
                 setVisibility(false, holder);
+                holder.receiverText.setText(model.getMessage());
                 if (mInbox != null)
                     Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.receiverImage );
             }

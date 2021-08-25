@@ -82,6 +82,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
     private String mCurrentPhotoPath;
     private File mFile;
 
+    private ChatAttachAdapter mAttachAdapter;
     private ArrayList<Bitmap> mBitmapList = new ArrayList<>();
     private ArrayList<MultipartBody.Part> mFileList = new ArrayList<>();
 
@@ -321,8 +322,8 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
     }
 
     private void initImageRecyclerView(RecyclerView recyclerView, String [] arrayList) {
-        ChatAttachAdapter adapter = new ChatAttachAdapter(getActivity(), arrayList);
-        recyclerView.setAdapter(adapter);
+        mAttachAdapter = new ChatAttachAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAttachAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1){
             @Override
@@ -331,7 +332,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
             }
         });
         //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
-        adapter.notifyDataSetChanged();
+        mAttachAdapter.notifyDataSetChanged();
     }
 
     //====================================================| Check Permissions for Mic, Camera, Gallery
@@ -388,10 +389,10 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
             Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 250, 250);
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);
-            if (mAdapter != null) {
+            if (mAttachAdapter != null) {
                 mBitmapList.add(bitmap);
                 mFileList.add(uploadFile(mFile, mImageFileName));
-                mAdapter.notifyItemInserted(mBitmapList.size());
+                mAttachAdapter.notifyItemInserted(mBitmapList.size());
             }
         }
         if (requestCode == REQUEST_IMAGE_CAPTURE && mCurrentPhotoPath != null) {
@@ -399,10 +400,10 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
             Bitmap bitmap = Utility.getInstance().getDownBitmap(getActivity(), uri, 250, 250);
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);
-            if (mAdapter != null) {
+            if (mAttachAdapter != null) {
                 mBitmapList.add(bitmap);
                 mFileList.add(uploadFile(mFile, mImageFileName));
-                mAdapter.notifyItemInserted(mBitmapList.size());
+                mAttachAdapter.notifyItemInserted(mBitmapList.size());
             }
         }
     }

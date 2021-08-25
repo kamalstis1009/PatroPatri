@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +26,6 @@ import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
-import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.StompUtils;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.MessageViewModel;
@@ -38,7 +38,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import io.reactivex.functions.Consumer;
 import ua.naiksoftware.stomp.Stomp;
@@ -50,18 +49,22 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
     private static final String TAG = "MessageFragment";
 
+    private ProgressBar mProgressBar;
     private EditText editText;
     private Inbox mModel;
     private MessageAdapter mAdapter;
     private ArrayList<Message> mArrayList = new ArrayList<>();
 
-    private String youChatId = String.valueOf(new Random().nextInt(100));
+    private boolean isLoading = true;
+    private int mInitPageNo = 1;
+    private int pastVisibleItems, visibleItemCount, totalItemCount;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message, container, false);
 
         //-----------------------------------------------| findViewById
+        mProgressBar = view.findViewById(R.id.progress_bar);
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         RecyclerView mRecyclerView2 = (RecyclerView) view.findViewById(R.id.items_attach_recycler_view);
         editText = (EditText) view.findViewById(R.id.sent_chat_text);
@@ -107,16 +110,62 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
             mModel = new Gson().fromJson(getArguments().getString("DATA", null), Inbox.class);
 
             if (getActivity() != null && mModel != null && mUser != null) {
-                mViewModel.getAllMessages(1,5, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
+                Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                mViewModel.getAllMessages(mInitPageNo,5, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
                     @Override
                     public void onChanged(ArrayList<Message> arrayList) {
                         if (arrayList != null) {
                             mArrayList.addAll(arrayList);
                         }
                         initRecyclerView(mRecyclerView, mArrayList, mModel);
+                        Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                     }
                 });
             }
+        }
+
+        //------------------------------------------------| Scroll-down load more data
+        if (getActivity() != null) {
+            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    LinearLayoutManager mLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                    if (dy > 0) {
+                        //check for scroll down
+                        visibleItemCount = mLayoutManager != null ? mLayoutManager.getChildCount() : 0;
+                        totalItemCount = mLayoutManager != null ? mLayoutManager.getItemCount() : 0;
+                        pastVisibleItems = mLayoutManager != null ? mLayoutManager.findFirstVisibleItemPosition() : 0;
+
+                        if (isLoading) {
+                            if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                                isLoading = false;
+                                mInitPageNo++;
+                                //Log.v("...", "Last Item Wow !");
+                                // Do pagination.. i.e. fetch new data
+                                if (mUser != null && mUser.getAuth() != null) {
+                                    mViewModel.getAllMessages(mInitPageNo,5, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
+                                        @Override
+                                        public void onChanged(ArrayList<Message> arrayList) {
+                                            if (arrayList != null) {
+                                                mArrayList.addAll(arrayList);
+                                                mAdapter.notifyDataSetChanged();
+                                            }
+                                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                                        }
+                                    });
+                                }
+                                isLoading = true;
+                            }
+                        }
+                    }
+                }
+            });
         }
 
         ((ImageButton) view.findViewById(R.id.attach_button)).setOnClickListener(new View.OnClickListener() {

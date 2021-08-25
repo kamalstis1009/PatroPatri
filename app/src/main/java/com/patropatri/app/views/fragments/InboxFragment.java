@@ -64,6 +64,7 @@ public class InboxFragment extends Fragment {
             });
         }
 
+        //------------------------------------------------| Scroll-down load more data
         if (getActivity() != null) {
             mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override

@@ -72,7 +72,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             } else {
                 setVisibility(false, holder);
                 holder.receiverText.setText(model.getMessage());
-                if (mInbox != null) {
+                if (mInbox != null && mInbox.getSenderImage() != null) {
                     Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.receiverImage);
                 }
                 if(model.getImageFiles() != null) {

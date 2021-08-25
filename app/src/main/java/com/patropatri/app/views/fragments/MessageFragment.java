@@ -194,7 +194,12 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
         ChatAttachAdapter adapter = new ChatAttachAdapter(getActivity(), arrayList);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1){
+            @Override
+            protected boolean isLayoutRTL() {
+                return true;
+            }
+        });
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
         adapter.notifyDataSetChanged();
     }

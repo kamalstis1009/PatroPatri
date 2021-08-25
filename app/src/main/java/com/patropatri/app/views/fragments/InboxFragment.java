@@ -52,7 +52,7 @@ public class InboxFragment extends Fragment {
 
         if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
             Utility.getInstance().onVisibleProgressBar(mProgressBar);
-            mViewModel.getAllInboxesByUserId(mInitPageNo, 5, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
+            mViewModel.getAllInboxesByUserId(mInitPageNo, 10, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
                 @Override
                 public void onChanged(ArrayList<Inbox> arrayList) {
                     if (arrayList != null) {
@@ -90,7 +90,7 @@ public class InboxFragment extends Fragment {
                                 // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
                                     Utility.getInstance().onVisibleProgressBar(mProgressBar);
-                                    mViewModel.getAllInboxesByUserId(mInitPageNo, 5, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
+                                    mViewModel.getAllInboxesByUserId(mInitPageNo, 10, mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Inbox>>() {
                                         @Override
                                         public void onChanged(ArrayList<Inbox> arrayList) {
                                             if (arrayList != null) {

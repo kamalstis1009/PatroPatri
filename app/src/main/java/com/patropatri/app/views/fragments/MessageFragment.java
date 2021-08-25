@@ -111,7 +111,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
             if (getActivity() != null && mModel != null && mUser != null) {
                 Utility.getInstance().onVisibleProgressBar(mProgressBar);
-                mViewModel.getAllMessages(mInitPageNo,5, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
+                mViewModel.getAllMessages(mInitPageNo,10, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
                     @Override
                     public void onChanged(ArrayList<Message> arrayList) {
                         if (arrayList != null) {
@@ -149,7 +149,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                 //Log.v("...", "Last Item Wow !");
                                 // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
-                                    mViewModel.getAllMessages(mInitPageNo,5, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
+                                    mViewModel.getAllMessages(mInitPageNo,10, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
                                         @Override
                                         public void onChanged(ArrayList<Message> arrayList) {
                                             if (arrayList != null) {

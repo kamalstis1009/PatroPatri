@@ -1,5 +1,6 @@
 package com.patropatri.app.views.adapters;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +57,14 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.MyViewHolder
 
             if (model.getSenderImage() != null) {
                 Picasso.get().load(ConstantKey.RESOURCE_URL + model.getSenderImage() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
+            }
+
+            if (model.getIsEnabled()) {
+                if ((holder.itemName.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG) > 0) { holder.itemName.setPaintFlags(holder.itemName.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG)); }
+                holder.itemName.setBackgroundResource(0);
+            } else {
+                holder.itemName.setPaintFlags(holder.itemName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                holder.itemName.setBackground(mActivity.getResources().getDrawable(R.drawable.strike_thru_red));
             }
         }
 

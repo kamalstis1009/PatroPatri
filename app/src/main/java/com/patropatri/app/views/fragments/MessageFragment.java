@@ -35,10 +35,12 @@ import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
+import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.StompUtils;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.FileViewModel;
 import com.patropatri.app.viewmodels.MessageViewModel;
+import com.patropatri.app.views.adapters.AttachPhotoAdapter;
 import com.patropatri.app.views.adapters.ChatAttachAdapter;
 import com.patropatri.app.views.adapters.MessageAdapter;
 
@@ -82,7 +84,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
     private String mCurrentPhotoPath;
     private File mFile;
 
-    private ChatAttachAdapter mAttachAdapter;
+    private AttachPhotoAdapter mAttachAdapter;
     private ArrayList<Bitmap> mBitmapList = new ArrayList<>();
     private ArrayList<MultipartBody.Part> mFileList = new ArrayList<>();
 
@@ -105,6 +107,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
         RecyclerView mRecyclerView2 = (RecyclerView) view.findViewById(R.id.items_attach_recycler_view);
         editText = (EditText) view.findViewById(R.id.sent_chat_text);
+        initAttachRecyclerView(mRecyclerView2, mBitmapList);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
@@ -253,6 +256,11 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                             mArrayList.add(model);
                                             mAdapter.notifyItemInserted(mArrayList.size());
                                         }
+                                        if (mBitmapList != null && mBitmapList.size() > 0) {
+                                            mBitmapList.clear();
+                                            initAttachRecyclerView(mRecyclerView2, mBitmapList);
+                                        }
+                                        editText.getText().clear();
                                     } else {
                                         Snackbar.make(getActivity().findViewById(android.R.id.content), "Unfortunately the picture could not be sent!", Snackbar.LENGTH_SHORT).show();
                                     }
@@ -283,6 +291,11 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                 mArrayList.add(model);
                                 mAdapter.notifyItemInserted(mArrayList.size());
                             }
+                            if (mBitmapList != null && mBitmapList.size() > 0) {
+                                mBitmapList.clear();
+                                initAttachRecyclerView(mRecyclerView2, mBitmapList);
+                            }
+                            editText.getText().clear();
                         }
                     }
                 }
@@ -322,8 +335,8 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
     }
 
     private void initImageRecyclerView(RecyclerView recyclerView, String [] arrayList) {
-        mAttachAdapter = new ChatAttachAdapter(getActivity(), arrayList);
-        recyclerView.setAdapter(mAttachAdapter);
+        ChatAttachAdapter adapter = new ChatAttachAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1){
             @Override
@@ -332,6 +345,15 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
             }
         });
         //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
+        adapter.notifyDataSetChanged();
+    }
+
+    private void initAttachRecyclerView(RecyclerView recyclerView, ArrayList<Bitmap> arrayList) {
+        mAttachAdapter = new AttachPhotoAdapter(getActivity(), arrayList);
+        recyclerView.setAdapter(mAttachAdapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
         mAttachAdapter.notifyDataSetChanged();
     }
 

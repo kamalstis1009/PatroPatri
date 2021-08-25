@@ -21,6 +21,9 @@ public class AttachPhotoAdapter extends RecyclerView.Adapter<AttachPhotoAdapter.
     private ArrayList<Bitmap> mArrayList;
 
     public AttachPhotoAdapter(FragmentActivity context, ArrayList<Bitmap> arrayList) {
+        if (mArrayList != null) {
+            mArrayList.clear(); //change here
+        }
         this.mActivity = context;
         this.mArrayList = arrayList;
     }

@@ -200,7 +200,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                 return true;
             }
         });
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
+        //recyclerView.addItemDecoration(new GridSpacingItemDecoration(2 /*spanCount*/, 5 /*px spacing*/, false /*includeEdge*/));
         adapter.notifyDataSetChanged();
     }
 }

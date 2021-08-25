@@ -235,7 +235,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                         JSONObject json = new JSONObject();
                                         try {
                                             json.put("message", message);
-                                            json.put("imageFiles", new JSONArray());
+                                            json.put("imageFiles", new JSONArray(arrayList.toArray(new String[arrayList.size()])));
                                             json.put("senderId", mUser.getAuth().getId());
                                             json.put("receiverId", mModel.getSenderId());
                                             json.put("isEnabled", true);
@@ -246,7 +246,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
                                         Message model = new Message();
                                         model.setMessage(message);
-                                        model.setImageFiles(null);
+                                        model.setImageFiles(arrayList.toArray(new String[arrayList.size()]));
                                         model.setSenderId(mUser.getAuth().getId());
                                         model.setReceiverId(mModel.getSenderId());
                                         model.setIsEnabled(true);

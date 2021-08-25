@@ -72,7 +72,7 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
     private String mCurrentPhotoPath;
     private File mFile;
 
-    private ArrayList<Bitmap> mArrayList = new ArrayList<>();
+    private ArrayList<Bitmap> mBitmapList = new ArrayList<>();
     private ArrayList<MultipartBody.Part> mFileList = new ArrayList<>();
     private AttachPhotoAdapter mAdapter;
 
@@ -84,7 +84,7 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
         //-----------------------------------------------| findViewById
         EditText editText = (EditText) view.findViewById(R.id.item_message);
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.items_recycler_view);
-        initRecyclerView(mRecyclerView, mArrayList);
+        initRecyclerView(mRecyclerView, mBitmapList);
 
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
@@ -262,9 +262,9 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);
             if (mAdapter != null) {
-                mArrayList.add(bitmap);
+                mBitmapList.add(bitmap);
                 mFileList.add(uploadFile(mFile, mImageFileName));
-                mAdapter.notifyItemInserted(mArrayList.size());
+                mAdapter.notifyItemInserted(mBitmapList.size());
             }
         }
         if (requestCode == REQUEST_IMAGE_CAPTURE && mCurrentPhotoPath != null) {
@@ -273,9 +273,9 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
             String mImagePath = Utility.getInstance().saveToInternalStorage(getActivity(), bitmap, mImageFileName);
             mFile = new File(mImagePath, mImageFileName);
             if (mAdapter != null) {
-                mArrayList.add(bitmap);
+                mBitmapList.add(bitmap);
                 mFileList.add(uploadFile(mFile, mImageFileName));
-                mAdapter.notifyItemInserted(mArrayList.size());
+                mAdapter.notifyItemInserted(mBitmapList.size());
             }
         }
     }

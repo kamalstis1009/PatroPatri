@@ -95,6 +95,7 @@ public class HomeFragment extends Fragment implements FilterFragmentDialog.MyLis
             });
         }
 
+        //------------------------------------------------| Scroll-down load more data
         if (getActivity() != null) {
             mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override

@@ -115,6 +115,7 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                                 model.setImageFiles(arrayList.toArray(new String[arrayList.size()]));
                                                 model.setSenderId(mUser.getAuth().getId());
                                                 model.setReceiverId(mModel.getId());
+                                                model.setIsEnabled(false);
                                                 mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<MessageDto>() {
                                                     @Override
                                                     public void onChanged(MessageDto item) {
@@ -135,6 +136,7 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                     model.setMessage(message);
                                     model.setSenderId(mUser.getAuth().getId());
                                     model.setReceiverId(mModel.getId());
+                                    model.setIsEnabled(false);
                                     mViewModel.addInbox(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<MessageDto>() {
                                         @Override
                                         public void onChanged(MessageDto item) {

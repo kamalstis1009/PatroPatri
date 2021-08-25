@@ -136,6 +136,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                         json.put("imageFiles", new JSONArray());
                         json.put("senderId", mUser.getAuth().getId());
                         json.put("receiverId", mModel.getSenderId());
+                        json.put("isEnabled", true);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

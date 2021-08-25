@@ -26,4 +26,8 @@ public class MessageDto {
     @Expose
     private Long receiverId;
 
+    @SerializedName("isEnabled")
+    @Expose
+    private Boolean isEnabled;
+
 }

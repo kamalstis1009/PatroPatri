@@ -1,6 +1,7 @@
 package com.patropatri.app.views.adapters;
 
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,11 +61,15 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.MyViewHolder
             }
 
             if (model.getIsEnabled()) {
-                if ((holder.itemName.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG) > 0) { holder.itemName.setPaintFlags(holder.itemName.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG)); }
-                holder.itemName.setBackgroundResource(0);
+                holder.itemName.setTextColor(mActivity.getResources().getColor(R.color.colorDarkGrey));
+                holder.itemName.setTypeface(holder.itemName.getTypeface(), Typeface.NORMAL);
+                //if ((holder.itemName.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG) > 0) { holder.itemName.setPaintFlags(holder.itemName.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG)); }
+                //holder.itemName.setBackgroundResource(0);
             } else {
-                holder.itemName.setPaintFlags(holder.itemName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                holder.itemName.setBackground(mActivity.getResources().getDrawable(R.drawable.strike_thru_red));
+                //holder.itemName.setPaintFlags(holder.itemName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                //holder.itemName.setBackground(mActivity.getResources().getDrawable(R.drawable.strike_thru_red));
+                holder.itemName.setTextColor(mActivity.getResources().getColor(R.color.colorGuardsmanRed));
+                holder.itemName.setTypeface(holder.itemName.getTypeface(), Typeface.BOLD);
             }
         }
 

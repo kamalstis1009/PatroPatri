@@ -3,9 +3,20 @@ package com.patropatri.app.views.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -76,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(stompMessage.getPayload());
                 Log.d(TAG, "Receive: " + stompMessage.getPayload());
                 Log.d(TAG, "Receive Res: " + jsonObject.getString("response"));
+                sendNotification("Title", jsonObject.getString("response"));
             }
         });
 
@@ -123,5 +135,40 @@ public class HomeActivity extends AppCompatActivity {
             }
             return false;
         }
+    }
+
+    private void sendNotification(String title, String body) {
+        //https://developer.android.com/guide/topics/ui/notifiers/notifications#ManageChannels
+        String channelId = getString(R.string.default_notification_channel_id);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_baseline_radio_button_checked_24)
+                .setWhen(System.currentTimeMillis())
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo))
+                .setContentTitle(title)
+                .setContentText(body)
+                .setAutoCancel(true)
+                .setSound(defaultSoundUri)
+                .setChannelId(channelId)
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_logo);
+            notificationBuilder.setLargeIcon(icon);
+        }*/
+
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Since android Oreo notification channel is needed.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId,"Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(true);
+            channel.setLightColor(Color.BLUE);
+            channel.enableVibration(true);
+            if (manager != null) {
+                manager.createNotificationChannel(channel);
+            }
+        }
+        manager.notify(0, notificationBuilder.build());
     }
 }

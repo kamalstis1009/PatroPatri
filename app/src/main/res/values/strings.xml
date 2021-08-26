@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Patropatri</string>
 
+    <!-- MessagingService -->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
     <!-- ProgressDialog -->
     <string name="progress">Please wait…</string>
     <string name="alert_title">Alert</string>

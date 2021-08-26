@@ -39,6 +39,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <service
+            android:name=".services.NotificationService"
+            android:exported="false" />
+
         <activity android:name=".views.activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

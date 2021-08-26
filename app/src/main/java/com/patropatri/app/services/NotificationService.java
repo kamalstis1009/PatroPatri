@@ -12,14 +12,26 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.patropatri.app.R;
+import com.patropatri.app.repositories.WebSocketClient;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.views.activities.HomeActivity;
 
+import org.json.JSONObject;
+
+import io.reactivex.functions.Consumer;
+import ua.naiksoftware.stomp.StompClient;
+import ua.naiksoftware.stomp.dto.StompMessage;
+
+@SuppressWarnings({"FieldCanBeLocal", "ResultOfMethodCallIgnored", "CheckResult"})
 public class NotificationService extends IntentService {
+
+    private static final String TAG = "NotificationService";
 
     public NotificationService() {
         super(NotificationService.class.getSimpleName()); //OR super("NotificationService");
@@ -28,7 +40,19 @@ public class NotificationService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         if (intent != null) {
-            //
+            //-----------------------------------------------| StompClient Connect
+            StompClient mClient = WebSocketClient.getInstance().getStompClient();
+
+            // Subscribe broadcast endpoint to receive response by RX Java
+            mClient.topic(ConstantKey.BROADCAST_RESPONSE).subscribe(new Consumer<StompMessage>() {
+                @Override
+                public void accept(StompMessage stompMessage) throws Exception {
+                    JSONObject jsonObject = new JSONObject(stompMessage.getPayload());
+                    Log.d(TAG, "Receive: " + stompMessage.getPayload());
+                    Log.d(TAG, "Receive Res: " + jsonObject.getString("response"));
+                    sendNotification("Title", jsonObject.getString("response"), null);
+                }
+            });
         }
     }
 

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -15,15 +16,24 @@ import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.repositories.WebSocketClient;
 import com.patropatri.app.services.MyNetworkReceiver;
 import com.patropatri.app.session.SharedPefManager;
+import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.AccountFragment;
 import com.patropatri.app.views.fragments.HomeFragment;
 import com.patropatri.app.views.fragments.InboxFragment;
 import com.patropatri.app.views.fragments.NotificationFragment;
 
-import ua.naiksoftware.stomp.StompClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import io.reactivex.functions.Consumer;
+import ua.naiksoftware.stomp.StompClient;
+import ua.naiksoftware.stomp.dto.StompMessage;
+
+@SuppressWarnings({"FieldCanBeLocal", "ResultOfMethodCallIgnored", "CheckResult"})
 public class HomeActivity extends AppCompatActivity {
+
+    private static final String TAG = "HomeActivity";
 
     private UserWithToken mUser;
     private MyNetworkReceiver mNetworkReceiver;
@@ -58,6 +68,16 @@ public class HomeActivity extends AppCompatActivity {
 
         //-----------------------------------------------| StompClient Connect
         StompClient mClient = WebSocketClient.getInstance().getStompClient();
+
+        // Subscribe broadcast endpoint to receive response by RX Java
+        mClient.topic(ConstantKey.BROADCAST_RESPONSE).subscribe(new Consumer<StompMessage>() {
+            @Override
+            public void accept(StompMessage stompMessage) throws Exception {
+                JSONObject jsonObject = new JSONObject(stompMessage.getPayload());
+                Log.d(TAG, "Receive: " + stompMessage.getPayload());
+                Log.d(TAG, "Receive Res: " + jsonObject.getString("response"));
+            }
+        });
 
         //-----------------------------------------------| Home fragment
         Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());

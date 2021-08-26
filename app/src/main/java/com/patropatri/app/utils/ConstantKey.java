@@ -11,6 +11,8 @@ public class ConstantKey {
 
     public static final String SOCKET_SERVER_URL = "ws://10.0.2.2:8080/stomp/websocket";
     public static final String PLACEHOLDER = "placeholder";
+    public static final String BROADCAST = "/broadcast";
+    public static final String BROADCAST_RESPONSE = "/b";
     public static final String CHAT = "/chat";
     // replace {@code placeholder} with user id
     public static final String CHAT_RESPONSE = "/user/" + PLACEHOLDER + "/msg";

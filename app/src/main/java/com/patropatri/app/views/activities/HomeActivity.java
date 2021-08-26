@@ -7,9 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.patropatri.app.R;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.services.MyNetworkReceiver;
@@ -19,6 +22,8 @@ import com.patropatri.app.views.fragments.AccountFragment;
 import com.patropatri.app.views.fragments.HomeFragment;
 import com.patropatri.app.views.fragments.InboxFragment;
 import com.patropatri.app.views.fragments.NotificationFragment;
+
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -54,6 +59,16 @@ public class HomeActivity extends AppCompatActivity {
         //-----------------------------------------------| Bottom navigation menu
         mNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         mNavigationView.setOnNavigationItemSelectedListener(new ActionHandler());
+
+        //-----------------------------------------------| Get intent data from NotificationService
+        if( getIntent().getExtras() != null) {
+            if (getIntent().hasExtra("DATA")) {
+                String data = getIntent().getStringExtra("DATA");
+                if (data != null) {
+                    Log.d(TAG, data);
+                }
+            }
+        }
 
         //-----------------------------------------------| Home fragment
         Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());
@@ -100,5 +115,7 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         }
     }
+
+
 
 }

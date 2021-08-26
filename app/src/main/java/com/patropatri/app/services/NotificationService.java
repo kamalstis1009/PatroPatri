@@ -17,6 +17,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.repositories.WebSocketClient;
 import com.patropatri.app.utils.ConstantKey;
@@ -50,7 +51,10 @@ public class NotificationService extends IntentService {
                     JSONObject jsonObject = new JSONObject(stompMessage.getPayload());
                     Log.d(TAG, "Receive: " + stompMessage.getPayload());
                     Log.d(TAG, "Receive Res: " + jsonObject.getString("response"));
-                    sendNotification("Title", jsonObject.getString("response"), null);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATA", jsonObject.getString("response"));
+                    sendNotification("Title", jsonObject.getString("response"), bundle);
                 }
             });
         }
@@ -58,7 +62,7 @@ public class NotificationService extends IntentService {
 
     private void sendNotification(String title, String body, Bundle data) {
         Intent intent = new Intent(this, HomeActivity.class);
-        //intent.putExtras(data);
+        intent.putExtras(data);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 

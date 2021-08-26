@@ -36,7 +36,6 @@ import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
-import com.patropatri.app.utils.StompUtils;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.FileViewModel;
 import com.patropatri.app.viewmodels.MessageViewModel;

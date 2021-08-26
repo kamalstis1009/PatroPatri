@@ -64,9 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         if( getIntent().getExtras() != null) {
             if (getIntent().hasExtra("DATA")) {
                 String data = getIntent().getStringExtra("DATA");
-                if (data != null) {
-                    Log.d(TAG, data);
-                }
+                Log.d(TAG, data);
             }
         }
 

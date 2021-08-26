@@ -50,6 +50,7 @@ public class NotificationService extends Service {
     @Override
     public void onCreate() {
         Log.d(TAG, "onCreate");
+        startForegroundService();
     }
 
     @Override
@@ -59,7 +60,7 @@ public class NotificationService extends Service {
             if (action != null) {
                 switch (action) {
                     case ACTION_START_FOREGROUND_SERVICE:
-                        startForegroundService();
+                        //startForegroundService();
                         break;
                     case ACTION_STOP_FOREGROUND_SERVICE:
                         Log.d(TAG, "STOP");

@@ -33,6 +33,7 @@ import com.patropatri.app.R;
 import com.patropatri.app.models.Inbox;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.repositories.WebSocketClient;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
@@ -112,10 +113,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
         //-----------------------------------------------| StompClient Connect
-        // Start connecting to server
-        StompClient mClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, ConstantKey.SOCKET_SERVER_URL);
-        mClient.connect();
-        StompUtils.lifecycle(mClient); //Connection callback
+        StompClient mClient = WebSocketClient.getInstance().getStompClient();
 
         // Subscribe chat endpoint to receive response by RX Java
         if (getActivity() != null && mModel != null && mUser != null) {

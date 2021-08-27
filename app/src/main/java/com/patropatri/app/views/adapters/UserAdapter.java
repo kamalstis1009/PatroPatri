@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
+import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.dialogs.MessageFragmentDialog;
@@ -34,6 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
 
     private FragmentActivity mActivity;
+    private UserWithToken mUser;
     private ArrayList<Candidate> mArrayList;
     private ArrayList<Candidate> mArrayList1;
 
@@ -48,6 +51,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             mArrayList.clear();
             mArrayList1.clear();
         }
+        mUser = SharedPefManager.getInstance(activity).getUser();
         this.mActivity = activity;
         this.mArrayList = arrayList;
         this.mArrayList1 = arrayList;
@@ -107,11 +111,13 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("DATA", new Gson().toJson(model));
-                MessageFragmentDialog mFragment = new MessageFragmentDialog();
-                mFragment.setArguments(bundle);
-                Utility.getInstance().onShowFragmentDialog(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+                if (mUser.getAuth().getId() != model.getId()) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("DATA", new Gson().toJson(model));
+                    MessageFragmentDialog mFragment = new MessageFragmentDialog();
+                    mFragment.setArguments(bundle);
+                    Utility.getInstance().onShowFragmentDialog(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+                }
             }
         });
 

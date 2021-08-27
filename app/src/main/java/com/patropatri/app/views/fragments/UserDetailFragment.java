@@ -23,6 +23,7 @@ import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Liked;
 import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.models.Viewed;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
@@ -75,13 +76,7 @@ public class UserDetailFragment extends Fragment {
                 ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
                 ((TextView) view.findViewById(R.id.item_address_designation)).setText(mModel.getProfession() + " | " + mModel.getDistrict());
 
-                Bundle bundle = new Bundle();
-                bundle.putString("DATA", new Gson().toJson(mModel));
-                UserAboutFragment mFragment = new UserAboutFragment();
-                mFragment.setArguments(bundle);
-                onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
-
-                if (getActivity() != null && mUser != null) {
+                if (getActivity() != null) {
                     mViewModel.getLikedByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Liked>() {
                         @Override
                         public void onChanged(Liked model) {
@@ -90,7 +85,23 @@ public class UserDetailFragment extends Fragment {
                             }
                         }
                     });
+
+                    Viewed model = new Viewed();
+                    model.setUserId(mModel.getId());
+                    model.setCreatedBy(mUser.getAuth().getId());
+                    mViewModel.addViewed(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Viewed>() {
+                        @Override
+                        public void onChanged(Viewed model) {
+                            if (model != null) {}
+                        }
+                    });
                 }
+
+                Bundle bundle = new Bundle();
+                bundle.putString("DATA", new Gson().toJson(mModel));
+                UserAboutFragment mFragment = new UserAboutFragment();
+                mFragment.setArguments(bundle);
+                onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
             }
         }
 

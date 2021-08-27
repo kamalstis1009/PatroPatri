@@ -18,6 +18,7 @@ import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.models.Viewed;
 
 import java.util.ArrayList;
 
@@ -163,5 +164,10 @@ public interface RetrofitApi {
     @Headers("Content-Type: application/json")
     @POST("message/like")
     Call<Liked> addLiked(@Body Liked item, @Header("Authorization") String token);
+
+    //======================================================| Visitor
+    @Headers("Content-Type: application/json")
+    @POST("message/view")
+    Call<Viewed> addViewed(@Body Viewed item, @Header("Authorization") String token);
 
 }

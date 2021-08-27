@@ -17,7 +17,7 @@ import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
-import com.patropatri.app.models.Viewed;
+import com.patropatri.app.models.Viewer;
 import com.patropatri.app.repositories.RetrofitClient;
 
 import java.util.ArrayList;
@@ -365,12 +365,12 @@ public class MessageViewModel extends AndroidViewModel {
     }
 
     //===============================================| Visitor
-    public LiveData<Viewed> addViewed(Viewed item, String token) {
-        MutableLiveData<Viewed> data = new MutableLiveData<>();
-        Call<Viewed> call = RetrofitClient.getInstance().getApi().addViewed(item, token);
-        call.enqueue(new Callback<Viewed>() {
+    public LiveData<Viewer> addViewer(Viewer item, String token) {
+        MutableLiveData<Viewer> data = new MutableLiveData<>();
+        Call<Viewer> call = RetrofitClient.getInstance().getApi().addViewer(item, token);
+        call.enqueue(new Callback<Viewer>() {
             @Override
-            public void onResponse(@NonNull Call<Viewed> call, @NonNull Response<Viewed> response) {
+            public void onResponse(@NonNull Call<Viewer> call, @NonNull Response<Viewer> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         data.setValue(response.body());
@@ -382,7 +382,7 @@ public class MessageViewModel extends AndroidViewModel {
                 }
             }
             @Override
-            public void onFailure(@NonNull Call<Viewed> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<Viewer> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

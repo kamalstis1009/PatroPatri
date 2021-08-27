@@ -8,7 +8,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Viewed {
+public class Viewer {
 
     @SerializedName("id")
     @Expose

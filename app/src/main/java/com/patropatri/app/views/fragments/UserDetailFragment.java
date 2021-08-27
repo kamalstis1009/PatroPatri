@@ -23,7 +23,7 @@ import com.patropatri.app.R;
 import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Liked;
 import com.patropatri.app.models.UserWithToken;
-import com.patropatri.app.models.Viewed;
+import com.patropatri.app.models.Viewer;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
@@ -86,12 +86,12 @@ public class UserDetailFragment extends Fragment {
                         }
                     });
 
-                    Viewed model = new Viewed();
+                    Viewer model = new Viewer();
                     model.setUserId(mModel.getId());
                     model.setCreatedBy(mUser.getAuth().getId());
-                    mViewModel.addViewed(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Viewed>() {
+                    mViewModel.addViewer(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Viewer>() {
                         @Override
-                        public void onChanged(Viewed model) {
+                        public void onChanged(Viewer model) {
                             if (model != null) {}
                         }
                     });

@@ -18,7 +18,7 @@ import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
-import com.patropatri.app.models.Viewed;
+import com.patropatri.app.models.Viewer;
 
 import java.util.ArrayList;
 
@@ -167,7 +167,7 @@ public interface RetrofitApi {
 
     //======================================================| Visitor
     @Headers("Content-Type: application/json")
-    @POST("message/view")
-    Call<Viewed> addViewed(@Body Viewed item, @Header("Authorization") String token);
+    @POST("message/viewer")
+    Call<Viewer> addViewer(@Body Viewer item, @Header("Authorization") String token);
 
 }

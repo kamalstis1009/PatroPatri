@@ -390,4 +390,29 @@ public class MessageViewModel extends AndroidViewModel {
         return data;
     }
 
+    public LiveData<ArrayList<LikedDto>> getAllViewersByUserId(long userId, String token) {
+        MutableLiveData<ArrayList<LikedDto>> data = new MutableLiveData<>();
+        Call<ArrayList<LikedDto>> call = RetrofitClient.getInstance().getApi().getAllViewersByUserId(userId, token);
+        call.enqueue(new Callback<ArrayList<LikedDto>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<LikedDto>> call, @NonNull Response<ArrayList<LikedDto>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<LikedDto>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
 }

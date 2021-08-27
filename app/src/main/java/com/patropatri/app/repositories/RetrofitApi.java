@@ -170,4 +170,7 @@ public interface RetrofitApi {
     @POST("message/viewer")
     Call<Viewer> addViewer(@Body Viewer item, @Header("Authorization") String token);
 
+    @GET("message/viewers/{userId}")
+    Call<ArrayList<LikedDto>> getAllViewersByUserId(@Path("userId") long userId, @Header("Authorization") String token);
+
 }

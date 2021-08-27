@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public class ConstantKey {
 
-    //public static final String SERVER_URL = "http://114.31.10.20:5050/patropatri/api/v1/"; //Cloud Tomcat
-    public static final String SERVER_URL = "http://192.168.0.174:5050/patropatri/api/v1/"; //Local Tomcat
-    //public static final String SERVER_URL = "http://10.0.2.2:8080/api/v1/"; //Localhost IntelliJ IDEA
+    //public static final String HOST_PORT = "114.31.10.20:5050"; //Cloud Tomcat
+    public static final String HOST_PORT = "192.168.0.174:5050"; //Local Tomcat
+    //public static final String HOST_PORT = "10.0.2.2:8080"; //Localhost IntelliJ IDEA
+
+    public static final String SERVER_URL = "http://"+ HOST_PORT +"/patropatri/api/v1/";
     public static final String RESOURCE_URL = SERVER_URL + "file/download/";
 
-    public static final String SOCKET_SERVER_URL = "ws://10.0.2.2:8080/stomp/websocket";
+    public static final String SOCKET_SERVER_URL = "ws://"+ HOST_PORT +"/stomp/websocket";
     public static final String PLACEHOLDER = "placeholder";
     public static final String BROADCAST = "/broadcast";
     public static final String BROADCAST_RESPONSE = "/b";

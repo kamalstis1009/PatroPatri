@@ -17,6 +17,7 @@ public class Candidate {
     private String summary;
     private Integer commentAmount;
     private Integer likedAmount;
+    private Integer viewerAmount;
     private String imageName;
     private String imageCoverName;
     private Date createdAt;

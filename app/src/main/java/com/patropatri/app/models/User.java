@@ -142,6 +142,10 @@ public class User {
     @Expose
     private Integer likedAmount;
 
+    @SerializedName("viewerAmount")
+    @Expose
+    private Integer viewerAmount;
+
     //---------------------| Audit
     @SerializedName("createdAt")
     @Expose

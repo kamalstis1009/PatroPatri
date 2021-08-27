@@ -72,6 +72,7 @@ public class UserDetailFragment extends Fragment {
                 }
                 ((TextView) view.findViewById(R.id.item_comment)).setText(mModel.getCommentAmount() + "");
                 ((TextView) view.findViewById(R.id.item_liked)).setText(mModel.getLikedAmount() + "");
+                ((TextView) view.findViewById(R.id.item_viewer)).setText(mModel.getViewerAmount() + "");
 
                 ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
                 ((TextView) view.findViewById(R.id.item_address_designation)).setText(mModel.getProfession() + " | " + mModel.getDistrict());
@@ -189,6 +190,18 @@ public class UserDetailFragment extends Fragment {
                     LikedFragment mFragment = new LikedFragment();
                     mFragment.setArguments(bundle);
                     Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
+                }
+            }
+        });
+        ((LinearLayout) view.findViewById(R.id.show_viewer_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mModel != null) {
+                    /*Bundle bundle = new Bundle();
+                    bundle.putString("DATA", new Gson().toJson(mModel));
+                    LikedFragment mFragment = new LikedFragment();
+                    mFragment.setArguments(bundle);
+                    Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);*/
                 }
             }
         });

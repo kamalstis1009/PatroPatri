@@ -57,6 +57,14 @@ public class User {
     @Expose
     private String district;
 
+    @SerializedName("citizenship")
+    @Expose
+    private String citizenship;
+
+    @SerializedName("motherTongue")
+    @Expose
+    private String motherTongue;
+
     //---------------------| Profession
     @SerializedName("profession")
     @Expose
@@ -124,6 +132,10 @@ public class User {
     @SerializedName("token")
     @Expose
     private String token;
+
+    @SerializedName("subscription")
+    @Expose
+    private String subscription;
 
     @SerializedName("isActive")
     @Expose

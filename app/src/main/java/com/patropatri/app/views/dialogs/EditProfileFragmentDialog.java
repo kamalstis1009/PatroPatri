@@ -330,8 +330,8 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 permanent = mItemPermanentAddress.getText().toString().trim();
                         model.setPhoneNumber(phone);
                         model.setEmail(email);
-                        model.setPresentAddress(present);
-                        model.setPermanentAddress(permanent);
+                        //model.setPresentAddress(present);
+                        //model.setPermanentAddress(permanent);
                         storeUser(model);
                     }
                     if (mPosition == 5) {

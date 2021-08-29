@@ -16,6 +16,7 @@ import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
+import com.patropatri.app.models.Subscription;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.models.Viewer;
@@ -109,6 +110,10 @@ public interface RetrofitApi {
 
     @GET("educations/{userId}")
     Call<ArrayList<Education>> getAllEducationsByUserId(@Path("userId") long userId, @Header("Authorization") String token);
+
+    //======================================================| Subscription
+    @GET("subscriptions")
+    Call<ArrayList<Subscription>> getAllSubscriptions(@Header("Authorization") String token);
 
     //======================================================| Gallery
     @GET("galleries/{userId}")

@@ -82,7 +82,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
     private ImageView mImageCoverView;
     private CircleImageView mImageView;
     private RecyclerView mEducationRecyclerView, mFamilyRecyclerView;
-    private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemCitizenship, mItemMotherTongue, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
+    private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemCitizenship, mItemMotherTongue, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation, mItemReference;
 
     @Nullable
     @Override
@@ -120,6 +120,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mItemInterest = (TextView) view.findViewById(R.id.item_interest);
         mItemActivity = (TextView) view.findViewById(R.id.item_other_activity);
         mItemExpectation = (TextView) view.findViewById(R.id.item_expectation);
+        mItemReference = (TextView) view.findViewById(R.id.item_reference);
 
         mEducationRecyclerView = (RecyclerView) view.findViewById(R.id.items_education_recycler_view);
         mFamilyRecyclerView = (RecyclerView) view.findViewById(R.id.items_family_recycler_view);
@@ -136,6 +137,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         ((ImageButton) view.findViewById(R.id.item_interest_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_activity_button)).setOnClickListener(new ActionHandler());
         ((ImageButton) view.findViewById(R.id.item_expectation_button)).setOnClickListener(new ActionHandler());
+        ((ImageButton) view.findViewById(R.id.item_reference_button)).setOnClickListener(new ActionHandler());
 
         //-----------------------------------------------| Session
         mUser = SharedPefManager.getInstance(getActivity()).getUser();
@@ -243,10 +245,10 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                 mItemPhone.setText(model.getPhoneNumber());
             if (model.getEmail() != null)
                 mItemEmail.setText(model.getEmail());
-            /*if (model.getPresentAddress() != null)
-                mItemPresent.setText(model.getPresentAddress());
-            if (model.getPermanentAddress() != null)
-                mItemPermanent.setText(model.getPermanentAddress());*/
+            if (model.getAddressLine1() != null)
+                mItemPresent.setText(model.getAddressLine1());
+            if (model.getAddressLine2() != null)
+                mItemPermanent.setText(model.getAddressLine2());
 
             if (model.getSummary() != null)
                 mItemSummary.setText(model.getSummary());
@@ -256,6 +258,8 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                 mItemActivity.setText(model.getOtherActivity());
             if (model.getExpectation() != null)
                 mItemExpectation.setText(model.getExpectation());
+            if (model.getReference() != null)
+                mItemReference.setText(model.getReference());
         }
     }
 
@@ -330,6 +334,9 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
             }
             if (v.getId() == R.id.item_expectation_button) {
                 onShowDialog(9);
+            }
+            if (v.getId() == R.id.item_reference_button) {
+                onShowDialog(10);
             }
         }
     }

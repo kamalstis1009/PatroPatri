@@ -259,7 +259,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                             }
                                         }
                                     }
-                                }, mDropDownList, false);
+                                }, mDropDownList, true);
                             }
                             Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                         }
@@ -296,7 +296,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                             }
                                         }
                                     }
-                                }, mDropDownList, false);
+                                }, mDropDownList, true);
                             }
                             Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                         }
@@ -333,7 +333,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                             }
                                         }
                                     }
-                                }, mDropDownList, false);
+                                }, mDropDownList, true);
                             }
                             Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                         }
@@ -370,7 +370,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                             }
                                         }
                                     }
-                                }, mDropDownList, false);
+                                }, mDropDownList, true);
                             }
                             Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                         }
@@ -407,7 +407,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                             }
                                         }
                                     }
-                                }, mDropDownList, false);
+                                }, mDropDownList, true);
                             }
                             Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                         }

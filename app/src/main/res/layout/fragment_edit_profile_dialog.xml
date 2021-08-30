@@ -435,6 +435,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_pre_address_line"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Present Address Line"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
                 <RelativeLayout
                     android:layout_marginBottom="6dp"
                     android:layout_width="match_parent"
@@ -444,7 +465,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
-                            android:id="@+id/item_country"
+                            android:id="@+id/item_pre_country"
                             android:inputType="text"
                             android:singleLine="true"
                             android:maxLength="250"
@@ -461,7 +482,7 @@
                             android:layout_height="wrap_content" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <ImageButton
-                        android:id="@+id/item_country_button"
+                        android:id="@+id/item_pre_country_button"
                         android:tint="@color/colorDarkGrey"
                         android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
@@ -479,7 +500,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
-                            android:id="@+id/item_division"
+                            android:id="@+id/item_pre_division"
                             android:inputType="text"
                             android:singleLine="true"
                             android:maxLength="250"
@@ -496,7 +517,7 @@
                             android:layout_height="wrap_content" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <ImageButton
-                        android:id="@+id/item_division_button"
+                        android:id="@+id/item_pre_division_button"
                         android:tint="@color/colorDarkGrey"
                         android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
@@ -514,7 +535,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <EditText
-                            android:id="@+id/item_district"
+                            android:id="@+id/item_pre_district"
                             android:inputType="text"
                             android:singleLine="true"
                             android:maxLength="250"
@@ -531,7 +552,7 @@
                             android:layout_height="wrap_content" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <ImageButton
-                        android:id="@+id/item_district_button"
+                        android:id="@+id/item_pre_district_button"
                         android:tint="@color/colorDarkGrey"
                         android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
@@ -540,17 +561,88 @@
                         android:layout_width="50dp"
                         android:layout_height="58dp" />
                 </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/item_pre_police_station"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:maxLength="250"
+                            android:maxEms="250"
+                            android:hint="Police Station"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                            android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:layout_marginEnd="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/item_pre_police_station_button"
+                        android:tint="@color/colorDarkGrey"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="58dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/item_pre_postal_code"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:maxLength="250"
+                            android:maxEms="250"
+                            android:hint="Zip/Postal Code"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                            android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:layout_marginEnd="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/item_pre_postal_code_button"
+                        android:tint="@color/colorDarkGrey"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="58dp" />
+                </RelativeLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
-                        android:id="@+id/item_present_address"
+                        android:id="@+id/item_per_address_line"
                         android:inputType="text"
                         android:singleLine="true"
                         android:maxLength="250"
                         android:maxEms="250"
-                        android:hint="Present Address"
+                        android:hint="Permanent Address Line"
                         android:textSize="12sp"
                         app:drawableTint="@color/colorDeepGrey"
                         android:drawableEnd="@drawable/ic_baseline_location_on_24"
@@ -561,27 +653,181 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <RelativeLayout
+                    android:layout_marginBottom="6dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/item_permanent_address"
-                        android:inputType="text"
-                        android:singleLine="true"
-                        android:maxLength="250"
-                        android:maxEms="250"
-                        android:hint="Permanent Address"
-                        android:textSize="12sp"
-                        app:drawableTint="@color/colorDeepGrey"
-                        android:drawableEnd="@drawable/ic_baseline_location_on_24"
-                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
-                        android:paddingStart="25dp"
-                        android:paddingEnd="25dp"
-                        android:layout_marginBottom="10dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/item_per_country"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:maxLength="250"
+                            android:maxEms="250"
+                            android:hint="Country"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                            android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:layout_marginEnd="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/item_per_country_button"
+                        android:tint="@color/colorDarkGrey"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="58dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/item_per_division"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:maxLength="250"
+                            android:maxEms="250"
+                            android:hint="State/Province/Division"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                            android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:layout_marginEnd="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/item_per_division_button"
+                        android:tint="@color/colorDarkGrey"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="58dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/item_per_district"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:maxLength="250"
+                            android:maxEms="250"
+                            android:hint="City/District"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                            android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:layout_marginEnd="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/item_per_district_button"
+                        android:tint="@color/colorDarkGrey"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="58dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/item_per_police_station"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:maxLength="250"
+                            android:maxEms="250"
+                            android:hint="Police Station"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                            android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:layout_marginEnd="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/item_per_police_station_button"
+                        android:tint="@color/colorDarkGrey"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="58dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_marginBottom="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/item_per_postal_code"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:maxLength="250"
+                            android:maxEms="250"
+                            android:hint="Zip/Postal Code"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                            android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:layout_marginEnd="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <ImageButton
+                        android:id="@+id/item_per_postal_code_button"
+                        android:tint="@color/colorDarkGrey"
+                        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="50dp"
+                        android:layout_height="58dp" />
+                </RelativeLayout>
             </LinearLayout>
 
             <!-- Portion 5 | Education -->

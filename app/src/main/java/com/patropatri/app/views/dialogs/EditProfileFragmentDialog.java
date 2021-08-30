@@ -1,6 +1,5 @@
 package com.patropatri.app.views.dialogs;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -59,7 +58,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     ArrayList<DropDown> mDropDownList = new ArrayList<>();
 
     private int mPosition;
-    private ProgressDialog mProgress;
+    private ProgressBar mProgressBar;
 
     private UserWithToken mUser;
     private UserViewModel mViewModel;
@@ -81,6 +80,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_edit_profile_dialog, container, false);
 
         //-----------------------------------------------| findViewById
+        mProgressBar = view.findViewById(R.id.progress_bar);
         EditText mItemFullName = (EditText) view.findViewById(R.id.item_full_name);
         Spinner mItemGender = (Spinner) view.findViewById(R.id.item_gender);
         EditText mItemBirth = (EditText) view.findViewById(R.id.item_birth);
@@ -218,6 +218,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 if (getActivity() != null && mUser != null) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
                     mViewModel.getAllCountries("Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Country>>() {
                         @Override
                         public void onChanged(ArrayList<Country> arrayList) {
@@ -237,6 +238,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                     }
                                 }, mDropDownList, false);
                             }
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                         }
                     });
                 }
@@ -285,7 +287,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         model.setInstitution(institute);
                         model.setUserId(mUser.getAuth().getId());
 
-                        mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
+                        Utility.getInstance().onVisibleProgressBar(mProgressBar);
                         mViewModel.addEducation(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Education>() {
                             @Override
                             public void onChanged(Education item) {
@@ -297,7 +299,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 } else {
                                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                                 }
-                                Utility.getInstance().dismissProgressDialog(mProgress);
+                                Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                             }
                         });
                     }
@@ -322,7 +324,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         model.setSummary(memberDetails);
                         model.setUserId(mUser.getAuth().getId());
 
-                        mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
+                        Utility.getInstance().onVisibleProgressBar(mProgressBar);
                         mViewModel.addFamily(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Family>() {
                             @Override
                             public void onChanged(Family item) {
@@ -334,7 +336,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 } else {
                                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                                 }
-                                Utility.getInstance().dismissProgressDialog(mProgress);
+                                Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                             }
                         });
                     }
@@ -476,7 +478,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private void storeUser(User model) {
         if (getActivity() != null && mUser != null) {
-            mProgress = Utility.getInstance().showProgressDialog(getActivity(), getResources().getString(R.string.progress), true);
+            Utility.getInstance().onVisibleProgressBar(mProgressBar);
             mViewModel.updateUser(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
                 @Override
                 public void onChanged(User item) {
@@ -491,7 +493,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     } else {
                         Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not save unsuccessfully!", Snackbar.LENGTH_SHORT).show();
                     }
-                    Utility.getInstance().dismissProgressDialog(mProgress);
+                    Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                 }
             });
         }

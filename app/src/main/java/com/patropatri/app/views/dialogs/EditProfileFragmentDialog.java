@@ -67,8 +67,6 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     private Country mCountry;
     private Division mDivision;
     private District mDistrict;
-    private PoliceStation mPoliceStation;
-    private PostalCode mPostalCode;
 
     private int mPosition;
     private ProgressBar mProgressBar;
@@ -370,11 +368,6 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                     @Override
                                     public void onPositionItem(int position, DropDown item) {
                                         (mItemPrePoliceStation).setText(item.getName());
-                                        for (PoliceStation model : mPoliceStationList) {
-                                            if (model.getId().equals(item.getId())) {
-                                                mPoliceStation = model;
-                                            }
-                                        }
                                     }
                                 }, mDropDownList, true);
                             }
@@ -407,11 +400,6 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                     @Override
                                     public void onPositionItem(int position, DropDown item) {
                                         (mItemPrePostalCode).setText(item.getName());
-                                        for (PostalCode model : mPostalCodeList) {
-                                            if (model.getId().equals(item.getId())) {
-                                                mPostalCode = model;
-                                            }
-                                        }
                                     }
                                 }, mDropDownList, true);
                             }
@@ -557,11 +545,6 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                     @Override
                                     public void onPositionItem(int position, DropDown item) {
                                         (mItemPerPoliceStation).setText(item.getName());
-                                        for (PoliceStation model : mPoliceStationList) {
-                                            if (model.getId().equals(item.getId())) {
-                                                mPoliceStation = model;
-                                            }
-                                        }
                                     }
                                 }, mDropDownList, true);
                             }
@@ -594,11 +577,6 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                     @Override
                                     public void onPositionItem(int position, DropDown item) {
                                         (mItemPerPostalCode).setText(item.getName());
-                                        for (PostalCode model : mPostalCodeList) {
-                                            if (model.getId().equals(item.getId())) {
-                                                mPostalCode = model;
-                                            }
-                                        }
                                     }
                                 }, mDropDownList, true);
                             }

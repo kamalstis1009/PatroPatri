@@ -98,15 +98,10 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText mItemEmail = (EditText) view.findViewById(R.id.item_email);
         EditText mItemPreAddressLine = (EditText) view.findViewById(R.id.item_pre_address_line);
         EditText mItemPreCountry = (EditText) view.findViewById(R.id.item_pre_country);
-        ImageButton mItemPreCountryButton = (ImageButton) view.findViewById(R.id.item_pre_country_button);
         EditText mItemPreDivision = (EditText) view.findViewById(R.id.item_pre_division);
-        ImageButton mItemPreDivisionButton = (ImageButton) view.findViewById(R.id.item_pre_division_button);
         EditText mItemPreDistrict = (EditText) view.findViewById(R.id.item_pre_district);
-        ImageButton mItemPreDistrictButton = (ImageButton) view.findViewById(R.id.item_pre_district_button);
         EditText mItemPrePoliceStation = (EditText) view.findViewById(R.id.item_pre_police_station);
-        ImageButton mItemPrePoliceStationButton = (ImageButton) view.findViewById(R.id.item_pre_police_station_button);
         EditText mItemPrePostalCode = (EditText) view.findViewById(R.id.item_pre_postal_code);
-        ImageButton mItemPrePostalCodeButton = (ImageButton) view.findViewById(R.id.item_pre_postal_code_button);
 
         EditText mItemDegreeName = (EditText) view.findViewById(R.id.item_degree_name);
         EditText mItemSubjectName = (EditText) view.findViewById(R.id.item_subject_name);
@@ -210,6 +205,37 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         mItemBirth.setText(date);
                     }
                 }, getActivity());
+            }
+        });
+
+        ((ImageButton) view.findViewById(R.id.item_pre_country_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+        ((ImageButton) view.findViewById(R.id.item_pre_division_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+        ((ImageButton) view.findViewById(R.id.item_pre_district_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+        ((ImageButton) view.findViewById(R.id.item_pre_police_station_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+        ((ImageButton) view.findViewById(R.id.item_pre_postal_code_button)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
             }
         });
 

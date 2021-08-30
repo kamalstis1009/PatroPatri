@@ -11,11 +11,16 @@ import androidx.lifecycle.MutableLiveData;
 import com.patropatri.app.models.Authentication;
 import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.models.Candidate;
+import com.patropatri.app.models.Country;
+import com.patropatri.app.models.District;
+import com.patropatri.app.models.Division;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Filter;
 import com.patropatri.app.models.Gallery;
 import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.PoliceStation;
+import com.patropatri.app.models.PostalCode;
 import com.patropatri.app.models.Subscription;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
@@ -436,6 +441,132 @@ public class UserViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(@NonNull Call<ArrayList<Subscription>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    //===============================================| Address
+    public LiveData<ArrayList<Country>> getAllCountries(String token) {
+        MutableLiveData<ArrayList<Country>> data = new MutableLiveData<>();
+        Call<ArrayList<Country>> call = RetrofitClient.getInstance().getApi().getAllCountries(token);
+        call.enqueue(new Callback<ArrayList<Country>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Country>> call, @NonNull Response<ArrayList<Country>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Country>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ArrayList<Division>> getAllDivisionsByCountryId(long countryId, String token) {
+        MutableLiveData<ArrayList<Division>> data = new MutableLiveData<>();
+        Call<ArrayList<Division>> call = RetrofitClient.getInstance().getApi().getAllDivisionsByCountryId(countryId, token);
+        call.enqueue(new Callback<ArrayList<Division>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Division>> call, @NonNull Response<ArrayList<Division>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Division>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ArrayList<District>> getAllDistrictsByDivisionId(long divisionId, String token) {
+        MutableLiveData<ArrayList<District>> data = new MutableLiveData<>();
+        Call<ArrayList<District>> call = RetrofitClient.getInstance().getApi().getAllDistrictsByDivisionId(divisionId, token);
+        call.enqueue(new Callback<ArrayList<District>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<District>> call, @NonNull Response<ArrayList<District>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<District>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ArrayList<PoliceStation>> getAllPoliceStationsByDistrictId(long districtId, String token) {
+        MutableLiveData<ArrayList<PoliceStation>> data = new MutableLiveData<>();
+        Call<ArrayList<PoliceStation>> call = RetrofitClient.getInstance().getApi().getAllPoliceStationsByDistrictId(districtId, token);
+        call.enqueue(new Callback<ArrayList<PoliceStation>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<PoliceStation>> call, @NonNull Response<ArrayList<PoliceStation>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<PoliceStation>> call, @NonNull Throwable t) {
+                data.setValue(null);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<ArrayList<PostalCode>> getAllPostalCodesByDistrictId(long districtId, String token) {
+        MutableLiveData<ArrayList<PostalCode>> data = new MutableLiveData<>();
+        Call<ArrayList<PostalCode>> call = RetrofitClient.getInstance().getApi().getAllPostalCodesByDistrictId(districtId, token);
+        call.enqueue(new Callback<ArrayList<PostalCode>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<PostalCode>> call, @NonNull Response<ArrayList<PostalCode>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<PostalCode>> call, @NonNull Throwable t) {
                 data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }

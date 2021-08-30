@@ -84,7 +84,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         Spinner mItemMaritalStatus = (Spinner) view.findViewById(R.id.item_marital_status);
         Spinner mItemReligion = (Spinner) view.findViewById(R.id.item_religion);
         Spinner mItemComplex = (Spinner) view.findViewById(R.id.item_complex);
-        Spinner mItemDistrict = (Spinner) view.findViewById(R.id.item_district);
+        Spinner mItemHomeDistrict = (Spinner) view.findViewById(R.id.item_home_district);
         EditText mItemCitizenship = (EditText) view.findViewById(R.id.item_citizenship);
         EditText mItemMotherTongue = (EditText) view.findViewById(R.id.item_mother_tongue);
 
@@ -123,7 +123,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         ArrayList<String> list = new ArrayList<>(Arrays.asList(districts));
         list.add(0, "District");
         ArrayAdapter<String> mArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, list);
-        mItemDistrict.setAdapter(mArrayAdapter);
+        mItemHomeDistrict.setAdapter(mArrayAdapter);
 
         //-----------------------------------------------| Session
         mUser = SharedPefManager.getInstance(getActivity()).getUser();
@@ -298,7 +298,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 status = mItemMaritalStatus.getSelectedItem().toString().trim(),
                                 religion = mItemReligion.getSelectedItem().toString().trim(),
                                 complex = mItemComplex.getSelectedItem().toString().trim(),
-                                district = mItemDistrict.getSelectedItem().toString().trim(),
+                                district = mItemHomeDistrict.getSelectedItem().toString().trim(),
                                 citizenship = mItemCitizenship.getText().toString().trim(),
                                 tongue = mItemMotherTongue.getText().toString().trim();
                         //name,birth,status,

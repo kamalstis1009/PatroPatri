@@ -228,7 +228,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                mClient.send(new StompMessage(
+                /*mClient.send(new StompMessage(
                         // Stomp command
                         StompCommand.SEND,
                         // Stomp Headers, Send Headers with STOMP the first header is required, and the other can be customized by ourselves
@@ -238,8 +238,8 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                         ),
                         // Stomp payload
                         jsonObject.toString())
-                ).subscribe();
-                /*if (TextUtils.isEmpty(message)) {
+                ).subscribe();*/
+                if (TextUtils.isEmpty(message)) {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty message did not allowed!", Snackbar.LENGTH_SHORT).show();
                 } else {
                     if (mModel != null && mUser != null && mUser.getAuth() != null) {
@@ -314,7 +314,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                             editText.getText().clear();
                         }
                     }
-                }*/
+                }
             }
         });
 

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:id="@+id/item_name"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:singleLine="true"
             android:text="Monthly"
             android:layout_centerVertical="true"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/item_price"
-                android:textSize="75sp"
+                android:textSize="45sp"
                 android:singleLine="true"
                 android:text="500"
                 android:textColor="@color/colorPrimary"

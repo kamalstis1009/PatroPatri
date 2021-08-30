@@ -85,6 +85,8 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         Spinner mItemReligion = (Spinner) view.findViewById(R.id.item_religion);
         Spinner mItemComplex = (Spinner) view.findViewById(R.id.item_complex);
         Spinner mItemDistrict = (Spinner) view.findViewById(R.id.item_district);
+        EditText mItemCitizenship = (EditText) view.findViewById(R.id.item_citizenship);
+        EditText mItemMotherTongue = (EditText) view.findViewById(R.id.item_mother_tongue);
 
         Spinner mItemService = (Spinner) view.findViewById(R.id.item_service);
         EditText mItemDesignation = (EditText) view.findViewById(R.id.item_designation);
@@ -296,7 +298,9 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 status = mItemMaritalStatus.getSelectedItem().toString().trim(),
                                 religion = mItemReligion.getSelectedItem().toString().trim(),
                                 complex = mItemComplex.getSelectedItem().toString().trim(),
-                                district = mItemDistrict.getSelectedItem().toString().trim();
+                                district = mItemDistrict.getSelectedItem().toString().trim(),
+                                citizenship = mItemCitizenship.getText().toString().trim(),
+                                tongue = mItemMotherTongue.getText().toString().trim();
                         //name,birth,status,
                         model.setFullName(fullName);
                         model.setGender(gender.contains("Gender") ? null : gender);
@@ -308,6 +312,8 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         model.setReligion(religion.contains("Religion") ? null : religion);
                         model.setComplex(complex.contains("Complex") ? null : complex);
                         model.setDistrict(district.contains("District") ? null : district);
+                        model.setCitizenship(citizenship);
+                        model.setMotherTongue(tongue);
                         storeUser(model);
                     }
                     if (mPosition == 3) {

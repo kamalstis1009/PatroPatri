@@ -112,7 +112,7 @@
                     android:background="@drawable/layer_list_spinner_radius_8"
                     android:padding="20dp"
                     android:textSize="12sp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <com.google.android.material.textfield.TextInputLayout
@@ -132,7 +132,7 @@
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="true"
@@ -157,7 +157,7 @@
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -178,7 +178,7 @@
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
                         android:paddingStart="25dp"
                         android:paddingEnd="25dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -235,9 +235,51 @@
                     android:entries="@array/district_array"
                     android:background="@drawable/layer_list_spinner_radius_8"
                     android:textSize="12sp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_citizenship"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Citizenship"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_location_on_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_mother_tongue"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:hint="Mother Tongue"
+                        android:textSize="12sp"
+                        app:drawableTint="@color/colorDeepGrey"
+                        android:drawableEnd="@drawable/ic_baseline_language_24"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!-- Portion 3 | Profession -->

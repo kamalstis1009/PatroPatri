@@ -177,9 +177,9 @@ public class User {
     @Expose
     private String token;
 
-    @SerializedName("subscription")
+    @SerializedName("subscriptionId")
     @Expose
-    private String subscription;
+    private Long subscriptionId;
 
     @SerializedName("isActive")
     @Expose

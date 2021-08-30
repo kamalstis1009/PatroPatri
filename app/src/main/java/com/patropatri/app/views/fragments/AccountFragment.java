@@ -81,7 +81,7 @@ public class AccountFragment extends Fragment {
                 if (isChecked) {
                     Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SubscriptionFragment());
                 } else {
-                    mViewModel.updateUserPost(mUser.getAuth().getId(), isChecked, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
+                    mViewModel.updateUserPost(mUser.getAuth().getId(), false, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
                         @Override
                         public void onChanged(Boolean isActive) {
                             if (isActive) {

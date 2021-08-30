@@ -387,7 +387,7 @@
 
             <!-- Portion 4 | Contact -->
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/part_4"
                 android:orientation="vertical"
                 android:layout_marginTop="25dp"
@@ -1153,6 +1153,35 @@
                         android:maxEms="1550"
                         android:textSize="12sp"
                         android:hint="Expectations"
+                        android:inputType="text|textMultiLine"
+                        android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="25dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Portion 9 | Expectation -->
+            <LinearLayout
+                android:id="@+id/part_10"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/item_reference"
+                        android:gravity="top"
+                        android:maxLength="250"
+                        android:maxEms="250"
+                        android:textSize="12sp"
+                        android:hint="Reference"
                         android:inputType="text|textMultiLine"
                         android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
                         android:layout_marginBottom="10dp"

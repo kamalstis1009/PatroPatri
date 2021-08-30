@@ -96,8 +96,17 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
         EditText mItemPhone = (EditText) view.findViewById(R.id.item_phone_number);
         EditText mItemEmail = (EditText) view.findViewById(R.id.item_email);
-        EditText mItemPresentAddress = (EditText) view.findViewById(R.id.item_present_address);
-        EditText mItemPermanentAddress = (EditText) view.findViewById(R.id.item_permanent_address);
+        EditText mItemPreAddressLine = (EditText) view.findViewById(R.id.item_pre_address_line);
+        EditText mItemPreCountry = (EditText) view.findViewById(R.id.item_pre_country);
+        ImageButton mItemPreCountryButton = (ImageButton) view.findViewById(R.id.item_pre_country_button);
+        EditText mItemPreDivision = (EditText) view.findViewById(R.id.item_pre_division);
+        ImageButton mItemPreDivisionButton = (ImageButton) view.findViewById(R.id.item_pre_division_button);
+        EditText mItemPreDistrict = (EditText) view.findViewById(R.id.item_pre_district);
+        ImageButton mItemPreDistrictButton = (ImageButton) view.findViewById(R.id.item_pre_district_button);
+        EditText mItemPrePoliceStation = (EditText) view.findViewById(R.id.item_pre_police_station);
+        ImageButton mItemPrePoliceStationButton = (ImageButton) view.findViewById(R.id.item_pre_police_station_button);
+        EditText mItemPrePostalCode = (EditText) view.findViewById(R.id.item_pre_postal_code);
+        ImageButton mItemPrePostalCodeButton = (ImageButton) view.findViewById(R.id.item_pre_postal_code_button);
 
         EditText mItemDegreeName = (EditText) view.findViewById(R.id.item_degree_name);
         EditText mItemSubjectName = (EditText) view.findViewById(R.id.item_subject_name);
@@ -116,6 +125,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         EditText mItemInterest = (EditText) view.findViewById(R.id.item_interest);
         EditText mItemOtherActivity = (EditText) view.findViewById(R.id.item_other_activity);
         EditText mItemExpectation = (EditText) view.findViewById(R.id.item_expectation);
+        EditText mItemReference = (EditText) view.findViewById(R.id.item_reference);
 
         //-----------------------------------------------| Districts sort
         String[] districts = getResources().getStringArray(R.array.district_array);
@@ -179,6 +189,8 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     ((LinearLayout) view.findViewById(R.id.part_8)).setVisibility(View.VISIBLE);
                 if (mPosition == 9)
                     ((LinearLayout) view.findViewById(R.id.part_9)).setVisibility(View.VISIBLE);
+                if (mPosition == 10)
+                    ((LinearLayout) view.findViewById(R.id.part_10)).setVisibility(View.VISIBLE);
             }
         }
 
@@ -332,12 +344,20 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     if (mPosition == 4) {
                         String phone = mItemPhone.getText().toString().trim(),
                                 email = mItemEmail.getText().toString().trim(),
-                                present = mItemPresentAddress.getText().toString().trim(),
-                                permanent = mItemPermanentAddress.getText().toString().trim();
+                                preAddressLine = mItemPreAddressLine.getText().toString().trim(),
+                                preCountry = mItemPreCountry.getText().toString().trim(),
+                                preDivision = mItemPreDivision.getText().toString().trim(),
+                                preDistrict = mItemPreDistrict.getText().toString().trim(),
+                                prePoliceStation = mItemPrePoliceStation.getText().toString().trim(),
+                                prePostalCode = mItemPrePostalCode.getText().toString().trim();
                         model.setPhoneNumber(phone);
                         model.setEmail(email);
-                        //model.setPresentAddress(present);
-                        //model.setPermanentAddress(permanent);
+                        model.setAddressLine1(preAddressLine);
+                        model.setCountry1(preCountry);
+                        model.setDivision1(preDivision);
+                        model.setDistrict1(preDistrict);
+                        model.setPoliceStation1(prePoliceStation);
+                        model.setPostalCode1(prePostalCode);
                         storeUser(model);
                     }
                     if (mPosition == 5) {
@@ -365,6 +385,11 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                     if (mPosition == 9) {
                         String expectation = mItemExpectation.getText().toString().trim();
                         model.setExpectation(expectation);
+                        storeUser(model);
+                    }
+                    if (mPosition == 9) {
+                        String reference = mItemReference.getText().toString().trim();
+                        model.setReference(reference);
                         storeUser(model);
                     }
                     /*if (TextUtils.isEmpty(summary)) {

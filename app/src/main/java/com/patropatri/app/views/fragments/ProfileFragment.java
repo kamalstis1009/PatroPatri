@@ -82,7 +82,7 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
     private ImageView mImageCoverView;
     private CircleImageView mImageView;
     private RecyclerView mEducationRecyclerView, mFamilyRecyclerView;
-    private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
+    private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemCitizenship, mItemMotherTongue, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
 
     @Nullable
     @Override
@@ -102,6 +102,8 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
         mItemReligion = (TextView) view.findViewById(R.id.item_religion);
         mItemComplex = (TextView) view.findViewById(R.id.item_complex);
         mItemDistrict = (TextView) view.findViewById(R.id.item_district);
+        mItemCitizenship = (TextView) view.findViewById(R.id.item_citizenship);
+        mItemMotherTongue = (TextView) view.findViewById(R.id.item_mother_tongue);
 
         mItemProfession = (TextView) view.findViewById(R.id.item_profession);
         mItemDesignation = (TextView) view.findViewById(R.id.item_designation);
@@ -221,6 +223,10 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                 mItemComplex.setText(model.getComplex());
             if (model.getDistrict() != null)
                 mItemDistrict.setText(model.getDistrict());
+            if (model.getCitizenship() != null)
+                mItemCitizenship.setText(model.getCitizenship());
+            if (model.getMotherTongue() != null)
+                mItemMotherTongue.setText(model.getMotherTongue());
 
             if (model.getProfession() != null)
                 mItemProfession.setText(model.getProfession());

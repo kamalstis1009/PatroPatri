@@ -363,7 +363,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
                                     @Override
                                     public void onPositionItem(int position, DropDown item) {
-                                        (mItemPreDistrict).setText(item.getName());
+                                        (mItemPrePoliceStation).setText(item.getName());
                                         for (PoliceStation model : mPoliceStationList) {
                                             if (model.getId().equals(item.getId())) {
                                                 mPoliceStation = model;
@@ -400,7 +400,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                 SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
                                     @Override
                                     public void onPositionItem(int position, DropDown item) {
-                                        (mItemPreDistrict).setText(item.getName());
+                                        (mItemPrePostalCode).setText(item.getName());
                                         for (PostalCode model : mPostalCodeList) {
                                             if (model.getId().equals(item.getId())) {
                                                 mPostalCode = model;

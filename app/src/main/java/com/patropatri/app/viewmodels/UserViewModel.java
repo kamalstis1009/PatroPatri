@@ -15,6 +15,8 @@ import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Filter;
 import com.patropatri.app.models.Gallery;
+import com.patropatri.app.models.Notification;
+import com.patropatri.app.models.Subscription;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.repositories.RetrofitClient;
@@ -409,6 +411,32 @@ public class UserViewModel extends AndroidViewModel {
             @Override
             public void onFailure(@NonNull Call<Integer> call, @NonNull Throwable t) {
                 data.setValue(0);
+                Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+        return data;
+    }
+
+    //===============================================| Subscription
+    public LiveData<ArrayList<Subscription>> getAllSubscriptions(String token) {
+        MutableLiveData<ArrayList<Subscription>> data = new MutableLiveData<>();
+        Call<ArrayList<Subscription>> call = RetrofitClient.getInstance().getApi().getAllSubscriptions(token);
+        call.enqueue(new Callback<ArrayList<Subscription>>() {
+            @Override
+            public void onResponse(@NonNull Call<ArrayList<Subscription>> call, @NonNull Response<ArrayList<Subscription>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        data.setValue(response.body());
+                    } else {
+                        data.setValue(null);
+                    }
+                } else {
+                    data.setValue(null);
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<ArrayList<Subscription>> call, @NonNull Throwable t) {
+                data.setValue(null);
                 Toast.makeText(mApplication.getApplicationContext(), "" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });

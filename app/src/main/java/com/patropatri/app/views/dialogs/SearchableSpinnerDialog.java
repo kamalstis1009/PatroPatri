@@ -20,8 +20,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.DropDown;
 
 //implements EasyPermissions.PermissionCallbacks
 public class SearchableSpinnerDialog {
@@ -55,10 +57,10 @@ public class SearchableSpinnerDialog {
     }
 
     public interface CallBackPosition {
-        void onPositionItem(int position, String name);
+        void onPositionItem(int position, DropDown model);
     }
 
-    public void getAlertDialog(final CallBackPosition mCallback, ArrayList<String> items, boolean IsSorted) {
+    public void getAlertDialog(final CallBackPosition mCallback, ArrayList<DropDown> items, boolean IsSorted) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         //AlertDialog.Builder builder = new AlertDialog.Builder(mContext, android.R.style.Theme_Material_Light_NoActionBar_Fullscreen);
         View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_searchable_spinner, null, false);
@@ -78,7 +80,8 @@ public class SearchableSpinnerDialog {
         //if(!((Activity) mContext).isFinishing()) {}
 
         if (IsSorted) {
-            Collections.sort(items);
+            //Collections.sort(items);
+            sorting(items);
         }
 
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.item_search_recycler_view);
@@ -104,15 +107,24 @@ public class SearchableSpinnerDialog {
         //NestedScrollView mRootView = (NestedScrollView) view.findViewById(R.id.root_view);
     }
 
+    private void sorting(ArrayList<DropDown> list) {
+        //https://stackoverflow.com/questions/9109890/android-java-how-to-sort-a-list-of-objects-by-a-certain-value-within-the-object
+        Collections.sort(list, new Comparator<DropDown>(){
+            public int compare(DropDown obj1, DropDown obj2) {
+                return obj1.getName().compareToIgnoreCase(obj2.getName());
+            }
+        });
+    }
+
 
     private class ItemSearchAdapter extends RecyclerView.Adapter<ItemSearchAdapter.MyViewHolder> implements Filterable {
 
         //private FragmentActivity mActivity;
-        private ArrayList<String> mArrayList;
-        private ArrayList<String> mArrayList1;
+        private ArrayList<DropDown> mArrayList;
+        private ArrayList<DropDown> mArrayList1;
         private CallBackPosition mListener;
 
-        public ItemSearchAdapter(ArrayList<String> arrayList, CallBackPosition mCallback) {
+        public ItemSearchAdapter(ArrayList<DropDown> arrayList, CallBackPosition mCallback) {
             if (mArrayList != null) {
                 mArrayList.clear();
                 mArrayList1.clear();
@@ -131,16 +143,17 @@ public class SearchableSpinnerDialog {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-            String name = mArrayList.get(position);
-
-            holder.textView.setText(name);
-            holder.layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mListener.onPositionItem(position, name);
-                    mDialog.dismiss();
-                }
-            });
+            DropDown model = mArrayList.get(position);
+            if (model != null) {
+                holder.textView.setText(model.getName());
+                holder.layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mListener.onPositionItem(position, model);
+                        mDialog.dismiss();
+                    }
+                });
+            }
         }
 
         @Override
@@ -168,10 +181,10 @@ public class SearchableSpinnerDialog {
                     if (charString.isEmpty()){
                         mArrayList = mArrayList1;
                     } else {
-                        ArrayList<String> filterList = new ArrayList<>();
-                        for (String data : mArrayList1){
-                            if (data.toLowerCase().contains(charString.toLowerCase())){
-                                filterList.add(data);
+                        ArrayList<DropDown> filterList = new ArrayList<>();
+                        for (DropDown model : mArrayList1){
+                            if (model.getName().toLowerCase().contains(charString.toLowerCase())){
+                                filterList.add(model);
                             }
                         }
                         mArrayList = filterList;
@@ -183,7 +196,7 @@ public class SearchableSpinnerDialog {
 
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
-                    mArrayList = (ArrayList<String>) results.values;
+                    mArrayList = (ArrayList<DropDown>) results.values;
                     notifyDataSetChanged();
                 }
             };

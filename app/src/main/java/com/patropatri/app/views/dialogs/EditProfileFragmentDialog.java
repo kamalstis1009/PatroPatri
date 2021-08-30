@@ -30,6 +30,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Country;
+import com.patropatri.app.models.DropDown;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.User;
@@ -55,7 +56,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     private EducationAdapter mEducationAdapter;
 
     ArrayList<Country> mCountryList = new ArrayList<>();
-    ArrayList<String> mCountryNames = new ArrayList<>();
+    ArrayList<DropDown> mDropDownList = new ArrayList<>();
 
     private int mPosition;
     private ProgressDialog mProgress;
@@ -223,18 +224,18 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                             if (arrayList != null) {
                                 mCountryList.addAll(arrayList);
                                 for (Country model : mCountryList) {
-                                    mCountryNames.add(model.getName());
+                                    mDropDownList.add(new DropDown(model.getId(), model.getName()));
                                 }
                                 SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
                                     @Override
-                                    public void onPositionItem(int position, String name) {
-                                        (mItemPreCountry).setText(name);
+                                    public void onPositionItem(int position, DropDown item) {
+                                        (mItemPreCountry).setText(item.getName());
                                         for (Country model : mCountryList) {
-                                            if (model.getName().contains(name)) {
+                                            if (model.getId() == item.getId()) {
                                             }
                                         }
                                     }
-                                }, mCountryNames, false);
+                                }, mDropDownList, false);
                             }
                         }
                     });

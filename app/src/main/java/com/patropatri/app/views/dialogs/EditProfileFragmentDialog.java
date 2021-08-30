@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
+import com.patropatri.app.models.Country;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.User;
@@ -51,6 +53,9 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private ArrayList<Education> mEducationList = new ArrayList<>();
     private EducationAdapter mEducationAdapter;
+
+    ArrayList<Country> mCountryList = new ArrayList<>();
+    ArrayList<String> mCountryNames = new ArrayList<>();
 
     private int mPosition;
     private ProgressDialog mProgress;
@@ -211,7 +216,29 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         ((ImageButton) view.findViewById(R.id.item_pre_country_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                if (getActivity() != null && mUser != null) {
+                    mViewModel.getAllCountries("Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Country>>() {
+                        @Override
+                        public void onChanged(ArrayList<Country> arrayList) {
+                            if (arrayList != null) {
+                                mCountryList.addAll(arrayList);
+                                for (Country model : mCountryList) {
+                                    mCountryNames.add(model.getName());
+                                }
+                                SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
+                                    @Override
+                                    public void onPositionItem(int position, String name) {
+                                        (mItemPreCountry).setText(name);
+                                        for (Country model : mCountryList) {
+                                            if (model.getName().contains(name)) {
+                                            }
+                                        }
+                                    }
+                                }, mCountryNames, false);
+                            }
+                        }
+                    });
+                }
             }
         });
         ((ImageButton) view.findViewById(R.id.item_pre_division_button)).setOnClickListener(new View.OnClickListener() {

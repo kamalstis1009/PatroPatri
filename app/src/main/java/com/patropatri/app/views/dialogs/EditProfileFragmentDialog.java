@@ -60,6 +60,9 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
 
     private ArrayList<Country> mCountryList = new ArrayList<>();
     private ArrayList<Division> mDivisionList = new ArrayList<>();
+    private ArrayList<District> mDistrictList = new ArrayList<>();
+    private ArrayList<PoliceStation> mPoliceStationList = new ArrayList<>();
+    private ArrayList<PostalCode> mPostalCodeList = new ArrayList<>();
     private ArrayList<DropDown> mDropDownList = new ArrayList<>();
     private Country mCountry;
     private Division mDivision;
@@ -236,10 +239,13 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         @Override
                         public void onChanged(ArrayList<Country> arrayList) {
                             if (arrayList != null) {
-                                mCountryList.addAll(arrayList);
+                                if (mCountryList.size() > 0) {
+                                    mCountryList.clear();
+                                }
                                 if (mDropDownList.size() > 0) {
                                     mDropDownList.clear();
                                 }
+                                mCountryList.addAll(arrayList);
                                 for (Country model : mCountryList) {
                                     mDropDownList.add(new DropDown(model.getId(), model.getName()));
                                 }
@@ -270,10 +276,13 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         @Override
                         public void onChanged(ArrayList<Division> arrayList) {
                             if (arrayList != null) {
-                                mDivisionList.addAll(arrayList);
+                                if (mDivisionList.size() > 0) {
+                                    mDivisionList.clear();
+                                }
                                 if (mDropDownList.size() > 0) {
                                     mDropDownList.clear();
                                 }
+                                mDivisionList.addAll(arrayList);
                                 for (Division model : mDivisionList) {
                                     mDropDownList.add(new DropDown(model.getId(), model.getName()));
                                 }
@@ -298,19 +307,112 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         ((ImageButton) view.findViewById(R.id.item_pre_district_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                if (getActivity() != null && mUser != null && mDivision != null) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                    mViewModel.getAllDistrictsByDivisionId(mDivision.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<District>>() {
+                        @Override
+                        public void onChanged(ArrayList<District> arrayList) {
+                            if (arrayList != null) {
+                                if (mDistrictList.size() > 0) {
+                                    mDistrictList.clear();
+                                }
+                                if (mDropDownList.size() > 0) {
+                                    mDropDownList.clear();
+                                }
+                                mDistrictList.addAll(arrayList);
+                                for (District model : mDistrictList) {
+                                    mDropDownList.add(new DropDown(model.getId(), model.getName()));
+                                }
+                                SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
+                                    @Override
+                                    public void onPositionItem(int position, DropDown item) {
+                                        (mItemPreDistrict).setText(item.getName());
+                                        for (District model : mDistrictList) {
+                                            if (model.getId().equals(item.getId())) {
+                                                mDistrict = model;
+                                            }
+                                        }
+                                    }
+                                }, mDropDownList, false);
+                            }
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                        }
+                    });
+                }
             }
         });
         ((ImageButton) view.findViewById(R.id.item_pre_police_station_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                if (getActivity() != null && mUser != null && mDistrict != null) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                    mViewModel.getAllPoliceStationsByDistrictId(mDistrict.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<PoliceStation>>() {
+                        @Override
+                        public void onChanged(ArrayList<PoliceStation> arrayList) {
+                            if (arrayList != null) {
+                                if (mPoliceStationList.size() > 0) {
+                                    mPoliceStationList.clear();
+                                }
+                                if (mDropDownList.size() > 0) {
+                                    mDropDownList.clear();
+                                }
+                                mPoliceStationList.addAll(arrayList);
+                                for (PoliceStation model : mPoliceStationList) {
+                                    mDropDownList.add(new DropDown(model.getId(), model.getName()));
+                                }
+                                SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
+                                    @Override
+                                    public void onPositionItem(int position, DropDown item) {
+                                        (mItemPreDistrict).setText(item.getName());
+                                        for (PoliceStation model : mPoliceStationList) {
+                                            if (model.getId().equals(item.getId())) {
+                                                mPoliceStation = model;
+                                            }
+                                        }
+                                    }
+                                }, mDropDownList, false);
+                            }
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                        }
+                    });
+                }
             }
         });
         ((ImageButton) view.findViewById(R.id.item_pre_postal_code_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                if (getActivity() != null && mUser != null && mDistrict != null) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                    mViewModel.getAllPostalCodesByDistrictId(mDistrict.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<PostalCode>>() {
+                        @Override
+                        public void onChanged(ArrayList<PostalCode> arrayList) {
+                            if (arrayList != null) {
+                                if (mPostalCodeList.size() > 0) {
+                                    mPostalCodeList.clear();
+                                }
+                                if (mDropDownList.size() > 0) {
+                                    mDropDownList.clear();
+                                }
+                                mPostalCodeList.addAll(arrayList);
+                                for (PostalCode model : mPostalCodeList) {
+                                    mDropDownList.add(new DropDown(model.getId(), model.getName()));
+                                }
+                                SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
+                                    @Override
+                                    public void onPositionItem(int position, DropDown item) {
+                                        (mItemPreDistrict).setText(item.getName());
+                                        for (PostalCode model : mPostalCodeList) {
+                                            if (model.getId().equals(item.getId())) {
+                                                mPostalCode = model;
+                                            }
+                                        }
+                                    }
+                                }, mDropDownList, false);
+                            }
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                        }
+                    });
+                }
             }
         });
 

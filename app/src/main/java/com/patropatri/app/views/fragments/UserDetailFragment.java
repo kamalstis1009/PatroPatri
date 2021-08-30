@@ -186,6 +186,7 @@ public class UserDetailFragment extends Fragment {
             public void onClick(View v) {
                 if (mModel != null) {
                     Bundle bundle = new Bundle();
+                    bundle.putInt("POSITION", 1);
                     bundle.putString("DATA", new Gson().toJson(mModel));
                     LikedFragment mFragment = new LikedFragment();
                     mFragment.setArguments(bundle);
@@ -197,11 +198,12 @@ public class UserDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mModel != null) {
-                    /*Bundle bundle = new Bundle();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("POSITION", 2);
                     bundle.putString("DATA", new Gson().toJson(mModel));
                     LikedFragment mFragment = new LikedFragment();
                     mFragment.setArguments(bundle);
-                    Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);*/
+                    Utility.getInstance().onReplaceFragment(requireActivity().getSupportFragmentManager(), mFragment);
                 }
             }
         });

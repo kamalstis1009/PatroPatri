@@ -51,19 +51,35 @@ public class LikedFragment extends Fragment {
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null && getArguments().getString("DATA", null) != null) {
             mModel = new Gson().fromJson(getArguments().getString("DATA", null), Candidate.class);
+            int mPosition = getArguments().getInt("POSITION", 0);
 
             if (mModel != null) {
-                Utility.getInstance().onVisibleProgressBar(mProgressBar);
-                mViewModel.getAllLikesByUserId(mModel.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<LikedDto>>() {
-                    @Override
-                    public void onChanged(ArrayList<LikedDto> arrayList) {
-                        if (arrayList != null) {
-                            mArrayList.addAll(arrayList);
+                if (mPosition == 1) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                    mViewModel.getAllLikesByUserId(mModel.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<LikedDto>>() {
+                        @Override
+                        public void onChanged(ArrayList<LikedDto> arrayList) {
+                            if (arrayList != null) {
+                                mArrayList.addAll(arrayList);
+                            }
+                            initRecyclerView(mRecyclerView, mArrayList);
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                         }
-                        initRecyclerView(mRecyclerView, mArrayList);
-                        Utility.getInstance().onInvisibleProgressBar(mProgressBar);
-                    }
-                });
+                    });
+                }
+                if (mPosition == 2) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                    mViewModel.getAllViewersByUserId(mModel.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<LikedDto>>() {
+                        @Override
+                        public void onChanged(ArrayList<LikedDto> arrayList) {
+                            if (arrayList != null) {
+                                mArrayList.addAll(arrayList);
+                            }
+                            initRecyclerView(mRecyclerView, mArrayList);
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                        }
+                    });
+                }
             }
         }
 

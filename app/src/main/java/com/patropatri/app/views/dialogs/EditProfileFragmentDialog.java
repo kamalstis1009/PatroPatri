@@ -54,8 +54,9 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     private ArrayList<Education> mEducationList = new ArrayList<>();
     private EducationAdapter mEducationAdapter;
 
-    ArrayList<Country> mCountryList = new ArrayList<>();
-    ArrayList<DropDown> mDropDownList = new ArrayList<>();
+    private ArrayList<Country> mCountryList = new ArrayList<>();
+    private ArrayList<DropDown> mDropDownList = new ArrayList<>();
+    private Country mCountry;
 
     private int mPosition;
     private ProgressBar mProgressBar;
@@ -195,6 +196,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             }
         }
 
+        //------------------------------------------------| Back
         ((ImageButton) view.findViewById(R.id.back_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,6 +204,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             }
         });
 
+        //------------------------------------------------| DatePicker
         mItemBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,6 +217,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             }
         });
 
+        //------------------------------------------------| Address
         ((ImageButton) view.findViewById(R.id.item_pre_country_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,6 +273,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             }
         });
 
+        //------------------------------------------------| Education
         ((Button) view.findViewById(R.id.add_education_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -307,6 +312,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             }
         });
 
+        //------------------------------------------------| Family
         ((Button) view.findViewById(R.id.add_family_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -344,6 +350,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
             }
         });
 
+        //------------------------------------------------| Submit
         ((Button) view.findViewById(R.id.submit_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

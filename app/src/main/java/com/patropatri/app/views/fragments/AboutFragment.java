@@ -28,7 +28,9 @@ public class AboutFragment extends Fragment  {
 
         //------------------------------------------------| Get Bundle Data
         if (getArguments() != null) {
-            /*mModel = new Gson().fromJson(getArguments().getString("DATA", null), Answered.class);
+            /*
+            //mArrayList = new Gson().fromJson(getArguments().getString("PRODUCT", null), new TypeToken<ArrayList<Product>>() {}.getType());
+            mModel = new Gson().fromJson(getArguments().getString("DATA", null), Answered.class);
             if (mModel != null && getActivity() != null) {
                 Utility.getInstance().onVisibleProgressBar(mProgressBar);
                 mViewModel.getAllQuestionCategoryByChecklistId(mModel.getChecklistId()).observe(getActivity(), new Observer<ArrayList<QuestionCategory>>() {
@@ -41,7 +43,8 @@ public class AboutFragment extends Fragment  {
                         Utility.getInstance().onInvisibleProgressBar(mProgressBar);
                     }
                 });
-            }*/
+            }
+            */
         }
 
         return view;

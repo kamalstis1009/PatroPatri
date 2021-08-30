@@ -27,6 +27,8 @@ import com.patropatri.app.viewmodels.UserViewModel;
 import com.patropatri.app.views.activities.SignInActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AccountFragment extends Fragment {
@@ -76,17 +78,7 @@ public class AccountFragment extends Fragment {
             if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
                 mUser.getUser().setIsActive(isChecked);
                 SharedPefManager.getInstance(getActivity()).saveUser(mUser);
-
-                mViewModel.updateUserPost(mUser.getAuth().getId(), isChecked, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
-                    @Override
-                    public void onChanged(Boolean isActive) {
-                        if (isActive) {
-                            //Snackbar.make(getActivity().findViewById(android.R.id.content), "Activated successfully!", Snackbar.LENGTH_SHORT).show();
-                        } else {
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not active this post unsuccessfully!", Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SubscriptionFragment());
             }
         }
 

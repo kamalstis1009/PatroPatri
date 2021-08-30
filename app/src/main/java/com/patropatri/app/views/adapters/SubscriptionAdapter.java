@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Subscription;
 import com.patropatri.app.utils.Utility;
-import com.patropatri.app.views.fragments.MessageFragment;
+import com.patropatri.app.views.fragments.PaymentSuccessFragment;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -59,7 +59,7 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("DATA", new Gson().toJson(model));
-                MessageFragment mFragment = new MessageFragment();
+                PaymentSuccessFragment mFragment = new PaymentSuccessFragment();
                 mFragment.setArguments(bundle);
                 Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
             }

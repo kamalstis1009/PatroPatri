@@ -1,6 +1,5 @@
 package com.patropatri.app.views.adapters;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,23 +10,27 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Subscription;
 import com.patropatri.app.utils.Utility;
-import com.patropatri.app.views.fragments.PaymentSuccessFragment;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapter.MyViewHolder> {
 
     private FragmentActivity mActivity;
     private ArrayList<Subscription> mArrayList;
 
-    public SubscriptionAdapter(FragmentActivity context, ArrayList<Subscription> arrayList) {
+    private CallBackListener mListener;
+
+    public interface CallBackListener {
+        void onAddItem(Subscription model);
+    }
+
+    public SubscriptionAdapter(FragmentActivity context, ArrayList<Subscription> arrayList, CallBackListener listener) {
         this.mActivity = context;
         this.mArrayList = arrayList;
+        this.mListener = listener;
     }
 
     @NonNull
@@ -57,11 +60,9 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("DATA", new Gson().toJson(model));
-                PaymentSuccessFragment mFragment = new PaymentSuccessFragment();
-                mFragment.setArguments(bundle);
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+                if (mListener != null) {
+                    mListener.onAddItem(model);
+                }
             }
         });
     }

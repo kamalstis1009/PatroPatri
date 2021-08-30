@@ -59,6 +59,8 @@ dependencies {
     //===============================================| Android Jetpack Components for MVVM
     api "com.github.NaikSoftware:StompProtocolAndroid:1.6.4"
     api "io.reactivex.rxjava2:rxjava:2.2.5"
+    //===============================================| International phone number
+    //implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.29'
     //===============================================| Lombok : Getter/Setter
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'

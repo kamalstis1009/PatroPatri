@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Subscription;
 import com.patropatri.app.models.UserWithToken;
@@ -24,7 +25,7 @@ import com.patropatri.app.views.adapters.SubscriptionAdapter;
 
 import java.util.ArrayList;
 
-public class SubscriptionFragment extends Fragment  {
+public class SubscriptionFragment extends Fragment implements SubscriptionAdapter.CallBackListener {
 
     private ProgressBar mProgressBar;
     private ArrayList<Subscription> mArrayList = new ArrayList<>();
@@ -69,11 +70,20 @@ public class SubscriptionFragment extends Fragment  {
     }
 
     private void initRecyclerView(RecyclerView recyclerView, ArrayList<Subscription> arrayList) {
-        SubscriptionAdapter mAdapter = new SubscriptionAdapter(getActivity(), arrayList);
+        SubscriptionAdapter mAdapter = new SubscriptionAdapter(getActivity(), arrayList, this);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(5 /*px spacing*/));
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onAddItem(Subscription model) {
+        Bundle bundle = new Bundle();
+        bundle.putString("DATA", new Gson().toJson(model));
+        PaymentSuccessFragment mFragment = new PaymentSuccessFragment();
+        mFragment.setArguments(bundle);
+        Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), mFragment);
     }
 }

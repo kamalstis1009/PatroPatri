@@ -59,17 +59,6 @@ public class PaymentSuccessFragment extends Fragment {
             Subscription mModel = new Gson().fromJson(getArguments().getString("DATA", null), Subscription.class);
 
             if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
-                /*mViewModel.updateUserPost(mUser.getAuth().getId(), mUser.getUser().getIsActive(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
-                    @Override
-                    public void onChanged(Boolean isActive) {
-                        if (isActive) {
-                            //Snackbar.make(getActivity().findViewById(android.R.id.content), "Activated successfully!", Snackbar.LENGTH_SHORT).show();
-                        } else {
-                            Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not active this post unsuccessfully!", Snackbar.LENGTH_SHORT).show();
-                        }
-                    }
-                });*/
-
                 User model = new User();
                 model.setId(mUser.getAuth().getId());
                 model.setSubscriptionId(mModel.getId());

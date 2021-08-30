@@ -78,7 +78,20 @@ public class AccountFragment extends Fragment {
             if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
                 mUser.getUser().setIsActive(isChecked);
                 SharedPefManager.getInstance(getActivity()).saveUser(mUser);
-                Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SubscriptionFragment());
+                if (isChecked) {
+                    Utility.getInstance().onAddFragment(requireActivity().getSupportFragmentManager(), new SubscriptionFragment());
+                } else {
+                    mViewModel.updateUserPost(mUser.getAuth().getId(), isChecked, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Boolean>() {
+                        @Override
+                        public void onChanged(Boolean isActive) {
+                            if (isActive) {
+                                //Snackbar.make(getActivity().findViewById(android.R.id.content), "Activated successfully!", Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                Snackbar.make(getActivity().findViewById(android.R.id.content), "Did not active this post unsuccessfully!", Snackbar.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
             }
         }
 

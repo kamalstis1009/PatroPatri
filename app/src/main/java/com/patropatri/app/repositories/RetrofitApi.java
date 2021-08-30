@@ -5,6 +5,9 @@ import com.patropatri.app.models.AuthenticationDto;
 import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Comment;
 import com.patropatri.app.models.CommentDto;
+import com.patropatri.app.models.Country;
+import com.patropatri.app.models.District;
+import com.patropatri.app.models.Division;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
 import com.patropatri.app.models.Filter;
@@ -16,6 +19,8 @@ import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.Notification;
 import com.patropatri.app.models.NotificationDto;
+import com.patropatri.app.models.PoliceStation;
+import com.patropatri.app.models.PostalCode;
 import com.patropatri.app.models.Subscription;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
@@ -114,6 +119,22 @@ public interface RetrofitApi {
     //======================================================| Subscription
     @GET("subscriptions")
     Call<ArrayList<Subscription>> getAllSubscriptions(@Header("Authorization") String token);
+
+    //======================================================| Address
+    @GET("address/countries")
+    Call<ArrayList<Country>> getAllCountries(@Header("Authorization") String token);
+
+    @GET("address/divisions/{countryId}")
+    Call<ArrayList<Division>> getAllDivisionsByCountryId(@Path("countryId") long countryId, @Header("Authorization") String token);
+
+    @GET("address/districts/{divisionId}")
+    Call<ArrayList<District>> getAllDistrictsByDivisionId(@Path("divisionId") long divisionId, @Header("Authorization") String token);
+
+    @GET("address/stations/{districtId}")
+    Call<ArrayList<PoliceStation>> getAllPoliceStationsByDistrictId(@Path("districtId") long districtId, @Header("Authorization") String token);
+
+    @GET("address/zips/{districtId}")
+    Call<ArrayList<PostalCode>> getAllPostalCodesByDistrictId(@Path("districtId") long districtId, @Header("Authorization") String token);
 
     //======================================================| Gallery
     @GET("galleries/{userId}")

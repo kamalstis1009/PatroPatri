@@ -29,9 +29,13 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.patropatri.app.R;
 import com.patropatri.app.models.Country;
+import com.patropatri.app.models.District;
+import com.patropatri.app.models.Division;
 import com.patropatri.app.models.DropDown;
 import com.patropatri.app.models.Education;
 import com.patropatri.app.models.Family;
+import com.patropatri.app.models.PoliceStation;
+import com.patropatri.app.models.PostalCode;
 import com.patropatri.app.models.User;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.session.SharedPefManager;
@@ -55,8 +59,13 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
     private EducationAdapter mEducationAdapter;
 
     private ArrayList<Country> mCountryList = new ArrayList<>();
+    private ArrayList<Division> mDivisionList = new ArrayList<>();
     private ArrayList<DropDown> mDropDownList = new ArrayList<>();
     private Country mCountry;
+    private Division mDivision;
+    private District mDistrict;
+    private PoliceStation mPoliceStation;
+    private PostalCode mPostalCode;
 
     private int mPosition;
     private ProgressBar mProgressBar;
@@ -228,6 +237,9 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         public void onChanged(ArrayList<Country> arrayList) {
                             if (arrayList != null) {
                                 mCountryList.addAll(arrayList);
+                                if (mDropDownList.size() > 0) {
+                                    mDropDownList.clear();
+                                }
                                 for (Country model : mCountryList) {
                                     mDropDownList.add(new DropDown(model.getId(), model.getName()));
                                 }
@@ -236,7 +248,8 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                                     public void onPositionItem(int position, DropDown item) {
                                         (mItemPreCountry).setText(item.getName());
                                         for (Country model : mCountryList) {
-                                            if (model.getId() == item.getId()) {
+                                            if (model.getId().equals(item.getId())) {
+                                                mCountry = model;
                                             }
                                         }
                                     }
@@ -251,7 +264,35 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
         ((ImageButton) view.findViewById(R.id.item_pre_division_button)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
+                if (getActivity() != null && mUser != null && mCountry != null) {
+                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
+                    mViewModel.getAllDivisionsByCountryId(mCountry.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Division>>() {
+                        @Override
+                        public void onChanged(ArrayList<Division> arrayList) {
+                            if (arrayList != null) {
+                                mDivisionList.addAll(arrayList);
+                                if (mDropDownList.size() > 0) {
+                                    mDropDownList.clear();
+                                }
+                                for (Division model : mDivisionList) {
+                                    mDropDownList.add(new DropDown(model.getId(), model.getName()));
+                                }
+                                SearchableSpinnerDialog.getInstance(getActivity()).getAlertDialog(new SearchableSpinnerDialog.CallBackPosition() {
+                                    @Override
+                                    public void onPositionItem(int position, DropDown item) {
+                                        (mItemPreDivision).setText(item.getName());
+                                        for (Division model : mDivisionList) {
+                                            if (model.getId().equals(item.getId())) {
+                                                mDivision = model;
+                                            }
+                                        }
+                                    }
+                                }, mDropDownList, false);
+                            }
+                            Utility.getInstance().onInvisibleProgressBar(mProgressBar);
+                        }
+                    });
+                }
             }
         });
         ((ImageButton) view.findViewById(R.id.item_pre_district_button)).setOnClickListener(new View.OnClickListener() {

@@ -1,14 +1,21 @@
 package com.patropatri.app.views.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -22,9 +29,19 @@ import com.patropatri.app.services.MyNetworkReceiver;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.viewmodels.UserViewModel;
 
-public class SignUpActivity extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.List;
+
+import pub.devrel.easypermissions.EasyPermissions;
+
+public class SignUpActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
+
+    private static final int REQUEST_CODE = 1;
+    private static final String[] PERMISSIONS = {android.Manifest.permission.READ_PHONE_STATE};
+
 
     private ProgressDialog mProgress;
+    private EditText username;
     private MyNetworkReceiver mNetworkReceiver;
 
     @Override
@@ -40,9 +57,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         //mPriority.setSelection(Arrays.asList(priorities).indexOf(mTaskModel.getPriority()));
 
-        EditText username = (EditText) findViewById(R.id.username);
+        username = (EditText) findViewById(R.id.username);
         EditText password = (EditText) findViewById(R.id.password);
         EditText confirm = (EditText) findViewById(R.id.confirm_password);
+
+        onChekRequestPermissions();
 
         ((Button) findViewById(R.id.submit_button)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,4 +114,54 @@ public class SignUpActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    //====================================================| Check Permissions for Mic, Camera, Gallery
+    //@AfterPermissionGranted(REQUEST_CODE)
+    private void onChekRequestPermissions() {
+        if (EasyPermissions.hasPermissions(this, PERMISSIONS)) {
+            // Already have permission, do the thing
+            getPhone();
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "This app needs access to your camera to capture photo", REQUEST_CODE, PERMISSIONS);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> permissions) {
+        // Some permissions have been granted
+        if (Arrays.equals(permissions.toArray(new String[0]), PERMISSIONS) && requestCode == REQUEST_CODE) {
+            getPhone();
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+        // Some permissions have been denied
+    }
+
+    //====================================================| Permissions Result for Camera, Gallery
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            getPhone();
+        }
+    }
+
+    private void getPhone() {
+        TelephonyManager manager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        username.setText(manager.getLine1Number());
+    }
+
 }

@@ -91,6 +91,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
     private ArrayList<MultipartBody.Part> mFileList = new ArrayList<>();
 
     private ProgressBar mProgressBar;
+    private UserWithToken mUser;
     private EditText editText;
     private Inbox mModel;
     private MessageAdapter mAdapter;
@@ -186,7 +187,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
         StompClient mClient = WebSocketClient.getInstance().getStompClient();
 
         // Subscribe chat endpoint to receive response by RX Java
-        if (getActivity() != null && mUser != null) {
+        if (getActivity() != null && mModel != null && mUser != null) {
             mClient.topic(ConstantKey.CHAT_RESPONSE.replace(ConstantKey.PLACEHOLDER, mUser.getAuth().getId() + "")).subscribe(new Consumer<StompMessage>() {
                 @Override
                 public void accept(StompMessage message) throws Exception {
@@ -199,8 +200,8 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                     model.setSenderId(Long.parseLong(json.getString("senderId")));
                     model.setReceiverId(Long.parseLong(json.getString("receiverId")));
                     model.setIsEnabled(Boolean.parseBoolean(json.getString("isEnabled")));
-                    model.setInboxId(Long.parseLong(json.getString("inboxId")));
-                    model.setCreatedAt(new Date(json.getString("createdAt")));
+                    model.setInboxId(mModel.getId());
+                    model.setCreatedAt(new Date());
                     if (mAdapter != null) {
                         mArrayList.add(model);
                         mAdapter.notifyItemInserted(mArrayList.size());
@@ -223,13 +224,14 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
             @Override
             public void onClick(View v) {
                 String message = editText.getText().toString().trim();
-                JSONObject jsonObject = new JSONObject();
+
+                /*JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("name", message);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                /*mClient.send(new StompMessage(
+                mClient.send(new StompMessage(
                         // Stomp command
                         StompCommand.SEND,
                         // Stomp Headers, Send Headers with STOMP the first header is required, and the other can be customized by ourselves
@@ -240,6 +242,8 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                         // Stomp payload
                         jsonObject.toString())
                 ).subscribe();*/
+
+
                 if (TextUtils.isEmpty(message)) {
                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Empty message did not allowed!", Snackbar.LENGTH_SHORT).show();
                 } else {

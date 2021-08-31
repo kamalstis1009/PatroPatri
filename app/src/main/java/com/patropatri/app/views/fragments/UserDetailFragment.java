@@ -77,7 +77,7 @@ public class UserDetailFragment extends Fragment {
                 ((TextView) view.findViewById(R.id.item_title)).setText(mModel.getFullName());
                 ((TextView) view.findViewById(R.id.item_address_designation)).setText(mModel.getProfession() + " | " + mModel.getDistrict());
 
-                if (getActivity() != null) {
+                if (getActivity() != null && mUser != null && mUser.getAuth() != null) {
                     mViewModel.getLikedByUserId(mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Liked>() {
                         @Override
                         public void onChanged(Liked model) {
@@ -90,12 +90,15 @@ public class UserDetailFragment extends Fragment {
                     Viewer model = new Viewer();
                     model.setUserId(mModel.getId());
                     model.setCreatedBy(mUser.getAuth().getId());
-                    mViewModel.addViewer(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Viewer>() {
-                        @Override
-                        public void onChanged(Viewer model) {
-                            if (model != null) {}
-                        }
-                    });
+                    if (mModel.getId() != mUser.getAuth().getId()) {
+                        mViewModel.addViewer(model, "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<Viewer>() {
+                            @Override
+                            public void onChanged(Viewer model) {
+                                if (model != null) {
+                                }
+                            }
+                        });
+                    }
                 }
 
                 Bundle bundle = new Bundle();

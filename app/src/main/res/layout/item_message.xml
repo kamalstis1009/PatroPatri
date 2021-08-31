@@ -8,13 +8,13 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/item_receiver_layout"
+        android:id="@+id/item_sender_layout"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="UselessParent">
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/item_receiver_image"
+            android:id="@+id/item_sender_image"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="10dp"
@@ -24,19 +24,19 @@
             tools:ignore="VectorDrawableCompat" />
         <LinearLayout
             android:orientation="vertical"
-            android:layout_toEndOf="@+id/item_receiver_image"
+            android:layout_toEndOf="@+id/item_sender_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="UseCompoundDrawables">
             <TextView
-                android:id="@+id/item_receiver_text"
+                android:id="@+id/item_sender_text"
                 android:layout_marginBottom="10dp"
                 android:text="Nothing is written here"
                 android:background="@drawable/shape_radius_100_pad_10_stroke_grey_bg_white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/item_receiver_recycler_view"
+                android:id="@+id/item_sender_recycler_view"
                 tools:listitem="@layout/item_attach_photo"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="4"
@@ -46,13 +46,13 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/item_sender_layout"
+        android:id="@+id/item_receiver_layout"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="UselessParent">
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/item_sender_image"
+            android:id="@+id/item_receiver_image"
             android:layout_alignParentEnd="true"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -63,12 +63,12 @@
             tools:ignore="VectorDrawableCompat" />
         <LinearLayout
             android:orientation="vertical"
-            android:layout_toStartOf="@+id/item_sender_image"
+            android:layout_toStartOf="@+id/item_receiver_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="UseCompoundDrawables">
             <TextView
-                android:id="@+id/item_sender_text"
+                android:id="@+id/item_receiver_text"
                 android:layout_marginBottom="10dp"
                 android:textAlignment="textEnd"
                 android:layout_gravity="end"
@@ -77,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/item_sender_recycler_view"
+                android:id="@+id/item_receiver_recycler_view"
                 tools:listitem="@layout/item_attach_photo"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="4"

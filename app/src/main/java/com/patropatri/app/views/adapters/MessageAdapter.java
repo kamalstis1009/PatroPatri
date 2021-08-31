@@ -59,12 +59,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
         Message model = mArrayList.get(position);
 
         if (model != null && mUser != null) {
-            if (model.getSenderId() == mUser.getAuth().getId()) {
+            if (model.getReceiverId() == mUser.getAuth().getId()) {
                 setVisibility(true, holder);
                 holder.senderText.setText(model.getMessage());
-                if (mUser.getUser().getImageName() != null) {
-                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.senderImage);
+                if (mInbox != null && mInbox.getSenderImage() != null) {
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.senderImage);
                 }
+
                 if(model.getImageFiles() != null) {
                     if (mListener != null)
                         mListener.onRecyclerViewItems(holder.senderRecyclerView, model.getImageFiles());
@@ -72,8 +73,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
             } else {
                 setVisibility(false, holder);
                 holder.receiverText.setText(model.getMessage());
-                if (mInbox != null && mInbox.getSenderImage() != null) {
-                    Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.receiverImage);
+                if (mUser.getUser().getImageName() != null) {
+                    Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.receiverImage);
                 }
                 if(model.getImageFiles() != null) {
                     if (mListener != null)

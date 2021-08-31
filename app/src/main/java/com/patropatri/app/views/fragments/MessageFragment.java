@@ -55,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.functions.Consumer;
 import okhttp3.MediaType;
@@ -193,19 +194,28 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                 public void accept(StompMessage message) throws Exception {
                     JSONObject json = new JSONObject(message.getPayload());
                     Log.i(TAG, "Receive: " + json.toString());
-
-                    Message model = new Message();
-                    model.setMessage(json.getString("message"));
-                    model.setImageFiles(new String[]{json.getString("imageFiles")});
-                    model.setSenderId(Long.parseLong(json.getString("senderId")));
-                    model.setReceiverId(Long.parseLong(json.getString("receiverId")));
-                    model.setIsEnabled(Boolean.parseBoolean(json.getString("isEnabled")));
-                    model.setInboxId(mModel.getId());
-                    model.setCreatedAt(new Date());
-                    if (mAdapter != null) {
-                        mArrayList.add(model);
-                        mAdapter.notifyItemInserted(mArrayList.size());
-                    }
+                    requireActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Message model = new Message();
+                                model.setId(Long.parseLong(json.getString("id")));
+                                model.setMessage(json.getString("message"));
+                                model.setImageFiles(new String[]{json.getString("imageFiles")});
+                                model.setSenderId(Long.parseLong(json.getString("senderId")));
+                                model.setReceiverId(Long.parseLong(json.getString("receiverId")));
+                                model.setIsEnabled(Boolean.parseBoolean(json.getString("isEnabled")));
+                                model.setInboxId(mModel.getId());
+                                model.setCreatedAt(new Date());
+                                if (mAdapter != null) {
+                                    mArrayList.add(model);
+                                    mAdapter.notifyItemInserted(mArrayList.size());
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
             });
         }

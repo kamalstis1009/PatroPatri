@@ -10,6 +10,10 @@ public class MessageDto {
 
     //String.valueOf(new Timestamp(System.currentTimeMillis()));
 
+    @SerializedName("id")
+    @Expose
+    private Long id;
+
     @SerializedName("message")
     @Expose
     private String message;

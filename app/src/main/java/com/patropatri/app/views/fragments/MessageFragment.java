@@ -114,33 +114,6 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
         //-----------------------------------------------| Session
         UserWithToken mUser = SharedPefManager.getInstance(getActivity()).getUser();
 
-        //-----------------------------------------------| StompClient Connect
-        StompClient mClient = WebSocketClient.getInstance().getStompClient();
-
-        // Subscribe chat endpoint to receive response by RX Java
-        if (getActivity() != null && mModel != null && mUser != null) {
-            mClient.topic(ConstantKey.CHAT_RESPONSE.replace(ConstantKey.PLACEHOLDER, mUser.getAuth().getId() + "")).subscribe(new Consumer<StompMessage>() {
-                @Override
-                public void accept(StompMessage message) throws Exception {
-                    JSONObject json = new JSONObject(message.getPayload());
-                    Log.i(TAG, "Receive: " + json.toString());
-
-                    Message model = new Message();
-                    model.setMessage(json.getString("message"));
-                    model.setImageFiles(new String[]{json.getString("imageFiles")});
-                    model.setSenderId(Long.parseLong(json.getString("senderId")));
-                    model.setReceiverId(Long.parseLong(json.getString("receiverId")));
-                    model.setIsEnabled(Boolean.parseBoolean(json.getString("isEnabled")));
-                    model.setInboxId(Long.parseLong(json.getString("inboxId")));
-                    model.setCreatedAt(new Date(json.getString("createdAt")));
-                    if (mAdapter != null) {
-                        mArrayList.add(model);
-                        mAdapter.notifyItemInserted(mArrayList.size());
-                    }
-                }
-            });
-        }
-
         //-----------------------------------------------| Receive and observe the data from view model
         mFileViewModel = new ViewModelProvider(this).get(FileViewModel.class);
         MessageViewModel mViewModel = new ViewModelProvider(this).get(MessageViewModel.class);
@@ -189,6 +162,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                 //Log.v("...", "Last Item Wow !");
                                 // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
+                                    Utility.getInstance().onVisibleProgressBar(mProgressBar);
                                     mViewModel.getAllMessages(mInitPageNo,10, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
                                         @Override
                                         public void onChanged(ArrayList<Message> arrayList) {
@@ -203,6 +177,33 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                 isLoading = true;
                             }
                         }
+                    }
+                }
+            });
+        }
+
+        //-----------------------------------------------| StompClient Connect
+        StompClient mClient = WebSocketClient.getInstance().getStompClient();
+
+        // Subscribe chat endpoint to receive response by RX Java
+        if (getActivity() != null && mUser != null) {
+            mClient.topic(ConstantKey.CHAT_RESPONSE.replace(ConstantKey.PLACEHOLDER, mUser.getAuth().getId() + "")).subscribe(new Consumer<StompMessage>() {
+                @Override
+                public void accept(StompMessage message) throws Exception {
+                    JSONObject json = new JSONObject(message.getPayload());
+                    Log.i(TAG, "Receive: " + json.toString());
+
+                    Message model = new Message();
+                    model.setMessage(json.getString("message"));
+                    model.setImageFiles(new String[]{json.getString("imageFiles")});
+                    model.setSenderId(Long.parseLong(json.getString("senderId")));
+                    model.setReceiverId(Long.parseLong(json.getString("receiverId")));
+                    model.setIsEnabled(Boolean.parseBoolean(json.getString("isEnabled")));
+                    model.setInboxId(Long.parseLong(json.getString("inboxId")));
+                    model.setCreatedAt(new Date(json.getString("createdAt")));
+                    if (mAdapter != null) {
+                        mArrayList.add(model);
+                        mAdapter.notifyItemInserted(mArrayList.size());
                     }
                 }
             });

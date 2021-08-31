@@ -49,13 +49,16 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         if (model != null) {
             holder.itemTitle.setText(model.getTitle());
             if (model.getType().contains("LIKED")) {
+                //holder.itemTitle.setText(model.getSenderName() + " liked your profile.");
                 holder.itemIcon.setImageResource(R.drawable.ic_baseline_favorite_24);
             }
             if (model.getType().contains("COMMENT")) {
+                //holder.itemTitle.setText(model.getSenderName() + " posted a comment on your profile.");
                 holder.itemIcon.setImageResource(R.drawable.ic_baseline_comment_24);
             }
-            if (model.getType().contains("MESSAGE")) {
-                holder.itemIcon.setImageResource(R.drawable.ic_baseline_email_24);
+            if (model.getType().contains("VIEWED")) {
+                //holder.itemTitle.setText(model.getSenderName() + " viewed your profile.");
+                holder.itemIcon.setImageResource(R.drawable.ic_baseline_visibility_24);
             }
             if (model.getSenderImage() != null) {
                 Picasso.get().load(ConstantKey.RESOURCE_URL + model.getSenderImage() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );

@@ -3,10 +3,16 @@ package com.patropatri.app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
 public class SendLetter {
+
+    @SerializedName("id")
+    @Expose
+    private Long id;
 
     @SerializedName("title")
     @Expose
@@ -23,4 +29,12 @@ public class SendLetter {
     @SerializedName("receiverId")
     @Expose
     private Long receiverId;
+
+    @SerializedName("isEnabled")
+    @Expose
+    private Boolean isEnabled;
+
+    @SerializedName("createdAt")
+    @Expose
+    private Date createdAt;
 }

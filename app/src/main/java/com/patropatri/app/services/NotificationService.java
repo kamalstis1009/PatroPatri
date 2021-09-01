@@ -92,8 +92,6 @@ public class NotificationService extends Service {
             public void accept(StompMessage stompMessage) throws Exception {
                 JSONObject jsonObject = new JSONObject(stompMessage.getPayload());
                 Log.d(TAG, "Receive: " + stompMessage.getPayload());
-                Log.d(TAG, "Receive Res: " + jsonObject.getString("response"));
-
                 Bundle bundle = new Bundle();
                 bundle.putString("DATA", jsonObject.getString("response"));
                 sendNotification("Title", jsonObject.getString("response"), bundle);

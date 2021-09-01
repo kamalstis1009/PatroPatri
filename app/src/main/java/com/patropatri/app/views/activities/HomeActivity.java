@@ -19,7 +19,6 @@ import com.patropatri.app.services.NotificationService;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.AccountFragment;
-import com.patropatri.app.views.fragments.DemoFragment;
 import com.patropatri.app.views.fragments.HomeFragment;
 import com.patropatri.app.views.fragments.InboxFragment;
 import com.patropatri.app.views.fragments.NotificationFragment;
@@ -72,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         //-----------------------------------------------| Home fragment
-        Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new DemoFragment());
+        Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());
     }
 
     @Override

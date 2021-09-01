@@ -71,8 +71,8 @@ public class DemoFragment extends Fragment  {
                 try {
                     json.put("title", title);
                     json.put("type", type);
-                    json.put("senderId", 1L);
-                    json.put("receiverId", 2L);
+                    json.put("senderId", 2L);
+                    json.put("receiverId", 1L);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

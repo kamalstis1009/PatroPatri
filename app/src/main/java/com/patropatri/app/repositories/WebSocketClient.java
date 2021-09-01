@@ -4,6 +4,9 @@ import android.util.Log;
 
 import com.patropatri.app.utils.ConstantKey;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import ua.naiksoftware.stomp.Stomp;
 import ua.naiksoftware.stomp.StompClient;
 
@@ -43,6 +46,19 @@ public class WebSocketClient {
                     break;
             }
         });
+    }
+
+    public void sendMessage(StompClient client, String title, String type, Long senderId, Long receiverId) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("title", title);
+            json.put("type", type);
+            json.put("senderId", senderId);
+            json.put("receiverId", receiverId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        client.send("/app/specific-user", json.toString()).subscribe();
     }
 
 }

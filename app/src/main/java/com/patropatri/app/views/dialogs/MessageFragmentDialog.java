@@ -36,6 +36,7 @@ import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Message;
 import com.patropatri.app.models.MessageDto;
 import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.repositories.WebSocketClient;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.GridSpacingItemDecoration;
 import com.patropatri.app.utils.Utility;
@@ -55,6 +56,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import pub.devrel.easypermissions.EasyPermissions;
+import ua.naiksoftware.stomp.StompClient;
 
 public class MessageFragmentDialog extends BottomSheetDialogFragment implements EasyPermissions.PermissionCallbacks {
 
@@ -141,6 +143,8 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                         @Override
                                         public void onChanged(MessageDto item) {
                                             if (item != null) {
+                                                StompClient mClient = WebSocketClient.getInstance().getStompClient();
+                                                WebSocketClient.getInstance().sendMessage(mClient, message, "MESSAGE", mUser.getAuth().getId(), mModel.getId());
                                                 dismiss();
                                             }  else {
                                                 Snackbar.make(getActivity().findViewById(android.R.id.content), "Message not sent successfully!", Snackbar.LENGTH_SHORT).show();

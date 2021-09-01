@@ -88,7 +88,7 @@ public class NotificationService extends Service {
         StompClient mClient = WebSocketClient.getInstance().getStompClient();
 
         // Subscribe broadcast endpoint to receive response by RX Java
-        mClient.topic(ConstantKey.BROADCAST_RESPONSE).subscribe(new Consumer<StompMessage>() {
+        mClient.topic("/topic").subscribe(new Consumer<StompMessage>() {
             @Override
             public void accept(StompMessage stompMessage) throws Exception {
                 JSONObject jsonObject = new JSONObject(stompMessage.getPayload());

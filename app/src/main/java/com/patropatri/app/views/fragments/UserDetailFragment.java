@@ -24,6 +24,7 @@ import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Liked;
 import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.models.Viewer;
+import com.patropatri.app.repositories.WebSocketClient;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.utils.Utility;
@@ -32,6 +33,7 @@ import com.patropatri.app.views.dialogs.MessageFragmentDialog;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import ua.naiksoftware.stomp.StompClient;
 
 public class UserDetailFragment extends Fragment {
 
@@ -83,6 +85,9 @@ public class UserDetailFragment extends Fragment {
                         public void onChanged(Liked model) {
                             if (model != null) {
                                 ((ImageButton) view.findViewById(R.id.item_like_button)).setColorFilter(getActivity().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+                                //-----------------------------------------------| Send Notification
+                                StompClient mClient = WebSocketClient.getInstance().getStompClient();
+                                WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " liked your profile.", "LIKED", mUser.getAuth().getId(), mModel.getId());
                             }
                         }
                     });
@@ -95,6 +100,9 @@ public class UserDetailFragment extends Fragment {
                             @Override
                             public void onChanged(Viewer model) {
                                 if (model != null) {
+                                    //-----------------------------------------------| Send Notification
+                                    StompClient mClient = WebSocketClient.getInstance().getStompClient();
+                                    WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " viewed your profile.", "VIEWED", mUser.getAuth().getId(), mModel.getId());
                                 }
                             }
                         });

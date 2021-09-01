@@ -24,6 +24,7 @@ import com.patropatri.app.models.Candidate;
 import com.patropatri.app.models.Comment;
 import com.patropatri.app.models.CommentDto;
 import com.patropatri.app.models.UserWithToken;
+import com.patropatri.app.repositories.WebSocketClient;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.utils.VerticalSpaceItemDecoration;
@@ -31,6 +32,8 @@ import com.patropatri.app.viewmodels.MessageViewModel;
 import com.patropatri.app.views.adapters.CommentAdapter;
 
 import java.util.ArrayList;
+
+import ua.naiksoftware.stomp.StompClient;
 
 public class CommentFragment extends Fragment {
 
@@ -97,6 +100,9 @@ public class CommentFragment extends Fragment {
                                         mArrayList.add(comment);
                                         mAdapter.notifyItemInserted(mArrayList.size());
                                     }
+                                    //-----------------------------------------------| Send Notification
+                                    StompClient mClient = WebSocketClient.getInstance().getStompClient();
+                                    WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " posted a comment on your profile.", "COMMENT", mUser.getAuth().getId(), mModel.getId());
                                 } else {
                                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Unfortunately item could not be store!", Snackbar.LENGTH_SHORT).show();
                                 }

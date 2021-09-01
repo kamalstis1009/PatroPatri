@@ -143,8 +143,9 @@ public class MessageFragmentDialog extends BottomSheetDialogFragment implements 
                                         @Override
                                         public void onChanged(MessageDto item) {
                                             if (item != null) {
+                                                //-----------------------------------------------| Send Notification
                                                 StompClient mClient = WebSocketClient.getInstance().getStompClient();
-                                                WebSocketClient.getInstance().sendMessage(mClient, message, "MESSAGE", mUser.getAuth().getId(), mModel.getId());
+                                                WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " send your message.", "MESSAGE", mUser.getAuth().getId(), mModel.getId());
                                                 dismiss();
                                             }  else {
                                                 Snackbar.make(getActivity().findViewById(android.R.id.content), "Message not sent successfully!", Snackbar.LENGTH_SHORT).show();

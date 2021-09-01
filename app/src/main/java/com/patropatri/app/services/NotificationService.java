@@ -101,14 +101,12 @@ public class NotificationService extends Service {
                         public void run() {
                             try {
                                 Log.d(TAG, json.toString());
-                                Log.d(TAG, json.getString("title"));
-                                Log.d(TAG, json.getString("type"));
-                                Log.d(TAG, json.getString("senderId"));
-                                Log.d(TAG, json.getString("receiverId"));
-                                //bundle.putString("title", json.getString("title"));
-                                //bundle.putString("type", json.getString("type"));
-                                //bundle.putLong("senderId", json.getLong("senderId"));
-                                //bundle.putLong("receiverId", json.getLong("receiverId"));
+                                Bundle bundle = new Bundle();
+                                bundle.putString("title", json.getString("title"));
+                                bundle.putString("type", json.getString("type"));
+                                bundle.putLong("senderId", json.getLong("senderId"));
+                                bundle.putLong("receiverId", json.getLong("receiverId"));
+                                sendNotification(json.getString("type"), json.getString("title"), bundle);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -117,16 +115,6 @@ public class NotificationService extends Service {
                 }
             });
         }
-        mClient.topic("/topic").subscribe(new Consumer<StompMessage>() {
-            @Override
-            public void accept(StompMessage stompMessage) throws Exception {
-                JSONObject jsonObject = new JSONObject(stompMessage.getPayload());
-                Log.d(TAG, "Receive: " + stompMessage.getPayload());
-                Bundle bundle = new Bundle();
-                bundle.putString("DATA", jsonObject.getString("response"));
-                sendNotification("Title", jsonObject.getString("response"), bundle);
-            }
-        });
     }
 
     private void sendNotification(String title, String body, Bundle data) {

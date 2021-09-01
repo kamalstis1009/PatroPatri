@@ -27,6 +27,14 @@
         \nSenior Software Engineer
     </string>
 
+    <string-array name="type_array">
+        <item>COMMENT</item>
+        <item>LIKED</item>
+        <item>VIEWED</item>
+        <item>VIEWED</item>
+        <item>MESSAGE</item>
+    </string-array>
+
     <string-array name="gender_array">
         <item>Gender</item>
         <item>Male</item>

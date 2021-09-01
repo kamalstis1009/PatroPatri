@@ -19,9 +19,12 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.patropatri.app.R;
+import com.patropatri.app.models.UserWithToken;
 import com.patropatri.app.repositories.WebSocketClient;
+import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.views.activities.HomeActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import io.reactivex.functions.Consumer;
@@ -85,8 +88,35 @@ public class NotificationService extends Service {
     private void startForegroundService() {
         //-----------------------------------------------| StompClient Connect
         StompClient mClient = WebSocketClient.getInstance().getStompClient();
+        UserWithToken mUser = SharedPefManager.getInstance(getApplicationContext()).getUser();
 
         // Subscribe broadcast endpoint to receive response by RX Java
+        if (mUser != null) {
+            mClient.topic("/user/" + mUser.getAuth().getId() + "/queue/reply").subscribe(new Consumer<StompMessage>() {
+                @Override
+                public void accept(StompMessage message) throws Exception {
+                    JSONObject json = new JSONObject(message.getPayload());
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Log.d(TAG, json.toString());
+                                Log.d(TAG, json.getString("title"));
+                                Log.d(TAG, json.getString("type"));
+                                Log.d(TAG, json.getString("senderId"));
+                                Log.d(TAG, json.getString("receiverId"));
+                                //bundle.putString("title", json.getString("title"));
+                                //bundle.putString("type", json.getString("type"));
+                                //bundle.putLong("senderId", json.getLong("senderId"));
+                                //bundle.putLong("receiverId", json.getLong("receiverId"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            });
+        }
         mClient.topic("/topic").subscribe(new Consumer<StompMessage>() {
             @Override
             public void accept(StompMessage stompMessage) throws Exception {

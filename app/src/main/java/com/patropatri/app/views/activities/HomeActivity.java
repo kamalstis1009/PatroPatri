@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -13,21 +14,15 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.patropatri.app.R;
 import com.patropatri.app.models.UserWithToken;
-import com.patropatri.app.repositories.WebSocketClient;
 import com.patropatri.app.services.MyNetworkReceiver;
+import com.patropatri.app.services.NotificationService;
 import com.patropatri.app.session.SharedPefManager;
 import com.patropatri.app.utils.Utility;
 import com.patropatri.app.views.fragments.AccountFragment;
+import com.patropatri.app.views.fragments.DemoFragment;
 import com.patropatri.app.views.fragments.HomeFragment;
 import com.patropatri.app.views.fragments.InboxFragment;
 import com.patropatri.app.views.fragments.NotificationFragment;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import io.reactivex.functions.Consumer;
-import ua.naiksoftware.stomp.StompClient;
-import ua.naiksoftware.stomp.dto.StompMessage;
 
 @SuppressWarnings({"FieldCanBeLocal", "ResultOfMethodCallIgnored", "CheckResult"})
 public class HomeActivity extends AppCompatActivity {
@@ -62,34 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         }*/
 
         //-----------------------------------------------| StompClient Connect
-        StompClient mClient = WebSocketClient.getInstance().getStompClient();
-
-        if (mUser != null) {
-            mClient.topic("/user/placeholder/queue/specific-user".replace("placeholder", mUser.getAuth().getId() + "")).subscribe(new Consumer<StompMessage>() {
-                @Override
-                public void accept(StompMessage message) throws Exception {
-                    JSONObject json = new JSONObject(message.getPayload());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Log.d(TAG, json.toString());
-                                Log.d(TAG, json.getString("title"));
-                                Log.d(TAG, json.getString("type"));
-                                Log.d(TAG, json.getString("senderId"));
-                                Log.d(TAG, json.getString("receiverId"));
-                                //bundle.putString("title", json.getString("title"));
-                                //bundle.putString("type", json.getString("type"));
-                                //bundle.putLong("senderId", json.getLong("senderId"));
-                                //bundle.putLong("receiverId", json.getLong("receiverId"));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                }
-            });
-        }
+        startService(new Intent(this, NotificationService.class));
 
         //-----------------------------------------------| Bottom navigation menu
         mNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -104,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         //-----------------------------------------------| Home fragment
-        Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new HomeFragment());
+        Utility.getInstance().onReplaceFragment(getSupportFragmentManager(), new DemoFragment());
     }
 
     @Override

@@ -178,7 +178,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
         // Subscribe chat endpoint to receive response by RX Java
         if (getActivity() != null && mModel != null && mUser != null) {
-            mClient.topic("/user/placeholder/msg".replace("placeholder", mUser.getAuth().getId() + "")).subscribe(new Consumer<StompMessage>() {
+            mClient.topic("/user/" + mUser.getAuth().getId() + "/msg").subscribe(new Consumer<StompMessage>() {
                 @Override
                 public void accept(StompMessage message) throws Exception {
                     JSONObject json = new JSONObject(message.getPayload());
@@ -241,7 +241,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
-                                        mClient.send("/chat", json.toString()).subscribe();
+                                        mClient.send("/app/chat", json.toString()).subscribe();
 
                                         Message model = new Message();
                                         model.setMessage(message);

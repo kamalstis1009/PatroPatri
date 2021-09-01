@@ -11,6 +11,6 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        startService(new Intent(this, NotificationService.class));
+        //startService(new Intent(this, NotificationService.class));
     }
 }

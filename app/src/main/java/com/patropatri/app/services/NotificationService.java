@@ -20,7 +20,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.patropatri.app.R;
 import com.patropatri.app.repositories.WebSocketClient;
-import com.patropatri.app.utils.ConstantKey;
 import com.patropatri.app.views.activities.HomeActivity;
 
 import org.json.JSONObject;

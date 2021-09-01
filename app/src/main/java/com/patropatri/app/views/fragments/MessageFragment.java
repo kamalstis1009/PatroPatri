@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,8 +65,6 @@ import ua.naiksoftware.stomp.dto.StompMessage;
 @SuppressWarnings({"FieldCanBeLocal", "ResultOfMethodCallIgnored", "CheckResult"})
 public class MessageFragment extends Fragment implements MessageAdapter.CallBackListener, EasyPermissions.PermissionCallbacks {
 
-    private static final String TAG = "MessageFragment";
-
     private static final int ACTION_PICK_REQUEST_CODE = 1;
     private static final int REQUEST_IMAGE_CAPTURE = 4;
     private static final int REQUEST_CAMERA = 102;
@@ -87,7 +84,6 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
     private ArrayList<MultipartBody.Part> mFileList = new ArrayList<>();
 
     private ProgressBar mProgressBar;
-    private UserWithToken mUser;
     private EditText editText;
     private Inbox mModel;
     private MessageAdapter mAdapter;
@@ -156,8 +152,6 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                             if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
                                 isLoading = false;
                                 mInitPageNo++;
-                                //Log.v("...", "Last Item Wow !");
-                                // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
                                     Utility.getInstance().onVisibleProgressBar(mProgressBar);
                                     mViewModel.getAllMessages(mInitPageNo,10, mModel.getSenderId(), mUser.getAuth().getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<ArrayList<Message>>() {
@@ -188,7 +182,6 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                 @Override
                 public void accept(StompMessage message) throws Exception {
                     JSONObject json = new JSONObject(message.getPayload());
-                    Log.i(TAG, "Receive: " + json.toString());
                     requireActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

@@ -92,26 +92,22 @@ public class NotificationService extends Service {
 
         // Subscribe broadcast endpoint to receive response by RX Java
         if (mUser != null) {
+            Log.d(TAG, ""+mUser.getAuth().getId());
             mClient.topic("/user/" + mUser.getAuth().getId() + "/queue/reply").subscribe(new Consumer<StompMessage>() {
                 @Override
                 public void accept(StompMessage message) throws Exception {
                     JSONObject json = new JSONObject(message.getPayload());
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                Log.d(TAG, json.toString());
-                                Bundle bundle = new Bundle();
-                                bundle.putString("title", json.getString("title"));
-                                bundle.putString("type", json.getString("type"));
-                                bundle.putLong("senderId", json.getLong("senderId"));
-                                bundle.putLong("receiverId", json.getLong("receiverId"));
-                                sendNotification(json.getString("type"), json.getString("title"), bundle);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
+                    Log.d(TAG, "Receive: " + message.getPayload());
+                    try {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("title", json.getString("title"));
+                        bundle.putString("type", json.getString("type"));
+                        bundle.putLong("senderId", json.getLong("senderId"));
+                        bundle.putLong("receiverId", json.getLong("receiverId"));
+                        sendNotification(json.getString("type"), json.getString("title"), bundle);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }

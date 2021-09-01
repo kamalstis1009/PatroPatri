@@ -66,7 +66,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
                     Picasso.get().load(ConstantKey.RESOURCE_URL + mInbox.getSenderImage()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.senderImage);
                 }
 
-                if(model.getImageFiles() != null) {
+                if(model.getImageFiles() != null && model.getImageFiles().length > 0) {
                     if (mListener != null)
                         mListener.onRecyclerViewItems(holder.senderRecyclerView, model.getImageFiles());
                 }
@@ -76,7 +76,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
                 if (mUser.getUser().getImageName() != null) {
                     Picasso.get().load(ConstantKey.RESOURCE_URL + mUser.getUser().getImageName()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.receiverImage);
                 }
-                if(model.getImageFiles() != null) {
+                if(model.getImageFiles() != null && model.getImageFiles().length > 0) {
                     if (mListener != null)
                         mListener.onRecyclerViewItems(holder.receiverRecyclerView, model.getImageFiles());
                 }

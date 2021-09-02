@@ -245,10 +245,14 @@ public class ProfileFragment extends Fragment implements EasyPermissions.Permiss
                 mItemPhone.setText(model.getPhoneNumber());
             if (model.getEmail() != null)
                 mItemEmail.setText(model.getEmail());
-            if (model.getAddressLine1() != null)
-                mItemPresent.setText(model.getAddressLine1());
-            if (model.getAddressLine2() != null)
-                mItemPermanent.setText(model.getAddressLine2());
+            if (model.getAddressLine1() != null) {
+                String address = model.getAddressLine1() + ", " + model.getDistrict1() + ", " + model.getPoliceStation1() + ", " + model.getPostalCode1() + ", " + model.getCountry1();
+                mItemPresent.setText(address);
+            }
+            if (model.getAddressLine2() != null) {
+                String address = model.getAddressLine2() + ", " + model.getDistrict2() + ", " + model.getPoliceStation2() + ", " + model.getPostalCode2() + ", " + model.getCountry2();
+                mItemPermanent.setText(address);
+            }
 
             if (model.getSummary() != null)
                 mItemSummary.setText(model.getSummary());

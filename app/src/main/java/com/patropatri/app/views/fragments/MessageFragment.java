@@ -233,6 +233,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                     if (arrayList != null) {
                                         JSONObject json = new JSONObject();
                                         try {
+                                            //json.put("id", null);
                                             json.put("message", message);
                                             json.put("imageFiles", new JSONArray(arrayList.toArray(new String[arrayList.size()])));
                                             json.put("senderId", mUser.getAuth().getId());
@@ -268,6 +269,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                         } else {
                             JSONObject json = new JSONObject();
                             try {
+                                //json.put("id", null);
                                 json.put("message", message);
                                 json.put("imageFiles", new JSONArray());
                                 json.put("senderId", mUser.getAuth().getId());
@@ -276,7 +278,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            mClient.send("/chat", json.toString()).subscribe();
+                            mClient.send("/app/chat", json.toString()).subscribe();
 
                             Message model = new Message();
                             model.setMessage(message);

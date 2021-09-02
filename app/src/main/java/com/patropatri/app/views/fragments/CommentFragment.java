@@ -100,9 +100,11 @@ public class CommentFragment extends Fragment {
                                         mArrayList.add(comment);
                                         mAdapter.notifyItemInserted(mArrayList.size());
                                     }
-                                    //-----------------------------------------------| Send Notification
-                                    StompClient mClient = WebSocketClient.getInstance().getStompClient();
-                                    WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " posted a comment on your profile.", "COMMENT", mUser.getAuth().getId(), mModel.getId());
+                                    if (mModel.getId() != mUser.getAuth().getId()) {
+                                        //-----------------------------------------------| Send Notification
+                                        StompClient mClient = WebSocketClient.getInstance().getStompClient();
+                                        WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " posted a comment on your profile.", "COMMENT", mUser.getAuth().getId(), mModel.getId());
+                                    }
                                 } else {
                                     Snackbar.make(getActivity().findViewById(android.R.id.content), "Unfortunately item could not be store!", Snackbar.LENGTH_SHORT).show();
                                 }

@@ -189,7 +189,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                 Message model = new Message();
                                 model.setId(Long.parseLong(json.getString("id")));
                                 model.setMessage(json.getString("message"));
-                                model.setImageFiles(new String[]{json.getString("imageFiles")});
+                                model.setImageFiles(json.getString("imageFiles").replace("},{", " ,").split(" "));
                                 model.setSenderId(Long.parseLong(json.getString("senderId")));
                                 model.setReceiverId(Long.parseLong(json.getString("receiverId")));
                                 model.setIsEnabled(Boolean.parseBoolean(json.getString("isEnabled")));
@@ -311,11 +311,6 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
         });
 
         return view;
-    }
-
-    @Override
-    public void onAddItem(Message model) {
-
     }
 
     @Override

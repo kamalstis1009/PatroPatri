@@ -32,7 +32,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
     private CallBackListener mListener;
 
     public interface CallBackListener {
-        void onAddItem(Message model);
         void onRecyclerViewItems(RecyclerView recyclerView, String [] arrayList);
     }
 

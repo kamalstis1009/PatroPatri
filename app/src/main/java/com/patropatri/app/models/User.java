@@ -95,7 +95,7 @@ public class User {
     @Expose
     private String email;
 
-    @SerializedName("address_line1")
+    @SerializedName("addressLine1")
     @Expose
     private String addressLine1;
 
@@ -111,15 +111,15 @@ public class User {
     @Expose
     private String district1;
 
-    @SerializedName("police_station1")
+    @SerializedName("policeStation1")
     @Expose
     private String policeStation1;
 
-    @SerializedName("postal_code1")
+    @SerializedName("postalCode1")
     @Expose
     private String postalCode1;
 
-    @SerializedName("address_line2")
+    @SerializedName("addressLine2")
     @Expose
     private String addressLine2;
 
@@ -135,11 +135,11 @@ public class User {
     @Expose
     private String district2;
 
-    @SerializedName("police_station2")
+    @SerializedName("policeStation2")
     @Expose
     private String policeStation2;
 
-    @SerializedName("postal_code2")
+    @SerializedName("postalCode2")
     @Expose
     private String postalCode2;
 

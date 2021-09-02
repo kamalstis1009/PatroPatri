@@ -1,6 +1,7 @@
 package com.patropatri.app.views.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import java.util.Date;
 
 public class UserAboutFragment extends Fragment {
 
+    private static final String TAG = "UserAboutFragment";
     private UserWithToken mUser;
     private UserViewModel mViewModel;
 
@@ -97,6 +99,7 @@ public class UserAboutFragment extends Fragment {
                 mViewModel.getUserById(mModel.getId(), "Bearer " + mUser.getToken()).observe(getActivity(), new Observer<User>() {
                     @Override
                     public void onChanged(User model) {
+                        Log.d(TAG, new Gson().toJson(model));
                         if (model != null) {
                             if (model.getFullName() != null)
                                 mItemName.setText(model.getFullName());

@@ -91,58 +91,61 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     private void populateItemRows(MyViewHolder holder, int position) {
         Candidate model = mArrayList.get(position);
 
-        holder.itemName.setText(model.getFullName());
-        holder.itemTitle.setText(model.getProfession() + " | " + model.getDistrict());
-        holder.itemDescription.setText(model.getSummary());
-        holder.itemViewed.setText(model.getCommentAmount() + "");
-        holder.itemLiked.setText(model.getLikedAmount() + "");
+        if (model != null) {
+            holder.itemName.setText(model.getFullName());
+            holder.itemTitle.setText(model.getProfession() + " | " + model.getDistrict());
+            holder.itemDescription.setText(model.getSummary());
+            holder.itemViewed.setText(model.getCommentAmount() + "");
+            holder.itemLiked.setText(model.getLikedAmount() + "");
 
-        holder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("DATA", new Gson().toJson(model));
-                UserDetailFragment mFragment = new UserDetailFragment();
-                mFragment.setArguments(bundle);
-                Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
-            }
-        });
-
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mUser.getAuth().getId() != model.getId()) {
+            holder.layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putString("DATA", new Gson().toJson(model));
-                    MessageFragmentDialog mFragment = new MessageFragmentDialog();
+                    UserDetailFragment mFragment = new UserDetailFragment();
                     mFragment.setArguments(bundle);
-                    Utility.getInstance().onShowFragmentDialog(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+                    Utility.getInstance().onAddFragment(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+                }
+            });
+
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mUser.getAuth().getId() != model.getId()) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("DATA", new Gson().toJson(model));
+                        MessageFragmentDialog mFragment = new MessageFragmentDialog();
+                        mFragment.setArguments(bundle);
+                        Utility.getInstance().onShowFragmentDialog(Objects.requireNonNull(mActivity).getSupportFragmentManager(), mFragment);
+                    }
+                }
+            });
+
+            if (model.getImageName() != null) {
+                Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageName()).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into(holder.imageView);
+            }
+            if (model.getImageCoverName() != null) {
+                Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageCoverName()).placeholder(R.drawable.background_image).error(R.drawable.background_image).into(holder.imageCoverView);
+            }
+
+            //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+            //holder.title.setText(iconsNames[position]);
+
+            if (model.getCreatedAt() != null) {
+                try {
+                    //String[] currentDate = model.getAttendanceDate().split("-");
+                    //holder.date.setText(currentDate[2] + "/" + currentDate[1] + "/" + currentDate[0]);
+                    //String day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(Utility.getInstance().getDateFromStringDate("yyyy-MM-dd", model.getAttendanceDate()));
+
+                    //String day = Utility.getInstance().getFormatDateFromDate("EEEE", Utility.getInstance().getParseDateFromStringDate("yyyy-MM-dd", model.getAttendanceDate()));
+                    //holder.day.setText(day); //yyyy-MM-dd HH:mm:ss | 2020-07-21 01:57:33.435
+
+                    holder.itemDate.setText(Utility.getInstance().getFormatFromStringDate("dd MMM yyyy", model.getCreatedAt()));
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
-        });
-
-        if (model.getImageName() != null) {
-            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageName() ).placeholder(R.drawable.ic_add_photo).error(R.drawable.ic_add_photo).into( holder.imageView );
-        }
-        if (model.getImageCoverName() != null) {
-            Picasso.get().load(ConstantKey.RESOURCE_URL + model.getImageCoverName() ).placeholder(R.drawable.background_image).error(R.drawable.background_image).into( holder.imageCoverView );
-        }
-
-        //holder.imageView.setColorFilter(mActivity.getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-        //holder.title.setText(iconsNames[position]);
-
-
-        try {
-            //String[] currentDate = model.getAttendanceDate().split("-");
-            //holder.date.setText(currentDate[2] + "/" + currentDate[1] + "/" + currentDate[0]);
-            //String day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(Utility.getInstance().getDateFromStringDate("yyyy-MM-dd", model.getAttendanceDate()));
-
-            //String day = Utility.getInstance().getFormatDateFromDate("EEEE", Utility.getInstance().getParseDateFromStringDate("yyyy-MM-dd", model.getAttendanceDate()));
-            //holder.day.setText(day); //yyyy-MM-dd HH:mm:ss | 2020-07-21 01:57:33.435
-
-            holder.itemDate.setText(Utility.getInstance().getFormatFromStringDate("dd MMM yyyy", model.getCreatedAt()));
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

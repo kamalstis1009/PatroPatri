@@ -57,7 +57,7 @@ public class ChatAttachAdapter extends RecyclerView.Adapter<ChatAttachAdapter.My
 
     @Override
     public int getItemCount() {
-        return mArrayList.length;
+        return (mArrayList != null && mArrayList.length > 0) ? mArrayList.length : 0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

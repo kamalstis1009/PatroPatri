@@ -132,7 +132,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
 
         //------------------------------------------------| Scroll-down load more data
         if (getActivity() != null) {
-            mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            /*mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
@@ -170,7 +170,7 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                         }
                     }
                 }
-            });
+            });*/
         }
 
         //-----------------------------------------------| StompClient Connect
@@ -189,7 +189,10 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                 Message model = new Message();
                                 model.setId(Long.parseLong(json.getString("id")));
                                 model.setMessage(json.getString("message"));
-                                model.setImageFiles(json.getString("imageFiles").replace("},{", " ,").split(" "));
+                                JSONArray arr = json.getJSONArray("imageFiles");
+                                if(arr.length() > 0) {
+                                    model.setImageFiles(json.getString("imageFiles").replaceAll("\\[|\\]|\"", "").split(","));
+                                }
                                 model.setSenderId(Long.parseLong(json.getString("senderId")));
                                 model.setReceiverId(Long.parseLong(json.getString("receiverId")));
                                 model.setIsEnabled(Boolean.parseBoolean(json.getString("isEnabled")));

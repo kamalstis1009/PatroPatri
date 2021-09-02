@@ -776,7 +776,7 @@ public class EditProfileFragmentDialog extends BottomSheetDialogFragment {
                         model.setExpectation(expectation);
                         storeUser(model);
                     }
-                    if (mPosition == 9) {
+                    if (mPosition == 10) {
                         String reference = mItemReference.getText().toString().trim();
                         model.setReference(reference);
                         storeUser(model);

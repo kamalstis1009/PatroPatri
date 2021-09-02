@@ -38,7 +38,7 @@ public class UserAboutFragment extends Fragment {
     private UserViewModel mViewModel;
 
     private RecyclerView mEducationRecyclerView, mFamilyRecyclerView;
-    private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
+    private TextView mItemName, mItemGender, mItemBirth, mItemAge, mIemHeight, mItemWeight, mItemMarital, mItemReligion, mItemComplex, mItemDistrict, mItemCitizenship, mItemMotherTongue, mItemProfession, mItemDesignation, mItemCompany, mItemCompanyAddress, mItemWebsite, mItemPhone, mItemEmail, mItemPresent, mItemPermanent, mItemSummary, mItemInterest, mItemActivity, mItemExpectation;
 
     @Nullable
     @Override
@@ -61,6 +61,8 @@ public class UserAboutFragment extends Fragment {
         mItemReligion = (TextView) view.findViewById(R.id.item_religion);
         mItemComplex = (TextView) view.findViewById(R.id.item_complex);
         mItemDistrict = (TextView) view.findViewById(R.id.item_district);
+        mItemCitizenship = (TextView) view.findViewById(R.id.item_citizenship);
+        mItemMotherTongue = (TextView) view.findViewById(R.id.item_mother_tongue);
 
         mItemProfession = (TextView) view.findViewById(R.id.item_profession);
         mItemDesignation = (TextView) view.findViewById(R.id.item_designation);
@@ -116,6 +118,10 @@ public class UserAboutFragment extends Fragment {
                                 mItemComplex.setText(model.getComplex());
                             if (model.getDistrict() != null)
                                 mItemDistrict.setText(model.getDistrict());
+                            if (model.getCitizenship() != null)
+                                mItemCitizenship.setText(model.getCitizenship());
+                            if (model.getMotherTongue() != null)
+                                mItemMotherTongue.setText(model.getMotherTongue());
 
                             if (model.getProfession() != null)
                                 mItemProfession.setText(model.getProfession());
@@ -132,10 +138,14 @@ public class UserAboutFragment extends Fragment {
                                 mItemPhone.setText(model.getPhoneNumber());
                             if (model.getEmail() != null)
                                 mItemEmail.setText(model.getEmail());
-                            /*if (model.getPresentAddress() != null)
-                                mItemPresent.setText(model.getPresentAddress());
-                            if (model.getPermanentAddress() != null)
-                                mItemPermanent.setText(model.getPermanentAddress());*/
+                            if (model.getAddressLine1() != null) {
+                                String address = model.getAddressLine1() + ", " + model.getDistrict1() + ", " + model.getPoliceStation1() + ", " + model.getPostalCode1() + ", " + model.getCountry1();
+                                mItemPresent.setText(address);
+                            }
+                            if (model.getAddressLine2() != null) {
+                                String address = model.getAddressLine2() + ", " + model.getDistrict2() + ", " + model.getPoliceStation2() + ", " + model.getPostalCode2() + ", " + model.getCountry2();
+                                mItemPermanent.setText(address);
+                            }
 
                             if (model.getSummary() != null)
                                 mItemSummary.setText(model.getSummary());

@@ -117,7 +117,6 @@ public class HomeFragment extends Fragment implements FilterFragmentDialog.MyLis
                             if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
                                 isLoading = false;
                                 mInitPageNo++;
-                                //Log.v("...", "Last Item Wow !");
                                 // Do pagination.. i.e. fetch new data
                                 if (mUser != null && mUser.getAuth() != null) {
                                     Utility.getInstance().onVisibleProgressBar(mProgressBar);

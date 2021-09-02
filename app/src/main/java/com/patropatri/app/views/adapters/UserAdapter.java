@@ -95,8 +95,9 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             holder.itemName.setText(model.getFullName());
             holder.itemTitle.setText(model.getProfession() + " | " + model.getDistrict());
             holder.itemDescription.setText(model.getSummary());
-            holder.itemViewed.setText(model.getCommentAmount() + "");
+            holder.itemViewed.setText(model.getViewerAmount() + "");
             holder.itemLiked.setText(model.getLikedAmount() + "");
+            holder.itemComment.setText(model.getCommentAmount() + "");
 
             holder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -173,7 +174,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         RelativeLayout layout;
         CircleImageView imageView;
         ImageView imageCoverView;
-        TextView itemName, itemTitle, itemDescription, itemDate, itemViewed, itemLiked;
+        TextView itemName, itemTitle, itemDescription, itemDate, itemViewed, itemLiked, itemComment;
         Button button;
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -186,6 +187,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             itemDate = (TextView) itemView.findViewById(R.id.item_date);
             itemViewed = (TextView) itemView.findViewById(R.id.item_viewed);
             itemLiked = (TextView) itemView.findViewById(R.id.item_liked);
+            itemComment = (TextView) itemView.findViewById(R.id.item_comment);
             button = (Button) itemView.findViewById(R.id.message_button);
         }
     }

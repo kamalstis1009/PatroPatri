@@ -128,12 +128,31 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         app:tint="@color/colorPrimary"
-                        android:src="@drawable/ic_baseline_visibility_24"
+                        android:src="@drawable/ic_baseline_favorite_24"
                         android:layout_marginEnd="5dp"
                         android:layout_width="15dp"
                         android:layout_height="15dp"/>
                     <TextView
-                        android:id="@+id/item_viewed"
+                        android:id="@+id/item_liked"
+                        android:textSize="10sp"
+                        android:text="15K"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        app:tint="@color/colorPrimary"
+                        android:src="@drawable/ic_baseline_comment_24"
+                        android:layout_marginEnd="5dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"/>
+                    <TextView
+                        android:id="@+id/item_comment"
                         android:textSize="10sp"
                         android:text="15K"
                         android:textColor="@color/colorPrimary"
@@ -146,12 +165,12 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         app:tint="@color/colorPrimary"
-                        android:src="@drawable/ic_baseline_favorite_24"
+                        android:src="@drawable/ic_baseline_visibility_24"
                         android:layout_marginEnd="5dp"
                         android:layout_width="15dp"
                         android:layout_height="15dp"/>
                     <TextView
-                        android:id="@+id/item_liked"
+                        android:id="@+id/item_viewed"
                         android:textSize="10sp"
                         android:text="12K"
                         android:textColor="@color/colorPrimary"

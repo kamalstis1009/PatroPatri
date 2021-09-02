@@ -85,9 +85,6 @@ public class UserDetailFragment extends Fragment {
                         public void onChanged(Liked model) {
                             if (model != null) {
                                 ((ImageButton) view.findViewById(R.id.item_like_button)).setColorFilter(getActivity().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
-                                //-----------------------------------------------| Send Notification
-                                StompClient mClient = WebSocketClient.getInstance().getStompClient();
-                                WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " liked your profile.", "LIKED", mUser.getAuth().getId(), mModel.getId());
                             }
                         }
                     });
@@ -136,6 +133,9 @@ public class UserDetailFragment extends Fragment {
                         public void onChanged(Liked model) {
                             if (model != null) {
                                 ((ImageButton) view.findViewById(R.id.item_like_button)).setColorFilter(getActivity().getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
+                                //-----------------------------------------------| Send Notification
+                                StompClient mClient = WebSocketClient.getInstance().getStompClient();
+                                WebSocketClient.getInstance().sendMessage(mClient, mUser.getUser().getFullName() + " liked your profile.", "LIKED", mUser.getAuth().getId(), mModel.getId());
                             }
                         }
                     });

@@ -295,6 +295,9 @@ public class MessageFragment extends Fragment implements MessageAdapter.CallBack
                                 mArrayList.add(model);
                                 mAdapter.notifyItemInserted(mArrayList.size());
                             }
+                            if (mFileList != null && mFileList.size() > 0) {
+                                mFileList.clear();
+                            }
                             if (mBitmapList != null && mBitmapList.size() > 0) {
                                 mBitmapList.clear();
                                 initAttachRecyclerView(mRecyclerView2, mBitmapList);

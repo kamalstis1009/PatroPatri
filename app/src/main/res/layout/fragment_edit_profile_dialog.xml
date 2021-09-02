@@ -1180,18 +1180,19 @@
                         android:layout_height="wrap_content">
                         <EditText
                             android:id="@+id/item_reference"
-                            android:gravity="top"
+                            android:inputType="text"
+                            android:singleLine="true"
                             android:maxLength="250"
                             android:maxEms="250"
-                            android:textSize="12sp"
                             android:hint="Reference"
-                            android:inputType="text|textMultiLine"
+                            android:textSize="12sp"
+                            app:drawableTint="@color/colorDeepGrey"
+                            android:drawableEnd="@drawable/ic_baseline_person_24"
                             android:background="@drawable/shape_radius_8_pad_10_stroke_grey_solid_white"
-                            android:layout_marginBottom="10dp"
                             android:paddingStart="25dp"
                             android:paddingEnd="25dp"
                             android:layout_width="match_parent"
-                            android:layout_height="250dp"/>
+                            android:layout_height="wrap_content" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 

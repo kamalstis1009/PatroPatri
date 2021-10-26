@@ -79,7 +79,6 @@
                 android:singleLine="true"
                 android:maxLength="25"
                 android:hint="Confirm Password"
-                android:text="123"
                 app:drawableTint="@color/colorDeepGrey"
                 android:drawableEnd="@drawable/ic_baseline_lock_24"
                 android:background="@drawable/shape_radius_100_edit_text"

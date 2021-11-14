@@ -61,7 +61,7 @@ public class SignUpActivity extends AppCompatActivity implements EasyPermissions
         EditText password = (EditText) findViewById(R.id.password);
         EditText confirm = (EditText) findViewById(R.id.confirm_password);
 
-        onChekRequestPermissions();
+        //onChekRequestPermissions();
 
         ((Button) findViewById(R.id.submit_button)).setOnClickListener(new View.OnClickListener() {
             @Override

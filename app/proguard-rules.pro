@@ -19,3 +19,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep class bd.com.patropatri.models.** { *; }
+-keep class bd.com.patropatri.repositories.** { *; }
+-keep class bd.com.patropatri.services.** { *; }
+-keep class bd.com.patropatri.session.** { *; }
+-keep class bd.com.patropatri.utils.** { *; }
+-keep class bd.com.patropatri.viewmodels.** { *; }
+-keep class bd.com.patropatri.views.activities.** { *; }
+-keep class bd.com.patropatri.views.adapters.** { *; }
+-keep class bd.com.patropatri.views.dialogs.** { *; }
+-keep class bd.com.patropatri.views.fragments.** { *; }
+-keep class retrofit2.** { *; }

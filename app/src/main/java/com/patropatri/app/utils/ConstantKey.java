@@ -11,12 +11,12 @@ public class ConstantKey {
     //public static final String RESOURCE_URL = SERVER_URL + "file/download/";
     //public static final String SOCKET_SERVER_URL = "ws://"+ HOST_PORT +"/patropatri/stomp/websocket";
 
-    public static final String SERVER_URL = "http://72.251.224.27:8080/patropatri/api/v1/"; //Cloud Tomcat
+    public static final String SERVER_URL = "http://181.214.152.245:8080/patropatri/api/v1/"; //Cloud Tomcat
     //public static final String SERVER_URL = "http://192.168.0.174:5050/patropatri/api/v1/"; //Local Tomcat
     //public static final String SERVER_URL = "http://10.0.2.2:8080/api/v1/"; //Localhost IntelliJ IDEA
     public static final String RESOURCE_URL = SERVER_URL + "file/download/";
 
-    public static final String SOCKET_SERVER_URL = "ws://72.251.224.27:8080/patropatri/stomp/websocket"; //Cloud Tomcat
+    public static final String SOCKET_SERVER_URL = "ws://181.214.152.245:8080/patropatri/stomp/websocket"; //Cloud Tomcat
     //public static final String SOCKET_SERVER_URL = "ws://192.168.0.174:5050/patropatri/stomp/websocket"; //Local Tomcat
     //public static final String SOCKET_SERVER_URL = "ws://10.0.2.2:8080/stomp/websocket"; //Localhost IntelliJ IDEA
 
